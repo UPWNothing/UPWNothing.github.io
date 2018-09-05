@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Insert Images to an Hexo Post]]></title>
+    <url>%2F2018%2F09%2F02%2FInsert-Images-to-an-Hexo-Post%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[YouCompleteMe Installation]]></title>
+    <url>%2F2018%2F09%2F02%2FYouCompleteMe-Installation%2F</url>
+    <content type="text"><![CDATA[InstallationInstall development tools and CMake:yum install build-essential cmake Make sure you have Python headers installed:yum install python-devel rh-python36-python-devel.x86_64 If python3 has not been installed on your CentOS: Enable Software Collections sudo yum install centos-release-scl Install Python3 sudo yum install rh-python36 If you want to use python 3.6 as default scl enable rh-python36 bash Compiling YCM with semantic support for C-family languages: cd ~/.vim/bundle/YouCompleteMe ./install.py --clang-completer Compiling YCM without semantic support for C-family languages: cd ~/.vim/bundle/YouCompleteMe ./install.py cd ~/.vim/bundle/YouCompleteMe ./install.py --all https://github.com/Valloric/YouCompleteMe#full-installation-guide]]></content>
+      <categories>
+        <category>Configuration</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>YCM</tag>
+        <tag>vim</tag>
+      </tags>
+  </entry>
+</search>
