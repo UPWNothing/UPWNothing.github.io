@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Installing-Docker-in-Kali]]></title>
+    <url>%2F2019%2F12%2F27%2FInstalling-Docker-in-Kali%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[MySQL Binlog 调查取证]]></title>
     <url>%2F2019%2F01%2F22%2FMySQL-Binlog-Forensics%2F</url>
     <content type="text"><![CDATA[背景最近，公司有一个客户的MySQL数据库被篡改了数据，因此需要对该客户被攻击的服务器进行调查。其中涉及到对MySQL的Binlog日志分析。在任务完成后，将其中相关的步骤进行总结。Binlog定位 Binlog 位置找到MySQL安装目录中bin目录的位置，同时确认binlog的储存位置。其相应的配置在my.cnf的log_bin=””中。如果能够使用mySQL命令行连接，也可以使用 showvariables like &#39;%log_bin%&#39;命令查看binlog的相关配置。Binlog 结构在binlog所在的数据目录(默认为data目录)，可以看到mysql-bin.index 及 mysql-bin.0000xx 文件。其中.index文件为索引文件，记录数据文件列表。每当数据库重启或者当前一个文件写满后会生成新文件，同时使用命令flush logs也可以重新生成新的binlog日志文件。reset master命令可以用于清空binlog日志文件。Binlog 格式Binlog的格式有三个选项：- Row - Statement - Mixed 简单介绍这三种格式，分别为：- Row: 默认格式，记录导致表的行发生变化的事件 - Statement: 记录被执行的原始SQL查询语句 - Mixed: 默认使用Statement格式，再特定情况下使用Row格式 Binlog格式可以在my.cnf的binlog-format=中进行配置。在MySQL命令行中可以通过SHOW VARIABLES LIKE &#39;binlog_format&#39;;查看。Binlog 内容由于binlog是以二进制格式储存的，所以无法直接查看。MySQL自带的mysqlbinlog工具可以用来查看binlog。[MySQL directory]\bin\mysqlbinlog mysql-bin.000008即可获取binlog中的内容。当然也可以添加参数(–start-porition, –stop-position, –start-time, –stop-time)来筛选日志。在很多事件调查中，其实都可以将目标时间确定在一个范围之内，因此使用参数进行筛选会给我们带来极大的便利。对于Row格式的Binlog，还可以使用-v参数将日志记录转译为”伪-SQL语句”。参考文献https://cloud.tencent.com/developer/article/1032755https://maxchadwick.xyz/blog/working-with-mysql-binary-logs]]></content>
@@ -16,7 +21,7 @@
   <entry>
     <title><![CDATA[Vim Configuration]]></title>
     <url>%2F2018%2F12%2F20%2FVim-Config_en%2F</url>
-    <content type="text"><![CDATA[~/.vimrc123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354set nocompatible " be iMproved, requiredfiletype off " required" set the runtime path to include Vundle and initializeset rtp+=~/.vim/bundle/Vundle.vimcall vundle#begin()" alternatively, pass a path where Vundle should install plugins"call vundle#begin('~/some/path/here')" let Vundle manage Vundle, requiredPlugin 'VundleVim/Vundle.vim'" The following are examples of different formats supported." Keep Plugin commands between vundle#begin/end." plugin on GitHub repoPlugin 'tpope/vim-fugitive'Plugin 'altercation/vim-colors-solarized'Plugin 'Valloric/YouCompleteMe'" plugin from http://vim-scripts.org/vim/scripts.html" Plugin 'L9'" Git plugin not hosted on GitHub" git repos on your local machine (i.e. when working on your own plugin)"Plugin 'file:///home/gmarik/path/to/plugin'" The sparkup vim script is in a subdirectory of this repo called vim." Pass the path to set the runtimepath properly.Plugin 'rstacruz/sparkup', &#123;'rtp': 'vim/'&#125;" Install L9 and avoid a Naming conflict if you've already installed a" different version somewhere else." Plugin 'ascenator/L9', &#123;'name': 'newL9'&#125;" All of your Plugins must be added before the following linecall vundle#end() " requiredfiletype plugin indent on " required" To ignore plugin indent changes, instead use:"filetype plugin on"" Brief help" :PluginList - lists configured plugins" :PluginInstall - installs plugins; append `!` to update or just :PluginUpdate" :PluginSearch foo - searches for foo; append `!` to refresh local cache" :PluginClean - confirms removal of unused plugins; append `!` to auto-approve removal"" see :h vundle for more details or wiki for FAQ" Put your non-Plugin stuff after this line" ""syntax enablecolorscheme molokaiset fdm=markerset tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttabset nu]]></content>
+    <content type="text"><![CDATA[Install Vim Plug-in Manager：VundleDownload Vundlegit clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vimConfigure Vim file ~/.vimrcAdd the following content to ~/.vimrc file. It’s up to you to add/remove some plug-ins.123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960set nocompatible " be iMproved, requiredfiletype off " required" set the runtime path to include Vundle and initializeset rtp+=~/.vim/bundle/Vundle.vimcall vundle#begin()" alternatively, pass a path where Vundle should install plugins"call vundle#begin('~/some/path/here')" let Vundle manage Vundle, requiredPlugin 'VundleVim/Vundle.vim'" The following are examples of different formats supported." Keep Plugin commands between vundle#begin/end." plugin on GitHub repoPlugin 'tpope/vim-fugitive'Plugin 'Valloric/YouCompleteMe'Plugin 'plasticboy/vim-markdown'" plugin from http://vim-scripts.org/vim/scripts.html" Plugin 'L9'" Git plugin not hosted on GitHub" git repos on your local machine (i.e. when working on your own plugin)"Plugin 'file:///home/gmarik/path/to/plugin'" The sparkup vim script is in a subdirectory of this repo called vim." Pass the path to set the runtimepath properly.Plugin 'rstacruz/sparkup', &#123;'rtp': 'vim/'&#125;" Install L9 and avoid a Naming conflict if you've already installed a" different version somewhere else." Plugin 'ascenator/L9', &#123;'name': 'newL9'&#125;" Color schemesPlugin 'tomasr/molokai'Plugin 'altercation/vim-colors-solarized'Plugin 'flazz/vim-colorschemes'" All of your Plugins must be added before the following linecall vundle#end() " requiredfiletype plugin indent on " required" To ignore plugin indent changes, instead use:"filetype plugin on"" Brief help" :PluginList - lists configured plugins" :PluginInstall - installs plugins; append `!` to update or just :PluginUpdate" :PluginSearch foo - searches for foo; append `!` to refresh local cache" :PluginClean - confirms removal of unused plugins; append `!` to auto-approve removal"" see :h vundle for more details or wiki for FAQ" Put your non-Plugin stuff after this line" ""syntax enableset fdm=markerset tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttabset nuDownload Plug-insRun git clone for each plug-ins, Download them to~/.vim/bundle。1234567git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vimcd ~/.vim/bundlegit clone https://github.com/tpope/vim-fugitivegit clone https://github.com/altercation/vim-colors-solarizedgit clone https://github.com/Valloric/YouCompleteMegit clone https://github.com/rstacruz/sparkupgit clone https://github.com/plasticboy/vim-markdownInstall Plug-insRunVim, and then execute:PluginInstall。Alternatively, you can run vim +PluginInstall +qall directly in shell.]]></content>
       <categories>
         <category>Configuration</category>
       </categories>
@@ -67,9 +72,9 @@
         <category>Configuration</category>
       </categories>
       <tags>
-        <tag>vim</tag>
         <tag>CentOS</tag>
         <tag>YCM</tag>
+        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
@@ -80,9 +85,9 @@
         <category>Configuration</category>
       </categories>
       <tags>
-        <tag>vim</tag>
         <tag>CentOS</tag>
         <tag>YCM</tag>
+        <tag>vim</tag>
       </tags>
   </entry>
 </search>
