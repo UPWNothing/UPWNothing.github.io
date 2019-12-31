@@ -16,7 +16,7 @@
 <h2 id="Binlog-格式"><a href="#Binlog-格式" class="headerlink" title="Binlog 格式"></a>Binlog 格式</h2><p>Binlog的格式有三个选项：<br>    - Row<br>    - Statement<br>    - Mixed<br>简单介绍这三种格式，分别为：<br>    - Row: 默认格式，记录导致表的行发生变化的事件<br>    - Statement: 记录被执行的原始SQL查询语句<br>    - Mixed: 默认使用Statement格式，再特定情况下使用Row格式<br>Binlog格式可以在my.cnf的binlog-format=中进行配置。在MySQL命令行中可以通过<code>SHOW VARIABLES LIKE &#39;binlog_format&#39;;</code>查看。</p>
 <h2 id="Binlog-内容"><a href="#Binlog-内容" class="headerlink" title="Binlog 内容"></a>Binlog 内容</h2><p>由于binlog是以二进制格式储存的，所以无法直接查看。MySQL自带的mysqlbinlog工具可以用来查看binlog。<code>[MySQL directory]\bin\mysqlbinlog mysql-bin.000008</code>即可获取binlog中的内容。当然也可以添加参数(–start-porition, –stop-position, –start-time, –stop-time)来筛选日志。在很多事件调查中，其实都可以将目标时间确定在一个范围之内，因此使用参数进行筛选会给我们带来极大的便利。<br>对于Row格式的Binlog，还可以使用-v参数将日志记录转译为”伪-SQL语句”。</p>
 <hr>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="https://cloud.tencent.com/developer/article/1032755" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1032755</a><br><a href="https://maxchadwick.xyz/blog/working-with-mysql-binary-logs" target="_blank" rel="noopener">https://maxchadwick.xyz/blog/working-with-mysql-binary-logs</a></p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="https://cloud.tencent.com/developer/article/1032755">https://cloud.tencent.com/developer/article/1032755</a><br><a href="https://maxchadwick.xyz/blog/working-with-mysql-binary-logs">https://maxchadwick.xyz/blog/working-with-mysql-binary-logs</a></p>
 ]]></content>
       <categories>
         <category>Forensics</category>
@@ -155,8 +155,8 @@
   <entry>
     <title>YouCompleteMe 安装教程</title>
     <url>/2018/09/03/YouCompleteMe-Installation/</url>
-    <content><![CDATA[<p>YouCompleteMe作为Vim中最好用（没有之一）的代码自动补全插件，却同时又是最不容易安装的插件之一。其实在YCM的Github官网，有非常详细完整的安装说明。如果在Mac OS X, Windows, Ubuntu, FreeBSD/OpenBSD或Fedora上安装YCM，且英语还Okay的话，建议直接移步<a href="https://github.com/Valloric/YouCompleteMe#installation" target="_blank" rel="noopener">官方安装说明文档</a>。但官方说明文档却没有对在CentOS与Debian中安装YCM的详细说明。所以在这里总结一下具体的步骤给大家作一个参考。</p>
-<h1 id="在CentOS中安装YCM"><a href="#在CentOS中安装YCM" class="headerlink" title="在CentOS中安装YCM"></a>在CentOS中安装YCM</h1><h2 id="使用-Vundle-安装YCM"><a href="#使用-Vundle-安装YCM" class="headerlink" title="使用 Vundle 安装YCM"></a>使用 <a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="noopener">Vundle</a> 安装YCM</h2><p>Vundle（Vim Bundle的缩写）是一个针对Vim的插件管理器。相较于Vim本身混乱的插件结构，使用Vundle来管理插件就显得非常得方便、简洁。用户只需要在Github上找到自己想要的插件的名字，并将其添加到.vimrc文件中，之后的安装，更新和卸载等操作都可以由vundle来完成了。</p>
+    <content><![CDATA[<p>YouCompleteMe作为Vim中最好用（没有之一）的代码自动补全插件，却同时又是最不容易安装的插件之一。其实在YCM的Github官网，有非常详细完整的安装说明。如果在Mac OS X, Windows, Ubuntu, FreeBSD/OpenBSD或Fedora上安装YCM，且英语还Okay的话，建议直接移步<a href="https://github.com/Valloric/YouCompleteMe#installation">官方安装说明文档</a>。但官方说明文档却没有对在CentOS与Debian中安装YCM的详细说明。所以在这里总结一下具体的步骤给大家作一个参考。</p>
+<h1 id="在CentOS中安装YCM"><a href="#在CentOS中安装YCM" class="headerlink" title="在CentOS中安装YCM"></a>在CentOS中安装YCM</h1><h2 id="使用-Vundle-安装YCM"><a href="#使用-Vundle-安装YCM" class="headerlink" title="使用 Vundle 安装YCM"></a>使用 <a href="https://github.com/VundleVim/Vundle.vim">Vundle</a> 安装YCM</h2><p>Vundle（Vim Bundle的缩写）是一个针对Vim的插件管理器。相较于Vim本身混乱的插件结构，使用Vundle来管理插件就显得非常得方便、简洁。用户只需要在Github上找到自己想要的插件的名字，并将其添加到.vimrc文件中，之后的安装，更新和卸载等操作都可以由vundle来完成了。</p>
 <a id="more"></a>
 <ol>
 <li>下载Vundle <figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/VundleVim/Vundle.<span class="keyword">vim</span>.git ~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br></pre></td></tr></table></figure></li>
@@ -186,7 +186,7 @@
 </li>
 </ul>
 <h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul>
-<li><a href="https://github.com/Valloric/YouCompleteMe#full-installation-guide" target="_blank" rel="noopener">https://github.com/Valloric/YouCompleteMe#full-installation-guide</a></li>
+<li><a href="https://github.com/Valloric/YouCompleteMe#full-installation-guide">https://github.com/Valloric/YouCompleteMe#full-installation-guide</a></li>
 </ul>
 ]]></content>
       <categories>
@@ -202,7 +202,7 @@
     <title>YouCompleteMe Installation</title>
     <url>/2018/09/03/YouCompleteMe-Installation_en/</url>
     <content><![CDATA[<p>Acutally, there’re pretty detailed instructions for installation on YCM(YouCompleteMe)’s github page. However, the installation steps on CentOS and Debian cannot be found. </p>
-<h1 id="Complete-YCM-Installation-on-CentOS"><a href="#Complete-YCM-Installation-on-CentOS" class="headerlink" title="Complete YCM Installation on CentOS"></a>Complete YCM Installation on CentOS</h1><h2 id="Install-YCM-with-Vundle"><a href="#Install-YCM-with-Vundle" class="headerlink" title="Install YCM with Vundle"></a>Install YCM with <a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="noopener">Vundle</a></h2><p>Vundle is a Plugin Manager for Vim. It provides an easy way to install, update and configure Vim Plugins.     </p>
+<h1 id="Complete-YCM-Installation-on-CentOS"><a href="#Complete-YCM-Installation-on-CentOS" class="headerlink" title="Complete YCM Installation on CentOS"></a>Complete YCM Installation on CentOS</h1><h2 id="Install-YCM-with-Vundle"><a href="#Install-YCM-with-Vundle" class="headerlink" title="Install YCM with Vundle"></a>Install YCM with <a href="https://github.com/VundleVim/Vundle.vim">Vundle</a></h2><p>Vundle is a Plugin Manager for Vim. It provides an easy way to install, update and configure Vim Plugins.     </p>
 <a id="more"></a>
 <ol>
 <li>Download Vundle <figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/VundleVim/Vundle.<span class="keyword">vim</span>.git ~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br></pre></td></tr></table></figure></li>
@@ -233,7 +233,7 @@
 </li>
 </ul>
 <h1 id="Referrence"><a href="#Referrence" class="headerlink" title="Referrence"></a>Referrence</h1><ul>
-<li><a href="https://github.com/Valloric/YouCompleteMe#full-installation-guide" target="_blank" rel="noopener">https://github.com/Valloric/YouCompleteMe#full-installation-guide</a></li>
+<li><a href="https://github.com/Valloric/YouCompleteMe#full-installation-guide">https://github.com/Valloric/YouCompleteMe#full-installation-guide</a></li>
 </ul>
 ]]></content>
       <categories>
