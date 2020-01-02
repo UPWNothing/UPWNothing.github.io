@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN,en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -75,7 +75,7 @@
     // Wait for the page to load first
     var _prevOnload = window.onload;
     window.onload = function() {
-        var switchLang = document.getElementById("menu").getElementsByClassName("menu-item-switch_lang")[0].childNodes[0];
+        var switchLang = document.getElementById("menu").getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
             var href = window.location.href;     
             var indexOfEn = href.toLowerCase().indexOf('/en/');
             if(indexOfEn !== -1) {
@@ -89,7 +89,7 @@
             }
     }
 </script>
-
+<script data-ad-client="ca-pub-2179953596008833" async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
   <title>UPWNothing's Playground</title>
   
@@ -637,7 +637,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-02 13:41:17" itemprop="dateModified" datetime="2020-01-02T13:41:17+08:00">2020-01-02</time>
+                <time title="修改时间：2020-01-02 16:33:24" itemprop="dateModified" datetime="2020-01-02T16:33:24+08:00">2020-01-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -657,7 +657,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.6k</span>
+              <span>4.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -678,7 +678,7 @@
       
           <h1 id="2019-12更新"><a href="#2019-12更新" class="headerlink" title="2019.12更新"></a>2019.12更新</h1><p>对该方法进行了更新，文中引用的代码适用于Hexo v4.2.0, Next v7.7.0.<br>请各位根据自己的版本情况进行相应的微调。  </p>
 <hr>
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>Hexo本身有对于博客国际化的多语言的支持。但是简单倒腾后发现，所谓的国际化只是在显示文章时，根据文章设定的语言将导航栏，侧边栏中的链接名称改为相对应的语言。但博客本身的博文列表中，各个语言的文章仍然混杂在一起。</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>Hexo本身有对于博客国际化的多语言的支持。但 是简单倒腾后发现，所谓的国际化只是在显示文章时，根据文章设定的语言将导航栏，侧边栏中的链接名称改为相对应的语言。但博客本身的博文列表中，各个语言的文章仍然混杂在一起。</p>
 <p>而我理想中的中英文双语站点可以通过一张图片非常形象的表示出来：<br><img src="/zh-CN/Hexo-Bilingual-Blog/bilingualize.png" alt="理想网站结构"></p>
 <p>通过一段时间的搜索，我发现了两种较为可行的方法来实现这个功能。这里我挑选了一个我认为更加合理的方法来实现。</p>
           <!--noindex-->

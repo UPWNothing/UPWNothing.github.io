@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN,en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -78,7 +78,7 @@
     // Wait for the page to load first
     var _prevOnload = window.onload;
     window.onload = function() {
-        var switchLang = document.getElementById("menu").getElementsByClassName("menu-item-switch_lang")[0].childNodes[0];
+        var switchLang = document.getElementById("menu").getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
             var href = window.location.href;     
             var indexOfEn = href.toLowerCase().indexOf('/en/');
             if(indexOfEn !== -1) {
@@ -92,7 +92,7 @@
             }
     }
 </script>
-
+<script data-ad-client="ca-pub-2179953596008833" async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
   <title>YouCompleteMe 安装教程 | UPWNothing's Playground</title>
   
