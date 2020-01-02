@@ -22,7 +22,7 @@
     hostname: new URL('https://upwnothing.github.io').hostname,
     root: '/',
     scheme: 'Mist',
-    version: '7.6.0',
+    version: '7.7.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
@@ -41,7 +41,7 @@
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
     localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
+    path: '',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
@@ -71,6 +71,25 @@
     isPost: false
   };
 </script>
+<script type="text/javascript">
+    // Wait for the page to load first
+    var _prevOnload = window.onload;
+    window.onload = function() {
+        var switchLang = document.getElementById("menu").getElementsByClassName("menu-item-switch_lang")[0].childNodes[0];
+            var href = window.location.href;     
+            var indexOfEn = href.toLowerCase().indexOf('/en/');
+            if(indexOfEn !== -1) {
+                //switchLang.href = href.replace('/en/', '/');
+		//switchLang.href = "https://upwnothing.github.io";
+                switchLang.href = href.substr(0,indexOfEn);
+            }
+            else {
+                //switchLang.href = href.replace(/(^http[s]?:\/\/[a-z0-9.]*[:?0-9]*\/)(.*)/i, '$1en/$2');
+		//switchLang.href = "https://upwnothing.github.io/en";
+            }
+    }
+</script>
+
 
   <title>UPWNothing's Playground</title>
   
@@ -141,11 +160,6 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">8</span></a>
-
-  </li>
         <li class="menu-item menu-item-about">
 
     <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
@@ -158,7 +172,7 @@
   </li>
         <li class="menu-item menu-item-switch_lang">
 
-    <a href="/en/" rel="section"><i class="fa fa-fw fa-language"></i>switch_lang</a>
+    <a href="/en/" rel="section"><i class="fa fa-fw fa-language"></i>-->English</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -208,11 +222,12 @@
             
 
   <div class="posts-expand">
-        
+      
+          
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/2019/12/27/Installing-Docker-in-Kali/">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/Hexo-Update/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -226,7 +241,110 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/12/27/Installing-Docker-in-Kali/" class="post-title-link" itemprop="url">Installing-Docker-in-Kali</a>
+            <a href="/zh-CN/Hexo-Update/" class="post-title-link" itemprop="url">Hexo版本升级指南</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-31 11:59:09" itemprop="dateCreated datePublished" datetime="2019-12-31T11:59:09+08:00">2019-12-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-02 11:17:16" itemprop="dateModified" datetime="2020-01-02T11:17:16+08:00">2020-01-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>进来想起来自己还有这么一个博客。那么第一件事当然是对版本进行升级咯！可升级的过程远远没有想象中的那般顺利，因此在此记录一下，其他人如果遇到类似的问题，也可以有一个借鉴。<br>升级前，先检查当前hexo的版本号：<code>hexo --version</code>。版本信息如下图所示：<br><img src="/zh-CN/Hexo-Update/hexo_check_version.png" alt="Hexo版本信息"> </p>
+<h1 id="升级步骤"><a href="#升级步骤" class="headerlink" title="升级步骤"></a>升级步骤</h1><p> 在Hexo的文档中搜索一番，结果！！完全没有提及版本升级的方法。。。行吧，只能借助万能的Google，经过比较，终于找到了一个简单粗暴的方法：<br>首先进入Hexo的主目录，然后直接执行</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> update</span><br></pre></td></tr></table></figure>
+
+<p>等等等…没动静呐！看来有必要重新配置一下NPM…</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/zh-CN/Hexo-Update/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+      
+          
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/undefined/Installing-Docker-in-Kali/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="UPWNothing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="UPWNothing's Playground">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/undefined/Installing-Docker-in-Kali/" class="post-title-link" itemprop="url">Installing-Docker-in-Kali</a>
         </h1>
 
         <div class="post-meta">
@@ -279,11 +397,13 @@
   
   
 
-        
+      
+      
+          
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/2019/01/22/MySQL-Binlog-Forensics/">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/MySQL-Binlog-Forensics/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -297,7 +417,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/01/22/MySQL-Binlog-Forensics/" class="post-title-link" itemprop="url">MySQL Binlog 调查取证</a>
+            <a href="/zh-CN/MySQL-Binlog-Forensics/" class="post-title-link" itemprop="url">MySQL Binlog 调查取证</a>
         </h1>
 
         <div class="post-meta">
@@ -357,7 +477,7 @@
 <h1 id="Binlog"><a href="#Binlog" class="headerlink" title="Binlog"></a>Binlog</h1><h2 id="定位-Binlog-位置"><a href="#定位-Binlog-位置" class="headerlink" title="定位 Binlog 位置"></a>定位 Binlog 位置</h2><p>找到MySQL安装目录中bin目录的位置，同时确认binlog的储存位置。其相应的配置在my.cnf的log_bin=””中。<br>如果能够使用mySQL命令行连接，也可以使用 <code>showvariables like &#39;%log_bin%&#39;</code>命令查看binlog的相关配置。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/01/22/MySQL-Binlog-Forensics/#more" rel="contents">
+              <a class="btn" href="/zh-CN/MySQL-Binlog-Forensics/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -377,11 +497,13 @@
   
   
 
-        
+      
+      
+          
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/2018/12/20/Vim-Config/">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/Vim-Config/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -395,7 +517,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2018/12/20/Vim-Config/" class="post-title-link" itemprop="url">Vim 配置</a>
+            <a href="/zh-CN/Vim-Config/" class="post-title-link" itemprop="url">Vim 配置</a>
         </h1>
 
         <div class="post-meta">
@@ -458,7 +580,7 @@
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> nocompatible              <span class="comment">" be iMproved, required</span></span><br><span class="line"><span class="keyword">filetype</span> off                  <span class="comment">" required</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" set the runtime path to include Vundle and initialize</span></span><br><span class="line"><span class="keyword">set</span> rtp+=~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">call</span> vundle#begin()</span><br><span class="line"><span class="comment">" alternatively, pass a path where Vundle should install plugins</span></span><br><span class="line"><span class="comment">"call vundle#begin('~/some/path/here')</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" let Vundle manage Vundle, required</span></span><br><span class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" The following are examples of different formats supported.</span></span><br><span class="line"><span class="comment">" Keep Plugin commands between vundle#begin/end.</span></span><br><span class="line"><span class="comment">" plugin on GitHub repo</span></span><br><span class="line">Plugin <span class="string">'tpope/vim-fugitive'</span></span><br><span class="line">Plugin <span class="string">'Valloric/YouCompleteMe'</span></span><br><span class="line">Plugin <span class="string">'plasticboy/vim-markdown'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">" plugin from http://vim-scripts.org/vim/scripts.html</span></span><br><span class="line"><span class="comment">" Plugin 'L9'</span></span><br><span class="line"><span class="comment">" Git plugin not hosted on GitHub</span></span><br><span class="line"><span class="comment">" git repos on your local machine (i.e. when working on your own plugin)</span></span><br><span class="line"><span class="comment">"Plugin 'file:///home/gmarik/path/to/plugin'</span></span><br><span class="line"><span class="comment">" The sparkup vim script is in a subdirectory of this repo called vim.</span></span><br><span class="line"><span class="comment">" Pass the path to set the runtimepath properly.</span></span><br><span class="line">Plugin <span class="string">'rstacruz/sparkup'</span>, &#123;<span class="string">'rtp'</span>: <span class="string">'vim/'</span>&#125;</span><br><span class="line"><span class="comment">" Install L9 and avoid a Naming conflict if you've already installed a</span></span><br><span class="line"><span class="comment">" different version somewhere else.</span></span><br><span class="line"><span class="comment">" Plugin 'ascenator/L9', &#123;'name': 'newL9'&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" Color schemes</span></span><br><span class="line">Plugin <span class="string">'tomasr/molokai'</span></span><br><span class="line">Plugin <span class="string">'altercation/vim-colors-solarized'</span></span><br><span class="line">Plugin <span class="string">'flazz/vim-colorschemes'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">" All of your Plugins must be added before the following line</span></span><br><span class="line"><span class="keyword">call</span> vundle#end()            <span class="comment">" required</span></span><br><span class="line"><span class="keyword">filetype</span> plugin <span class="built_in">indent</span> <span class="keyword">on</span>    <span class="comment">" required</span></span><br><span class="line"><span class="comment">" To ignore plugin indent changes, instead use:</span></span><br><span class="line"><span class="comment">"filetype plugin on</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" Brief help</span></span><br><span class="line"><span class="comment">" :PluginList       - lists configured plugins</span></span><br><span class="line"><span class="comment">" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate</span></span><br><span class="line"><span class="comment">" :PluginSearch foo - searches for foo; append `!` to refresh local cache</span></span><br><span class="line"><span class="comment">" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" see :h vundle for more details or wiki for FAQ</span></span><br><span class="line"><span class="comment">" Put your non-Plugin stuff after this line</span></span><br><span class="line"><span class="comment">" </span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="keyword">syntax</span> enable</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> fdm=marker</span><br><span class="line"><span class="keyword">set</span> tabstop=<span class="number">8</span> softtabstop=<span class="number">0</span> expandtab <span class="built_in">shiftwidth</span>=<span class="number">4</span> smarttab</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">nu</span></span><br></pre></td></tr></table></figure>
 
 
-<h1 id="下载插件"><a href="#下载插件" class="headerlink" title="下载插件"></a>下载插件</h1><p>通过<code>git clone</code>命令，将需要的插件下载到<code>~/.vim/bundle</code>目录下。<br><img src="/.io//plugin_download.png" alt></p>
+<h1 id="下载插件"><a href="#下载插件" class="headerlink" title="下载插件"></a>下载插件</h1><p>通过<code>git clone</code>命令，将需要的插件下载到<code>~/.vim/bundle</code>目录下。<br><img src="/zh-CN/Vim-Config/plugin_download.png" alt></p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/VundleVim/Vundle.<span class="keyword">vim</span>.git ~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">cd</span> ~/.<span class="keyword">vim</span>/bundle</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/tpope/<span class="keyword">vim</span>-fugitive</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/altercation/<span class="keyword">vim</span>-colors-solarized</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/Valloric/YouCompleteMe</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/rstacruz/sparkup</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/plasticboy/<span class="keyword">vim</span>-markdown</span><br></pre></td></tr></table></figure>
 
 <h1 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h1><p>运行<strong>Vim</strong>,然后执行<code>:PluginInstall</code>。<br>当然也可以直接在命令行执行<code>vim +PluginInstall +qall</code></p>
@@ -477,111 +599,14 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/2018/12/20/Vim-Config_en/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="UPWNothing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="UPWNothing's Playground">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+      
+      
+      
           
-            <a href="/2018/12/20/Vim-Config_en/" class="post-title-link" itemprop="url">Vim Configuration</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-12-20 02:08:08" itemprop="dateCreated datePublished" datetime="2018-12-20T02:08:08+08:00">2018-12-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-27 14:34:38" itemprop="dateModified" datetime="2019-12-27T14:34:38+08:00">2019-12-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Configuration/" itemprop="url" rel="index">
-                    <span itemprop="name">Configuration</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Install-Vim-Plug-in-Manager：Vundle"><a href="#Install-Vim-Plug-in-Manager：Vundle" class="headerlink" title="Install Vim Plug-in Manager：Vundle"></a>Install Vim Plug-in Manager：Vundle</h1><ol>
-<li>Download Vundle<br><code>git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim</code></li>
-</ol>
-<h1 id="Configure-Vim-file-vimrc"><a href="#Configure-Vim-file-vimrc" class="headerlink" title="Configure Vim file ~/.vimrc"></a>Configure Vim file ~/.vimrc</h1><p>Add the following content to <code>~/.vimrc</code> file. It’s up to you to add/remove some plug-ins.</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> nocompatible              <span class="comment">" be iMproved, required</span></span><br><span class="line"><span class="keyword">filetype</span> off                  <span class="comment">" required</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" set the runtime path to include Vundle and initialize</span></span><br><span class="line"><span class="keyword">set</span> rtp+=~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">call</span> vundle#begin()</span><br><span class="line"><span class="comment">" alternatively, pass a path where Vundle should install plugins</span></span><br><span class="line"><span class="comment">"call vundle#begin('~/some/path/here')</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" let Vundle manage Vundle, required</span></span><br><span class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" The following are examples of different formats supported.</span></span><br><span class="line"><span class="comment">" Keep Plugin commands between vundle#begin/end.</span></span><br><span class="line"><span class="comment">" plugin on GitHub repo</span></span><br><span class="line">Plugin <span class="string">'tpope/vim-fugitive'</span></span><br><span class="line">Plugin <span class="string">'Valloric/YouCompleteMe'</span></span><br><span class="line">Plugin <span class="string">'plasticboy/vim-markdown'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">" plugin from http://vim-scripts.org/vim/scripts.html</span></span><br><span class="line"><span class="comment">" Plugin 'L9'</span></span><br><span class="line"><span class="comment">" Git plugin not hosted on GitHub</span></span><br><span class="line"><span class="comment">" git repos on your local machine (i.e. when working on your own plugin)</span></span><br><span class="line"><span class="comment">"Plugin 'file:///home/gmarik/path/to/plugin'</span></span><br><span class="line"><span class="comment">" The sparkup vim script is in a subdirectory of this repo called vim.</span></span><br><span class="line"><span class="comment">" Pass the path to set the runtimepath properly.</span></span><br><span class="line">Plugin <span class="string">'rstacruz/sparkup'</span>, &#123;<span class="string">'rtp'</span>: <span class="string">'vim/'</span>&#125;</span><br><span class="line"><span class="comment">" Install L9 and avoid a Naming conflict if you've already installed a</span></span><br><span class="line"><span class="comment">" different version somewhere else.</span></span><br><span class="line"><span class="comment">" Plugin 'ascenator/L9', &#123;'name': 'newL9'&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" Color schemes</span></span><br><span class="line">Plugin <span class="string">'tomasr/molokai'</span></span><br><span class="line">Plugin <span class="string">'altercation/vim-colors-solarized'</span></span><br><span class="line">Plugin <span class="string">'flazz/vim-colorschemes'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">" All of your Plugins must be added before the following line</span></span><br><span class="line"><span class="keyword">call</span> vundle#end()            <span class="comment">" required</span></span><br><span class="line"><span class="keyword">filetype</span> plugin <span class="built_in">indent</span> <span class="keyword">on</span>    <span class="comment">" required</span></span><br><span class="line"><span class="comment">" To ignore plugin indent changes, instead use:</span></span><br><span class="line"><span class="comment">"filetype plugin on</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" Brief help</span></span><br><span class="line"><span class="comment">" :PluginList       - lists configured plugins</span></span><br><span class="line"><span class="comment">" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate</span></span><br><span class="line"><span class="comment">" :PluginSearch foo - searches for foo; append `!` to refresh local cache</span></span><br><span class="line"><span class="comment">" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" see :h vundle for more details or wiki for FAQ</span></span><br><span class="line"><span class="comment">" Put your non-Plugin stuff after this line</span></span><br><span class="line"><span class="comment">" </span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="keyword">syntax</span> enable</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> fdm=marker</span><br><span class="line"><span class="keyword">set</span> tabstop=<span class="number">8</span> softtabstop=<span class="number">0</span> expandtab <span class="built_in">shiftwidth</span>=<span class="number">4</span> smarttab</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">nu</span></span><br></pre></td></tr></table></figure>
-
-
-<h1 id="Download-Plug-ins"><a href="#Download-Plug-ins" class="headerlink" title="Download Plug-ins"></a>Download Plug-ins</h1><p>Run <code>git clone</code> for each plug-ins, Download them to<code>~/.vim/bundle</code>。<br><img src="/.io//plugin_download.png" alt></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/VundleVim/Vundle.<span class="keyword">vim</span>.git ~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">cd</span> ~/.<span class="keyword">vim</span>/bundle</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/tpope/<span class="keyword">vim</span>-fugitive</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/altercation/<span class="keyword">vim</span>-colors-solarized</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/Valloric/YouCompleteMe</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/rstacruz/sparkup</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/plasticboy/<span class="keyword">vim</span>-markdown</span><br></pre></td></tr></table></figure>
-
-<h1 id="Install-Plug-ins"><a href="#Install-Plug-ins" class="headerlink" title="Install Plug-ins"></a>Install Plug-ins</h1><p>Run<strong>Vim</strong>, and then execute<code>:PluginInstall</code>。<br>Alternatively, you can run <code>vim +PluginInstall +qall</code> directly in shell. </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/2018/09/14/Hexo-Bilingual-Blog/">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/Hexo-Bilingual-Blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -595,7 +620,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2018/09/14/Hexo-Bilingual-Blog/" class="post-title-link" itemprop="url">利用Hexo框架搭建中英文双语网站</a>
+            <a href="/zh-CN/Hexo-Bilingual-Blog/" class="post-title-link" itemprop="url">利用Hexo框架搭建中英文双语网站</a>
         </h1>
 
         <div class="post-meta">
@@ -612,7 +637,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-31 10:50:58" itemprop="dateModified" datetime="2019-12-31T10:50:58+08:00">2019-12-31</time>
+                <time title="修改时间：2020-01-02 13:41:17" itemprop="dateModified" datetime="2020-01-02T13:41:17+08:00">2020-01-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -632,7 +657,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.4k</span>
+              <span>4.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -651,14 +676,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="2019-12更新"><a href="#2019-12更新" class="headerlink" title="2019.12更新"></a>2019.12更新</h1><p>该方法在Hexo最新版本上已经失效。</p>
+          <h1 id="2019-12更新"><a href="#2019-12更新" class="headerlink" title="2019.12更新"></a>2019.12更新</h1><p>对该方法进行了更新，文中引用的代码适用于Hexo v4.2.0, Next v7.7.0.<br>请各位根据自己的版本情况进行相应的微调。  </p>
 <hr>
 <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>Hexo本身有对于博客国际化的多语言的支持。但是简单倒腾后发现，所谓的国际化只是在显示文章时，根据文章设定的语言将导航栏，侧边栏中的链接名称改为相对应的语言。但博客本身的博文列表中，各个语言的文章仍然混杂在一起。</p>
-<p>而我理想中的中英文双语站点可以通过一张图片非常形象的表示出来：<br><img src="/.io//bilingualize.png" alt="理想网站结构"></p>
+<p>而我理想中的中英文双语站点可以通过一张图片非常形象的表示出来：<br><img src="/zh-CN/Hexo-Bilingual-Blog/bilingualize.png" alt="理想网站结构"></p>
 <p>通过一段时间的搜索，我发现了两种较为可行的方法来实现这个功能。这里我挑选了一个我认为更加合理的方法来实现。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2018/09/14/Hexo-Bilingual-Blog/#more" rel="contents">
+              <a class="btn" href="/zh-CN/Hexo-Bilingual-Blog/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -678,107 +703,14 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/2018/09/03/Insert-Images-to-an-Hexo-Post/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="UPWNothing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="UPWNothing's Playground">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+      
+      
+      
           
-            <a href="/2018/09/03/Insert-Images-to-an-Hexo-Post/" class="post-title-link" itemprop="url">Insert Images to an Hexo Post</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-09-03 03:31:31" itemprop="dateCreated datePublished" datetime="2018-09-03T03:31:31+08:00">2018-09-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-01-29 17:21:08" itemprop="dateModified" datetime="2019-01-29T17:21:08+08:00">2019-01-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Configuration/" itemprop="url" rel="index">
-                    <span itemprop="name">Configuration</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>345</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>First, execute the following command to install <em>hexo-asset-image</em> plugin. </p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-<span class="built_in">image</span> --<span class="built_in">save</span></span><br></pre></td></tr></table></figure>
-
-<p>Next, please head to _config.yml to <strong>enable post_asset_folder</strong>.</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>From now on, for each time <code>hexo new [layout] &lt;title&gt;</code> is executed, hexo will simoutanuously create a folder having the same name as your new post’s title. If you want to insert images to your post, just  </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/2018/09/03/YouCompleteMe-Installation/">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/YouCompleteMe-Installation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -792,7 +724,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2018/09/03/YouCompleteMe-Installation/" class="post-title-link" itemprop="url">YouCompleteMe 安装教程</a>
+            <a href="/zh-CN/YouCompleteMe-Installation/" class="post-title-link" itemprop="url">YouCompleteMe 安装教程</a>
         </h1>
 
         <div class="post-meta">
@@ -848,11 +780,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>YouCompleteMe作为Vim中最好用（没有之一）的代码自动补全插件，却同时又是最不容易安装的插件之一。其实在YCM的Github官网，有非常详细完整的安装说明。如果在Mac OS X, Windows, Ubuntu, FreeBSD/OpenBSD或Fedora上安装YCM，且英语还Okay的话，建议直接移步<a href="https://github.com/Valloric/YouCompleteMe#installation">官方安装说明文档</a>。但官方说明文档却没有对在CentOS与Debian中安装YCM的详细说明。所以在这里总结一下具体的步骤给大家作一个参考。</p>
-<h1 id="在CentOS中安装YCM"><a href="#在CentOS中安装YCM" class="headerlink" title="在CentOS中安装YCM"></a>在CentOS中安装YCM</h1><h2 id="使用-Vundle-安装YCM"><a href="#使用-Vundle-安装YCM" class="headerlink" title="使用 Vundle 安装YCM"></a>使用 <a href="https://github.com/VundleVim/Vundle.vim">Vundle</a> 安装YCM</h2><p>Vundle（Vim Bundle的缩写）是一个针对Vim的插件管理器。相较于Vim本身混乱的插件结构，使用Vundle来管理插件就显得非常得方便、简洁。用户只需要在Github上找到自己想要的插件的名字，并将其添加到.vimrc文件中，之后的安装，更新和卸载等操作都可以由vundle来完成了。</p>
+          <p>YouCompleteMe作为Vim中最好用（没有之一）的代码自动补全插件，却同时又是最不容易安装的插件之一。其实在YCM的Github官网，有非常详细完整的安装说明。如果在Mac OS X, Windows, Ubuntu, FreeBSD/OpenBSD或Fedora上安装YCM，且英语还Okay的话，建议直接移步<a href="https://github.com/Valloric/YouCompleteMe#installation" target="_blank" rel="noopener">官方安装说明文档</a>。但官方说明文档却没有对在CentOS与Debian中安装YCM的详细说明。所以在这里总结一下具体的步骤给大家作一个参考。</p>
+<h1 id="在CentOS中安装YCM"><a href="#在CentOS中安装YCM" class="headerlink" title="在CentOS中安装YCM"></a>在CentOS中安装YCM</h1><h2 id="使用-Vundle-安装YCM"><a href="#使用-Vundle-安装YCM" class="headerlink" title="使用 Vundle 安装YCM"></a>使用 <a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="noopener">Vundle</a> 安装YCM</h2><p>Vundle（Vim Bundle的缩写）是一个针对Vim的插件管理器。相较于Vim本身混乱的插件结构，使用Vundle来管理插件就显得非常得方便、简洁。用户只需要在Github上找到自己想要的插件的名字，并将其添加到.vimrc文件中，之后的安装，更新和卸载等操作都可以由vundle来完成了。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2018/09/03/YouCompleteMe-Installation/#more" rel="contents">
+              <a class="btn" href="/zh-CN/YouCompleteMe-Installation/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -872,104 +804,8 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/2018/09/03/YouCompleteMe-Installation_en/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="UPWNothing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="UPWNothing's Playground">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/09/03/YouCompleteMe-Installation_en/" class="post-title-link" itemprop="url">YouCompleteMe Installation</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-09-03 02:08:08" itemprop="dateCreated datePublished" datetime="2018-09-03T02:08:08+08:00">2018-09-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-01-29 17:21:08" itemprop="dateModified" datetime="2019-01-29T17:21:08+08:00">2019-01-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Configuration/" itemprop="url" rel="index">
-                    <span itemprop="name">Configuration</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
       
-          <p>Acutally, there’re pretty detailed instructions for installation on YCM(YouCompleteMe)’s github page. However, the installation steps on CentOS and Debian cannot be found. </p>
-<h1 id="Complete-YCM-Installation-on-CentOS"><a href="#Complete-YCM-Installation-on-CentOS" class="headerlink" title="Complete YCM Installation on CentOS"></a>Complete YCM Installation on CentOS</h1><h2 id="Install-YCM-with-Vundle"><a href="#Install-YCM-with-Vundle" class="headerlink" title="Install YCM with Vundle"></a>Install YCM with <a href="https://github.com/VundleVim/Vundle.vim">Vundle</a></h2><p>Vundle is a Plugin Manager for Vim. It provides an easy way to install, update and configure Vim Plugins.     </p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/09/03/YouCompleteMe-Installation_en/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1035,9 +871,8 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">8</span>
+          <a href="/archives">
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1048,7 +883,7 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -1073,7 +908,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-paw"></i>
   </span>
@@ -1082,17 +917,17 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">16k</span>
+    <span title="站点总字数">18k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">15 分钟</span>
+    <span title="站点阅读时长">16 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.0
   </div>
 
         
@@ -1129,7 +964,8 @@
   </div>
 
   
-  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
