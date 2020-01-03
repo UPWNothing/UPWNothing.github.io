@@ -178,7 +178,7 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">3</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">6</span></a>
 
   </li>
         <li class="menu-item menu-item-switch_lang">
@@ -274,7 +274,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-27 14:34:38" itemprop="dateModified" datetime="2019-12-27T14:34:38+08:00">2019-12-27</time>
+                <time title="Modified: 2020-01-03 17:40:54" itemprop="dateModified" datetime="2020-01-03T17:40:54+08:00">2020-01-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -282,8 +282,14 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Configuration/" itemprop="url" rel="index">
-                    <span itemprop="name">Configuration</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/Vim/" itemprop="url" rel="index">
+                    <span itemprop="name">Vim</span>
                   </a>
                 </span>
             </span>
@@ -316,15 +322,14 @@
           <h1 id="Install-Vim-Plug-in-Manager：Vundle"><a href="#Install-Vim-Plug-in-Manager：Vundle" class="headerlink" title="Install Vim Plug-in Manager：Vundle"></a>Install Vim Plug-in Manager：Vundle</h1><ol>
 <li>Download Vundle<br><code>git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim</code></li>
 </ol>
-<h1 id="Configure-Vim-file-vimrc"><a href="#Configure-Vim-file-vimrc" class="headerlink" title="Configure Vim file ~/.vimrc"></a>Configure Vim file ~/.vimrc</h1><p>Add the following content to <code>~/.vimrc</code> file. It’s up to you to add/remove some plug-ins.</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> nocompatible              <span class="comment">" be iMproved, required</span></span><br><span class="line"><span class="keyword">filetype</span> off                  <span class="comment">" required</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" set the runtime path to include Vundle and initialize</span></span><br><span class="line"><span class="keyword">set</span> rtp+=~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">call</span> vundle#begin()</span><br><span class="line"><span class="comment">" alternatively, pass a path where Vundle should install plugins</span></span><br><span class="line"><span class="comment">"call vundle#begin('~/some/path/here')</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" let Vundle manage Vundle, required</span></span><br><span class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" The following are examples of different formats supported.</span></span><br><span class="line"><span class="comment">" Keep Plugin commands between vundle#begin/end.</span></span><br><span class="line"><span class="comment">" plugin on GitHub repo</span></span><br><span class="line">Plugin <span class="string">'tpope/vim-fugitive'</span></span><br><span class="line">Plugin <span class="string">'Valloric/YouCompleteMe'</span></span><br><span class="line">Plugin <span class="string">'plasticboy/vim-markdown'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">" plugin from http://vim-scripts.org/vim/scripts.html</span></span><br><span class="line"><span class="comment">" Plugin 'L9'</span></span><br><span class="line"><span class="comment">" Git plugin not hosted on GitHub</span></span><br><span class="line"><span class="comment">" git repos on your local machine (i.e. when working on your own plugin)</span></span><br><span class="line"><span class="comment">"Plugin 'file:///home/gmarik/path/to/plugin'</span></span><br><span class="line"><span class="comment">" The sparkup vim script is in a subdirectory of this repo called vim.</span></span><br><span class="line"><span class="comment">" Pass the path to set the runtimepath properly.</span></span><br><span class="line">Plugin <span class="string">'rstacruz/sparkup'</span>, &#123;<span class="string">'rtp'</span>: <span class="string">'vim/'</span>&#125;</span><br><span class="line"><span class="comment">" Install L9 and avoid a Naming conflict if you've already installed a</span></span><br><span class="line"><span class="comment">" different version somewhere else.</span></span><br><span class="line"><span class="comment">" Plugin 'ascenator/L9', &#123;'name': 'newL9'&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" Color schemes</span></span><br><span class="line">Plugin <span class="string">'tomasr/molokai'</span></span><br><span class="line">Plugin <span class="string">'altercation/vim-colors-solarized'</span></span><br><span class="line">Plugin <span class="string">'flazz/vim-colorschemes'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">" All of your Plugins must be added before the following line</span></span><br><span class="line"><span class="keyword">call</span> vundle#end()            <span class="comment">" required</span></span><br><span class="line"><span class="keyword">filetype</span> plugin <span class="built_in">indent</span> <span class="keyword">on</span>    <span class="comment">" required</span></span><br><span class="line"><span class="comment">" To ignore plugin indent changes, instead use:</span></span><br><span class="line"><span class="comment">"filetype plugin on</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" Brief help</span></span><br><span class="line"><span class="comment">" :PluginList       - lists configured plugins</span></span><br><span class="line"><span class="comment">" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate</span></span><br><span class="line"><span class="comment">" :PluginSearch foo - searches for foo; append `!` to refresh local cache</span></span><br><span class="line"><span class="comment">" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" see :h vundle for more details or wiki for FAQ</span></span><br><span class="line"><span class="comment">" Put your non-Plugin stuff after this line</span></span><br><span class="line"><span class="comment">" </span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="keyword">syntax</span> enable</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> fdm=marker</span><br><span class="line"><span class="keyword">set</span> tabstop=<span class="number">8</span> softtabstop=<span class="number">0</span> expandtab <span class="built_in">shiftwidth</span>=<span class="number">4</span> smarttab</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">nu</span></span><br></pre></td></tr></table></figure>
-
-
-<h1 id="Download-Plug-ins"><a href="#Download-Plug-ins" class="headerlink" title="Download Plug-ins"></a>Download Plug-ins</h1><p>Run <code>git clone</code> for each plug-ins, Download them to<code>~/.vim/bundle</code>。<br><img src="/en/Vim-Config_en/plugin_download.png" alt></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/VundleVim/Vundle.<span class="keyword">vim</span>.git ~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">cd</span> ~/.<span class="keyword">vim</span>/bundle</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/tpope/<span class="keyword">vim</span>-fugitive</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/altercation/<span class="keyword">vim</span>-colors-solarized</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/Valloric/YouCompleteMe</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/rstacruz/sparkup</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/plasticboy/<span class="keyword">vim</span>-markdown</span><br></pre></td></tr></table></figure>
-
-<h1 id="Install-Plug-ins"><a href="#Install-Plug-ins" class="headerlink" title="Install Plug-ins"></a>Install Plug-ins</h1><p>Run<strong>Vim</strong>, and then execute<code>:PluginInstall</code>。<br>Alternatively, you can run <code>vim +PluginInstall +qall</code> directly in shell. </p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/en/Vim-Config_en/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -476,7 +481,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-01-29 17:21:08" itemprop="dateModified" datetime="2019-01-29T17:21:08+08:00">2019-01-29</time>
+                <time title="Modified: 2020-01-03 17:42:51" itemprop="dateModified" datetime="2020-01-03T17:42:51+08:00">2020-01-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -484,8 +489,14 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Configuration/" itemprop="url" rel="index">
-                    <span itemprop="name">Configuration</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/Vim/" itemprop="url" rel="index">
+                    <span itemprop="name">Vim</span>
                   </a>
                 </span>
             </span>
@@ -613,7 +624,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
