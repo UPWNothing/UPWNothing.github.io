@@ -41,7 +41,7 @@
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
     localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
+    path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
@@ -96,6 +96,15 @@
 
   <title>YouCompleteMe 安装教程 | UPWNothing's Playground</title>
   
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-125116918-1');
+      }
+    </script>
 
 
 
@@ -344,6 +353,40 @@
     
     
     
+      
+  <div class="popular-posts-header">你可能感兴趣的文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/en/YouCompleteMe-Installation_en/" rel="bookmark">YouCompleteMe Installation</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/zh-CN/Vim-Config/" rel="bookmark">Vim 配置</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/en/Vim-Config_en/" rel="bookmark">Vim Configuration</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div>觉得好的话不妨赏一杯奶茶吧～</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="UPWNothing 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="UPWNothing 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -458,6 +501,17 @@
 
       </div>
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Sidebar Ad -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2179953596008833"
+     data-ad-slot="2683848757"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
     </div>
   </aside>
   <div id="sidebar-dimmer"></div>
@@ -529,8 +583,7 @@
   </div>
 
   
-  
-  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script color='72,97,152' opacity='0.8' zIndex='-1' count='200' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
