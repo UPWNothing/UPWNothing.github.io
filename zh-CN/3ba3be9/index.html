@@ -48,21 +48,28 @@
   };
 </script>
 
-  <meta name="description" content="背景最近，公司有一个客户的MySQL数据库被篡改了数据，因此需要对该客户被攻击的服务器进行调查。其中涉及到对MySQL的Binlog日志分析。在任务完成后，将其中相关的步骤进行总结。 Binlog定位 Binlog 位置找到MySQL安装目录中bin目录的位置，同时确认binlog的储存位置。其相应的配置在my.cnf的log_bin&#x3D;””中。如果能够使用mySQL命令行连接，也可以使用 show">
+  <meta name="description" content="概述进来想起来自己还有这么一个博客。那么第一件事当然是对版本进行升级咯！可升级的过程远远没有想象中的那般顺利，因此在此记录一下，其他人如果遇到类似的问题，也可以有一个借鉴。升级前，先检查当前hexo的版本号：hexo --version。版本信息如下图所示：  升级步骤 在Hexo的文档中搜索一番，结果！！完全没有提及版本升级的方法。。。行吧，只能借助万能的Google，经过比较，终于找到了一个简">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL Binlog 调查取证">
-<meta property="og:url" content="https://upwnothing.github.io/zh-CN/MySQL-Binlog-Forensics/index.html">
+<meta property="og:title" content="Hexo版本升级指南">
+<meta property="og:url" content="https://upwnothing.github.io/zh-CN/3ba3be9/index.html">
 <meta property="og:site_name" content="UPWNothing&#39;s Playground">
-<meta property="og:description" content="背景最近，公司有一个客户的MySQL数据库被篡改了数据，因此需要对该客户被攻击的服务器进行调查。其中涉及到对MySQL的Binlog日志分析。在任务完成后，将其中相关的步骤进行总结。 Binlog定位 Binlog 位置找到MySQL安装目录中bin目录的位置，同时确认binlog的储存位置。其相应的配置在my.cnf的log_bin&#x3D;””中。如果能够使用mySQL命令行连接，也可以使用 show">
+<meta property="og:description" content="概述进来想起来自己还有这么一个博客。那么第一件事当然是对版本进行升级咯！可升级的过程远远没有想象中的那般顺利，因此在此记录一下，其他人如果遇到类似的问题，也可以有一个借鉴。升级前，先检查当前hexo的版本号：hexo --version。版本信息如下图所示：  升级步骤 在Hexo的文档中搜索一番，结果！！完全没有提及版本升级的方法。。。行吧，只能借助万能的Google，经过比较，终于找到了一个简">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-01-21T19:54:48.000Z">
-<meta property="article:modified_time" content="2020-01-03T09:36:32.019Z">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3ba3be9/hexo_check_version.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3ba3be9/hexo_check_version_2.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3ba3be9/hexo_nodejs_requirement.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3ba3be9/npm_upgrade.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3ba3be9/hexo_check_version_3.png">
+<meta property="article:published_time" content="2019-12-31T03:59:09.000Z">
+<meta property="article:modified_time" content="2020-01-06T08:12:56.978Z">
 <meta property="article:author" content="UPWNothing">
-<meta property="article:tag" content="MySQL">
-<meta property="article:tag" content="Binlog">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Configuration">
+<meta property="article:tag" content="NPM">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upwnothing.github.io/zh-CN/3ba3be9/hexo_check_version.png">
 
-<link rel="canonical" href="https://upwnothing.github.io/zh-CN/MySQL-Binlog-Forensics/">
+<link rel="canonical" href="https://upwnothing.github.io/zh-CN/3ba3be9/">
 
 
 <script id="page-configurations">
@@ -93,7 +100,7 @@
 </script>
 <script data-ad-client="ca-pub-2179953596008833" async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  <title>MySQL Binlog 调查取证 | UPWNothing's Playground</title>
+  <title>Hexo版本升级指南 | UPWNothing's Playground</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
     <script>
@@ -238,7 +245,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/MySQL-Binlog-Forensics/">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/3ba3be9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -251,7 +258,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          MySQL Binlog 调查取证
+          Hexo版本升级指南
         </h1>
 
         <div class="post-meta">
@@ -261,14 +268,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-01-22 03:54:48" itemprop="dateCreated datePublished" datetime="2019-01-22T03:54:48+08:00">2019-01-22</time>
+              <time title="创建时间：2019-12-31 11:59:09" itemprop="dateCreated datePublished" datetime="2019-12-31T11:59:09+08:00">2019-12-31</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-03 17:36:32" itemprop="dateModified" datetime="2020-01-03T17:36:32+08:00">2020-01-03</time>
+                <time title="修改时间：2020-01-06 16:12:56" itemprop="dateModified" datetime="2020-01-06T16:12:56+08:00">2020-01-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,20 +283,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Security/" itemprop="url" rel="index">
-                    <span itemprop="name">Security</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Security/Forensics/" itemprop="url" rel="index">
-                    <span itemprop="name">Forensics</span>
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/zh-CN/MySQL-Binlog-Forensics/" class="post-meta-item leancloud_visitors" data-flag-title="MySQL Binlog 调查取证" title="阅读次数">
+            <span id="/zh-CN/3ba3be9/" class="post-meta-item leancloud_visitors" data-flag-title="Hexo版本升级指南" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -311,8 +312,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/zh-CN/MySQL-Binlog-Forensics/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/MySQL-Binlog-Forensics/" itemprop="commentCount"></span>
+    <a title="valine" href="/zh-CN/3ba3be9/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/3ba3be9/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -322,7 +323,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -341,15 +342,36 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>最近，公司有一个客户的MySQL数据库被篡改了数据，因此需要对该客户被攻击的服务器进行调查。其中涉及到对MySQL的Binlog日志分析。在任务完成后，将其中相关的步骤进行总结。</p>
-<h1 id="Binlog"><a href="#Binlog" class="headerlink" title="Binlog"></a>Binlog</h1><h2 id="定位-Binlog-位置"><a href="#定位-Binlog-位置" class="headerlink" title="定位 Binlog 位置"></a>定位 Binlog 位置</h2><p>找到MySQL安装目录中bin目录的位置，同时确认binlog的储存位置。其相应的配置在my.cnf的log_bin=””中。<br>如果能够使用mySQL命令行连接，也可以使用 <code>showvariables like &#39;%log_bin%&#39;</code>命令查看binlog的相关配置。</p>
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>进来想起来自己还有这么一个博客。那么第一件事当然是对版本进行升级咯！可升级的过程远远没有想象中的那般顺利，因此在此记录一下，其他人如果遇到类似的问题，也可以有一个借鉴。<br>升级前，先检查当前hexo的版本号：<code>hexo --version</code>。版本信息如下图所示：<br><img src="/zh-CN/3ba3be9/hexo_check_version.png" alt="Hexo版本信息"> </p>
+<h1 id="升级步骤"><a href="#升级步骤" class="headerlink" title="升级步骤"></a>升级步骤</h1><p> 在Hexo的文档中搜索一番，结果！！完全没有提及版本升级的方法。。。行吧，只能借助万能的Google，经过比较，终于找到了一个简单粗暴的方法：<br>首先进入Hexo的主目录，然后直接执行</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> update</span><br></pre></td></tr></table></figure>
+
+<p>等等等…没动静呐！看来有必要重新配置一下NPM…</p>
 <a id="more"></a>
 
-<h2 id="Binlog-结构"><a href="#Binlog-结构" class="headerlink" title="Binlog 结构"></a>Binlog 结构</h2><p>在binlog所在的数据目录(默认为data目录)，可以看到mysql-bin.index 及 mysql-bin.0000xx 文件。其中.index文件为索引文件，记录数据文件列表。每当数据库重启或者当前一个文件写满后会生成新文件，同时使用命令<code>flush logs</code>也可以重新生成新的binlog日志文件。<code>reset master</code>命令可以用于清空binlog日志文件。</p>
-<h2 id="Binlog-格式"><a href="#Binlog-格式" class="headerlink" title="Binlog 格式"></a>Binlog 格式</h2><p>Binlog的格式有三个选项：<br>    - Row<br>    - Statement<br>    - Mixed<br>简单介绍这三种格式，分别为：<br>    - Row: 默认格式，记录导致表的行发生变化的事件<br>    - Statement: 记录被执行的原始SQL查询语句<br>    - Mixed: 默认使用Statement格式，再特定情况下使用Row格式<br>Binlog格式可以在my.cnf的binlog-format=中进行配置。在MySQL命令行中可以通过<code>SHOW VARIABLES LIKE &#39;binlog_format&#39;;</code>查看。</p>
-<h2 id="Binlog-内容"><a href="#Binlog-内容" class="headerlink" title="Binlog 内容"></a>Binlog 内容</h2><p>由于binlog是以二进制格式储存的，所以无法直接查看。MySQL自带的mysqlbinlog工具可以用来查看binlog。<code>[MySQL directory]\bin\mysqlbinlog mysql-bin.000008</code>即可获取binlog中的内容。当然也可以添加参数(–start-porition, –stop-position, –start-time, –stop-time)来筛选日志。在很多事件调查中，其实都可以将目标时间确定在一个范围之内，因此使用参数进行筛选会给我们带来极大的便利。<br>对于Row格式的Binlog，还可以使用-v参数将日志记录转译为”伪-SQL语句”。</p>
+<h2 id="更换NPM镜像服务器地址，解决国内NPM安装依赖速度慢的问题"><a href="#更换NPM镜像服务器地址，解决国内NPM安装依赖速度慢的问题" class="headerlink" title="更换NPM镜像服务器地址，解决国内NPM安装依赖速度慢的问题"></a>更换NPM镜像服务器地址，解决国内NPM安装依赖速度慢的问题</h2><p>在npm的命令最后使用<code>--registry</code>参数指定国内镜像服务器地址，就可以让NPM的安装速度获得显著的提升。<br>这里我们使用阿里巴巴的镜像：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">update</span> --<span class="keyword">registry</span>=<span class="keyword">http</span>://<span class="keyword">registry</span>.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<p>当然，也可以通过如下的命令对NPM进行永久配置：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="keyword">set</span> <span class="keyword">registry</span> <span class="keyword">http</span>://<span class="keyword">registry</span>.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<p>这样子，我们的NPM命令就可以快速地执行了！</p>
+<h2 id="使用NPM进行Hexo版本升级"><a href="#使用NPM进行Hexo版本升级" class="headerlink" title="使用NPM进行Hexo版本升级"></a>使用NPM进行Hexo版本升级</h2><p>这就完了？？？是的！再执行一遍<code>hexo --version</code>,看一下是不是已经到了最新的版本：<br><img src="/zh-CN/3ba3be9/hexo_check_version_2.png" alt="Hexo版本信息2"></p>
+<p>Hmmmmm…版本信息确实产生了变化，从3.7.1升级到了3.9.0。但是，这貌似也不是<a href="http://www.npmjs.com/package/hexo?activeTab=versions" target="_blank" rel="noopener">最新的版本</a>呀！！  </p>
+<p>难道是Node.js的版本问题？<a href="https://hexo.io/docs/#installation" target="_blank" rel="noopener">Hexo官方文档</a>中有Node.js的版本要求，Hexo 4.1+ 需要至少8.10版本。</p>
+<p><img src="/zh-CN/3ba3be9/hexo_nodejs_requirement.png" alt="NodeJS版本要求"></p>
+<p>我重新看了一下之前<code>hexo --version</code>的输出结果：<code>node: 13.5.0</code>..<br>这个显然是满足的呀！所以完全不会是Node.js的版本问题造成无法更新到最新版本。</p>
+<h2 id="Package-json-修改版本信息"><a href="#Package-json-修改版本信息" class="headerlink" title="Package.json 修改版本信息"></a>Package.json 修改版本信息</h2><p>那么，究竟是哪里出了问题呢？<br>仔细思考：NPM是如何管理本地安装的呢？ <strong>package.json</strong>!! 赶紧查看Hexo目录下的<code>package.json</code>文件。果然！我清清楚楚地看到了<code>&quot;hexo&quot; : &quot;^3.9.0&quot;</code>的字样。问题是找到了，但是这一整列的插件，我们如果一个个去查最新的版本，肯定是要费不少功夫，那么有没有更快速的方法呢？<br>我们可以用下列命令来自动化完成这项工作：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install -g <span class="built_in">npm</span>-check</span><br><span class="line"><span class="built_in">npm</span> install -g <span class="built_in">npm</span>-upgrade</span><br><span class="line"><span class="built_in">npm</span>-check</span><br><span class="line"><span class="built_in">npm</span>-upgrade</span><br></pre></td></tr></table></figure>
+
+<p>执行结果如下图：<br><img src="/zh-CN/3ba3be9/npm_upgrade.png" alt="npm-upgrade执行结果"></p>
+<p>至此，我们完成了<code>package.json</code>中，版本信息的更新。</p>
+<h2 id="完成Hexo版本升级"><a href="#完成Hexo版本升级" class="headerlink" title="完成Hexo版本升级"></a>完成Hexo版本升级</h2><p>我们再次执行<code>npm update</code>。<br>完成以后，我们再次通过<code>hexo version</code>确认版本号。成功，我们终于顺利将Hexo升级到了最新的版本。<br><img src="/zh-CN/3ba3be9/hexo_check_version_3.png" alt="Hexo版本信息3"></p>
 <hr>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="https://cloud.tencent.com/developer/article/1032755" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1032755</a><br><a href="https://maxchadwick.xyz/blog/working-with-mysql-binary-logs" target="_blank" rel="noopener">https://maxchadwick.xyz/blog/working-with-mysql-binary-logs</a></p>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul>
+<li><a href="https://jianshu.com/p/5adcee63c3b8" target="_blank" rel="noopener">https://jianshu.com/p/5adcee63c3b8</a></li>
+<li><a href="https://hexo.io/docs/" target="_blank" rel="noopener">https://hexo.io/docs/</a></li>
+</ul>
 
     </div>
 
@@ -357,6 +379,28 @@
     
     
       
+  <div class="popular-posts-header">你可能感兴趣的文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+        <div class="popular-posts-img"><img src="/zh-CN/78ced6ec/bilingualize.png"></div>
+      <div class="popular-posts-title"><a href="/zh-CN/78ced6ec/" rel="bookmark">利用Hexo框架搭建中英文双语网站</a></div>
+    </li>
+    <li class="popular-posts-item">
+        <div class="popular-posts-img"><img src="/zh-CN/c0899d18/result.PNG"></div>
+      <div class="popular-posts-title"><a href="/zh-CN/c0899d18/" rel="bookmark">为Hexo NexT 添加评论系统</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/en/a45b1048/" rel="bookmark">Insert Images to an Hexo Post</a></div>
+    </li>
+    <li class="popular-posts-item">
+        <div class="popular-posts-img"><img src="/zh-CN/b8c5a601/plugin_download.png"></div>
+      <div class="popular-posts-title"><a href="/zh-CN/b8c5a601/" rel="bookmark">Vim 配置</a></div>
+    </li>
+    <li class="popular-posts-item">
+        <div class="popular-posts-img"><img src="/en/aa4adef2/plugin_download.png"></div>
+      <div class="popular-posts-title"><a href="/en/aa4adef2/" rel="bookmark">Vim Configuration</a></div>
+    </li>
+  </ul>
 
         <div class="reward-container">
   <div>觉得好的话不妨赏一杯奶茶吧～</div>
@@ -381,8 +425,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
-              <a href="/tags/Binlog/" rel="tag"># Binlog</a>
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/Configuration/" rel="tag"># Configuration</a>
+              <a href="/tags/NPM/" rel="tag"># NPM</a>
           </div>
 
         
@@ -391,12 +436,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/zh-CN/Vim-Config/" rel="prev" title="Vim 配置">
-      <i class="fa fa-chevron-left"></i> Vim 配置
+    <a href="/undefined/8b79501d/" rel="prev" title="Installing-Docker-in-Kali">
+      <i class="fa fa-chevron-left"></i> Installing-Docker-in-Kali
     </a></div>
       <div class="post-nav-item">
-    <a href="/undefined/Installing-Docker-in-Kali/" rel="next" title="Installing-Docker-in-Kali">
-      Installing-Docker-in-Kali <i class="fa fa-chevron-right"></i>
+    <a href="/zh-CN/c0899d18/" rel="next" title="为Hexo NexT 添加评论系统">
+      为Hexo NexT 添加评论系统 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -458,7 +503,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Binlog"><span class="nav-number">2.</span> <span class="nav-text">Binlog</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定位-Binlog-位置"><span class="nav-number">2.1.</span> <span class="nav-text">定位 Binlog 位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binlog-结构"><span class="nav-number">2.2.</span> <span class="nav-text">Binlog 结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binlog-格式"><span class="nav-number">2.3.</span> <span class="nav-text">Binlog 格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binlog-内容"><span class="nav-number">2.4.</span> <span class="nav-text">Binlog 内容</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#升级步骤"><span class="nav-number">2.</span> <span class="nav-text">升级步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更换NPM镜像服务器地址，解决国内NPM安装依赖速度慢的问题"><span class="nav-number">2.1.</span> <span class="nav-text">更换NPM镜像服务器地址，解决国内NPM安装依赖速度慢的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用NPM进行Hexo版本升级"><span class="nav-number">2.2.</span> <span class="nav-text">使用NPM进行Hexo版本升级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Package-json-修改版本信息"><span class="nav-number">2.3.</span> <span class="nav-text">Package.json 修改版本信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完成Hexo版本升级"><span class="nav-number">2.4.</span> <span class="nav-text">完成Hexo版本升级</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文档"><span class="nav-number">3.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
