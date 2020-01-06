@@ -34,7 +34,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    comments: {"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},
     algolia: {
       appID: '',
       apiKey: '',
@@ -283,13 +283,34 @@
             </span>
 
           
+            <span id="/en/Insert-Images-to-an-Hexo-Post/" class="post-meta-item leancloud_visitors" data-flag-title="Insert Images to an Hexo Post" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
             <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
               <span class="post-meta-item-text">Views: </span>
               <span id="busuanzi_value_page_pv"></span>
-            </span><br>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/en/Insert-Images-to-an-Hexo-Post/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/en/Insert-Images-to-an-Hexo-Post/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
@@ -331,10 +352,16 @@
   <div class="popular-posts-header">你可能感兴趣的文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
+        <div class="popular-posts-img"><img src="/zh-CN/Hexo-Bilingual-Blog/bilingualize.png"></div>
       <div class="popular-posts-title"><a href="/zh-CN/Hexo-Bilingual-Blog/" rel="bookmark">利用Hexo框架搭建中英文双语网站</a></div>
     </li>
     <li class="popular-posts-item">
+        <div class="popular-posts-img"><img src="/zh-CN/Hexo-Update/hexo_check_version.png"></div>
       <div class="popular-posts-title"><a href="/zh-CN/Hexo-Update/" rel="bookmark">Hexo版本升级指南</a></div>
+    </li>
+    <li class="popular-posts-item">
+        <div class="popular-posts-img"><img src="/zh-CN/Hexo-comment-section/result.PNG"></div>
+      <div class="popular-posts-title"><a href="/zh-CN/Hexo-comment-section/" rel="bookmark">为Hexo NexT 添加评论系统</a></div>
     </li>
   </ul>
 
@@ -391,6 +418,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -449,7 +477,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -460,7 +488,7 @@
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -505,12 +533,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">18k</span>
+    <span title="Symbols count total">20k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">16 mins.</span>
+    <span title="Reading time total">18 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
   </div>
@@ -593,6 +621,35 @@
   
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: false,
+      appId: 'DUtYTL3VYq8Mgbo2uSd9pEE8-9Nh9j0Va',
+      appKey: 'RFEfNupULNUbbjBv7Cw7J4Ls',
+      placeholder: "Your comments...",
+      avatar: 'monsterid',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: true,
+      lang: 'en' || 'zh-cn',
+      path: location.pathname,
+      recordIP: true,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>

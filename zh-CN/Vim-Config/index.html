@@ -34,7 +34,7 @@
     mediumzoom: false,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    comments: {"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},
     algolia: {
       appID: '',
       apiKey: '',
@@ -292,13 +292,22 @@
             </span>
 
           
+            <span id="/zh-CN/Vim-Config/" class="post-meta-item leancloud_visitors" data-flag-title="Vim 配置" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
-            </span><br>
+            </span>
+  
+  <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
@@ -346,18 +355,23 @@
   <div class="popular-posts-header">你可能感兴趣的文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
+        <div class="popular-posts-img"><img src="/en/Vim-Config_en/plugin_download.png"></div>
       <div class="popular-posts-title"><a href="/en/Vim-Config_en/" rel="bookmark">Vim Configuration</a></div>
     </li>
     <li class="popular-posts-item">
+        <div class="popular-posts-img"><img src="/zh-CN/YouCompleteMe-Installation/YCM1.PNG"></div>
       <div class="popular-posts-title"><a href="/zh-CN/YouCompleteMe-Installation/" rel="bookmark">YouCompleteMe 安装教程</a></div>
     </li>
     <li class="popular-posts-item">
+        <div class="popular-posts-img"><img src="/en/YouCompleteMe-Installation_en/YCM1.PNG"></div>
       <div class="popular-posts-title"><a href="/en/YouCompleteMe-Installation_en/" rel="bookmark">YouCompleteMe Installation</a></div>
     </li>
     <li class="popular-posts-item">
+        <div class="popular-posts-img"><img src="/zh-CN/Hexo-Bilingual-Blog/bilingualize.png"></div>
       <div class="popular-posts-title"><a href="/zh-CN/Hexo-Bilingual-Blog/" rel="bookmark">利用Hexo框架搭建中英文双语网站</a></div>
     </li>
     <li class="popular-posts-item">
+        <div class="popular-posts-img"><img src="/zh-CN/Hexo-Update/hexo_check_version.png"></div>
       <div class="popular-posts-title"><a href="/zh-CN/Hexo-Update/" rel="bookmark">Hexo版本升级指南</a></div>
     </li>
   </ul>
@@ -475,7 +489,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -486,7 +500,7 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -531,12 +545,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">18k</span>
+    <span title="站点总字数">20k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">16 分钟</span>
+    <span title="站点阅读时长">18 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
@@ -619,6 +633,35 @@
   
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: false,
+      appId: 'DUtYTL3VYq8Mgbo2uSd9pEE8-9Nh9j0Va',
+      appKey: 'RFEfNupULNUbbjBv7Cw7J4Ls',
+      placeholder: "Your comments...",
+      avatar: 'monsterid',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: true,
+      lang: 'en' || 'zh-cn',
+      path: location.pathname,
+      recordIP: true,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>
