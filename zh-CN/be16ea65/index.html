@@ -49,21 +49,23 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="UPWNothing&#39;s Playground">
-<meta property="og:url" content="https://securitytech.site/archives/2020/index.html">
+  <meta name="description" content="在Hexo中使用Hexo-Lazyload-image插件会与fancybox产生冲突，导致图片点开后显示的是加载图片。原因与解决方法如下：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决Hexo NexT中Fancybox与Lazyload冲突的问题">
+<meta property="og:url" content="https://securitytech.site/zh-CN/be16ea65/index.html">
 <meta property="og:site_name" content="UPWNothing&#39;s Playground">
+<meta property="og:description" content="在Hexo中使用Hexo-Lazyload-image插件会与fancybox产生冲突，导致图片点开后显示的是加载图片。原因与解决方法如下：">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-13T06:52:39.000Z">
+<meta property="article:modified_time" content="2020-01-13T06:52:39.904Z">
 <meta property="article:author" content="UPWNothing">
-<meta property="article:tag" content="Pentest">
-<meta property="article:tag" content=" CyberSecurity">
-<meta property="article:tag" content=" 渗透测试">
-<meta property="article:tag" content=" 网络安全">
-<meta property="article:tag" content=" Kali Linux">
-<meta property="article:tag" content=" Hexo">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="NexT">
+<meta property="article:tag" content="Lazyload">
+<meta property="article:tag" content="Fancybox">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://securitytech.site/archives/2020/">
+<link rel="canonical" href="https://securitytech.site/zh-CN/be16ea65/">
 
 
 <script id="page-configurations">
@@ -71,7 +73,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 <script type="text/javascript">
@@ -94,7 +96,7 @@
 </script>
 <script data-ad-client="ca-pub-2179953596008833" async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  <title>归档 | UPWNothing's Playground</title>
+  <title>解决Hexo NexT中Fancybox与Lazyload冲突的问题 | UPWNothing's Playground</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
     <script>
@@ -230,93 +232,202 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://securitytech.site/zh-CN/be16ea65/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.jpeg">
+      <meta itemprop="name" content="UPWNothing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="UPWNothing's Playground">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          解决Hexo NexT中Fancybox与Lazyload冲突的问题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-13 14:52:39" itemprop="dateCreated datePublished" datetime="2020-01-13T14:52:39+08:00">2020-01-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/zh-CN/be16ea65/" class="post-meta-item leancloud_visitors" data-flag-title="解决Hexo NexT中Fancybox与Lazyload冲突的问题" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 12 篇日志。 继续努力。</span>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/zh-CN/be16ea65/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/be16ea65/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>813</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+            <div class="post-description">在Hexo中使用Hexo-Lazyload-image插件会与fancybox产生冲突，导致图片点开后显示的是加载图片。,原因与解决方法如下：</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2020</h1>
-    </div>
+        <a id="more"></a>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-13T14:52:39+08:00"
-              content="2020-01-13">
-          01-13
-        </time>
-      </div>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
+<li>Hexo v4.2.0</li>
+<li>NexT v7.7.0</li>
+<li>Fancybox v3.5.7</li>
+<li>Hexo-Lazyload-image v1.0.5</li>
+</ul>
+<!-- more -->
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/zh-CN/be16ea65/" itemprop="url">
-            <span itemprop="name">解决Hexo NexT中Fancybox与Lazyload冲突的问题</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-07T15:39:30+08:00"
-              content="2020-01-07">
-          01-07
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/zh-CN/44bf8def/" itemprop="url">
-            <span itemprop="name">Hexo + NexT 深度个性化配置 (2020.1 更新)</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-06T14:50:11+08:00"
-              content="2020-01-06">
-          01-06
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/zh-CN/c0899d18/" itemprop="url">
-            <span itemprop="name">为Hexo NexT 添加评论系统</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
+<h1 id="问题产生的原因"><a href="#问题产生的原因" class="headerlink" title="问题产生的原因"></a>问题产生的原因</h1><p><a href="https://hexiongbiao.cn/fancyboxandlazyload/" target="_blank" rel="noopener">这篇文章</a>解释地非常清楚了。</p>
+<p>因为图片懒加载预先会使用占位图来替代图片的<code>src</code>，等图片加载完成后，再用<code>data-original</code>里面的内容替换<code>src</code>里面的内容。然而 <strong>fancybox</strong> 的原理是在页面加载时给页面中所有的图片套一层<code>a标签</code>，<code>a标签</code>的<code>href</code>就是 <strong>fancybox</strong> 在页面加载时获取的图片<code>src</code>，恰好这时候获取的<code>src</code>偏偏就是 <strong>lazyload</strong> 的占位图的 url。</p>
+<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>在上面提及的博客中，作者提出了一种使用js脚本，在图片完成加载后，对<code>a标签</code>中的<code>href</code>进行修正的方法。但是，我觉得这种方法不利于之后的升级维护，所以没有采用。  </p>
+<p>这里，我使用了另一种方法来解决了冲突的问题：更换Lazyload的实现方式。</p>
+<p>NexT主题集成了使用<code>lozad.js</code>来实现Lazyload懒加载。使用这个方法则不会与Fancybox产生冲突。具体配置方法，详见<a href="https://securitytech.site/zh-CN/44bf8def##启用Lazyload图片懒加载">在NexT中启用Lazyload</a>。<code>lozad.js</code>使用<code>img</code>标签的<code>data-src</code>属性来保存目标图片的路径。在Lazyload加载前，<code>img</code>标签中并不包含<code>src</code>属性，而Fancybox也能正确从<code>data-src</code>中获取到图片的正确路径。</p>
+<h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><p>前面说了，使用这种方法可以实现Lazyload的功能，但该NexT中集成<code>lozad.js</code>没有提供设置占位图片的选项。所以，如果你一定希望有占位图片，那么这种方法可能并不能满足你的需求。<br>不过，我有一个想法，如果把<code>Hexo-Lazyload-image</code>插件中的<code>data-original</code>属性改成<code>data-src</code>属性，那么能不能实现与Fancybox的兼容呢？我暂时没有进行尝试，只是一个猜想而已。之后有机会的话会尝试一下，再来更新。</p>
+<hr>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul>
+<li><a href="http://hexiongbiao.cn/fancyboxandlazyload/" target="_blank" rel="noopener">http://hexiongbiao.cn/fancyboxandlazyload/</a></li>
+</ul>
 
     </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">你可能感兴趣的文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/zh-CN/78ced6ec/" rel="bookmark">利用Hexo框架搭建中英文双语网站</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/zh-CN/44bf8def/" rel="bookmark">Hexo + NexT 深度个性化配置 (2020.1 更新)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/zh-CN/c0899d18/" rel="bookmark">为Hexo NexT 添加评论系统</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/zh-CN/3ba3be9/" rel="bookmark">Hexo版本升级指南</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/en/a45b1048/" rel="bookmark">Insert Images to an Hexo Post</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div>觉得好的话不妨赏一杯奶茶吧～</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="UPWNothing 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="UPWNothing 支付宝">
+        <p>支付宝</p>
+      </div>
+
   </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/NexT/" rel="tag"># NexT</a>
+              <a href="/tags/Lazyload/" rel="tag"># Lazyload</a>
+              <a href="/tags/Fancybox/" rel="tag"># Fancybox</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/zh-CN/44bf8def/" rel="prev" title="Hexo + NexT 深度个性化配置 (2020.1 更新)">
+      <i class="fa fa-chevron-left"></i> Hexo + NexT 深度个性化配置 (2020.1 更新)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
   
   
   
 
-  
-
+  </div>
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -363,6 +474,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境"><span class="nav-number">1.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题产生的原因"><span class="nav-number">2.</span> <span class="nav-text">问题产生的原因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决办法"><span class="nav-number">3.</span> <span class="nav-text">解决办法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缺点"><span class="nav-number">4.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文档"><span class="nav-number">5.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
