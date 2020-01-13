@@ -6,14 +6,15 @@
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
   <script src="/lib/pace/pace.min.js"></script>
 
@@ -21,20 +22,20 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://upwnothing.github.io').hostname,
+    hostname: new URL('https://securitytech.site').hostname,
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '7.7.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
+    fancybox: true,
     mediumzoom: false,
-    lazyload: false,
+    lazyload: true,
     pangu: false,
-    comments: {"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},
+    comments: {"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},
     algolia: {
       appID: '',
       apiKey: '',
@@ -51,15 +52,15 @@
   <meta name="description" content="概述进来想起来自己还有这么一个博客。那么第一件事当然是对版本进行升级咯！可升级的过程远远没有想象中的那般顺利，因此在此记录一下，其他人如果遇到类似的问题，也可以有一个借鉴。升级前，先检查当前hexo的版本号：hexo --version。版本信息如下图所示：  升级步骤 在Hexo的文档中搜索一番，结果！！完全没有提及版本升级的方法。。。行吧，只能借助万能的Google，经过比较，终于找到了一个简">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo版本升级指南">
-<meta property="og:url" content="https://upwnothing.github.io/zh-CN/3ba3be9/index.html">
+<meta property="og:url" content="https://securitytech.site/zh-CN/3ba3be9/index.html">
 <meta property="og:site_name" content="UPWNothing&#39;s Playground">
 <meta property="og:description" content="概述进来想起来自己还有这么一个博客。那么第一件事当然是对版本进行升级咯！可升级的过程远远没有想象中的那般顺利，因此在此记录一下，其他人如果遇到类似的问题，也可以有一个借鉴。升级前，先检查当前hexo的版本号：hexo --version。版本信息如下图所示：  升级步骤 在Hexo的文档中搜索一番，结果！！完全没有提及版本升级的方法。。。行吧，只能借助万能的Google，经过比较，终于找到了一个简">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3ba3be9/hexo_check_version.png">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3ba3be9/hexo_check_version_2.png">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3ba3be9/hexo_nodejs_requirement.png">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3ba3be9/npm_upgrade.png">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3ba3be9/hexo_check_version_3.png">
+<meta property="og:image" content="https://securitytech.site/zh-CN/3ba3be9/hexo_check_version.png">
+<meta property="og:image" content="https://securitytech.site/zh-CN/3ba3be9/hexo_check_version_2.png">
+<meta property="og:image" content="https://securitytech.site/zh-CN/3ba3be9/hexo_nodejs_requirement.png">
+<meta property="og:image" content="https://securitytech.site/zh-CN/3ba3be9/npm_upgrade.png">
+<meta property="og:image" content="https://securitytech.site/zh-CN/3ba3be9/hexo_check_version_3.png">
 <meta property="article:published_time" content="2019-12-31T03:59:09.000Z">
 <meta property="article:modified_time" content="2020-01-06T08:12:56.978Z">
 <meta property="article:author" content="UPWNothing">
@@ -67,9 +68,9 @@
 <meta property="article:tag" content="Configuration">
 <meta property="article:tag" content="NPM">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://upwnothing.github.io/zh-CN/3ba3be9/hexo_check_version.png">
+<meta name="twitter:image" content="https://securitytech.site/zh-CN/3ba3be9/hexo_check_version.png">
 
-<link rel="canonical" href="https://upwnothing.github.io/zh-CN/3ba3be9/">
+<link rel="canonical" href="https://securitytech.site/zh-CN/3ba3be9/">
 
 
 <script id="page-configurations">
@@ -89,12 +90,12 @@
             var indexOfEn = href.toLowerCase().indexOf('/en/');
             if(indexOfEn !== -1) {
                 //switchLang.href = href.replace('/en/', '/');
-		//switchLang.href = "https://upwnothing.github.io";
+		//switchLang.href = "https://securitytech.site";
                 switchLang.href = href.substr(0,indexOfEn);
             }
             else {
                 //switchLang.href = href.replace(/(^http[s]?:\/\/[a-z0-9.]*[:?0-9]*\/)(.*)/i, '$1en/$2');
-		//switchLang.href = "https://upwnothing.github.io/en";
+		//switchLang.href = "https://securitytech.site/en";
             }
     }
 </script>
@@ -225,10 +226,6 @@
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
   <div class="reading-progress-bar"></div>
 
 
@@ -245,10 +242,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/3ba3be9/">
+    <link itemprop="mainEntityOfPage" href="https://securitytech.site/zh-CN/3ba3be9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/icon.jpeg">
       <meta itemprop="name" content="UPWNothing">
       <meta itemprop="description" content="">
     </span>
@@ -323,7 +320,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
+              <span>1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -342,7 +339,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>进来想起来自己还有这么一个博客。那么第一件事当然是对版本进行升级咯！可升级的过程远远没有想象中的那般顺利，因此在此记录一下，其他人如果遇到类似的问题，也可以有一个借鉴。<br>升级前，先检查当前hexo的版本号：<code>hexo --version</code>。版本信息如下图所示：<br><img src="/zh-CN/3ba3be9/hexo_check_version.png" alt="Hexo版本信息"> </p>
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>进来想起来自己还有这么一个博客。那么第一件事当然是对版本进行升级咯！可升级的过程远远没有想象中的那般顺利，因此在此记录一下，其他人如果遇到类似的问题，也可以有一个借鉴。<br>升级前，先检查当前hexo的版本号：<code>hexo --version</code>。版本信息如下图所示：<br><img data-src="/zh-CN/3ba3be9/hexo_check_version.png" alt="Hexo版本信息"> </p>
 <h1 id="升级步骤"><a href="#升级步骤" class="headerlink" title="升级步骤"></a>升级步骤</h1><p> 在Hexo的文档中搜索一番，结果！！完全没有提及版本升级的方法。。。行吧，只能借助万能的Google，经过比较，终于找到了一个简单粗暴的方法：<br>首先进入Hexo的主目录，然后直接执行</p>
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> update</span><br></pre></td></tr></table></figure>
 
@@ -356,17 +353,17 @@
 <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="keyword">set</span> <span class="keyword">registry</span> <span class="keyword">http</span>://<span class="keyword">registry</span>.npm.taobao.org</span><br></pre></td></tr></table></figure>
 
 <p>这样子，我们的NPM命令就可以快速地执行了！</p>
-<h2 id="使用NPM进行Hexo版本升级"><a href="#使用NPM进行Hexo版本升级" class="headerlink" title="使用NPM进行Hexo版本升级"></a>使用NPM进行Hexo版本升级</h2><p>这就完了？？？是的！再执行一遍<code>hexo --version</code>,看一下是不是已经到了最新的版本：<br><img src="/zh-CN/3ba3be9/hexo_check_version_2.png" alt="Hexo版本信息2"></p>
+<h2 id="使用NPM进行Hexo版本升级"><a href="#使用NPM进行Hexo版本升级" class="headerlink" title="使用NPM进行Hexo版本升级"></a>使用NPM进行Hexo版本升级</h2><p>这就完了？？？是的！再执行一遍<code>hexo --version</code>,看一下是不是已经到了最新的版本：<br><img data-src="/zh-CN/3ba3be9/hexo_check_version_2.png" alt="Hexo版本信息2"></p>
 <p>Hmmmmm…版本信息确实产生了变化，从3.7.1升级到了3.9.0。但是，这貌似也不是<a href="http://www.npmjs.com/package/hexo?activeTab=versions" target="_blank" rel="noopener">最新的版本</a>呀！！  </p>
 <p>难道是Node.js的版本问题？<a href="https://hexo.io/docs/#installation" target="_blank" rel="noopener">Hexo官方文档</a>中有Node.js的版本要求，Hexo 4.1+ 需要至少8.10版本。</p>
-<p><img src="/zh-CN/3ba3be9/hexo_nodejs_requirement.png" alt="NodeJS版本要求"></p>
+<p><img data-src="/zh-CN/3ba3be9/hexo_nodejs_requirement.png" alt="NodeJS版本要求"></p>
 <p>我重新看了一下之前<code>hexo --version</code>的输出结果：<code>node: 13.5.0</code>..<br>这个显然是满足的呀！所以完全不会是Node.js的版本问题造成无法更新到最新版本。</p>
 <h2 id="Package-json-修改版本信息"><a href="#Package-json-修改版本信息" class="headerlink" title="Package.json 修改版本信息"></a>Package.json 修改版本信息</h2><p>那么，究竟是哪里出了问题呢？<br>仔细思考：NPM是如何管理本地安装的呢？ <strong>package.json</strong>!! 赶紧查看Hexo目录下的<code>package.json</code>文件。果然！我清清楚楚地看到了<code>&quot;hexo&quot; : &quot;^3.9.0&quot;</code>的字样。问题是找到了，但是这一整列的插件，我们如果一个个去查最新的版本，肯定是要费不少功夫，那么有没有更快速的方法呢？<br>我们可以用下列命令来自动化完成这项工作：</p>
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install -g <span class="built_in">npm</span>-check</span><br><span class="line"><span class="built_in">npm</span> install -g <span class="built_in">npm</span>-upgrade</span><br><span class="line"><span class="built_in">npm</span>-check</span><br><span class="line"><span class="built_in">npm</span>-upgrade</span><br></pre></td></tr></table></figure>
 
-<p>执行结果如下图：<br><img src="/zh-CN/3ba3be9/npm_upgrade.png" alt="npm-upgrade执行结果"></p>
+<p>执行结果如下图：<br><img data-src="/zh-CN/3ba3be9/npm_upgrade.png" alt="npm-upgrade执行结果"></p>
 <p>至此，我们完成了<code>package.json</code>中，版本信息的更新。</p>
-<h2 id="完成Hexo版本升级"><a href="#完成Hexo版本升级" class="headerlink" title="完成Hexo版本升级"></a>完成Hexo版本升级</h2><p>我们再次执行<code>npm update</code>。<br>完成以后，我们再次通过<code>hexo version</code>确认版本号。成功，我们终于顺利将Hexo升级到了最新的版本。<br><img src="/zh-CN/3ba3be9/hexo_check_version_3.png" alt="Hexo版本信息3"></p>
+<h2 id="完成Hexo版本升级"><a href="#完成Hexo版本升级" class="headerlink" title="完成Hexo版本升级"></a>完成Hexo版本升级</h2><p>我们再次执行<code>npm update</code>。<br>完成以后，我们再次通过<code>hexo version</code>确认版本号。成功，我们终于顺利将Hexo升级到了最新的版本。<br><img data-src="/zh-CN/3ba3be9/hexo_check_version_3.png" alt="Hexo版本信息3"></p>
 <hr>
 <h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul>
 <li><a href="https://jianshu.com/p/5adcee63c3b8" target="_blank" rel="noopener">https://jianshu.com/p/5adcee63c3b8</a></li>
@@ -382,23 +379,19 @@
   <div class="popular-posts-header">你可能感兴趣的文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-        <div class="popular-posts-img"><img src="/zh-CN/78ced6ec/bilingualize.png"></div>
       <div class="popular-posts-title"><a href="/zh-CN/78ced6ec/" rel="bookmark">利用Hexo框架搭建中英文双语网站</a></div>
     </li>
     <li class="popular-posts-item">
-        <div class="popular-posts-img"><img src="/zh-CN/c0899d18/result.PNG"></div>
+      <div class="popular-posts-title"><a href="/zh-CN/44bf8def/" rel="bookmark">Hexo + NexT 深度个性化配置 (2020.1 更新)</a></div>
+    </li>
+    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/zh-CN/c0899d18/" rel="bookmark">为Hexo NexT 添加评论系统</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/en/a45b1048/" rel="bookmark">Insert Images to an Hexo Post</a></div>
     </li>
     <li class="popular-posts-item">
-        <div class="popular-posts-img"><img src="/zh-CN/b8c5a601/plugin_download.png"></div>
       <div class="popular-posts-title"><a href="/zh-CN/b8c5a601/" rel="bookmark">Vim 配置</a></div>
-    </li>
-    <li class="popular-posts-item">
-        <div class="popular-posts-img"><img src="/en/aa4adef2/plugin_download.png"></div>
-      <div class="popular-posts-title"><a href="/en/aa4adef2/" rel="bookmark">Vim Configuration</a></div>
     </li>
   </ul>
 
@@ -509,6 +502,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="UPWNothing"
+      src="/images/icon.jpeg">
   <p class="site-author-name" itemprop="name">UPWNothing</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -516,7 +511,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -536,6 +531,10 @@
 
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Sidebar Ad -->
@@ -562,7 +561,7 @@
 
 <div class="copyright">
   
-  &copy; 
+  &copy; 2017 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-paw"></i>
@@ -572,17 +571,17 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">20k</span>
+    <span title="站点总字数">14k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">18 分钟</span>
+    <span title="站点阅读时长">12 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.0
   </div>
 
         
@@ -619,8 +618,11 @@
   </div>
 
   
-  <script color='72,97,152' opacity='0.8' zIndex='-1' count='200' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script color='72,97,152' opacity='0.8' zIndex='-1' count='150' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js"></script>
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -629,7 +631,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>
@@ -664,7 +666,7 @@
 
 <script>
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
     var GUEST = ['nick', 'mail', 'link'];
     var guest = 'nick,mail,link';
     guest = guest.split(',').filter(item => {
@@ -676,7 +678,7 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
       notify: false,
       appId: 'DUtYTL3VYq8Mgbo2uSd9pEE8-9Nh9j0Va',
       appKey: 'RFEfNupULNUbbjBv7Cw7J4Ls',
-      placeholder: "Your comments...",
+      placeholder: "请留下您的评论～（填写邮箱的话，有回复时会通过邮箱提醒哦～邮箱并不会显示在评论中）",
       avatar: 'monsterid',
       meta: guest,
       pageSize: '10' || 10,

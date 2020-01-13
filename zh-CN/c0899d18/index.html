@@ -6,14 +6,15 @@
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
   <script src="/lib/pace/pace.min.js"></script>
 
@@ -21,20 +22,20 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://upwnothing.github.io').hostname,
+    hostname: new URL('https://securitytech.site').hostname,
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '7.7.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
+    fancybox: true,
     mediumzoom: false,
-    lazyload: false,
+    lazyload: true,
     pangu: false,
-    comments: {"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},
+    comments: {"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},
     algolia: {
       appID: '',
       apiKey: '',
@@ -51,17 +52,17 @@
   <meta name="description" content="选择合适的评论系统我选择评论系统时，考虑到以下几点：  免费 ( 排除 hypercomments ) 无需翻墙 ( 排除 disqus ) 评论无需注册登录 ( 排除 gitment, gitalk, gitter 这三个github相关的评论系统 ) 不要求网站备案 ( 排除一系列国内的评论系统 )  在剩下的为数不多的可选项中，Valine就成为了那个被我最终选择的评论系统。 最终效果图:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="为Hexo NexT 添加评论系统">
-<meta property="og:url" content="https://upwnothing.github.io/zh-CN/c0899d18/index.html">
+<meta property="og:url" content="https://securitytech.site/zh-CN/c0899d18/index.html">
 <meta property="og:site_name" content="UPWNothing&#39;s Playground">
 <meta property="og:description" content="选择合适的评论系统我选择评论系统时，考虑到以下几点：  免费 ( 排除 hypercomments ) 无需翻墙 ( 排除 disqus ) 评论无需注册登录 ( 排除 gitment, gitalk, gitter 这三个github相关的评论系统 ) 不要求网站备案 ( 排除一系列国内的评论系统 )  在剩下的为数不多的可选项中，Valine就成为了那个被我最终选择的评论系统。 最终效果图:">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/c0899d18/result.PNG">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/c0899d18/Valine_register.PNG">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/c0899d18/LeanCloud_Create.jpg">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/c0899d18/LeanCloud_AppKey.jpg">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/c0899d18/LeanCloud_AddClass.PNG">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/c0899d18/LeanCloud_SecuredDomain.PNG">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/c0899d18/result.PNG">
+<meta property="og:image" content="https://securitytech.site/zh-CN/c0899d18/result.PNG">
+<meta property="og:image" content="https://securitytech.site/zh-CN/c0899d18/Valine_register.PNG">
+<meta property="og:image" content="https://securitytech.site/zh-CN/c0899d18/LeanCloud_Create.jpg">
+<meta property="og:image" content="https://securitytech.site/zh-CN/c0899d18/LeanCloud_AppKey.jpg">
+<meta property="og:image" content="https://securitytech.site/zh-CN/c0899d18/LeanCloud_AddClass.PNG">
+<meta property="og:image" content="https://securitytech.site/zh-CN/c0899d18/LeanCloud_SecuredDomain.PNG">
+<meta property="og:image" content="https://securitytech.site/zh-CN/c0899d18/result.PNG">
 <meta property="article:published_time" content="2020-01-06T06:50:11.000Z">
 <meta property="article:modified_time" content="2020-01-06T08:12:56.982Z">
 <meta property="article:author" content="UPWNothing">
@@ -69,9 +70,9 @@
 <meta property="article:tag" content="NexT">
 <meta property="article:tag" content="Valine">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://upwnothing.github.io/zh-CN/c0899d18/result.PNG">
+<meta name="twitter:image" content="https://securitytech.site/zh-CN/c0899d18/result.PNG">
 
-<link rel="canonical" href="https://upwnothing.github.io/zh-CN/c0899d18/">
+<link rel="canonical" href="https://securitytech.site/zh-CN/c0899d18/">
 
 
 <script id="page-configurations">
@@ -91,12 +92,12 @@
             var indexOfEn = href.toLowerCase().indexOf('/en/');
             if(indexOfEn !== -1) {
                 //switchLang.href = href.replace('/en/', '/');
-		//switchLang.href = "https://upwnothing.github.io";
+		//switchLang.href = "https://securitytech.site";
                 switchLang.href = href.substr(0,indexOfEn);
             }
             else {
                 //switchLang.href = href.replace(/(^http[s]?:\/\/[a-z0-9.]*[:?0-9]*\/)(.*)/i, '$1en/$2');
-		//switchLang.href = "https://upwnothing.github.io/en";
+		//switchLang.href = "https://securitytech.site/en";
             }
     }
 </script>
@@ -227,10 +228,6 @@
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
   <div class="reading-progress-bar"></div>
 
 
@@ -247,10 +244,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/c0899d18/">
+    <link itemprop="mainEntityOfPage" href="https://securitytech.site/zh-CN/c0899d18/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/icon.jpeg">
       <meta itemprop="name" content="UPWNothing">
       <meta itemprop="description" content="">
     </span>
@@ -319,14 +316,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -346,21 +343,21 @@
 <li>不要求网站备案 ( 排除一系列国内的评论系统 )</li>
 </ul>
 <p>在剩下的为数不多的可选项中，<a href="https://valine.js.org/" target="_blank" rel="noopener">Valine</a>就成为了那个被我最终选择的评论系统。</p>
-<p><strong>最终效果图:</strong><br><img src="/zh-CN/c0899d18/result.PNG" alt="效果图"></p>
+<p><strong>最终效果图:</strong><br><img data-src="/zh-CN/c0899d18/result.PNG" alt="效果图"></p>
 <a id="more"></a>
 
 <h1 id="LeanCloud-注册及配置"><a href="#LeanCloud-注册及配置" class="headerlink" title="LeanCloud 注册及配置"></a><a href="https://www.leancloud.cn/" target="_blank" rel="noopener">LeanCloud</a> 注册及配置</h1><h2 id="账号注册"><a href="#账号注册" class="headerlink" title="账号注册"></a>账号注册</h2><p><strong>Valine</strong>是一款基于<strong>LeanCloud</strong>的快速、简洁且高效的无后端评论系统。所以我们需要先注册一个账号。  </p>
 <p>这里顺带提一句，在Valine上注册需要手机号码接受验证码，以及通过实名身份认证。</p>
-<p><img src="/zh-CN/c0899d18/Valine_register.PNG" alt="Valine_register"></p>
+<p><img data-src="/zh-CN/c0899d18/Valine_register.PNG" alt="Valine_register"></p>
 <p>Valine已经计划在未来支持基于Firebase的评论存储。Firebase可以避免实名身份认证等问题。</p>
 <h2 id="创建应用并获取APP-ID-和-APP-Key"><a href="#创建应用并获取APP-ID-和-APP-Key" class="headerlink" title="创建应用并获取APP ID 和 APP Key"></a>创建应用并获取APP ID 和 APP Key</h2><p>在完成上述认证步骤之后，我们可以开始创建应用。  </p>
-<p><img src="/zh-CN/c0899d18/LeanCloud_Create.jpg" alt="创建应用">  </p>
+<p><img data-src="/zh-CN/c0899d18/LeanCloud_Create.jpg" alt="创建应用">  </p>
 <p>应用创建好以后，进入刚刚创建的应用，选择左下角的设置&gt;应用Key，然后就能看到你的APP ID和APP Key了：</p>
-<p><img src="/zh-CN/c0899d18/LeanCloud_AppKey.jpg" alt="获取App ID和Key"></p>
+<p><img data-src="/zh-CN/c0899d18/LeanCloud_AppKey.jpg" alt="获取App ID和Key"></p>
 <p>之后再在左边栏点击储存，查看结构化数据中有没有<em>Comment</em>和<em>Counter</em>这两个Classes。如果没有，点击创建Class，默认选项即可直接创建。</p>
-<p><img src="/zh-CN/c0899d18/LeanCloud_AddClass.PNG" alt="LeanCloud_AddClass"></p>
+<p><img data-src="/zh-CN/c0899d18/LeanCloud_AddClass.PNG" alt="LeanCloud_AddClass"></p>
 <p>再进入设置-安全中心，设置自己的安全域名：</p>
-<p><img src="/zh-CN/c0899d18/LeanCloud_SecuredDomain.PNG" alt="LeanCloud_SecuredDomain"></p>
+<p><img data-src="/zh-CN/c0899d18/LeanCloud_SecuredDomain.PNG" alt="LeanCloud_SecuredDomain"></p>
 <p>至此，就是全部需要在LeanCloud中进行的操作了。</p>
 <h1 id="配置NexT"><a href="#配置NexT" class="headerlink" title="配置NexT"></a>配置NexT</h1><p>在主题配置文件中找到Valine配置项，根据自己的需要进行配置。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Valine</span></span><br><span class="line"><span class="comment"># For more information: https://valine.js.org, https://github.com/xCss/Valine</span></span><br><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">appid:</span> <span class="comment"># Your leancloud application appid</span></span><br><span class="line">  <span class="attr">appkey:</span> <span class="comment"># Your leancloud application appkey</span></span><br><span class="line">  <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier</span></span><br><span class="line">  <span class="attr">verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">Your</span> <span class="string">comments...</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">monsterid</span> <span class="comment"># Gravatar style</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line">  <span class="attr">language:</span> <span class="string">en</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># Article reading statistic</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="attr">recordIP:</span> <span class="literal">true</span> <span class="comment"># Whether to record the commenter IP</span></span><br><span class="line">  <span class="attr">serverURLs:</span> <span class="comment"># When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure>
@@ -380,7 +377,7 @@
 <li>recordIP: 是否记录评论者IP</li>
 </ul>
 <h1 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h1><p>完成配置后，执行<code>hexo cl &amp;&amp; hexo g</code>来观察效果。</p>
-<p><img src="/zh-CN/c0899d18/result.PNG" alt="最终效果"></p>
+<p><img data-src="/zh-CN/c0899d18/result.PNG" alt="最终效果"></p>
 <p>Perfect! 一次成功！</p>
 <p><em>评论的功能在所有页面都默认开启，我们可以通过在Front-matter中添加comments: false 来关闭评论</em></p>
 <h1 id="评论管理"><a href="#评论管理" class="headerlink" title="评论管理"></a>评论管理</h1><p>通过 <a href="https://github.com/panjunwen/Valine-Admin" target="_blank" rel="noopener">Valine Admin</a> 可以实现了评论邮件通知、评论管理、垃圾评论过滤等功能。支持完全自定义的邮件通知模板。<br>目前我并没有启用这个功能。毕竟几乎没有评论，也不需要集中管理。如果之后有需要添加，再更新这一部分的内容。</p>
@@ -400,11 +397,12 @@
   <div class="popular-posts-header">你可能感兴趣的文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-        <div class="popular-posts-img"><img src="/zh-CN/78ced6ec/bilingualize.png"></div>
       <div class="popular-posts-title"><a href="/zh-CN/78ced6ec/" rel="bookmark">利用Hexo框架搭建中英文双语网站</a></div>
     </li>
     <li class="popular-posts-item">
-        <div class="popular-posts-img"><img src="/zh-CN/3ba3be9/hexo_check_version.png"></div>
+      <div class="popular-posts-title"><a href="/zh-CN/44bf8def/" rel="bookmark">Hexo + NexT 深度个性化配置 (2020.1 更新)</a></div>
+    </li>
+    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/zh-CN/3ba3be9/" rel="bookmark">Hexo版本升级指南</a></div>
     </li>
     <li class="popular-posts-item">
@@ -449,7 +447,10 @@
     <a href="/zh-CN/3ba3be9/" rel="prev" title="Hexo版本升级指南">
       <i class="fa fa-chevron-left"></i> Hexo版本升级指南
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/zh-CN/44bf8def/" rel="next" title="Hexo + NexT 深度个性化配置 (2020.1 更新)">
+      Hexo + NexT 深度个性化配置 (2020.1 更新) <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -516,6 +517,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="UPWNothing"
+      src="/images/icon.jpeg">
   <p class="site-author-name" itemprop="name">UPWNothing</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -523,7 +526,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -543,6 +546,10 @@
 
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Sidebar Ad -->
@@ -569,7 +576,7 @@
 
 <div class="copyright">
   
-  &copy; 
+  &copy; 2017 – 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-paw"></i>
@@ -579,17 +586,17 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">20k</span>
+    <span title="站点总字数">14k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">18 分钟</span>
+    <span title="站点阅读时长">12 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.0
   </div>
 
         
@@ -626,8 +633,11 @@
   </div>
 
   
-  <script color='72,97,152' opacity='0.8' zIndex='-1' count='200' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script color='72,97,152' opacity='0.8' zIndex='-1' count='150' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js"></script>
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -636,7 +646,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>
@@ -671,7 +681,7 @@
 
 <script>
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
     var GUEST = ['nick', 'mail', 'link'];
     var guest = 'nick,mail,link';
     guest = guest.split(',').filter(item => {
@@ -683,7 +693,7 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
       notify: false,
       appId: 'DUtYTL3VYq8Mgbo2uSd9pEE8-9Nh9j0Va',
       appKey: 'RFEfNupULNUbbjBv7Cw7J4Ls',
-      placeholder: "Your comments...",
+      placeholder: "请留下您的评论～（填写邮箱的话，有回复时会通过邮箱提醒哦～邮箱并不会显示在评论中）",
       avatar: 'monsterid',
       meta: guest,
       pageSize: '10' || 10,
