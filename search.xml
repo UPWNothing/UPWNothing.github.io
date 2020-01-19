@@ -1,6 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>在Kali Linux中安装Ghidra</title>
+    <url>/zh-CN/b13d8a67/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<h1 id="Ghidra介绍"><a href="#Ghidra介绍" class="headerlink" title="Ghidra介绍"></a>Ghidra介绍</h1><p>Ghidra是一个由美国国家安全局(NSA)开发的软件逆向(SRE)工具集。NSA在2019年正式开源了这款工具。由于免费开源的特性，这款工具很快获得了安全从业人员的大量关注。</p>
+<h1 id="下载Ghidra"><a href="#下载Ghidra" class="headerlink" title="下载Ghidra"></a>下载Ghidra</h1><p>我们可以直接从<a href="https://ghidra-sre.org" target="_blank" rel="noopener">Ghidra官网</a>下载最新版的Ghidra。</p>
+<p>或者直接执行命令(根据实际情况修改链接中的版本号与版本日期):</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">wget <span class="string">https:</span><span class="comment">//ghidra-sre.org/ghidra_9.1.1_PUBLIC_20191218.zip</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="解决访问Ghidra官网403的问题"><a href="#解决访问Ghidra官网403的问题" class="headerlink" title="解决访问Ghidra官网403的问题"></a>解决访问Ghidra官网403的问题</h2><p>但是我在尝试下载时遇到了下述错误：</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="symbol">richard@</span>richard-Kali:~/Downloads$ wget https:<span class="comment">//ghidra-sre.org/ghidra_9.1.1_PUBLIC_20191218.zip</span></span><br><span class="line">-<span class="number">-2020</span><span class="number">-01</span><span class="number">-15</span> <span class="number">11</span>:<span class="number">37</span>:<span class="number">34</span>--  https:<span class="comment">//ghidra-sre.org/ghidra_9.1.1_PUBLIC_20191218.zip</span></span><br><span class="line">Resolving ghidra-sre.org (ghidra-sre.org)... <span class="number">13.35</span><span class="number">.99</span><span class="number">.82</span>, <span class="number">13.35</span><span class="number">.99</span><span class="number">.69</span>, <span class="number">13.35</span><span class="number">.99</span><span class="number">.72</span>, ...</span><br><span class="line">Connecting to ghidra-sre.org (ghidra-sre.org)|<span class="number">13.35</span><span class="number">.99</span><span class="number">.82</span>|:<span class="number">443.</span>.. connected.</span><br><span class="line">HTTP request sent, awaiting response... <span class="number">403</span> Forbidden</span><br><span class="line"><span class="number">2020</span><span class="number">-01</span><span class="number">-15</span> <span class="number">11</span>:<span class="number">37</span>:<span class="number">37</span> ERROR <span class="number">403</span>: Forbidden.</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器中直接访问，也同样报403.<br><img data-src="/zh-CN/b13d8a67/403_error.png" alt="浏览器报错信息"></p>
+<p>造成这个的原因是部分国家的IP地址被Cloudfront屏蔽了。。已知的国家有俄罗斯，以色列，中国等…这个既不是GFW造成的，也不是NSA故意要屏蔽。所以，相对而言还是比较容易绕过这个IP的限制。</p>
+<p>当然，也可以从国内的文件分享平台上下载。不过，下载后请务必验证文件的完整性。<br>截止到版本9.1.1,所有版本的Hash信息如下表所示。</p>
+<p><img data-src="/zh-CN/b13d8a67/Ghidra_release_note.PNG" alt="Ghidra版本信息"></p>
+<p>对下载的文件进行完整性校验。</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="symbol">richard@</span>richard-Kali:~/Downloads$ sha256sum ghidra_9<span class="number">.1</span><span class="number">.1</span>_PUBLIC_20191218.zip </span><br><span class="line">b0d40a4497c66011084e4a639d61ac76da4b4c5cabd62ab63adadb7293b0e506  ghidra_9<span class="number">.1</span><span class="number">.1</span>_PUBLIC_20191218.zip</span><br><span class="line"><span class="symbol">richard@</span>richard-Kali:~/Downloads$</span><br></pre></td></tr></table></figure>
+
+<h1 id="安装Ghidra"><a href="#安装Ghidra" class="headerlink" title="安装Ghidra"></a>安装Ghidra</h1><p>首先将下载的压缩包解压。</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="symbol">richard@</span>richard-Kali:~/Downloads$ unzip ghidra_9<span class="number">.1</span><span class="number">.1</span>_PUBLIC_20191218.zip</span><br></pre></td></tr></table></figure>
+
+<p>再安装Java jdk 和 jre。</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">sudo apt <span class="keyword">install </span>openjdk<span class="number">-11</span>-<span class="keyword">jdk</span></span><br><span class="line"><span class="keyword">sudo </span>apt <span class="keyword">install </span>openjdk<span class="number">-11</span>-<span class="keyword">jre-headless</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="运行Ghidra"><a href="#运行Ghidra" class="headerlink" title="运行Ghidra"></a>运行Ghidra</h1><p>上述步骤全部完成后，应该就能顺利运行Ghidra了。</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="string">./ghidraRun</span></span><br></pre></td></tr></table></figure>
+<p><img data-src="/zh-CN/b13d8a67/run.png" alt="成功运行"></p>
+]]></content>
+      <categories>
+        <category>Security</category>
+        <category>Linux</category>
+        <category>Kali</category>
+        <category>Reverse</category>
+      </categories>
+      <tags>
+        <tag>Kali</tag>
+        <tag>Linux</tag>
+        <tag>Ghidra</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在Kali Linux中安装Google Chrome浏览器，并解决root用户无法运行的问题</title>
+    <url>/zh-CN/ae2cc9de/</url>
+    <content><![CDATA[<p>其实，Kali Linux本身自带有Chromium浏览器。但是，如果你更倾向于使用Chrome，那么你可以通过以下步骤在Kali中安装Chrome：</p>
+<h1 id="下载Chrome"><a href="#下载Chrome" class="headerlink" title="下载Chrome"></a>下载Chrome</h1><p>通过以下链接下载<code>google-chrome-stable</code>:</p>
+<p><a href="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" target="_blank" rel="noopener">https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</a></p>
+<h1 id="安装Chrome"><a href="#安装Chrome" class="headerlink" title="安装Chrome"></a>安装Chrome</h1><p>使用下列命令安装Chrome：</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">sudo apt <span class="keyword">install</span> ./google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<p>一切顺利的话，到目前为止，Google Chrome已经成功地安装到了我们的Kali Linux中了。 </p>
+<h1 id="解决无法以root身份运行Chrome的问题"><a href="#解决无法以root身份运行Chrome的问题" class="headerlink" title="解决无法以root身份运行Chrome的问题"></a>解决无法以root身份运行Chrome的问题</h1><p>如果当前正在以root身份登录的话，我们双击Chrome图标想要打开浏览器并不能成功。所以，尝试一下通过命令行来打开Chrome：</p>
+<p><img data-src="/zh-CN/ae2cc9de/non_root_error.png" alt="Error Message"></p>
+<p>通过命令行，我们看到了具体的报错原因。知道具体的原因，那么就可以下手解决了。 </p>
+<p>其实，我会更推荐在日常使用时，以非root的身份登录进行操作，这样既确保了安全，同时也变相解决了Chrome启动的问题。当然，如果你执意想要以root用户的身份运行Chrome,那也是有办法的：  </p>
+<p>使用任意文档编辑工具打开 <code>/usr/bin/google-chrome</code>,在最后一行<code>exec -a &quot;$0&quot; &quot;$HERE/chrome&quot; &quot;$@&quot;</code> 之后加上<code>--user-data-dir</code>和<code>--no-sandbox</code>。如下图所示：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exec</span> -a <span class="string">"<span class="variable">$0</span>"</span> <span class="string">"<span class="variable">$HERE</span>/chrome"</span> <span class="string">"<span class="variable">$@</span>"</span> --user-data-dir --no-sandbox</span><br></pre></td></tr></table></figure>
+
+<p>再次尝试，OK! Google Chrome 可以顺利运行了！</p>
+]]></content>
+      <categories>
+        <category>Security</category>
+        <category>Linux</category>
+        <category>Kali</category>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Kali</tag>
+        <tag>Linux</tag>
+        <tag>Chrome</tag>
+        <tag>Security</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>How to install and enable Google Chrome in Kali Linux</title>
+    <url>/en/ae2cc9de/</url>
+    <content><![CDATA[<p>Actually, Chromium Web Browser is attached with Kali Linux image. However, if you still prefer to use Chrome, then you can install the Chrome with the following steps:</p>
+<p>First, download <em>google-chrome-stable</em> from the web:</p>
+<p><a href="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" target="_blank" rel="noopener">https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</a></p>
+<p>Then, install it with command: </p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">sudo apt <span class="keyword">install</span> ./google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<p>Okay, now we have Chrome installed in our Kali system. </p>
+<p>However, in Kali, you’re not able to run Chrome or Chromium as root. When you click on Chrome icon in GUI, Chrome will not response and open a new window. So let’s try to launch Chrome in the terminal to see what’s happening there. </p>
+<p><img data-src="/en/ae2cc9de/non_root_error.png" alt="Error Message"></p>
+<p>Okay, now we know the reason why we cannot launch Chrome with root privilege. </p>
+<p> I would recommend to create another user when browsing the internet. As not allowing using Chrome as root is actually a control for security reasons.<br>However, if you still want to run Chrome as root. Let’s try to find out how to bypass the limitation.</p>
+<p>Edit <code>/usr/bin/google-chrome</code>:</p>
+<p>Add –no-sandbox parameter to the exec line. That’s it! </p>
+]]></content>
+      <categories>
+        <category>Security</category>
+        <category>Linux</category>
+        <category>Kali</category>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Kali</tag>
+        <tag>Linux</tag>
+        <tag>Chrome</tag>
+        <tag>Security</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解决Hexo NexT中Fancybox与Lazyload冲突的问题</title>
     <url>/zh-CN/be16ea65/</url>
     <content><![CDATA[<a id="more"></a>
@@ -18,7 +123,7 @@
 <p>因为图片懒加载预先会使用占位图来替代图片的<code>src</code>，等图片加载完成后，再用<code>data-original</code>里面的内容替换<code>src</code>里面的内容。然而 <strong>fancybox</strong> 的原理是在页面加载时给页面中所有的图片套一层<code>a标签</code>，<code>a标签</code>的<code>href</code>就是 <strong>fancybox</strong> 在页面加载时获取的图片<code>src</code>，恰好这时候获取的<code>src</code>偏偏就是 <strong>lazyload</strong> 的占位图的 url。</p>
 <h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>在上面提及的博客中，作者提出了一种使用js脚本，在图片完成加载后，对<code>a标签</code>中的<code>href</code>进行修正的方法。但是，我觉得这种方法不利于之后的升级维护，所以没有采用。  </p>
 <p>这里，我使用了另一种方法来解决了冲突的问题：更换Lazyload的实现方式。</p>
-<p>NexT主题集成了使用<code>lozad.js</code>来实现Lazyload懒加载。使用这个方法则不会与Fancybox产生冲突。具体配置方法，详见<a href="https://securitytech.site/zh-CN/44bf8def##启用Lazyload图片懒加载">在NexT中启用Lazyload</a>。<code>lozad.js</code>使用<code>img</code>标签的<code>data-src</code>属性来保存目标图片的路径。在Lazyload加载前，<code>img</code>标签中并不包含<code>src</code>属性，而Fancybox也能正确从<code>data-src</code>中获取到图片的正确路径。</p>
+<p>NexT主题集成了使用<code>lozad.js</code>来实现Lazyload懒加载。使用这个方法则不会与Fancybox产生冲突。具体配置方法，详见<a href="https://securitytech.site/zh-CN/44bf8def/#启用Lazyload图片懒加载">在NexT中启用Lazyload</a>。<code>lozad.js</code>使用<code>img</code>标签的<code>data-src</code>属性来保存目标图片的路径。在Lazyload加载前，<code>img</code>标签中并不包含<code>src</code>属性，而Fancybox也能正确从<code>data-src</code>中获取到图片的正确路径。</p>
 <h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><p>前面说了，使用这种方法可以实现Lazyload的功能，但该NexT中集成<code>lozad.js</code>没有提供设置占位图片的选项。所以，如果你一定希望有占位图片，那么这种方法可能并不能满足你的需求。<br>不过，我有一个想法，如果把<code>Hexo-Lazyload-image</code>插件中的<code>data-original</code>属性改成<code>data-src</code>属性，那么能不能实现与Fancybox的兼容呢？我暂时没有进行尝试，只是一个猜想而已。之后有机会的话会尝试一下，再来更新。</p>
 <hr>
 <h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul>
@@ -30,9 +135,9 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
-        <tag>NexT</tag>
         <tag>Lazyload</tag>
         <tag>Fancybox</tag>
+        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>
@@ -197,6 +302,12 @@
 <p>然后根据自己启用插件的情况，将需要的行添加到主题配置<code>themes_config</code>下。这里贴出我启用的配置，仅供参考：</p>
 <figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line"><span class="symbol">vendors:</span></span><br><span class="line">  <span class="symbol">fontawesome:</span> /<span class="regexp">/cdn.jsdelivr.net/npm</span><span class="regexp">/font-awesome@4/css</span><span class="regexp">/font-awesome.min.css</span></span><br><span class="line"><span class="regexp">  jquery: /</span><span class="regexp">/cdn.jsdelivr.net/npm</span><span class="regexp">/jquery@3/dist</span><span class="regexp">/jquery.min.js</span></span><br><span class="line"><span class="regexp">  fancybox: /</span><span class="regexp">/cdn.jsdelivr.net/gh</span><span class="regexp">/fancyapps/fancybox</span>@<span class="number">3</span>/dist/jquery.fancybox.min.js</span><br><span class="line">  <span class="symbol">fancybox_css:</span> /<span class="regexp">/cdn.jsdelivr.net/gh</span><span class="regexp">/fancyapps/fancybox</span>@<span class="number">3</span>/dist/jquery.fancybox.min.css</span><br><span class="line">  <span class="symbol">lazyload:</span> /<span class="regexp">/cdn.jsdelivr.net/npm</span><span class="regexp">/lozad@1/dist</span><span class="regexp">/lozad.min.js</span></span><br><span class="line"><span class="regexp">  valine: /</span><span class="regexp">/cdn.jsdelivr.net/npm</span><span class="regexp">/valine@1/dist</span><span class="regexp">/Valine.min.js</span></span><br><span class="line"><span class="regexp">  pace: /</span><span class="regexp">/cdn.jsdelivr.net/npm</span><span class="regexp">/pace-js@1/pace</span>.min.js</span><br><span class="line">  <span class="symbol">pace_css:</span> /<span class="regexp">/cdn.jsdelivr.net/npm</span><span class="regexp">/pace-js@1/themes</span><span class="regexp">/blue/pace</span>-theme-minimal.css</span><br><span class="line">  <span class="symbol">canvas_nest:</span> /<span class="regexp">/cdn.jsdelivr.net/gh</span><span class="regexp">/theme-next/theme</span>-<span class="keyword">next</span>-canvas-nest@<span class="number">1</span>/canvas-nest.min.js</span><br><span class="line">  <span class="symbol">canvas_nest_nomobile:</span> /<span class="regexp">/cdn.jsdelivr.net/gh</span><span class="regexp">/theme-next/theme</span>-<span class="keyword">next</span>-canvas-nest@<span class="number">1</span>/canvas-nest-nomobile.min.js</span><br></pre></td></tr></table></figure>
 
+<h2 id="添加文章评分功能"><a href="#添加文章评分功能" class="headerlink" title="添加文章评分功能"></a>添加文章评分功能</h2><p>在主题配置文件<code>themes/next/_config.yml</code>中搜索<code>rating</code>，找到相关的配置。将其添加到主题配置<code>theme_config</code>下：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Star rating support to each article.</span></span><br><span class="line"><span class="comment"># To get your ID visit https://widgetpack.com</span></span><br><span class="line"><span class="attr">rating:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">id:</span>     <span class="comment"># &lt;app_id&gt;</span></span><br><span class="line">  <span class="attr">color:</span>  <span class="string">fc6423</span></span><br></pre></td></tr></table></figure>
+
+<p>根据注释说明打开<a href="https://widgetpack.com" target="_blank" rel="noopener">https://widgetpack.com</a> ,首页点击”Rating”，然后点击页面中间红色的”Get it Free”。页面会跳转到注册页面，注册帐号。  </p>
+<p>点开左上角菜单，选择 Rating -&gt; Setting ，可以把 <code>Vote via</code> 修改成 Device或是IP address。这样用户无需登录就可以打分。</p>
+<p>菜单中 Site -&gt; Setting ，可以将Private勾上。</p>
 <h1 id="NexT内置主题样式美化"><a href="#NexT内置主题样式美化" class="headerlink" title="NexT内置主题样式美化"></a>NexT内置主题样式美化</h1><p>这一部分其实主要是对样式进行自定义修改，基本思路就是在自定义的样式文件中加入对应元素的css属性设置。</p>
 <h2 id="侧边栏圆角"><a href="#侧边栏圆角" class="headerlink" title="侧边栏圆角"></a>侧边栏圆角</h2><p>打开<code>themes/next/source/css/_variables/Gemini.styl</code>，根据启用的不同主题，选择相应的文件。这里修改的是<code>Gemini.styl</code>。<br>在文件中修改代码：</p>
 <figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">$border-radius-inner   = <span class="number">0</span> <span class="number">0</span> <span class="number">10</span>px <span class="number">10</span>px;</span><br><span class="line">$border-radius         = <span class="number">10</span>px;</span><br></pre></td></tr></table></figure>
@@ -325,9 +436,60 @@
       </tags>
   </entry>
   <entry>
-    <title>Installing-Docker-in-Kali</title>
-    <url>/undefined/8b79501d/</url>
-    <content><![CDATA[]]></content>
+    <title>在Kali Linux中安装Docker (Kali 2019.4)</title>
+    <url>/zh-CN/1e3c141b/</url>
+    <content><![CDATA[<p>这篇文章主要是简单记录一下在Kali中安装Docker的完整过程。下文提及的所有步骤都在Kali的最新版本(2019.4)中成功执行。</p>
+<h1 id="为嘛要在Kali中装Docker呐？！"><a href="#为嘛要在Kali中装Docker呐？！" class="headerlink" title="为嘛要在Kali中装Docker呐？！"></a>为嘛要在Kali中装Docker呐？！</h1><p>这是一个很常见的问题。因为大家都认为Kali是一个非常纯粹的渗透测试工具，在Kali中安装了Docker就多少显得……不那么Cool了对吧！  </p>
+<p>其实不然。Kali有如今的地位，是因为他包含了一系列对于网络安全工作非常实用的工具。但是，如果你突然想要在Kali中运行一个Kali中没有的工具，这个工具又对于环境有不少的要求，那么这时候，最简单的方法就是通过Docker容器来运行这个工具。<br>使用Docker可以让我们毫无顾虑地运行所以工具，而不用担心这个工具会破坏Kali原有的环境，引起冲突。  </p>
+<p>这就是我们在Kali中安装上Docker的根本原因。</p>
+<h1 id="准备步骤"><a href="#准备步骤" class="headerlink" title="准备步骤"></a>准备步骤</h1><p>开始前先将Kali中的软件进行更新。</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">richard<span class="variable">@richard</span>-<span class="symbol">Kali:</span>~<span class="variable">$ </span>sudo apt update</span><br><span class="line">richard<span class="variable">@richard</span>-<span class="symbol">Kali:</span>~<span class="variable">$ </span>sudo apt dist-upgrade</span><br></pre></td></tr></table></figure>
+
+<p>添加Docker PGP 密钥：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">richard<span class="variable">@richard</span>-<span class="symbol">Kali:</span>~<span class="variable">$ </span>curl -fsSL <span class="symbol">https:</span>/<span class="regexp">/download.docker.com/linux</span><span class="regexp">/debian/gpg</span> | sudo apt-key add -</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<p>配置Docker APT仓库 (Kali 基于 Debian, 可以使用Debian buster这个版本) 。打开<code>/etc/apt/sources.list.d/docker.list</code>，并添加：</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">deb</span> [arch=amd64] http<span class="variable">s:</span>//download.docker.<span class="keyword">com</span>/linux/debian buster stable</span><br></pre></td></tr></table></figure>
+
+<p>对于国内的用户，由于官方的下载源速度感人，所以建议换成国内的镜像：</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">deb</span> [arch=amd64] http<span class="variable">s:</span>//mirrors.ustc.edu.<span class="keyword">cn</span>/docker-<span class="keyword">ce</span>/linux/debian buster stable</span><br><span class="line"><span class="keyword">deb</span> [arch=amd64] http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/docker-<span class="keyword">ce</span>/linux/debian buster stable</span><br></pre></td></tr></table></figure>
+
+<p>对于国内的用户，由于官方的下载源速度感人，所以建议换成国内的镜像：</p>
+<p>再update一下APT:</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">richard<span class="variable">@richard</span>-<span class="symbol">Kali:</span>~<span class="variable">$ </span>sudo apt update</span><br></pre></td></tr></table></figure>
+
+<h1 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h1><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">richard<span class="variable">@richard</span>-<span class="symbol">Kali:</span>~<span class="variable">$ </span>sudo apt install docker-ce</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，进行一个简单的测试：</p>
+<figure class="highlight autoit"><table><tr><td class="code"><pre><span class="line">richard<span class="symbol">@richard</span>-Kali:~$ docker <span class="built_in">run</span> hello-world</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：Docker服务在正确安装后会被自动启动(start)，但不会被启用(enable)。也就是说，系统重新启动以后Docker不会自动启动。</p>
+</blockquote>
+<p>需要启用Docker的话，则执行命令</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">richard<span class="variable">@richard</span>-<span class="symbol">Kali:</span>~<span class="variable">$ </span>systemctl enable docker</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul>
+<li><a href="https://docs.docker.com" target="_blank" rel="noopener">https://docs.docker.com</a></li>
+<li><a href="https://medium.com/@airman604/installing-docker-in-kali-linux-2017-1-fbaa4d1447fe" target="_blank" rel="noopener">https://medium.com/@airman604/installing-docker-in-kali-linux-2017-1-fbaa4d1447fe</a></li>
+<li><a href="https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/</a></li>
+<li><a href="https://mirrors.ustc.edu.cn/help/docker-ce.html" target="_blank" rel="noopener">https://mirrors.ustc.edu.cn/help/docker-ce.html</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Security</category>
+        <category>Linux</category>
+        <category>Kali</category>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Kali</tag>
+        <tag>Docker</tag>
+        <tag>Linux</tag>
+      </tags>
   </entry>
   <entry>
     <title>MySQL Binlog 调查取证</title>
@@ -360,7 +522,7 @@
 <a id="more"></a>
 
 <h1 id="修改Vim配置文件-vimrc"><a href="#修改Vim配置文件-vimrc" class="headerlink" title="修改Vim配置文件 ~/.vimrc"></a>修改Vim配置文件 ~/.vimrc</h1><p>将下面的配置添加到<code>~/.vimrc</code>中。可以根据自己的需要添加或者移除Plugin。</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">set</span> nocompatible              <span class="comment">" be iMproved, required</span></span><br><span class="line"><span class="keyword">filetype</span> off                  <span class="comment">" required</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" set the runtime path to include Vundle and initialize</span></span><br><span class="line"><span class="keyword">set</span> rtp+=~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">call</span> vundle#begin()</span><br><span class="line"><span class="comment">" alternatively, pass a path where Vundle should install plugins</span></span><br><span class="line"><span class="comment">"call vundle#begin('~/some/path/here')</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" let Vundle manage Vundle, required</span></span><br><span class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" The following are examples of different formats supported.</span></span><br><span class="line"><span class="comment">" Keep Plugin commands between vundle#begin/end.</span></span><br><span class="line"><span class="comment">" plugin on GitHub repo</span></span><br><span class="line">Plugin <span class="string">'tpope/vim-fugitive'</span></span><br><span class="line">Plugin <span class="string">'Valloric/YouCompleteMe'</span></span><br><span class="line">Plugin <span class="string">'plasticboy/vim-markdown'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">" plugin from http://vim-scripts.org/vim/scripts.html</span></span><br><span class="line"><span class="comment">" Plugin 'L9'</span></span><br><span class="line"><span class="comment">" Git plugin not hosted on GitHub</span></span><br><span class="line"><span class="comment">" git repos on your local machine (i.e. when working on your own plugin)</span></span><br><span class="line"><span class="comment">"Plugin 'file:///home/gmarik/path/to/plugin'</span></span><br><span class="line"><span class="comment">" The sparkup vim script is in a subdirectory of this repo called vim.</span></span><br><span class="line"><span class="comment">" Pass the path to set the runtimepath properly.</span></span><br><span class="line">Plugin <span class="string">'rstacruz/sparkup'</span>, &#123;<span class="string">'rtp'</span>: <span class="string">'vim/'</span>&#125;</span><br><span class="line"><span class="comment">" Install L9 and avoid a Naming conflict if you've already installed a</span></span><br><span class="line"><span class="comment">" different version somewhere else.</span></span><br><span class="line"><span class="comment">" Plugin 'ascenator/L9', &#123;'name': 'newL9'&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" Color schemes</span></span><br><span class="line">Plugin <span class="string">'tomasr/molokai'</span></span><br><span class="line">Plugin <span class="string">'altercation/vim-colors-solarized'</span></span><br><span class="line">Plugin <span class="string">'flazz/vim-colorschemes'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">" All of your Plugins must be added before the following line</span></span><br><span class="line"><span class="keyword">call</span> vundle#end()            <span class="comment">" required</span></span><br><span class="line"><span class="keyword">filetype</span> plugin <span class="built_in">indent</span> <span class="keyword">on</span>    <span class="comment">" required</span></span><br><span class="line"><span class="comment">" To ignore plugin indent changes, instead use:</span></span><br><span class="line"><span class="comment">"filetype plugin on</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" Brief help</span></span><br><span class="line"><span class="comment">" :PluginList       - lists configured plugins</span></span><br><span class="line"><span class="comment">" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate</span></span><br><span class="line"><span class="comment">" :PluginSearch foo - searches for foo; append `!` to refresh local cache</span></span><br><span class="line"><span class="comment">" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" see :h vundle for more details or wiki for FAQ</span></span><br><span class="line"><span class="comment">" Put your non-Plugin stuff after this line</span></span><br><span class="line"><span class="comment">" </span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="keyword">syntax</span> enable</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> fdm=marker</span><br><span class="line"><span class="keyword">set</span> tabstop=<span class="number">8</span> softtabstop=<span class="number">0</span> expandtab <span class="built_in">shiftwidth</span>=<span class="number">4</span> smarttab</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">nu</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">set</span> nocompatible              <span class="comment">" be iMproved, required</span></span><br><span class="line"><span class="keyword">filetype</span> off                  <span class="comment">" required</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" set the runtime path to include Vundle and initialize</span></span><br><span class="line"><span class="keyword">set</span> rtp+=~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">call</span> vundle#begin()</span><br><span class="line"><span class="comment">" alternatively, pass a path where Vundle should install plugins</span></span><br><span class="line"><span class="comment">"call vundle#begin('~/some/path/here')</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" let Vundle manage Vundle, required</span></span><br><span class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" The following are examples of different formats supported.</span></span><br><span class="line"><span class="comment">" Keep Plugin commands between vundle#begin/end.</span></span><br><span class="line"><span class="comment">" plugin on GitHub repo</span></span><br><span class="line">Plugin <span class="string">'tpope/vim-fugitive'</span></span><br><span class="line">Plugin <span class="string">'Valloric/YouCompleteMe'</span></span><br><span class="line">Plugin <span class="string">'plasticboy/vim-markdown'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">" plugin from http://vim-scripts.org/vim/scripts.html</span></span><br><span class="line"><span class="comment">" Plugin 'L9'</span></span><br><span class="line"><span class="comment">" Git plugin not hosted on GitHub</span></span><br><span class="line"><span class="comment">" git repos on your local machine (i.e. when working on your own plugin)</span></span><br><span class="line"><span class="comment">"Plugin 'file:///home/gmarik/path/to/plugin'</span></span><br><span class="line"><span class="comment">" The sparkup vim script is in a subdirectory of this repo called vim.</span></span><br><span class="line"><span class="comment">" Pass the path to set the runtimepath properly.</span></span><br><span class="line">Plugin <span class="string">'rstacruz/sparkup'</span>, &#123;<span class="string">'rtp'</span>: <span class="string">'vim/'</span>&#125;</span><br><span class="line"><span class="comment">" Install L9 and avoid a Naming conflict if you've already installed a</span></span><br><span class="line"><span class="comment">" different version somewhere else.</span></span><br><span class="line"><span class="comment">" Plugin 'ascenator/L9', &#123;'name': 'newL9'&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" Color schemes</span></span><br><span class="line">Plugin <span class="string">'tomasr/molokai'</span></span><br><span class="line">Plugin <span class="string">'altercation/vim-colors-solarized'</span></span><br><span class="line">Plugin <span class="string">'flazz/vim-colorschemes'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">" All of your Plugins must be added before the following line</span></span><br><span class="line"><span class="keyword">call</span> vundle#end()            <span class="comment">" required</span></span><br><span class="line"><span class="keyword">filetype</span> plugin <span class="built_in">indent</span> <span class="keyword">on</span>    <span class="comment">" required</span></span><br><span class="line"><span class="comment">" To ignore plugin indent changes, instead use:</span></span><br><span class="line"><span class="comment">"filetype plugin on</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" Brief help</span></span><br><span class="line"><span class="comment">" :PluginList       - lists configured plugins</span></span><br><span class="line"><span class="comment">" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate</span></span><br><span class="line"><span class="comment">" :PluginSearch foo - searches for foo; append `!` to refresh local cache</span></span><br><span class="line"><span class="comment">" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" see :h vundle for more details or wiki for FAQ</span></span><br><span class="line"><span class="comment">" Put your non-Plugin stuff after this line</span></span><br><span class="line"><span class="comment">" </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">" 启用语法高亮</span></span><br><span class="line"><span class="keyword">syntax</span> enable</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> fdm=marker foldlevelstart=<span class="number">99</span></span><br><span class="line"><span class="keyword">set</span> tabstop=<span class="number">8</span> softtabstop=<span class="number">0</span> expandtab <span class="built_in">shiftwidth</span>=<span class="number">2</span> smarttab</span><br><span class="line"><span class="comment">" 显示行号</span></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">nu</span></span><br><span class="line"><span class="comment">" 为光标所在行添加下划线</span></span><br><span class="line"><span class="keyword">set</span> cursorline</span><br><span class="line"><span class="comment">" 启用鼠标移动光标</span></span><br><span class="line"><span class="keyword">set</span> mouse=<span class="keyword">a</span></span><br></pre></td></tr></table></figure>
 
 
 <h1 id="下载插件"><a href="#下载插件" class="headerlink" title="下载插件"></a>下载插件</h1><p>通过<code>git clone</code>命令，将需要的插件下载到<code>~/.vim/bundle</code>目录下。<br><img data-src="/zh-CN/b8c5a601/plugin_download.png" alt></p>
@@ -494,54 +656,6 @@
       </tags>
   </entry>
   <entry>
-    <title>YouCompleteMe 安装教程</title>
-    <url>/zh-CN/d2b4abf1/</url>
-    <content><![CDATA[<p>YouCompleteMe作为Vim中最好用（没有之一）的代码自动补全插件，却同时又是最不容易安装的插件之一。其实在YCM的Github官网，有非常详细完整的安装说明。如果在Mac OS X, Windows, Ubuntu, FreeBSD/OpenBSD或Fedora上安装YCM，且英语还Okay的话，建议直接移步<a href="https://github.com/Valloric/YouCompleteMe#installation" target="_blank" rel="noopener">官方安装说明文档</a>。但官方说明文档却没有对在CentOS与Debian中安装YCM的详细说明。所以在这里总结一下具体的步骤给大家作一个参考。</p>
-<h1 id="在CentOS中安装YCM"><a href="#在CentOS中安装YCM" class="headerlink" title="在CentOS中安装YCM"></a>在CentOS中安装YCM</h1><h2 id="使用-Vundle-安装YCM"><a href="#使用-Vundle-安装YCM" class="headerlink" title="使用 Vundle 安装YCM"></a>使用 <a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="noopener">Vundle</a> 安装YCM</h2><p>Vundle（Vim Bundle的缩写）是一个针对Vim的插件管理器。相较于Vim本身混乱的插件结构，使用Vundle来管理插件就显得非常得方便、简洁。用户只需要在Github上找到自己想要的插件的名字，并将其添加到.vimrc文件中，之后的安装，更新和卸载等操作都可以由vundle来完成了。</p>
-<a id="more"></a>
-<ol>
-<li>下载Vundle <figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/VundleVim/Vundle.<span class="keyword">vim</span>.git ~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br></pre></td></tr></table></figure></li>
-<li>编辑 .vimrc 文件<br> 将以下代码添加至你的.vimrc文件中。同时，你也可以根据需求来添加其他你想要安装的vim插件。 <figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">set</span> nocompatible              <span class="comment">" be iMproved, required</span></span><br><span class="line"><span class="keyword">filetype</span> off                  <span class="comment">" required</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" set the runtime path to include Vundle and initialize</span></span><br><span class="line"><span class="keyword">set</span> rtp+=~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">call</span> vundle#begin()</span><br><span class="line"><span class="comment">" alternatively, pass a path where Vundle should install plugins</span></span><br><span class="line"><span class="comment">"call vundle#begin('~/some/path/here')</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" let Vundle manage Vundle, required</span></span><br><span class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" The following are examples of different formats supported.</span></span><br><span class="line"><span class="comment">" Keep Plugin commands between vundle#begin/end.</span></span><br><span class="line"><span class="comment">" plugin on GitHub repo</span></span><br><span class="line">Plugin <span class="string">'Valloric/YouCompleteMe'</span></span><br><span class="line"><span class="comment">" plugin from http://vim-scripts.org/vim/scripts.html</span></span><br><span class="line"><span class="comment">" Plugin 'L9'</span></span><br><span class="line"><span class="comment">" Git plugin not hosted on GitHub</span></span><br><span class="line"><span class="comment">"Plugin 'git://git.wincent.com/command-t.git'</span></span><br><span class="line"><span class="comment">" git repos on your local machine (i.e. when working on your own plugin)</span></span><br><span class="line"><span class="comment">"Plugin 'file:///home/gmarik/path/to/plugin'</span></span><br><span class="line"><span class="comment">" The sparkup vim script is in a subdirectory of this repo called vim.</span></span><br><span class="line"><span class="comment">" Pass the path to set the runtimepath properly.</span></span><br><span class="line"><span class="comment">"Plugin 'rstacruz/sparkup', &#123;'rtp': 'vim/'&#125;</span></span><br><span class="line"><span class="comment">" Install L9 and avoid a Naming conflict if you've already installed a</span></span><br><span class="line"><span class="comment">" different version somewhere else.</span></span><br><span class="line"><span class="comment">" Plugin 'ascenator/L9', &#123;'name': 'newL9'&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" All of your Plugins must be added before the following line</span></span><br><span class="line"><span class="keyword">call</span> vundle#end()            <span class="comment">" required</span></span><br><span class="line"><span class="keyword">filetype</span> plugin <span class="built_in">indent</span> <span class="keyword">on</span>    <span class="comment">" required</span></span><br><span class="line"><span class="comment">" To ignore plugin indent changes, instead use:</span></span><br><span class="line"><span class="comment">"filetype plugin on</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" Brief help</span></span><br><span class="line"><span class="comment">" :PluginList       - lists configured plugins</span></span><br><span class="line"><span class="comment">" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate</span></span><br><span class="line"><span class="comment">" :PluginSearch foo - searches for foo; append `!` to refresh local cache</span></span><br><span class="line"><span class="comment">" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" see :h vundle for more details or wiki for FAQ</span></span><br><span class="line"><span class="comment">" Put your non-Plugin stuff after this line</span></span><br></pre></td></tr></table></figure></li>
-<li>安装插件<br> 打开Vim并运行<code>:PluginInstall</code>指令。<br> 这一步骤可能所需要的时间较长，需要耐心地等待它安装完成。</li>
-</ol>
-<h2 id="安装编译YCM所需要的软件"><a href="#安装编译YCM所需要的软件" class="headerlink" title="安装编译YCM所需要的软件"></a>安装编译YCM所需要的软件</h2><ol>
-<li><p>安装开发工具与CMake:</p>
-<pre><code><figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">yum <span class="keyword">install </span><span class="keyword">build-essential </span>cmake</span><br></pre></td></tr></table></figure></code></pre></li>
-<li><p>并确保python头文件包已经正确安装:</p>
-<pre><code><figure class="highlight mel"><table><tr><td class="code"><pre><span class="line">yum install <span class="keyword">python</span>-devel rh-python36-<span class="keyword">python</span>-devel.x86_64</span><br></pre></td></tr></table></figure></code></pre><p><img data-src="/zh-CN/d2b4abf1/YCM1.PNG" alt="image1"></p>
-<pre><code>如果你的CentOS上还未安装Python3，那么运行以下命令完成Python3.6的安装:       
-<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">sudo yum <span class="keyword">install </span>centos-release-<span class="keyword">scl</span></span><br><span class="line"><span class="keyword">sudo </span>yum <span class="keyword">install </span>rh-python36</span><br></pre></td></tr></table></figure>
-
-需要的话，可以将Python3.6作为默认的Python来运行：    
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">scl <span class="builtin-name">enable</span> rh-python36 bash</span><br></pre></td></tr></table></figure></code></pre></li>
-</ol>
-<h2 id="编译YCM"><a href="#编译YCM" class="headerlink" title="编译YCM"></a>编译YCM</h2><ul>
-<li><p>完成包含对C语言家族语义支持的YCM编译</p>
-  <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span> <span class="params">--clang-completer</span></span><br></pre></td></tr></table></figure></li>
-<li><p>不包含语义支持则直接运行install.py</p>
-  <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果需要简单的开启对所有语言的支持，则可以用–all标识。</p>
-  <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span> <span class="params">--all</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul>
-<li><a href="https://github.com/Valloric/YouCompleteMe#full-installation-guide" target="_blank" rel="noopener">https://github.com/Valloric/YouCompleteMe#full-installation-guide</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Linux</category>
-        <category>Vim</category>
-      </categories>
-      <tags>
-        <tag>Vim</tag>
-        <tag>Vundle</tag>
-        <tag>CentOS</tag>
-        <tag>YCM</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>YouCompleteMe Installation</title>
     <url>/en/126f49de/</url>
     <content><![CDATA[<p>Acutally, there’re pretty detailed instructions for installation on YCM(YouCompleteMe)’s github page. However, the installation steps on CentOS and Debian cannot be found. </p>
@@ -576,6 +690,54 @@
 </li>
 </ul>
 <h1 id="Referrence"><a href="#Referrence" class="headerlink" title="Referrence"></a>Referrence</h1><ul>
+<li><a href="https://github.com/Valloric/YouCompleteMe#full-installation-guide" target="_blank" rel="noopener">https://github.com/Valloric/YouCompleteMe#full-installation-guide</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>Vim</category>
+      </categories>
+      <tags>
+        <tag>Vim</tag>
+        <tag>Vundle</tag>
+        <tag>CentOS</tag>
+        <tag>YCM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>YouCompleteMe 安装教程</title>
+    <url>/zh-CN/d2b4abf1/</url>
+    <content><![CDATA[<p>YouCompleteMe作为Vim中最好用（没有之一）的代码自动补全插件，却同时又是最不容易安装的插件之一。其实在YCM的Github官网，有非常详细完整的安装说明。如果在Mac OS X, Windows, Ubuntu, FreeBSD/OpenBSD或Fedora上安装YCM，且英语还Okay的话，建议直接移步<a href="https://github.com/Valloric/YouCompleteMe#installation" target="_blank" rel="noopener">官方安装说明文档</a>。但官方说明文档却没有对在CentOS与Debian中安装YCM的详细说明。所以在这里总结一下具体的步骤给大家作一个参考。</p>
+<h1 id="在CentOS中安装YCM"><a href="#在CentOS中安装YCM" class="headerlink" title="在CentOS中安装YCM"></a>在CentOS中安装YCM</h1><h2 id="使用-Vundle-安装YCM"><a href="#使用-Vundle-安装YCM" class="headerlink" title="使用 Vundle 安装YCM"></a>使用 <a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="noopener">Vundle</a> 安装YCM</h2><p>Vundle（Vim Bundle的缩写）是一个针对Vim的插件管理器。相较于Vim本身混乱的插件结构，使用Vundle来管理插件就显得非常得方便、简洁。用户只需要在Github上找到自己想要的插件的名字，并将其添加到.vimrc文件中，之后的安装，更新和卸载等操作都可以由vundle来完成了。</p>
+<a id="more"></a>
+<ol>
+<li>下载Vundle <figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/VundleVim/Vundle.<span class="keyword">vim</span>.git ~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br></pre></td></tr></table></figure></li>
+<li>编辑 .vimrc 文件<br> 将以下代码添加至你的.vimrc文件中。同时，你也可以根据需求来添加其他你想要安装的vim插件。 <figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">set</span> nocompatible              <span class="comment">" be iMproved, required</span></span><br><span class="line"><span class="keyword">filetype</span> off                  <span class="comment">" required</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" set the runtime path to include Vundle and initialize</span></span><br><span class="line"><span class="keyword">set</span> rtp+=~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">call</span> vundle#begin()</span><br><span class="line"><span class="comment">" alternatively, pass a path where Vundle should install plugins</span></span><br><span class="line"><span class="comment">"call vundle#begin('~/some/path/here')</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" let Vundle manage Vundle, required</span></span><br><span class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" The following are examples of different formats supported.</span></span><br><span class="line"><span class="comment">" Keep Plugin commands between vundle#begin/end.</span></span><br><span class="line"><span class="comment">" plugin on GitHub repo</span></span><br><span class="line">Plugin <span class="string">'Valloric/YouCompleteMe'</span></span><br><span class="line"><span class="comment">" plugin from http://vim-scripts.org/vim/scripts.html</span></span><br><span class="line"><span class="comment">" Plugin 'L9'</span></span><br><span class="line"><span class="comment">" Git plugin not hosted on GitHub</span></span><br><span class="line"><span class="comment">"Plugin 'git://git.wincent.com/command-t.git'</span></span><br><span class="line"><span class="comment">" git repos on your local machine (i.e. when working on your own plugin)</span></span><br><span class="line"><span class="comment">"Plugin 'file:///home/gmarik/path/to/plugin'</span></span><br><span class="line"><span class="comment">" The sparkup vim script is in a subdirectory of this repo called vim.</span></span><br><span class="line"><span class="comment">" Pass the path to set the runtimepath properly.</span></span><br><span class="line"><span class="comment">"Plugin 'rstacruz/sparkup', &#123;'rtp': 'vim/'&#125;</span></span><br><span class="line"><span class="comment">" Install L9 and avoid a Naming conflict if you've already installed a</span></span><br><span class="line"><span class="comment">" different version somewhere else.</span></span><br><span class="line"><span class="comment">" Plugin 'ascenator/L9', &#123;'name': 'newL9'&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" All of your Plugins must be added before the following line</span></span><br><span class="line"><span class="keyword">call</span> vundle#end()            <span class="comment">" required</span></span><br><span class="line"><span class="keyword">filetype</span> plugin <span class="built_in">indent</span> <span class="keyword">on</span>    <span class="comment">" required</span></span><br><span class="line"><span class="comment">" To ignore plugin indent changes, instead use:</span></span><br><span class="line"><span class="comment">"filetype plugin on</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" Brief help</span></span><br><span class="line"><span class="comment">" :PluginList       - lists configured plugins</span></span><br><span class="line"><span class="comment">" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate</span></span><br><span class="line"><span class="comment">" :PluginSearch foo - searches for foo; append `!` to refresh local cache</span></span><br><span class="line"><span class="comment">" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" see :h vundle for more details or wiki for FAQ</span></span><br><span class="line"><span class="comment">" Put your non-Plugin stuff after this line</span></span><br></pre></td></tr></table></figure></li>
+<li>安装插件<br> 打开Vim并运行<code>:PluginInstall</code>指令。<br> 这一步骤可能所需要的时间较长，需要耐心地等待它安装完成。</li>
+</ol>
+<h2 id="安装编译YCM所需要的软件"><a href="#安装编译YCM所需要的软件" class="headerlink" title="安装编译YCM所需要的软件"></a>安装编译YCM所需要的软件</h2><ol>
+<li><p>安装开发工具与CMake:</p>
+<pre><code><figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">yum <span class="keyword">install </span><span class="keyword">build-essential </span>cmake</span><br></pre></td></tr></table></figure></code></pre></li>
+<li><p>并确保python头文件包已经正确安装:</p>
+<pre><code><figure class="highlight mel"><table><tr><td class="code"><pre><span class="line">yum install <span class="keyword">python</span>-devel rh-python36-<span class="keyword">python</span>-devel.x86_64</span><br></pre></td></tr></table></figure></code></pre><p><img data-src="/zh-CN/d2b4abf1/YCM1.PNG" alt="image1"></p>
+<pre><code>如果你的CentOS上还未安装Python3，那么运行以下命令完成Python3.6的安装:       
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">sudo yum <span class="keyword">install </span>centos-release-<span class="keyword">scl</span></span><br><span class="line"><span class="keyword">sudo </span>yum <span class="keyword">install </span>rh-python36</span><br></pre></td></tr></table></figure>
+
+需要的话，可以将Python3.6作为默认的Python来运行：    
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">scl <span class="builtin-name">enable</span> rh-python36 bash</span><br></pre></td></tr></table></figure></code></pre></li>
+</ol>
+<h2 id="编译YCM"><a href="#编译YCM" class="headerlink" title="编译YCM"></a>编译YCM</h2><ul>
+<li><p>完成包含对C语言家族语义支持的YCM编译</p>
+  <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span> <span class="params">--clang-completer</span></span><br></pre></td></tr></table></figure></li>
+<li><p>不包含语义支持则直接运行install.py</p>
+  <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果需要简单的开启对所有语言的支持，则可以用–all标识。</p>
+  <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span> <span class="params">--all</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul>
 <li><a href="https://github.com/Valloric/YouCompleteMe#full-installation-guide" target="_blank" rel="noopener">https://github.com/Valloric/YouCompleteMe#full-installation-guide</a></li>
 </ul>
 ]]></content>

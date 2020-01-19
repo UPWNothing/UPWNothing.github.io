@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-radar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://securitytech.site').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: false,
+    comments: {"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="描述了在Kali中Ghidra的详细步骤，并且解决在这个过程中遇到的问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Kali Linux中安装Ghidra">
+<meta property="og:url" content="https://securitytech.site/zh-CN/b13d8a67/index.html">
+<meta property="og:site_name" content="UPWNothing&#39;s Playground">
+<meta property="og:description" content="描述了在Kali中Ghidra的详细步骤，并且解决在这个过程中遇到的问题。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://securitytech.site/zh-CN/b13d8a67/403_error.png">
+<meta property="og:image" content="https://securitytech.site/zh-CN/b13d8a67/Ghidra_release_note.PNG">
+<meta property="og:image" content="https://securitytech.site/zh-CN/b13d8a67/run.png">
+<meta property="article:published_time" content="2020-01-17T03:21:18.000Z">
+<meta property="article:modified_time" content="2020-01-17T06:42:55.188Z">
+<meta property="article:author" content="UPWNothing">
+<meta property="article:tag" content="Kali">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Ghidra">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://securitytech.site/zh-CN/b13d8a67/403_error.png">
+
+<link rel="canonical" href="https://securitytech.site/zh-CN/b13d8a67/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+<script type="text/javascript">
+    // Wait for the page to load first
+    var _prevOnload = window.onload;
+    window.onload = function() {
+        var switchLang = document.getElementById("menu").getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
+            var href = window.location.href;     
+            var indexOfEn = href.toLowerCase().indexOf('/en/');
+            if(indexOfEn !== -1) {
+                //switchLang.href = href.replace('/en/', '/');
+		//switchLang.href = "https://securitytech.site";
+                switchLang.href = href.substr(0,indexOfEn);
+            }
+            else {
+                //switchLang.href = href.replace(/(^http[s]?:\/\/[a-z0-9.]*[:?0-9]*\/)(.*)/i, '$1en/$2');
+		//switchLang.href = "https://securitytech.site/en";
+            }
+    }
+</script>
+<script data-ad-client="ca-pub-2179953596008833" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <title>在Kali Linux中安装Ghidra | UPWNothing's Playground</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-125116918-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">UPWNothing's Playground</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一个关于安全的小宝箱</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-switch_lang">
+
+    <a href="/en/" rel="section"><i class="fa fa-fw fa-language"></i>-->English</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://securitytech.site/zh-CN/b13d8a67/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.jpeg">
+      <meta itemprop="name" content="UPWNothing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="UPWNothing's Playground">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在Kali Linux中安装Ghidra
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-17 11:21:18 / 修改时间：14:42:55" itemprop="dateCreated datePublished" datetime="2020-01-17T11:21:18+08:00">2020-01-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Security/" itemprop="url" rel="index">
+                    <span itemprop="name">Security</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/Kali/" itemprop="url" rel="index">
+                    <span itemprop="name">Kali</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Security/Reverse/" itemprop="url" rel="index">
+                    <span itemprop="name">Reverse</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/zh-CN/b13d8a67/" class="post-meta-item leancloud_visitors" data-flag-title="在Kali Linux中安装Ghidra" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/zh-CN/b13d8a67/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/b13d8a67/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>463</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+            <div class="post-description">描述了在Kali中Ghidra的详细步骤，并且解决在这个过程中遇到的问题。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <a id="more"></a>
+
+
+<h1 id="Ghidra介绍"><a href="#Ghidra介绍" class="headerlink" title="Ghidra介绍"></a>Ghidra介绍</h1><p>Ghidra是一个由美国国家安全局(NSA)开发的软件逆向(SRE)工具集。NSA在2019年正式开源了这款工具。由于免费开源的特性，这款工具很快获得了安全从业人员的大量关注。</p>
+<h1 id="下载Ghidra"><a href="#下载Ghidra" class="headerlink" title="下载Ghidra"></a>下载Ghidra</h1><p>我们可以直接从<a href="https://ghidra-sre.org" target="_blank" rel="noopener">Ghidra官网</a>下载最新版的Ghidra。</p>
+<p>或者直接执行命令(根据实际情况修改链接中的版本号与版本日期):</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="string">https:</span><span class="comment">//ghidra-sre.org/ghidra_9.1.1_PUBLIC_20191218.zip</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="解决访问Ghidra官网403的问题"><a href="#解决访问Ghidra官网403的问题" class="headerlink" title="解决访问Ghidra官网403的问题"></a>解决访问Ghidra官网403的问题</h2><p>但是我在尝试下载时遇到了下述错误：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">richard@</span>richard-Kali:~/Downloads$ wget https:<span class="comment">//ghidra-sre.org/ghidra_9.1.1_PUBLIC_20191218.zip</span></span><br><span class="line">-<span class="number">-2020</span><span class="number">-01</span><span class="number">-15</span> <span class="number">11</span>:<span class="number">37</span>:<span class="number">34</span>--  https:<span class="comment">//ghidra-sre.org/ghidra_9.1.1_PUBLIC_20191218.zip</span></span><br><span class="line">Resolving ghidra-sre.org (ghidra-sre.org)... <span class="number">13.35</span><span class="number">.99</span><span class="number">.82</span>, <span class="number">13.35</span><span class="number">.99</span><span class="number">.69</span>, <span class="number">13.35</span><span class="number">.99</span><span class="number">.72</span>, ...</span><br><span class="line">Connecting to ghidra-sre.org (ghidra-sre.org)|<span class="number">13.35</span><span class="number">.99</span><span class="number">.82</span>|:<span class="number">443.</span>.. connected.</span><br><span class="line">HTTP request sent, awaiting response... <span class="number">403</span> Forbidden</span><br><span class="line"><span class="number">2020</span><span class="number">-01</span><span class="number">-15</span> <span class="number">11</span>:<span class="number">37</span>:<span class="number">37</span> ERROR <span class="number">403</span>: Forbidden.</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器中直接访问，也同样报403.<br><img data-src="/zh-CN/b13d8a67/403_error.png" alt="浏览器报错信息"></p>
+<p>造成这个的原因是部分国家的IP地址被Cloudfront屏蔽了。。已知的国家有俄罗斯，以色列，中国等…这个既不是GFW造成的，也不是NSA故意要屏蔽。所以，相对而言还是比较容易绕过这个IP的限制。</p>
+<p>当然，也可以从国内的文件分享平台上下载。不过，下载后请务必验证文件的完整性。<br>截止到版本9.1.1,所有版本的Hash信息如下表所示。</p>
+<p><img data-src="/zh-CN/b13d8a67/Ghidra_release_note.PNG" alt="Ghidra版本信息"></p>
+<p>对下载的文件进行完整性校验。</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">richard@</span>richard-Kali:~/Downloads$ sha256sum ghidra_9<span class="number">.1</span><span class="number">.1</span>_PUBLIC_20191218.zip </span><br><span class="line">b0d40a4497c66011084e4a639d61ac76da4b4c5cabd62ab63adadb7293b0e506  ghidra_9<span class="number">.1</span><span class="number">.1</span>_PUBLIC_20191218.zip</span><br><span class="line"><span class="symbol">richard@</span>richard-Kali:~/Downloads$</span><br></pre></td></tr></table></figure>
+
+<h1 id="安装Ghidra"><a href="#安装Ghidra" class="headerlink" title="安装Ghidra"></a>安装Ghidra</h1><p>首先将下载的压缩包解压。</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">richard@</span>richard-Kali:~/Downloads$ unzip ghidra_9<span class="number">.1</span><span class="number">.1</span>_PUBLIC_20191218.zip</span><br></pre></td></tr></table></figure>
+
+<p>再安装Java jdk 和 jre。</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt <span class="keyword">install </span>openjdk<span class="number">-11</span>-<span class="keyword">jdk</span></span><br><span class="line"><span class="keyword">sudo </span>apt <span class="keyword">install </span>openjdk<span class="number">-11</span>-<span class="keyword">jre-headless</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="运行Ghidra"><a href="#运行Ghidra" class="headerlink" title="运行Ghidra"></a>运行Ghidra</h1><p>上述步骤全部完成后，应该就能顺利运行Ghidra了。</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">./ghidraRun</span></span><br></pre></td></tr></table></figure>
+<p><img data-src="/zh-CN/b13d8a67/run.png" alt="成功运行"></p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">你可能感兴趣的文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/zh-CN/1e3c141b/" rel="bookmark">在Kali Linux中安装Docker (Kali 2019.4)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/en/ae2cc9de/" rel="bookmark">How to install and enable Google Chrome in Kali Linux</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/zh-CN/ae2cc9de/" rel="bookmark">在Kali Linux中安装Google Chrome浏览器，并解决root用户无法运行的问题</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div>觉得好的话不妨赏一杯奶茶吧～</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="UPWNothing 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="UPWNothing 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Kali/" rel="tag"># Kali</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Ghidra/" rel="tag"># Ghidra</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/zh-CN/ae2cc9de/" rel="prev" title="在Kali Linux中安装Google Chrome浏览器，并解决root用户无法运行的问题">
+      <i class="fa fa-chevron-left"></i> 在Kali Linux中安装Google Chrome浏览器，并解决root用户无法运行的问题
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ghidra介绍"><span class="nav-number">1.</span> <span class="nav-text">Ghidra介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下载Ghidra"><span class="nav-number">2.</span> <span class="nav-text">下载Ghidra</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决访问Ghidra官网403的问题"><span class="nav-number">2.1.</span> <span class="nav-text">解决访问Ghidra官网403的问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Ghidra"><span class="nav-number">3.</span> <span class="nav-text">安装Ghidra</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运行Ghidra"><span class="nav-number">4.</span> <span class="nav-text">运行Ghidra</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="UPWNothing"
+      src="/images/icon.jpeg">
+  <p class="site-author-name" itemprop="name">UPWNothing</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-paw"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">UPWNothing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">18k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">16 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='72,97,152' opacity='0.8' zIndex='-1' count='150' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 22859,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: false,
+      appId: 'DUtYTL3VYq8Mgbo2uSd9pEE8-9Nh9j0Va',
+      appKey: 'RFEfNupULNUbbjBv7Cw7J4Ls',
+      placeholder: "请留下您的评论～（填写邮箱的话，有回复时会通过邮箱提醒哦～邮箱并不会显示在评论中）",
+      avatar: 'monsterid',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: true,
+      lang: 'en' || 'zh-cn',
+      path: location.pathname,
+      recordIP: true,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

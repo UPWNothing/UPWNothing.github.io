@@ -65,7 +65,7 @@
 <meta property="og:image" content="https://securitytech.site/zh-CN/44bf8def/lazyload.png">
 <meta property="og:image" content="https://securitytech.site/zh-CN/44bf8def/fancybox.png">
 <meta property="article:published_time" content="2020-01-07T07:39:30.000Z">
-<meta property="article:modified_time" content="2020-01-13T07:54:16.596Z">
+<meta property="article:modified_time" content="2020-01-17T07:46:56.144Z">
 <meta property="article:author" content="UPWNothing">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="NexT">
@@ -101,7 +101,7 @@
             }
     }
 </script>
-<script data-ad-client="ca-pub-2179953596008833" async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script data-ad-client="ca-pub-2179953596008833" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
   <title>Hexo + NexT 深度个性化配置 (2020.1 更新) | UPWNothing's Playground</title>
   
@@ -188,7 +188,7 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">6</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">9</span></a>
 
   </li>
         <li class="menu-item menu-item-switch_lang">
@@ -274,7 +274,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-13 15:54:16" itemprop="dateModified" datetime="2020-01-13T15:54:16+08:00">2020-01-13</time>
+                <time title="修改时间：2020-01-17 15:46:56" itemprop="dateModified" datetime="2020-01-17T15:46:56+08:00">2020-01-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -322,7 +322,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5k</span>
+              <span>5.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -500,6 +500,12 @@
 <p>然后根据自己启用插件的情况，将需要的行添加到主题配置<code>themes_config</code>下。这里贴出我启用的配置，仅供参考：</p>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">vendors:</span></span><br><span class="line">  <span class="symbol">fontawesome:</span> /<span class="regexp">/cdn.jsdelivr.net/npm</span><span class="regexp">/font-awesome@4/css</span><span class="regexp">/font-awesome.min.css</span></span><br><span class="line"><span class="regexp">  jquery: /</span><span class="regexp">/cdn.jsdelivr.net/npm</span><span class="regexp">/jquery@3/dist</span><span class="regexp">/jquery.min.js</span></span><br><span class="line"><span class="regexp">  fancybox: /</span><span class="regexp">/cdn.jsdelivr.net/gh</span><span class="regexp">/fancyapps/fancybox</span>@<span class="number">3</span>/dist/jquery.fancybox.min.js</span><br><span class="line">  <span class="symbol">fancybox_css:</span> /<span class="regexp">/cdn.jsdelivr.net/gh</span><span class="regexp">/fancyapps/fancybox</span>@<span class="number">3</span>/dist/jquery.fancybox.min.css</span><br><span class="line">  <span class="symbol">lazyload:</span> /<span class="regexp">/cdn.jsdelivr.net/npm</span><span class="regexp">/lozad@1/dist</span><span class="regexp">/lozad.min.js</span></span><br><span class="line"><span class="regexp">  valine: /</span><span class="regexp">/cdn.jsdelivr.net/npm</span><span class="regexp">/valine@1/dist</span><span class="regexp">/Valine.min.js</span></span><br><span class="line"><span class="regexp">  pace: /</span><span class="regexp">/cdn.jsdelivr.net/npm</span><span class="regexp">/pace-js@1/pace</span>.min.js</span><br><span class="line">  <span class="symbol">pace_css:</span> /<span class="regexp">/cdn.jsdelivr.net/npm</span><span class="regexp">/pace-js@1/themes</span><span class="regexp">/blue/pace</span>-theme-minimal.css</span><br><span class="line">  <span class="symbol">canvas_nest:</span> /<span class="regexp">/cdn.jsdelivr.net/gh</span><span class="regexp">/theme-next/theme</span>-<span class="keyword">next</span>-canvas-nest@<span class="number">1</span>/canvas-nest.min.js</span><br><span class="line">  <span class="symbol">canvas_nest_nomobile:</span> /<span class="regexp">/cdn.jsdelivr.net/gh</span><span class="regexp">/theme-next/theme</span>-<span class="keyword">next</span>-canvas-nest@<span class="number">1</span>/canvas-nest-nomobile.min.js</span><br></pre></td></tr></table></figure>
 
+<h2 id="添加文章评分功能"><a href="#添加文章评分功能" class="headerlink" title="添加文章评分功能"></a>添加文章评分功能</h2><p>在主题配置文件<code>themes/next/_config.yml</code>中搜索<code>rating</code>，找到相关的配置。将其添加到主题配置<code>theme_config</code>下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Star rating support to each article.</span></span><br><span class="line"><span class="comment"># To get your ID visit https://widgetpack.com</span></span><br><span class="line"><span class="attr">rating:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">id:</span>     <span class="comment"># &lt;app_id&gt;</span></span><br><span class="line">  <span class="attr">color:</span>  <span class="string">fc6423</span></span><br></pre></td></tr></table></figure>
+
+<p>根据注释说明打开<a href="https://widgetpack.com" target="_blank" rel="noopener">https://widgetpack.com</a> ,首页点击”Rating”，然后点击页面中间红色的”Get it Free”。页面会跳转到注册页面，注册帐号。  </p>
+<p>点开左上角菜单，选择 Rating -&gt; Setting ，可以把 <code>Vote via</code> 修改成 Device或是IP address。这样用户无需登录就可以打分。</p>
+<p>菜单中 Site -&gt; Setting ，可以将Private勾上。</p>
 <h1 id="NexT内置主题样式美化"><a href="#NexT内置主题样式美化" class="headerlink" title="NexT内置主题样式美化"></a>NexT内置主题样式美化</h1><p>这一部分其实主要是对样式进行自定义修改，基本思路就是在自定义的样式文件中加入对应元素的css属性设置。</p>
 <h2 id="侧边栏圆角"><a href="#侧边栏圆角" class="headerlink" title="侧边栏圆角"></a>侧边栏圆角</h2><p>打开<code>themes/next/source/css/_variables/Gemini.styl</code>，根据启用的不同主题，选择相应的文件。这里修改的是<code>Gemini.styl</code>。<br>在文件中修改代码：</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$border-radius-inner   = <span class="number">0</span> <span class="number">0</span> <span class="number">10</span>px <span class="number">10</span>px;</span><br><span class="line">$border-radius         = <span class="number">10</span>px;</span><br></pre></td></tr></table></figure>
@@ -520,10 +526,10 @@
   <div class="popular-posts-header">你可能感兴趣的文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/zh-CN/78ced6ec/" rel="bookmark">利用Hexo框架搭建中英文双语网站</a></div>
+      <div class="popular-posts-title"><a href="/zh-CN/be16ea65/" rel="bookmark">解决Hexo NexT中Fancybox与Lazyload冲突的问题</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/zh-CN/be16ea65/" rel="bookmark">解决Hexo NexT中Fancybox与Lazyload冲突的问题</a></div>
+      <div class="popular-posts-title"><a href="/zh-CN/78ced6ec/" rel="bookmark">利用Hexo框架搭建中英文双语网站</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/zh-CN/c0899d18/" rel="bookmark">为Hexo NexT 添加评论系统</a></div>
@@ -564,6 +570,11 @@
           </div>
 
         
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
 
 
         
@@ -636,7 +647,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-和-NexT本地安装"><span class="nav-number">2.</span> <span class="nav-text">Hexo 和 NexT本地安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#站点配置"><span class="nav-number">3.</span> <span class="nav-text">站点配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-Pages部署自定义域名"><span class="nav-number">3.1.</span> <span class="nav-text">Github Pages部署自定义域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文章永久链接"><span class="nav-number">3.2.</span> <span class="nav-text">修改文章永久链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双语博客配置"><span class="nav-number">3.3.</span> <span class="nav-text">双语博客配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加About页面"><span class="nav-number">3.4.</span> <span class="nav-text">添加About页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加个性化404页面"><span class="nav-number">3.5.</span> <span class="nav-text">添加个性化404页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加Sitemap"><span class="nav-number">3.6.</span> <span class="nav-text">添加Sitemap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片懒加载配置"><span class="nav-number">3.7.</span> <span class="nav-text">图片懒加载配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主题配置"><span class="nav-number">4.</span> <span class="nav-text">主题配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础配置"><span class="nav-number">4.1.</span> <span class="nav-text">基础配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网站图标"><span class="nav-number">4.1.0.1.</span> <span class="nav-text">网站图标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网站页脚配置"><span class="nav-number">4.1.0.2.</span> <span class="nav-text">网站页脚配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#侧边栏头像配置"><span class="nav-number">4.1.0.3.</span> <span class="nav-text">侧边栏头像配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加背景动态效果"><span class="nav-number">4.2.</span> <span class="nav-text">添加背景动态效果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Canvas-nest安装配置"><span class="nav-number">4.2.0.1.</span> <span class="nav-text">Canvas-nest安装配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加相关文章推荐功能"><span class="nav-number">4.3.</span> <span class="nav-text">添加相关文章推荐功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用Hexo-NexT本地搜索"><span class="nav-number">4.4.</span> <span class="nav-text">启用Hexo NexT本地搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码块样式修改"><span class="nav-number">4.5.</span> <span class="nav-text">代码块样式修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章页面阅读进度显示"><span class="nav-number">4.6.</span> <span class="nav-text">文章页面阅读进度显示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#返回页面顶部按钮"><span class="nav-number">4.6.0.1.</span> <span class="nav-text">返回页面顶部按钮</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页面顶部进度条"><span class="nav-number">4.6.0.2.</span> <span class="nav-text">页面顶部进度条</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启文章页面加载进度条"><span class="nav-number">4.7.</span> <span class="nav-text">开启文章页面加载进度条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#站点首页不显示文章全文"><span class="nav-number">4.8.</span> <span class="nav-text">站点首页不显示文章全文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用评论模块"><span class="nav-number">4.9.</span> <span class="nav-text">启用评论模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启赞赏功能"><span class="nav-number">4.10.</span> <span class="nav-text">开启赞赏功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用Lazyload图片懒加载"><span class="nav-number">4.11.</span> <span class="nav-text">启用Lazyload图片懒加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用Fancybox图片效果"><span class="nav-number">4.12.</span> <span class="nav-text">启用Fancybox图片效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置第三方CDN"><span class="nav-number">4.13.</span> <span class="nav-text">配置第三方CDN</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NexT内置主题样式美化"><span class="nav-number">5.</span> <span class="nav-text">NexT内置主题样式美化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#侧边栏圆角"><span class="nav-number">5.1.</span> <span class="nav-text">侧边栏圆角</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-和-NexT本地安装"><span class="nav-number">2.</span> <span class="nav-text">Hexo 和 NexT本地安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#站点配置"><span class="nav-number">3.</span> <span class="nav-text">站点配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-Pages部署自定义域名"><span class="nav-number">3.1.</span> <span class="nav-text">Github Pages部署自定义域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文章永久链接"><span class="nav-number">3.2.</span> <span class="nav-text">修改文章永久链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双语博客配置"><span class="nav-number">3.3.</span> <span class="nav-text">双语博客配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加About页面"><span class="nav-number">3.4.</span> <span class="nav-text">添加About页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加个性化404页面"><span class="nav-number">3.5.</span> <span class="nav-text">添加个性化404页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加Sitemap"><span class="nav-number">3.6.</span> <span class="nav-text">添加Sitemap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片懒加载配置"><span class="nav-number">3.7.</span> <span class="nav-text">图片懒加载配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主题配置"><span class="nav-number">4.</span> <span class="nav-text">主题配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础配置"><span class="nav-number">4.1.</span> <span class="nav-text">基础配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网站图标"><span class="nav-number">4.1.0.1.</span> <span class="nav-text">网站图标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网站页脚配置"><span class="nav-number">4.1.0.2.</span> <span class="nav-text">网站页脚配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#侧边栏头像配置"><span class="nav-number">4.1.0.3.</span> <span class="nav-text">侧边栏头像配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加背景动态效果"><span class="nav-number">4.2.</span> <span class="nav-text">添加背景动态效果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Canvas-nest安装配置"><span class="nav-number">4.2.0.1.</span> <span class="nav-text">Canvas-nest安装配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加相关文章推荐功能"><span class="nav-number">4.3.</span> <span class="nav-text">添加相关文章推荐功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用Hexo-NexT本地搜索"><span class="nav-number">4.4.</span> <span class="nav-text">启用Hexo NexT本地搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码块样式修改"><span class="nav-number">4.5.</span> <span class="nav-text">代码块样式修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章页面阅读进度显示"><span class="nav-number">4.6.</span> <span class="nav-text">文章页面阅读进度显示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#返回页面顶部按钮"><span class="nav-number">4.6.0.1.</span> <span class="nav-text">返回页面顶部按钮</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页面顶部进度条"><span class="nav-number">4.6.0.2.</span> <span class="nav-text">页面顶部进度条</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启文章页面加载进度条"><span class="nav-number">4.7.</span> <span class="nav-text">开启文章页面加载进度条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#站点首页不显示文章全文"><span class="nav-number">4.8.</span> <span class="nav-text">站点首页不显示文章全文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用评论模块"><span class="nav-number">4.9.</span> <span class="nav-text">启用评论模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启赞赏功能"><span class="nav-number">4.10.</span> <span class="nav-text">开启赞赏功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用Lazyload图片懒加载"><span class="nav-number">4.11.</span> <span class="nav-text">启用Lazyload图片懒加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用Fancybox图片效果"><span class="nav-number">4.12.</span> <span class="nav-text">启用Fancybox图片效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置第三方CDN"><span class="nav-number">4.13.</span> <span class="nav-text">配置第三方CDN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加文章评分功能"><span class="nav-number">4.14.</span> <span class="nav-text">添加文章评分功能</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NexT内置主题样式美化"><span class="nav-number">5.</span> <span class="nav-text">NexT内置主题样式美化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#侧边栏圆角"><span class="nav-number">5.1.</span> <span class="nav-text">侧边栏圆角</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -651,18 +662,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -700,12 +711,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">15k</span>
+    <span title="站点总字数">18k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">13 分钟</span>
+    <span title="站点阅读时长">16 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
@@ -772,6 +783,26 @@
 
 
 
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 22859,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
 
   
 <script src="/js/local-search.js"></script>
