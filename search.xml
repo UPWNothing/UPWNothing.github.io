@@ -1,6 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>在Kali Linux中安装磁盘镜像工具Autopsy 4</title>
+    <url>/zh-CN/8768734d/</url>
+    <content><![CDATA[<p>Autopsy是Kali Linux中预安装的磁盘镜像分析/取证软件。Autopsy基于The Sleuth Kit的开源电子取证工具。Autopsy在The Sleuth Kit的基础上增加了图形界面，大大增加了易用性。  </p>
+<p>那么问题来了：Kali明明都自带了那么还要装一遍做甚？！原因是这样的：截止到现在的最新版（Kali 2019.4），Kali自带的Autopsy均是Autopsy 2. Autopsy 2通过Web服务器-客户端的形式来呈现用户界面，但是使用起来其实存在不少的限制，无论是功能还是界面都存在着不足。看下图感受一下：</p>
+<p><img data-src="/zh-CN/8768734d/autopsy.jpeg" alt="Autopsy 2 用户界面"></p>
+<p>而从Autopsy 3起, 程序移植成为了基于Java的应用程序。而Autopsy 4则在Autopsy 3的基础上，提升了多人协作的能力。</p>
+<p><img data-src="/zh-CN/8768734d/Autopsy4.png" alt="Autopsy 4 用户界面"></p>
+<p>不难发现，Autopsy 4无论从用户界面，还是软件的功能性来说，都相较于Autopsy 2有了明显的提升。然而，关于Autopsy 4的中文文档却相当的不足。所以，通过这篇博文来记录安装的各个步骤以及遇到的问题。</p>
+<a id="more"></a>
+
+
+<h1 id="Autopsy下载"><a href="#Autopsy下载" class="headerlink" title="Autopsy下载"></a>Autopsy下载</h1><p>在<a href="https://www.autopsy.com/download" target="_blank" rel="noopener">Autopsy首页</a> 下载。页面仅支持英语与日语。</p>
+<p><img data-src="/zh-CN/8768734d/Download.png" alt="Autopsy 4 下载"></p>
+<p>点击 <strong>ZIP file</strong> 链接，下载Autopsy的Linux安装包。</p>
+<p>点击 <strong>Java .deb Debian package</strong> 链接，下载 The Sleuth Kit Java库安装包。</p>
+<h1 id="安装依赖文件"><a href="#安装依赖文件" class="headerlink" title="安装依赖文件"></a>安装依赖文件</h1><p>以下这些步骤，仅需要在第一次安装Autopsy时执行。如果Autopsy已经存在，但你依旧希望安装其他的版本，那这些步骤不需要再执行一遍。</p>
+<h2 id="安装-testdisk"><a href="#安装-testdisk" class="headerlink" title="安装 testdisk"></a>安装 testdisk</h2><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install testdisk</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-BellSoft-Java-8-JRE-和-JavaFX-8-发行版"><a href="#安装-BellSoft-Java-8-JRE-和-JavaFX-8-发行版" class="headerlink" title="安装 BellSoft Java 8 JRE 和 JavaFX 8 发行版"></a>安装 BellSoft Java 8 JRE 和 JavaFX 8 发行版</h2><ul>
+<li>安装 BellSoft Java 8</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">wget -q -O - http<span class="variable">s:</span>//download.bell-<span class="keyword">sw</span>.<span class="keyword">com</span>/pki/GPG-KEY-bellsoft | sudo apt-key <span class="built_in">add</span> -</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"deb [arch=amd64] https://apt.bell-sw.com/ stable main"</span> | sudo tee /etc/apt/sources.<span class="keyword">list</span>.d/bellsoft.<span class="keyword">list</span></span><br><span class="line">sudo apt-<span class="built_in">get</span> <span class="keyword">update</span></span><br><span class="line">sudo apt-<span class="built_in">get</span> install bellsoft-java8-full</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置JAVA 环境变量</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/lib/jvm/bellsoft-java8-full-amd64</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：可能需要注销并重新登录使JAVA环境变量配置生效</p>
+</blockquote>
+<ul>
+<li>确认当前运行的JAVA版本</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">richard@richard-Kali:~$ java -version</span><br><span class="line">Picked up _JAVA_OPTIONS: -Dawt.<span class="attribute">useSystemAAFontSettings</span>=on -Dswing.<span class="attribute">aatext</span>=<span class="literal">true</span></span><br><span class="line">openjdk version <span class="string">"1.8.0_242"</span></span><br><span class="line">OpenJDK Runtime Environment (build 1.8.0_242-b07)</span><br><span class="line">OpenJDK 64-Bit<span class="built_in"> Server </span>VM (build 25.242-b07, mixed mode)</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装The-Sleuth-Kit-Java库"><a href="#安装The-Sleuth-Kit-Java库" class="headerlink" title="安装The Sleuth Kit Java库"></a>安装The Sleuth Kit Java库</h2><p>Autopsy 4 依赖于特定版本的 The Sleuth Kit。所以我们需要安装基于特定Java版本的Sleuth Kit安装包：</p>
+<p>使用我们在第0步下载获得的sleuthkit-java_4.8.0-1_amd64.deb (具体文件名可能根据版本发生变化)。</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">sudo apt install ./sleuthkit-java_4<span class="number">.8</span><span class="number">.0</span><span class="number">-1</span>_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装Autopsy-4"><a href="#安装Autopsy-4" class="headerlink" title="安装Autopsy 4"></a>安装Autopsy 4</h2><p>解压下载的Autopsy 压缩包。通过<code>cd</code>命令进入Autopsy目录。</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">cd <span class="built_in">auto</span>psy<span class="number">-4.14</span><span class="number">.0</span>/</span><br></pre></td></tr></table></figure>
+
+<p>执行<code>unix_setup.sh</code>来完成Autopsy配置。</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sh</span> unix_setup.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="执行Autopsy-4"><a href="#执行Autopsy-4" class="headerlink" title="执行Autopsy 4"></a>执行Autopsy 4</h2><p>进入<code>bin</code>目录，执行</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">./<span class="built_in">auto</span>psy</span><br></pre></td></tr></table></figure>
+
+<p>此时，Autopsy 4应该可以顺利执行了。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://sleuthkit.org" target="_blank" rel="noopener">https://sleuthkit.org</a></li>
+<li><a href="https://github.com/sleuthkit/autopsy" target="_blank" rel="noopener">https://github.com/sleuthkit/autopsy</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Security</category>
+        <category>Linux</category>
+        <category>Forensics</category>
+        <category>Kali</category>
+      </categories>
+      <tags>
+        <tag>AutoPsy</tag>
+        <tag>Installation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TODO List For New Kali</title>
+    <url>/en/da9fccd6/</url>
+    <content><![CDATA[<p>After you installed a new Kali (Virtual) Machine, what’s the next step? Here are some “Must Do” list to make your Kali more handy:</p>
+<h2 id="Update-to-latest-version"><a href="#Update-to-latest-version" class="headerlink" title="Update to latest version"></a>Update to latest version</h2><p>First, edit the <code>/etc/apt/sources.list</code>. </p>
+<a id="more"></a>
+
+
+<p><code>deb http://http.kali.org/kali kali-rolling main non-free contrib</code> is the official repository for Kali. </p>
+<p>And you can configure the <em>sources.list</em> based on your location.<br>For example, if you’re in China, you can use the following list:</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">#中科大</span><br><span class="line"><span class="keyword">deb</span> http://mirrors.ustc.edu.<span class="keyword">cn</span>/kali kali-rolling main non-free contrib</span><br><span class="line"><span class="keyword">deb</span>-src http://mirrors.ustc.edu.<span class="keyword">cn</span>/kali kali-rolling main non-free contrib</span><br><span class="line"></span><br><span class="line">#阿里云</span><br><span class="line"><span class="keyword">deb</span> http://mirrors.aliyun.<span class="keyword">com</span>/kali kali-rolling main non-free contrib</span><br><span class="line"><span class="keyword">deb</span>-src http://mirrors.aliyun.<span class="keyword">com</span>/kali kali-rolling main non-free contrib</span><br><span class="line"></span><br><span class="line">#清华大学</span><br><span class="line"><span class="keyword">deb</span> http://mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/kali kali-rolling main contrib non-free</span><br><span class="line"><span class="keyword">deb</span>-src http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/kali kali-rolling main contrib non-free</span><br><span class="line"></span><br><span class="line">#浙大</span><br><span class="line"><span class="keyword">deb</span> http://mirrors.zju.edu.<span class="keyword">cn</span>/kali kali-rolling main contrib non-free</span><br><span class="line"><span class="keyword">deb</span>-src http://mirrors.zju.edu.<span class="keyword">cn</span>/kali kali-rolling main contrib non-free</span><br></pre></td></tr></table></figure>
+
+<p>It can effectively boost the package download from the internet. </p>
+<p>After that, just do the upgrade! </p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># apt update</span></span><br><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment">#</span></span><br><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># apt -y full-upgrade</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note: If you find some “failed connection” after <code>apt update</code>, then just simply remove those lines from your sources.list and do <code>apt update</code> again. It’s not worthy to spend time on figuring out why the connection is failed. </p>
+</blockquote>
+<p>Reboot after the full-upgrade. Then it’s the latest version of Kali on your machine.<br>You can easily check the version with commands: </p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># grep VERSION /etc/os-release</span></span><br><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># uname -a</span></span><br><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># lsb_release -ad</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-Desktop-Environment"><a href="#Install-Desktop-Environment" class="headerlink" title="Install Desktop Environment"></a>Install Desktop Environment</h2><p>Starting from Kali 2019.4, the default desktop environment of Kali has been changed to Xfce (Used to be Gnome). </p>
+<p>If you upgrade from a earlier version, then you might also want to migrate to Xfce. Relax, it’s easy to do. Just one line command: </p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># apt -y install kali-desktop-xfce.</span></span><br></pre></td></tr></table></figure>
+
+<p>When you are asked to select “<em>Default display manager</em>“, select <code>lightdm</code>. </p>
+<p>Up till now, the <strong>Xfce</strong> Desktop Environment has been installed on your machine. Next time when you try to login, you can select it before you submit your login password. </p>
+<p>If you would like to set <strong>Xfce</strong> as the default Desktop environment on your machine, You could run </p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># update-alternatives --config x-session-manager</span></span><br></pre></td></tr></table></figure>
+<p>and select <strong>Xfce</strong>‘soption. </p>
+<h2 id="Add-a-new-“sudo”-user"><a href="#Add-a-new-“sudo”-user" class="headerlink" title="Add a new “sudo” user"></a>Add a new “sudo” user</h2><p>Yes, we all know it’s convenient to do everything as “root”. But it’s obviously not the best practice.<br>It’s better to create a new user for us to do daily operations…</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># adduser [yourUserName]</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>You will be asked to set new UNIX password.  </li>
+<li>You will also be asked to provide some information. It’s okay to leave it blank.</li>
+</ul>
+<p>Now, a new user has been created. Then we need to add this user to <code>sudo</code> group. </p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># usermod -aG sudo [yourUserName]</span></span><br></pre></td></tr></table></figure>
+
+<p>Good! Now it’s up to you to switch to this new created user!</p>
+<h2 id="Configure-your-Vim"><a href="#Configure-your-Vim" class="headerlink" title="Configure your Vim"></a>Configure your Vim</h2><p>Refers to <a href="https://securitytech.site/en/aa4adef2/">this blog</a>.</p>
+<h2 id="Configure-Input-Method-For-Non-English-Speaking-Users"><a href="#Configure-Input-Method-For-Non-English-Speaking-Users" class="headerlink" title="Configure Input Method (For Non-English Speaking Users)"></a>Configure Input Method (For Non-English Speaking Users)</h2><figure class="highlight autoit"><table><tr><td class="code"><pre><span class="line">richard<span class="symbol">@richard</span>-Kali:~<span class="meta"># sudo apt install fcitx fcitx-googlepinyin</span></span><br></pre></td></tr></table></figure>
+<p>Then you can open fcitx to configure your Input Method. </p>
+<figure class="highlight autoit"><table><tr><td class="code"><pre><span class="line">richard<span class="symbol">@richard</span>-Kali:~<span class="meta"># fcitx-config-gtk3</span></span><br></pre></td></tr></table></figure>
+<p><img data-src="/en/da9fccd6/fcitx_config.png" alt="fcitx Configuration Dialog"></p>
+<p>Press ‘+’ to add Google Pinyin.<br><img data-src="/en/da9fccd6/add_googlepinyin.png" alt="fcitx Add Google Pinyin"></p>
+<p>Now, it should work! </p>
+<h2 id="Configure-Bash-Aliases"><a href="#Configure-Bash-Aliases" class="headerlink" title="Configure Bash Aliases"></a>Configure Bash Aliases</h2><p>Bash aliases can be used for creating customized command line shortcuts. For example, we can reassign the <strong>ls</strong> command. Here is how to do that:</p>
+<p>Open <code>~/.bash_aliases</code> and add the following line to this file. </p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alias</span> <span class="keyword">ls</span>='<span class="keyword">ls</span> -rthal <span class="params">--color=always</span></span><br></pre></td></tr></table></figure>
+
+<p>Now, restart the terminal and do <code>ls</code>. </p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="symbol">richard@</span>richard-Kali:~/Desktop$ ls                                                                                                                                         </span><br><span class="line">total <span class="number">172</span>K</span><br><span class="line">-rwxr-xr-x  <span class="number">1</span> richard richard <span class="number">8.3</span>K Dec <span class="number">14</span> <span class="number">11</span>:<span class="number">18</span> google-chrome.desktop</span><br><span class="line">-rwxr-----  <span class="number">1</span> richard richard  <span class="number">66</span>K Jan  <span class="number">3</span> <span class="number">13</span>:<span class="number">54</span> IMG_20200103_135404.png</span><br><span class="line">-rwxr-----  <span class="number">1</span> richard richard  <span class="number">84</span>K Jan  <span class="number">3</span> <span class="number">13</span>:<span class="number">54</span> IMG_20200103_135431.jpg</span><br><span class="line">drwxr-xr-x  <span class="number">2</span> richard richard <span class="number">4.0</span>K Jan  <span class="number">3</span> <span class="number">13</span>:<span class="number">56</span> .</span><br><span class="line">drwxr-xr-x <span class="number">21</span> richard richard <span class="number">4.0</span>K Jan <span class="number">14</span> <span class="number">14</span>:<span class="number">51</span> ..</span><br></pre></td></tr></table></figure>
+
+<p>The detailed information are listed by default. </p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a href="https://null-byte.wonderhowto.com/how-to/top-10-things-do-after-installing-kali-linux-0186450/" target="_blank" rel="noopener">https://null-byte.wonderhowto.com/how-to/top-10-things-do-after-installing-kali-linux-0186450/</a></li>
+<li></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Security</category>
+        <category>Linux</category>
+        <category>Kali</category>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Configuration</tag>
+        <tag>Kali</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Root.me WebClient分类 writeup</title>
+    <url>/zh-CN/f0181575/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p><a href="https://root-me.org" target="_blank" rel="noopener">Root Me</a>是一个非常不错的在线网络安全技能专项练习网站。比起其他的一些模拟练习平台，这个网站相对而言更”Noob friendly”…对于渗透测试有兴趣又不知道如何入门的同学，不妨可以从这个网站开始入手。  </p>
+<p><em>本文不定期，(极其)缓慢更新</em></p>
+<a id="more"></a>
+
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="HTML-Source-code"><a href="#HTML-Source-code" class="headerlink" title="HTML - Source code"></a><a href="http://challenge01.root-me.org/web-serveur/ch1/" target="_blank" rel="noopener">HTML - Source code</a></h2><p>送分题。主要目的只是跟新用户打个招呼！</p>
+<p>直接查看页面源代码即可。解体密码在HTML的注释中。</p>
+<p><img data-src="/zh-CN/f0181575/html_sourcecode.png" alt></p>
+<blockquote>
+<p>虽然这只是一道送分题，但同时，这种题目也给刚接触Web App渗透测试的新手一个非常不错的提示。<br>千万不要忽视任何你可以获得的信息。对于在页面源码注释中发现造成安全漏洞的关键信息，在现实中其实也很常见。可能没有像密码这么直接，但绝对能给有攻击意图的黑客带去极大的帮助。</p>
+</blockquote>
+<h2 id="HTTP-Open-redirect"><a href="#HTTP-Open-redirect" class="headerlink" title="HTTP - Open redirect"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-Open-redirect" target="_blank" rel="noopener">HTTP - Open redirect</a></h2>]]></content>
+      <categories>
+        <category>Security</category>
+        <category>Web Application</category>
+      </categories>
+      <tags>
+        <tag>Root Me</tag>
+        <tag>Web Application Security</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在Kali Linux中安装Ghidra</title>
     <url>/zh-CN/b13d8a67/</url>
     <content><![CDATA[<a id="more"></a>
@@ -135,9 +297,9 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
+        <tag>NexT</tag>
         <tag>Lazyload</tag>
         <tag>Fancybox</tag>
-        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>
@@ -656,6 +818,54 @@
       </tags>
   </entry>
   <entry>
+    <title>YouCompleteMe 安装教程</title>
+    <url>/zh-CN/d2b4abf1/</url>
+    <content><![CDATA[<p>YouCompleteMe作为Vim中最好用（没有之一）的代码自动补全插件，却同时又是最不容易安装的插件之一。其实在YCM的Github官网，有非常详细完整的安装说明。如果在Mac OS X, Windows, Ubuntu, FreeBSD/OpenBSD或Fedora上安装YCM，且英语还Okay的话，建议直接移步<a href="https://github.com/Valloric/YouCompleteMe#installation" target="_blank" rel="noopener">官方安装说明文档</a>。但官方说明文档却没有对在CentOS与Debian中安装YCM的详细说明。所以在这里总结一下具体的步骤给大家作一个参考。</p>
+<h1 id="在CentOS中安装YCM"><a href="#在CentOS中安装YCM" class="headerlink" title="在CentOS中安装YCM"></a>在CentOS中安装YCM</h1><h2 id="使用-Vundle-安装YCM"><a href="#使用-Vundle-安装YCM" class="headerlink" title="使用 Vundle 安装YCM"></a>使用 <a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="noopener">Vundle</a> 安装YCM</h2><p>Vundle（Vim Bundle的缩写）是一个针对Vim的插件管理器。相较于Vim本身混乱的插件结构，使用Vundle来管理插件就显得非常得方便、简洁。用户只需要在Github上找到自己想要的插件的名字，并将其添加到.vimrc文件中，之后的安装，更新和卸载等操作都可以由vundle来完成了。</p>
+<a id="more"></a>
+<ol>
+<li>下载Vundle <figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/VundleVim/Vundle.<span class="keyword">vim</span>.git ~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br></pre></td></tr></table></figure></li>
+<li>编辑 .vimrc 文件<br> 将以下代码添加至你的.vimrc文件中。同时，你也可以根据需求来添加其他你想要安装的vim插件。 <figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">set</span> nocompatible              <span class="comment">" be iMproved, required</span></span><br><span class="line"><span class="keyword">filetype</span> off                  <span class="comment">" required</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" set the runtime path to include Vundle and initialize</span></span><br><span class="line"><span class="keyword">set</span> rtp+=~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">call</span> vundle#begin()</span><br><span class="line"><span class="comment">" alternatively, pass a path where Vundle should install plugins</span></span><br><span class="line"><span class="comment">"call vundle#begin('~/some/path/here')</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" let Vundle manage Vundle, required</span></span><br><span class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" The following are examples of different formats supported.</span></span><br><span class="line"><span class="comment">" Keep Plugin commands between vundle#begin/end.</span></span><br><span class="line"><span class="comment">" plugin on GitHub repo</span></span><br><span class="line">Plugin <span class="string">'Valloric/YouCompleteMe'</span></span><br><span class="line"><span class="comment">" plugin from http://vim-scripts.org/vim/scripts.html</span></span><br><span class="line"><span class="comment">" Plugin 'L9'</span></span><br><span class="line"><span class="comment">" Git plugin not hosted on GitHub</span></span><br><span class="line"><span class="comment">"Plugin 'git://git.wincent.com/command-t.git'</span></span><br><span class="line"><span class="comment">" git repos on your local machine (i.e. when working on your own plugin)</span></span><br><span class="line"><span class="comment">"Plugin 'file:///home/gmarik/path/to/plugin'</span></span><br><span class="line"><span class="comment">" The sparkup vim script is in a subdirectory of this repo called vim.</span></span><br><span class="line"><span class="comment">" Pass the path to set the runtimepath properly.</span></span><br><span class="line"><span class="comment">"Plugin 'rstacruz/sparkup', &#123;'rtp': 'vim/'&#125;</span></span><br><span class="line"><span class="comment">" Install L9 and avoid a Naming conflict if you've already installed a</span></span><br><span class="line"><span class="comment">" different version somewhere else.</span></span><br><span class="line"><span class="comment">" Plugin 'ascenator/L9', &#123;'name': 'newL9'&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" All of your Plugins must be added before the following line</span></span><br><span class="line"><span class="keyword">call</span> vundle#end()            <span class="comment">" required</span></span><br><span class="line"><span class="keyword">filetype</span> plugin <span class="built_in">indent</span> <span class="keyword">on</span>    <span class="comment">" required</span></span><br><span class="line"><span class="comment">" To ignore plugin indent changes, instead use:</span></span><br><span class="line"><span class="comment">"filetype plugin on</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" Brief help</span></span><br><span class="line"><span class="comment">" :PluginList       - lists configured plugins</span></span><br><span class="line"><span class="comment">" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate</span></span><br><span class="line"><span class="comment">" :PluginSearch foo - searches for foo; append `!` to refresh local cache</span></span><br><span class="line"><span class="comment">" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" see :h vundle for more details or wiki for FAQ</span></span><br><span class="line"><span class="comment">" Put your non-Plugin stuff after this line</span></span><br></pre></td></tr></table></figure></li>
+<li>安装插件<br> 打开Vim并运行<code>:PluginInstall</code>指令。<br> 这一步骤可能所需要的时间较长，需要耐心地等待它安装完成。</li>
+</ol>
+<h2 id="安装编译YCM所需要的软件"><a href="#安装编译YCM所需要的软件" class="headerlink" title="安装编译YCM所需要的软件"></a>安装编译YCM所需要的软件</h2><ol>
+<li><p>安装开发工具与CMake:</p>
+<pre><code><figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">yum <span class="keyword">install </span><span class="keyword">build-essential </span>cmake</span><br></pre></td></tr></table></figure></code></pre></li>
+<li><p>并确保python头文件包已经正确安装:</p>
+<pre><code><figure class="highlight mel"><table><tr><td class="code"><pre><span class="line">yum install <span class="keyword">python</span>-devel rh-python36-<span class="keyword">python</span>-devel.x86_64</span><br></pre></td></tr></table></figure></code></pre><p><img data-src="/zh-CN/d2b4abf1/YCM1.PNG" alt="image1"></p>
+<pre><code>如果你的CentOS上还未安装Python3，那么运行以下命令完成Python3.6的安装:       
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">sudo yum <span class="keyword">install </span>centos-release-<span class="keyword">scl</span></span><br><span class="line"><span class="keyword">sudo </span>yum <span class="keyword">install </span>rh-python36</span><br></pre></td></tr></table></figure>
+
+需要的话，可以将Python3.6作为默认的Python来运行：    
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">scl <span class="builtin-name">enable</span> rh-python36 bash</span><br></pre></td></tr></table></figure></code></pre></li>
+</ol>
+<h2 id="编译YCM"><a href="#编译YCM" class="headerlink" title="编译YCM"></a>编译YCM</h2><ul>
+<li><p>完成包含对C语言家族语义支持的YCM编译</p>
+  <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span> <span class="params">--clang-completer</span></span><br></pre></td></tr></table></figure></li>
+<li><p>不包含语义支持则直接运行install.py</p>
+  <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果需要简单的开启对所有语言的支持，则可以用–all标识。</p>
+  <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span> <span class="params">--all</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul>
+<li><a href="https://github.com/Valloric/YouCompleteMe#full-installation-guide" target="_blank" rel="noopener">https://github.com/Valloric/YouCompleteMe#full-installation-guide</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>Vim</category>
+      </categories>
+      <tags>
+        <tag>Vim</tag>
+        <tag>Vundle</tag>
+        <tag>CentOS</tag>
+        <tag>YCM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>YouCompleteMe Installation</title>
     <url>/en/126f49de/</url>
     <content><![CDATA[<p>Acutally, there’re pretty detailed instructions for installation on YCM(YouCompleteMe)’s github page. However, the installation steps on CentOS and Debian cannot be found. </p>
@@ -690,54 +900,6 @@
 </li>
 </ul>
 <h1 id="Referrence"><a href="#Referrence" class="headerlink" title="Referrence"></a>Referrence</h1><ul>
-<li><a href="https://github.com/Valloric/YouCompleteMe#full-installation-guide" target="_blank" rel="noopener">https://github.com/Valloric/YouCompleteMe#full-installation-guide</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Linux</category>
-        <category>Vim</category>
-      </categories>
-      <tags>
-        <tag>Vim</tag>
-        <tag>Vundle</tag>
-        <tag>CentOS</tag>
-        <tag>YCM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>YouCompleteMe 安装教程</title>
-    <url>/zh-CN/d2b4abf1/</url>
-    <content><![CDATA[<p>YouCompleteMe作为Vim中最好用（没有之一）的代码自动补全插件，却同时又是最不容易安装的插件之一。其实在YCM的Github官网，有非常详细完整的安装说明。如果在Mac OS X, Windows, Ubuntu, FreeBSD/OpenBSD或Fedora上安装YCM，且英语还Okay的话，建议直接移步<a href="https://github.com/Valloric/YouCompleteMe#installation" target="_blank" rel="noopener">官方安装说明文档</a>。但官方说明文档却没有对在CentOS与Debian中安装YCM的详细说明。所以在这里总结一下具体的步骤给大家作一个参考。</p>
-<h1 id="在CentOS中安装YCM"><a href="#在CentOS中安装YCM" class="headerlink" title="在CentOS中安装YCM"></a>在CentOS中安装YCM</h1><h2 id="使用-Vundle-安装YCM"><a href="#使用-Vundle-安装YCM" class="headerlink" title="使用 Vundle 安装YCM"></a>使用 <a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="noopener">Vundle</a> 安装YCM</h2><p>Vundle（Vim Bundle的缩写）是一个针对Vim的插件管理器。相较于Vim本身混乱的插件结构，使用Vundle来管理插件就显得非常得方便、简洁。用户只需要在Github上找到自己想要的插件的名字，并将其添加到.vimrc文件中，之后的安装，更新和卸载等操作都可以由vundle来完成了。</p>
-<a id="more"></a>
-<ol>
-<li>下载Vundle <figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/VundleVim/Vundle.<span class="keyword">vim</span>.git ~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br></pre></td></tr></table></figure></li>
-<li>编辑 .vimrc 文件<br> 将以下代码添加至你的.vimrc文件中。同时，你也可以根据需求来添加其他你想要安装的vim插件。 <figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">set</span> nocompatible              <span class="comment">" be iMproved, required</span></span><br><span class="line"><span class="keyword">filetype</span> off                  <span class="comment">" required</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" set the runtime path to include Vundle and initialize</span></span><br><span class="line"><span class="keyword">set</span> rtp+=~/.<span class="keyword">vim</span>/bundle/Vundle.<span class="keyword">vim</span></span><br><span class="line"><span class="keyword">call</span> vundle#begin()</span><br><span class="line"><span class="comment">" alternatively, pass a path where Vundle should install plugins</span></span><br><span class="line"><span class="comment">"call vundle#begin('~/some/path/here')</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" let Vundle manage Vundle, required</span></span><br><span class="line">Plugin <span class="string">'VundleVim/Vundle.vim'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" The following are examples of different formats supported.</span></span><br><span class="line"><span class="comment">" Keep Plugin commands between vundle#begin/end.</span></span><br><span class="line"><span class="comment">" plugin on GitHub repo</span></span><br><span class="line">Plugin <span class="string">'Valloric/YouCompleteMe'</span></span><br><span class="line"><span class="comment">" plugin from http://vim-scripts.org/vim/scripts.html</span></span><br><span class="line"><span class="comment">" Plugin 'L9'</span></span><br><span class="line"><span class="comment">" Git plugin not hosted on GitHub</span></span><br><span class="line"><span class="comment">"Plugin 'git://git.wincent.com/command-t.git'</span></span><br><span class="line"><span class="comment">" git repos on your local machine (i.e. when working on your own plugin)</span></span><br><span class="line"><span class="comment">"Plugin 'file:///home/gmarik/path/to/plugin'</span></span><br><span class="line"><span class="comment">" The sparkup vim script is in a subdirectory of this repo called vim.</span></span><br><span class="line"><span class="comment">" Pass the path to set the runtimepath properly.</span></span><br><span class="line"><span class="comment">"Plugin 'rstacruz/sparkup', &#123;'rtp': 'vim/'&#125;</span></span><br><span class="line"><span class="comment">" Install L9 and avoid a Naming conflict if you've already installed a</span></span><br><span class="line"><span class="comment">" different version somewhere else.</span></span><br><span class="line"><span class="comment">" Plugin 'ascenator/L9', &#123;'name': 'newL9'&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" All of your Plugins must be added before the following line</span></span><br><span class="line"><span class="keyword">call</span> vundle#end()            <span class="comment">" required</span></span><br><span class="line"><span class="keyword">filetype</span> plugin <span class="built_in">indent</span> <span class="keyword">on</span>    <span class="comment">" required</span></span><br><span class="line"><span class="comment">" To ignore plugin indent changes, instead use:</span></span><br><span class="line"><span class="comment">"filetype plugin on</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" Brief help</span></span><br><span class="line"><span class="comment">" :PluginList       - lists configured plugins</span></span><br><span class="line"><span class="comment">" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate</span></span><br><span class="line"><span class="comment">" :PluginSearch foo - searches for foo; append `!` to refresh local cache</span></span><br><span class="line"><span class="comment">" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal</span></span><br><span class="line"><span class="comment">"</span></span><br><span class="line"><span class="comment">" see :h vundle for more details or wiki for FAQ</span></span><br><span class="line"><span class="comment">" Put your non-Plugin stuff after this line</span></span><br></pre></td></tr></table></figure></li>
-<li>安装插件<br> 打开Vim并运行<code>:PluginInstall</code>指令。<br> 这一步骤可能所需要的时间较长，需要耐心地等待它安装完成。</li>
-</ol>
-<h2 id="安装编译YCM所需要的软件"><a href="#安装编译YCM所需要的软件" class="headerlink" title="安装编译YCM所需要的软件"></a>安装编译YCM所需要的软件</h2><ol>
-<li><p>安装开发工具与CMake:</p>
-<pre><code><figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">yum <span class="keyword">install </span><span class="keyword">build-essential </span>cmake</span><br></pre></td></tr></table></figure></code></pre></li>
-<li><p>并确保python头文件包已经正确安装:</p>
-<pre><code><figure class="highlight mel"><table><tr><td class="code"><pre><span class="line">yum install <span class="keyword">python</span>-devel rh-python36-<span class="keyword">python</span>-devel.x86_64</span><br></pre></td></tr></table></figure></code></pre><p><img data-src="/zh-CN/d2b4abf1/YCM1.PNG" alt="image1"></p>
-<pre><code>如果你的CentOS上还未安装Python3，那么运行以下命令完成Python3.6的安装:       
-<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">sudo yum <span class="keyword">install </span>centos-release-<span class="keyword">scl</span></span><br><span class="line"><span class="keyword">sudo </span>yum <span class="keyword">install </span>rh-python36</span><br></pre></td></tr></table></figure>
-
-需要的话，可以将Python3.6作为默认的Python来运行：    
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">scl <span class="builtin-name">enable</span> rh-python36 bash</span><br></pre></td></tr></table></figure></code></pre></li>
-</ol>
-<h2 id="编译YCM"><a href="#编译YCM" class="headerlink" title="编译YCM"></a>编译YCM</h2><ul>
-<li><p>完成包含对C语言家族语义支持的YCM编译</p>
-  <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span> <span class="params">--clang-completer</span></span><br></pre></td></tr></table></figure></li>
-<li><p>不包含语义支持则直接运行install.py</p>
-  <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果需要简单的开启对所有语言的支持，则可以用–all标识。</p>
-  <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span> <span class="params">--all</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul>
 <li><a href="https://github.com/Valloric/YouCompleteMe#full-installation-guide" target="_blank" rel="noopener">https://github.com/Valloric/YouCompleteMe#full-installation-guide</a></li>
 </ul>
 ]]></content>
