@@ -154,7 +154,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">18</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">19</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -221,6 +221,140 @@
             
 
   <div class="posts-expand">
+      
+          
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://securitytech.site/zh-CN/55dd0f0b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.jpeg">
+      <meta itemprop="name" content="UPWNothing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="UPWNothing's Playground">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/zh-CN/55dd0f0b/" class="post-title-link" itemprop="url">Git配置文件泄漏的处理方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-21 17:17:59" itemprop="dateCreated datePublished" datetime="2020-05-21T17:17:59+08:00">2020-05-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-15 14:41:12" itemprop="dateModified" datetime="2020-06-15T14:41:12+08:00">2020-06-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Security/Web-Application/" itemprop="url" rel="index"><span itemprop="name">Web Application</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Security/Incident-Response/" itemprop="url" rel="index"><span itemprop="name">Incident Response</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/zh-CN/55dd0f0b/" class="post-meta-item leancloud_visitors" data-flag-title="Git配置文件泄漏的处理方法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/zh-CN/55dd0f0b/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/55dd0f0b/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>702</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <a id="more"></a>
+
+
+<p>最近接连收到了几个扫描的报告，说是有几个网站存在Git配置文件泄漏的问题。所以记录一下对于这类事件的处理方法。</p>
+<!-- more -->
+
+<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>最近接连收到多个报告，说是网站的.git文件暴露在了互联网上，通过利用漏洞可以获取到源码和一些写死的数据库连接的帐密。  </p>
+<p>Git仓库么，大家懂的都懂。但是怎么会出现这么低级的问题呢？什么？原来是业务部门自己找的vendor开发的系统？哦…那没事了…  </p>
+<h1 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h1><p>这个漏洞应该是属于源代码泄漏。开发人员使用Git将代码从代码库部署到生产服务器上，但是却没有在发布代码时删除隐藏的.git路径。如果没有对.git文件夹做任何的访问控制，那么任何人都可以通过互联网访问、下载.git文件夹。由于.git文件夹中包含了非常多的代码信息，所以攻击者可以通过.git文件还原出许多源代码文件，获取到各类配置信息，敏感数据等。因此，这个漏洞虽然简单，但是也能造成非常严重的后果。</p>
+<h1 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h1><p>既然收到了漏洞的报告。当然首先是对这个漏洞进行验证。</p>
+<p>Github上有不少公开的GitDump工具，可以用来对存在.git泄漏的网站进行测试。这里我使用了这个<a href="https://github.com/internetwache/GitTools/tree/master/Dumper" target="_blank" rel="noopener">Gitdumper</a>的脚本。</p>
+<p>除此之外，还有一个国人开发的名为<a href="https://github.com/lijiejie/GitHack" target="_blank" rel="noopener">GitHack</a>的工具，据说也不错。</p>
+<p>反正都是使用起来很简单的工具，一行命令直接搞定。运行了一下以后发现，确实可以通过这个路径下载并恢复出大部分的源码文件。</p>
+<p>再仔细看了一下，果然！数据库连接的帐密都可以在配置文件中找到…啧啧啧！</p>
+<p>万幸的是，数据库还是有访问控制的，所以这个漏洞没有造成严重的后果。但是，这个案例也足够我们引起重视。</p>
+<h1 id="漏洞修复"><a href="#漏洞修复" class="headerlink" title="漏洞修复"></a>漏洞修复</h1><p>修复的方法也很简单：删除.git文件夹；或者至少增加访问控制，禁止访问.git路径。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
       
           
   
@@ -387,7 +521,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-18 10:45:40" itemprop="dateModified" datetime="2020-03-18T10:45:40+08:00">2020-03-18</time>
+                <time title="修改时间：2020-06-15 14:49:38" itemprop="dateModified" datetime="2020-06-15T14:49:38+08:00">2020-06-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -430,14 +564,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>329</span>
+              <span>2.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -1081,128 +1215,6 @@
   
 
       
-      
-          
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://securitytech.site/zh-CN/3ba3be9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon.jpeg">
-      <meta itemprop="name" content="UPWNothing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="UPWNothing's Playground">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/zh-CN/3ba3be9/" class="post-title-link" itemprop="url">Hexo版本升级指南</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-31 11:59:09" itemprop="dateCreated datePublished" datetime="2019-12-31T11:59:09+08:00">2019-12-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-06 16:12:56" itemprop="dateModified" datetime="2020-01-06T16:12:56+08:00">2020-01-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/zh-CN/3ba3be9/" class="post-meta-item leancloud_visitors" data-flag-title="Hexo版本升级指南" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/zh-CN/3ba3be9/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/3ba3be9/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>进来想起来自己还有这么一个博客。那么第一件事当然是对版本进行升级咯！可升级的过程远远没有想象中的那般顺利，因此在此记录一下，其他人如果遇到类似的问题，也可以有一个借鉴。<br>升级前，先检查当前hexo的版本号：<code>hexo --version</code>。版本信息如下图所示：<br><img src="/zh-CN/3ba3be9/hexo_check_version.png" alt="Hexo版本信息"> </p>
-<h1 id="升级步骤"><a href="#升级步骤" class="headerlink" title="升级步骤"></a>升级步骤</h1><p> 在Hexo的文档中搜索一番，结果！！完全没有提及版本升级的方法。。。行吧，只能借助万能的Google，经过比较，终于找到了一个简单粗暴的方法：<br>首先进入Hexo的主目录，然后直接执行</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> update</span><br></pre></td></tr></table></figure>
-
-<p>等等等…没动静呐！看来有必要重新配置一下NPM…</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/zh-CN/3ba3be9/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
   </div>
 
   
@@ -1275,7 +1287,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1286,7 +1298,7 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -1344,12 +1356,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">21k</span>
+    <span title="站点总字数">24k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">19 分钟</span>
+    <span title="站点阅读时长">22 分钟</span>
 </div>
 
         
