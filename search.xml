@@ -176,6 +176,7 @@
 <p><em>本文不定期，(极其)缓慢更新</em></p>
 <a id="more"></a>
 
+<p><a href="#HTML-Sourde-code">HTML - Source code</a><br><a href="#HTTP-Open-redirect">HTTP - Open redirect</a></p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="HTML-Source-code"><a href="#HTML-Source-code" class="headerlink" title="HTML - Source code"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTML-source-code" target="_blank" rel="noopener">HTML - Source code</a></h2><p>送分题。主要目的只是跟新用户打个招呼！</p>
 <p>直接查看页面源代码即可。解题密码在HTML的注释中。</p>
 <p><img data-src="/zh-CN/f0181575/html_sourcecode.png" alt></p>
@@ -239,7 +240,120 @@
 <p>哈哈，有意外发现。flag被加在了php的注释区域内。ok，这道题就完成了！</p>
 <p>Flag为<code>S3rv1ceP1n9Sup3rS3cure</code></p>
 <blockquote>
-<p>要点：<br>这道题其实反应了用户输入校验的重要性。</p>
+<p>要点：<br>这道题再次反应了用户输入校验的重要性。在应用开发的过程中，务必要确保对接受到的用户输入进行校验，确保用户的输入与设计的功能是相匹配的，否则的话，狡猾的用户们一定会制造出你意想不到的效果。</p>
+</blockquote>
+<h2 id="Backup-File"><a href="#Backup-File" class="headerlink" title="Backup File"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/Backup-file" target="_blank" rel="noopener">Backup File</a></h2><p>打开页面，看到的是如下的登录界面。简单尝试了几个简单用户名密码，发现并不能成功登录。</p>
+<p><img data-src="/zh-CN/f0181575/backup_file_0.png" alt></p>
+<p>先快速查看一下页面源码，可惜没有发现任何线索。根据题目的名字 <em>backup file</em> , 尝试在URL后面添加backup等路径名，尝试是否存在跨目录攻击。但也没有任何发现。</p>
+<p>Emmmm…第一次陷入僵局！好的呗，偷偷瞄一眼论坛讨论。有一条回复给出了这个链接<a href="https://en.wikipedia.org/wiki/List_of_filename_extensions" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/List_of_filename_extensions </a>作为提示。</p>
+<p>原来是跟备份文件的文件后缀有关。常见的备份文件后缀名有：  </p>
+<ul>
+<li>??$</li>
+<li><del>1</del></li>
+<li>~??</li>
+</ul>
+<p>现在的问题就是我们需要在哪个文件后面加上后缀呢？最原始的页面路径为<code>http://challenge01.root-me.org/web-serveur/ch11/</code>,没有包含任何文件名称。所以，我们需要猜测一下默认的文件名称。对于PHP比较熟悉的童鞋肯定会知道PHP的默认主页文件是index.php. 那就尝试一下呗！访问<code>http://challenge01.root-me.org/web-serveur/ch11/index.php</code>,嘿嘿！果然，我们看到了完全相同的页面。好叻，既然已经知道了文件名，那么下一步只需要添加上文件后缀，再逐个尝试就可以了。</p>
+<p>当访问<code>http://challenge01.root-me.org/web-serveur/ch11/index.php~??</code>时，页面自动下载了一个名为<code>index.php_</code>的文件。</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line"><span class="variable">$username</span>=<span class="string">"ch11"</span>;</span><br><span class="line"><span class="variable">$password</span>=<span class="string">"OCCY9AcNm1tj"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo '</span><br><span class="line">      &lt;html&gt;</span><br><span class="line">      &lt;body&gt;</span><br><span class="line">	&lt;h1&gt;Authentication v 0.00&lt;/h1&gt;</span><br><span class="line">';</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_POST</span>[<span class="string">"username"</span>]!=<span class="string">""</span> &amp;&amp; <span class="variable">$_POST</span>[<span class="string">"password"</span>]!=<span class="string">""</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$_POST</span>[<span class="string">"username"</span>]==<span class="variable">$user</span> &amp;&amp; <span class="variable">$_POST</span>[<span class="string">"password"</span>]==<span class="variable">$password</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">print</span>(<span class="string">"&lt;h2&gt;Welcome back &#123;$row['username']&#125; !&lt;/h2&gt;"</span>);</span><br><span class="line">      <span class="keyword">print</span>(<span class="string">"&lt;h3&gt;Your informations :&lt;/h3&gt;&lt;p&gt;- username : $row[username]&lt;/p&gt;&lt;br /&gt;"</span>);</span><br><span class="line">      <span class="keyword">print</span>(<span class="string">"To validate the challenge use this password&lt;/b&gt;"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">print</span>(<span class="string">"&lt;h3&gt;Error : no such user/password&lt;/h2&gt;&lt;br /&gt;"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo '</span><br><span class="line">	&lt;<span class="keyword">form</span> action=<span class="string">""</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">	  Login&amp;nbsp;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"text"</span> name=<span class="string">"username"</span> /&gt;&lt;<span class="keyword">br</span>/&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  Password&amp;nbsp;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"password"</span> name=<span class="string">"password"</span> /&gt;&lt;<span class="keyword">br</span>/&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  &lt;<span class="keyword">br</span>/&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"submit"</span> value=<span class="string">"connect"</span> /&gt;&lt;<span class="keyword">br</span>/&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	&lt;/<span class="keyword">form</span>&gt;</span><br><span class="line">      &lt;/body&gt;</span><br><span class="line">      &lt;/html&gt;</span><br><span class="line">';</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>用得到的帐号密码登录，即可！</p>
+<p><img data-src="/zh-CN/f0181575/backup_file_1.png" alt></p>
+<p>根据提示，原来用密码直接验证就可以。15分到手！</p>
+<p>Flag为<code>OCCY9AcNm1tj</code>。</p>
+<blockquote>
+<p>要点：<br>在实际生产环境中，类似的问题其实也经常会发生。我们需要额外注意系统产生的备份文件与临时文件（比如vim编辑时也会在相同路径下生成临时文件）。这类文件如果被外部访问，就会直接产生源代码泄漏的事件。虽然在实际情况下，源码不会包含网页的登录信息，但是在很多时候的的确确会有数据库连接的登录信息。 一旦发生源代码泄露，同时数据库的access control又存在缺陷的话，那就直接是一起非常严重的数据库泄漏事件了。[坏笑]</p>
+</blockquote>
+<h2 id="HTTP-Directory-Indexing"><a href="#HTTP-Directory-Indexing" class="headerlink" title="HTTP - Directory Indexing"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-Directory-indexing" target="_blank" rel="noopener">HTTP - Directory Indexing</a></h2><p>点进页面一片空白，那就查看一下源码呗。然后源码里有一段注释：<code>&lt;!-- include(&quot;admin/pass.html&quot;) --&gt;</code> 啊…就这？就这？</p>
+<p>访问一下这个页面看看呗…？？？？被骗了？</p>
+<p><img data-src="/zh-CN/f0181575/directory_indexing_0.png" alt></p>
+<p>大致意思就是“被骗了吧！你肯定不是最后一个被骗的！好好再找找去吧！”。Hmmm…法式幽默！行吧，那就再找找咯！</p>
+<p>仔细再看看这题的名字： <strong>Directory Indexing</strong>。既然已经提到了是目录索引，应该是跟访问目录的访问控制问题有关。那哪个路径可能存在类似的问题呢？你们肯定也都想到了吧：admin。</p>
+<p>尝试访问一下admin路径：<code>http://challenge01.root-me.org/web-serveur/ch4/admin/</code> 果然！我们直接看到了admin路径下的索引列表：</p>
+<p><img data-src="/zh-CN/f0181575/directory_indexing_1.png" alt></p>
+<p>接下去的步骤不难猜测，顺着目录一步步找下去，在<code>backup/</code>下有一个名为<code>admin.txt</code>的文件。 </p>
+<p>直接找到Flag: <code>Linux</code>。这15分应该还算是比较简单的。</p>
+<blockquote>
+<p>要点：<br>这属于错误安全配置所造成的一个常见的结果。可以参考<a href="https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A6-Security_Misconfiguration" target="_blank" rel="noopener">OWASP Security Misconfiguration</a>中的Scenario #2. 攻击者可以随意浏览服务器上，与网页相关的文件。通过这种方式，攻击者可以获得到源代码，配置信息，身份认证信息等等关键文件。可能产生的影响不言而喻。 </p>
+</blockquote>
+<h2 id="HTTP-Headers"><a href="#HTTP-Headers" class="headerlink" title="HTTP - Headers"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-Headers" target="_blank" rel="noopener">HTTP - Headers</a></h2><p>先看题目与提示：HTTP Header, HTTP response give informations (HTTP响应会提供信息) </p>
+<p>OK，这个提示算是相当明显了。我们需要查看页面返回的HTTP头中的内容。</p>
+<p><img data-src="/zh-CN/f0181575/headers_0.png" alt></p>
+<p>我们看到了一项名为<code>Header-RootMe-Admin: none</code>的Header参数值。那我们在发出的请求中加入这个HTTP头部字段，并修改他的值，看看会产生什么样的结果。</p>
+<p><img data-src="/zh-CN/f0181575/headers_0.png" alt></p>
+<p>哦霍！直接成功。一下子就获取到了Flag: <code>HeadersMayBeUseful</code></p>
+<blockquote>
+<p>要点：<br>就像原题中提示的那样，HTTP响应的信息并不仅仅包含你所看到的页面的内容。HTTP的头部字段里也会有很多重要的信息。而且，这部分信息是用户可控的！！如果要使用HTTP头部字段的值，那就千万要记得把这个数据作为用户输入数据来对待，进行输入校验后再拿来使用。</p>
+</blockquote>
+<h2 id="HTTP-POST"><a href="#HTTP-POST" class="headerlink" title="HTTP - POST"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-POST" target="_blank" rel="noopener">HTTP - POST</a></h2><p>这道题目的说明是: Find a way to beat the top score! (想个办法来击败最高分)  </p>
+<p>挑战页面如下：</p>
+<p><img data-src="/zh-CN/f0181575/post_0.png" alt> </p>
+<p>点击”Give a try!”按钮，页面会随机生成一个数字。当然，结果永远是一样的，都比不过999999。咋办？只能开挂了！！既然标题是POST，那么就使用Burp拦截一下看看，POST有什么内容。</p>
+<p><img data-src="/zh-CN/f0181575/post_1.png" alt> </p>
+<p>这就简单了。分数原来是在客户端生成，并通过POST中的一个参数进行传递的。那我们只需要对POST中的数字进行篡改，就可以了。就像这样：</p>
+<p><img data-src="/zh-CN/f0181575/post_2.png" alt> </p>
+<p>发送！顺利得到flag: <code>H7tp_h4s_N0_s3Cr37S_F0r_y0U</code>  </p>
+<p><img data-src="/zh-CN/f0181575/post_3.png" alt> </p>
+<blockquote>
+<p>要点：<br>这道题的主要目的就是了解HTTP协议中，通过POST来传递数据的方法。虽然我们通过浏览器没法直接修改POST中的数据，但这并不意味着POST传递的数据就可以保证数据是可靠的。修改POST的数据同样也是非常容易办到的。</p>
+</blockquote>
+<h2 id="HTTP-Improper-redirect"><a href="#HTTP-Improper-redirect" class="headerlink" title="HTTP - Improper redirect"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-Improper-redirect" target="_blank" rel="noopener">HTTP - Improper redirect</a></h2><p>同样的，还是先看一眼描述与提示：Don’t trust your browser(不要相信你的浏览器); Get access to index (想办法进入index)。ok，先看看页面具体是怎么样的。</p>
+<p><img data-src="/zh-CN/f0181575/improper_redirect_0.png" alt></p>
+<p>有一个用户登录界面，看描述应该是需要通过php重定向的方法来绕过验证，进入到index页面。在浏览器中直接访问index.php，我们会被重定向到login.php进行身份验证。看似好像没有什么毛病。但是，如果我们尝试用Burp来仔细观察一下重定向的过程，问题就显现出来了。</p>
+<p><img data-src="/zh-CN/f0181575/improper_redirect_0.png" alt></p>
+<p>虽然状态码是302重定向，但是我们可以惊讶地发现，index.php页面源码居然也完完整整地显示了出来。。。通过这种方式，我们就相当于绕开了用户认证，就访问到了受限制的页面。我们可以轻易地看到Flag: <code>ExecutionAfterRedirectIsBad</code>  </p>
+<p>这个问题产生的原因是这样的：在PHP编写的时候，判断用户未授权的条件下，直接使用了<code>header(&#39;Location:xxx/login.php&#39;)</code>。脚本执行的时候，确实会返回302的HTTP响应，但除此之外，PHP在添加了重定向路径后，并没有停止执行，而是继续将页面的内容输出到了HTTP响应的body中。虽然在浏览器上，用户并不会直接看到未授权的页面，但是实际上，这个页面的内容已经完完整整地发送到了用户手里。</p>
+<blockquote>
+<p>要点：<br>就跟描述里说的那样，你通过浏览器所看到的内容并不一定就是实际从服务器返回的全部内容。这点在安全测试的过程中尤为重要。</p>
+</blockquote>
+<h2 id="HTTP-Verb-tampering"><a href="#HTTP-Verb-tampering" class="headerlink" title="HTTP - Verb tampering"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-verb-tampering" target="_blank" rel="noopener">HTTP - Verb tampering</a></h2><p>动词篡改？看到这个挑战的标题，我第一反映是有点懵… 但是后来仔细思考了一下，这里的verb应该指的是HTTP请求的方法。  </p>
+<p>众所周知（应该是吧），HTTP请求的方法有 GET, POST (最常用), HEAD, PUT, DELETE, TRACE, OPTIONS, CONNECT 这八种。这里面HEAD和OPTIONS也不是动词呀…? Anyway,先看一下挑战页面呗。</p>
+<p><img data-src="/zh-CN/f0181575/verb_tampering_0.png" alt></p>
+<p>好的呗，这个页面被保护了，需要用户身份验证才能访问。所以，我们要做的就是尝试修改HTTP请求的方法，看看是不是有机会绕过身份验证。默认的HTTP请求方法是GET。我们使用Burp将请求的方法改成上述列出的其他方法逐个尝试一下：</p>
+<p><img data-src="/zh-CN/f0181575/verb_tampering_1.png" alt></p>
+<p>使用DELETE方法发送请求，服务器直接给我们返回了解题的flag: <code>a23e$dme96d3saez$$prap</code> </p>
+<blockquote>
+<p>要点：<br>这个挑战说明的是通过篡改HTTP请求方法来绕过Web授权和认证的例子。这种情况大多数是在配置的时候产生的。由于GET/POST请求相对而言更加常用，所有很多开发者/运维人员会只考虑到对这两种HTTP请求方法进行配置，而忽视了剩余的HTTP请求方法。因此，在进行配置时，一定要确保安全约束策略覆盖到所有的HTTP请求方法。</p>
+</blockquote>
+<h2 id="Install-files"><a href="#Install-files" class="headerlink" title="Install files"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/Install-files" target="_blank" rel="noopener">Install files</a></h2><p>这道题打开页面一片空白。我一开始还以为网络连接有问题，后来发现并不是。那就先观察一下页面的源码。果然，在注释中发现了这么一行：</p>
+<p><img data-src="/zh-CN/f0181575/install_files_0.png" alt></p>
+<p>根据这个提示再点开<code>http://challenge01.root-me.org/web-serveur/ch6/phpbb</code>。点开以后我们发现！！除了Root-me的header之外，依旧是一片空白。。。- -</p>
+<p>好吧，结合这题的提示”You know phpBB ?”，先去往上查一下PHPBB的相关信息：PHPBB是一个使用PHP开发的开源网络论坛系统。再简单搜索一下PHPBB与文件安装相关的漏洞，我们发现，phpBB的安装路径为install目录。我们访问该路径就可以看到目录下的文件列表，我们可以看到有<code>install.php</code>这么一个文件。访问这个文件，我们直接可以获取到解题flag:<code>karambar</code>  </p>
+<blockquote>
+<p>要点：<br>其实这道题的总结，在install.php里面已经全部写出来了。只不过是法语的，我们需要翻译一下：<br>这个缺陷实际上是对网站站长的监督，这些文件应该在使用后都被正确地删除，包含 phpbb 论坛的安装页。<br>虽然此类漏洞已经越来越少地发生，因为开发人员使用了验证系统。<br>然而，我们需要了解的是，我们还是可以发现许多篡改 URL的方法…<br>通过这些方法，攻击者可以重置论坛，并更改所有管理员密码，初始化论坛。</p>
+</blockquote>
+<h2 id="CRLF"><a href="#CRLF" class="headerlink" title="CRLF"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/CRLF" target="_blank" rel="noopener">CRLF</a></h2><p>同样的，登录到挑战页面，可以看到一个用户登录界面。随便尝试登录会发现，每次登录尝试都会在日志中生成一条记录。</p>
+<p>我第一个想到的是这可能是一道XSS的题目，所以尝试用户名<code>test&lt;script&gt;</code>。啊偶，看上去<code>&lt;script&gt;</code>被正确地打印了出来，不太对。</p>
+<p><img data-src="/zh-CN/f0181575/crlf_0.png" alt></p>
+<p>这个时候才想起来返回重新看一下题目的说明，原来是需要在日志里面注入内容。结合挑战的名称，那应该就是利用换行符进行分割，注入一行成功登录的信息。在日志中我们可以看到有admin用户成功登录的记录。所以就使用同样的内容进行注入： </p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="builtin-name">GET</span> /web-serveur/ch14/?<span class="attribute">username</span>=admin authenticated.%0d%0atest123&amp;password= HTTP/1.1</span><br></pre></td></tr></table></figure>
+
+<p>顺利获得flag: <code>rFSP&amp;G0p&amp;5uAg1%</code></p>
+<p><img data-src="/zh-CN/f0181575/crlf_1.png" alt></p>
+<h2 id="File-upload-Double-extensions"><a href="#File-upload-Double-extensions" class="headerlink" title="File upload - Double extensions"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/File-upload-Double-extensions" target="_blank" rel="noopener">File upload - Double extensions</a></h2><p>题目就非常明显了，通过双后缀来绕过服务器端的文件上传类型检查。登录页面，找到上传功能。然后在本地编辑一段读取/etc/passwd的PHP代码：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php"><span class="keyword">echo</span> file_get_contents(<span class="string">'../../../../etc/passwd'</span>);</span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>并命名为<code>test.php.jpg</code>保存到本地。再将其上传。果然！！失败了…</p>
+<p><img data-src="/zh-CN/f0181575/double_extensions_0.png" alt></p>
+<p>但好消息是，我们的脚本顺利地绕过了文件上传的类型检测，并被服务器解析了。但是，php代码本身存在一些问题，所以没有顺利读取到<code>/etc/passwd</code>的内容。所以，我们需要对我们的php代码进行一下微调。<br>既然无法直接用PHP函数读取文件的内容，我们就尝试通过调用系统命令执行函数来完成。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php"><span class="keyword">echo</span> shell_exec(<span class="string">"cat ../../../../../../etc/passwd"</span>);</span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>OK!这下我们可以成功看到/etc/passwd的内容了！</p>
+<p><img data-src="/zh-CN/f0181575/double_extensions_1.png" alt></p>
+<p>但是flag呢？flag在哪里呀…找了一圈没找到…然后再仔细看了一遍题目才发现！!<code>Retrieve the validation password in the file .passwd at the root of the application.</code>:原来要读取的文件是应用根目录下的.passwd 文件! 晕！！！</p>
+<p>唯一的问题就是不知道应用的根目录在哪一层，需要向上返回几次。这个情况下，我们就需要使用到————枚举法！！几次尝试后，最终上传的PHP脚本内容为：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php"><span class="keyword">echo</span> shell_exec(<span class="string">"cat ../../../.passwd"</span>);</span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>这样我们就可以成功获得到Flag: <code>Gg9LRz-hWSxqqUKd77-_q-6G8</code></p>
+<h2 id="File-upload-MIME-type"><a href="#File-upload-MIME-type" class="headerlink" title="File upload - MIME type"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/File-upload-MIME-type" target="_blank" rel="noopener">File upload - MIME type</a></h2><p>这道题跟前面的题非常类似，需要达到的目的是完全一样的。所以脚本的内容应该可以不用修改。不同的应该是绕过的方式，这次需要使用到的方法不再是通过给PHP文件添加合法的后缀名。</p>
+<p>尝试上传PHP脚本，使用Burp截取发送的请求，可以看到<code>Content-Type</code>的值为<code>application/x-php</code>。这个值也可以体现出上传的文件的类型。</p>
+<p><img data-src="/zh-CN/f0181575/mime_type_0.png" alt></p>
+<p>直接发送到服务器，毫无意外，被服务器拒绝了！</p>
+<p><img data-src="/zh-CN/f0181575/mime_type_1.png" alt></p>
+<p>这里我们需要做的是，让服务器端认为我们上传的文件是个人畜无害的图片文件。所以，我们需要把这个<code>Content-Type</code>的值修改为<code>image/jpeg</code>。再上传试试～</p>
+<p><img data-src="/zh-CN/f0181575/mime_type_2.png" alt></p>
+<p>Bingo～成功获取到了flag:<code>a7n4nizpgQgnPERy89uanf6T4</code>.</p>
+<blockquote>
+<p>要点：<br>这紧接着的两道题都是文件上传漏洞相关的题目。文件上传漏洞是一个经常被利用到的漏洞。通过这种方法，黑客可以上传一段小脚本到服务器上，一旦有办法执行这段脚本，那攻击者就可以进一步来实现对服务器的完全控制。<a href="https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload" target="_blank" rel="noopener">OWASP Unrestricted File Upload</a> 有完整的对于这一个漏洞的介绍。并且说明了应该如何有效地防止此类漏洞的产生。</p>
 </blockquote>
 ]]></content>
       <categories>
