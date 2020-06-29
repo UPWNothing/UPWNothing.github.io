@@ -20,13 +20,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"securitytech.site","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="背景最近，公司有一个客户的MySQL数据库被篡改了数据，因此需要对该客户被攻击的服务器进行调查。其中涉及到对MySQL的Binlog日志分析。在任务完成后，将其中相关的步骤进行总结。 Binlog定位 Binlog 位置找到MySQL安装目录中bin目录的位置，同时确认binlog的储存位置。其相应的配置在my.cnf的log_bin&#x3D;””中。如果能够使用mySQL命令行连接，也可以使用 show">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL Binlog 调查取证">
-<meta property="og:url" content="https://securitytech.site/zh-CN/82b8fc5e/index.html">
+<meta property="og:url" content="https://upwnothing.github.io/zh-CN/82b8fc5e/index.html">
 <meta property="og:site_name" content="UPWNothing&#39;s Playground">
 <meta property="og:description" content="背景最近，公司有一个客户的MySQL数据库被篡改了数据，因此需要对该客户被攻击的服务器进行调查。其中涉及到对MySQL的Binlog日志分析。在任务完成后，将其中相关的步骤进行总结。 Binlog定位 Binlog 位置找到MySQL安装目录中bin目录的位置，同时确认binlog的储存位置。其相应的配置在my.cnf的log_bin&#x3D;””中。如果能够使用mySQL命令行连接，也可以使用 show">
 <meta property="og:locale" content="zh_CN">
@@ -37,7 +37,7 @@
 <meta property="article:tag" content="Binlog">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://securitytech.site/zh-CN/82b8fc5e/">
+<link rel="canonical" href="https://upwnothing.github.io/zh-CN/82b8fc5e/">
 
 
 <script id="page-configurations">
@@ -58,12 +58,12 @@
             var indexOfEn = href.toLowerCase().indexOf('/en/');
             if(indexOfEn !== -1) {
                 //switchLang.href = href.replace('/en/', '/');
-		//switchLang.href = "https://securitytech.site";
+		//switchLang.href = "https://upwnothing.github.io";
                 switchLang.href = href.substr(0,indexOfEn);
             }
             else {
                 //switchLang.href = href.replace(/(^http[s]?:\/\/[a-z0-9.]*[:?0-9]*\/)(.*)/i, '$1en/$2');
-		//switchLang.href = "https://securitytech.site/en";
+		//switchLang.href = "https://upwnothing.github.io/en";
             }
     }
 </script>
@@ -224,7 +224,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://securitytech.site/zh-CN/82b8fc5e/">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/82b8fc5e/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon.jpeg">
@@ -534,12 +534,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">30k</span>
+    <span title="站点总字数">31k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27 分钟</span>
+    <span title="站点阅读时长">28 分钟</span>
 </div>
 
         

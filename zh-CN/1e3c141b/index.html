@@ -20,13 +20,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"securitytech.site","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="这篇文章主要是简单记录一下在Kali中安装Docker的完整过程。下文提及的所有步骤都在Kali的最新版本(2019.4)中成功执行。 为嘛要在Kali中装Docker呐？！这是一个很常见的问题。因为大家都认为Kali是一个非常纯粹的渗透测试工具，在Kali中安装了Docker就多少显得……不那么Cool了对吧！   其实不然。Kali有如今的地位，是因为他包含了一系列对于网络安全工作非常实用的工">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在Kali Linux中安装Docker (Kali 2019.4)">
-<meta property="og:url" content="https://securitytech.site/zh-CN/1e3c141b/index.html">
+<meta property="og:url" content="https://upwnothing.github.io/zh-CN/1e3c141b/index.html">
 <meta property="og:site_name" content="UPWNothing&#39;s Playground">
 <meta property="og:description" content="这篇文章主要是简单记录一下在Kali中安装Docker的完整过程。下文提及的所有步骤都在Kali的最新版本(2019.4)中成功执行。 为嘛要在Kali中装Docker呐？！这是一个很常见的问题。因为大家都认为Kali是一个非常纯粹的渗透测试工具，在Kali中安装了Docker就多少显得……不那么Cool了对吧！   其实不然。Kali有如今的地位，是因为他包含了一系列对于网络安全工作非常实用的工">
 <meta property="og:locale" content="zh_CN">
@@ -38,7 +38,7 @@
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://securitytech.site/zh-CN/1e3c141b/">
+<link rel="canonical" href="https://upwnothing.github.io/zh-CN/1e3c141b/">
 
 
 <script id="page-configurations">
@@ -59,12 +59,12 @@
             var indexOfEn = href.toLowerCase().indexOf('/en/');
             if(indexOfEn !== -1) {
                 //switchLang.href = href.replace('/en/', '/');
-		//switchLang.href = "https://securitytech.site";
+		//switchLang.href = "https://upwnothing.github.io";
                 switchLang.href = href.substr(0,indexOfEn);
             }
             else {
                 //switchLang.href = href.replace(/(^http[s]?:\/\/[a-z0-9.]*[:?0-9]*\/)(.*)/i, '$1en/$2');
-		//switchLang.href = "https://securitytech.site/en";
+		//switchLang.href = "https://upwnothing.github.io/en";
             }
     }
 </script>
@@ -225,7 +225,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://securitytech.site/zh-CN/1e3c141b/">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/1e3c141b/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon.jpeg">
@@ -590,12 +590,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">30k</span>
+    <span title="站点总字数">31k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27 分钟</span>
+    <span title="站点阅读时长">28 分钟</span>
 </div>
 
         

@@ -20,23 +20,23 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"securitytech.site","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="选择合适的评论系统我选择评论系统时，考虑到以下几点：  免费 ( 排除 hypercomments ) 无需翻墙 ( 排除 disqus ) 评论无需注册登录 ( 排除 gitment, gitalk, gitter 这三个github相关的评论系统 ) 不要求网站备案 ( 排除一系列国内的评论系统 )  在剩下的为数不多的可选项中，Valine就成为了那个被我最终选择的评论系统。 最终效果图:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="为Hexo NexT 添加评论系统">
-<meta property="og:url" content="https://securitytech.site/zh-CN/c0899d18/index.html">
+<meta property="og:url" content="https://upwnothing.github.io/zh-CN/c0899d18/index.html">
 <meta property="og:site_name" content="UPWNothing&#39;s Playground">
 <meta property="og:description" content="选择合适的评论系统我选择评论系统时，考虑到以下几点：  免费 ( 排除 hypercomments ) 无需翻墙 ( 排除 disqus ) 评论无需注册登录 ( 排除 gitment, gitalk, gitter 这三个github相关的评论系统 ) 不要求网站备案 ( 排除一系列国内的评论系统 )  在剩下的为数不多的可选项中，Valine就成为了那个被我最终选择的评论系统。 最终效果图:">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://securitytech.site/zh-CN/c0899d18/result.PNG">
-<meta property="og:image" content="https://securitytech.site/zh-CN/c0899d18/Valine_register.PNG">
-<meta property="og:image" content="https://securitytech.site/zh-CN/c0899d18/LeanCloud_Create.jpg">
-<meta property="og:image" content="https://securitytech.site/zh-CN/c0899d18/LeanCloud_AppKey.jpg">
-<meta property="og:image" content="https://securitytech.site/zh-CN/c0899d18/LeanCloud_AddClass.PNG">
-<meta property="og:image" content="https://securitytech.site/zh-CN/c0899d18/LeanCloud_SecuredDomain.PNG">
-<meta property="og:image" content="https://securitytech.site/zh-CN/c0899d18/result.PNG">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/c0899d18/result.PNG">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/c0899d18/Valine_register.PNG">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/c0899d18/LeanCloud_Create.jpg">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/c0899d18/LeanCloud_AppKey.jpg">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/c0899d18/LeanCloud_AddClass.PNG">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/c0899d18/LeanCloud_SecuredDomain.PNG">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/c0899d18/result.PNG">
 <meta property="article:published_time" content="2020-01-06T06:50:11.000Z">
 <meta property="article:modified_time" content="2020-01-06T08:12:56.982Z">
 <meta property="article:author" content="UPWNothing">
@@ -44,9 +44,9 @@
 <meta property="article:tag" content="NexT">
 <meta property="article:tag" content="Valine">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://securitytech.site/zh-CN/c0899d18/result.PNG">
+<meta name="twitter:image" content="https://upwnothing.github.io/zh-CN/c0899d18/result.PNG">
 
-<link rel="canonical" href="https://securitytech.site/zh-CN/c0899d18/">
+<link rel="canonical" href="https://upwnothing.github.io/zh-CN/c0899d18/">
 
 
 <script id="page-configurations">
@@ -67,12 +67,12 @@
             var indexOfEn = href.toLowerCase().indexOf('/en/');
             if(indexOfEn !== -1) {
                 //switchLang.href = href.replace('/en/', '/');
-		//switchLang.href = "https://securitytech.site";
+		//switchLang.href = "https://upwnothing.github.io";
                 switchLang.href = href.substr(0,indexOfEn);
             }
             else {
                 //switchLang.href = href.replace(/(^http[s]?:\/\/[a-z0-9.]*[:?0-9]*\/)(.*)/i, '$1en/$2');
-		//switchLang.href = "https://securitytech.site/en";
+		//switchLang.href = "https://upwnothing.github.io/en";
             }
     }
 </script>
@@ -233,7 +233,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://securitytech.site/zh-CN/c0899d18/">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/c0899d18/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon.jpeg">
@@ -595,12 +595,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">30k</span>
+    <span title="站点总字数">31k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27 分钟</span>
+    <span title="站点阅读时长">28 分钟</span>
 </div>
 
         

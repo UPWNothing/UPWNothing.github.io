@@ -20,33 +20,33 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"securitytech.site","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="所有操作均在Hexo v4.2.0, NexT v7.7.0 版本上验证。如有版本变化，请根据实际情况对部分步骤进行相应修改 前言最近重新拾起博客，更新，域名迁移，重新配置，优化。这一套下来我真的，脑阔都大了！！于是非常自觉的弹出了这么一个想法，我在这个过程中所有的操作都记录下来。一来，方便未来知道自己究竟改过些什么，其次，也可以给他人一个参考。有些前人已经踩进去过的泥潭就没有必要再去踩一遍啦！！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo + NexT 深度个性化配置 (2020.1 更新)">
-<meta property="og:url" content="https://securitytech.site/zh-CN/44bf8def/index.html">
+<meta property="og:url" content="https://upwnothing.github.io/zh-CN/44bf8def/index.html">
 <meta property="og:site_name" content="UPWNothing&#39;s Playground">
 <meta property="og:description" content="所有操作均在Hexo v4.2.0, NexT v7.7.0 版本上验证。如有版本变化，请根据实际情况对部分步骤进行相应修改 前言最近重新拾起博客，更新，域名迁移，重新配置，优化。这一套下来我真的，脑阔都大了！！于是非常自觉的弹出了这么一个想法，我在这个过程中所有的操作都记录下来。一来，方便未来知道自己究竟改过些什么，其次，也可以给他人一个参考。有些前人已经踩进去过的泥潭就没有必要再去踩一遍啦！！">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://securitytech.site/zh-CN/44bf8def/favicon.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/44bf8def/footer.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/44bf8def/avatar.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/44bf8def/codeblock.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/44bf8def/back2top.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/44bf8def/back2top_sidebar.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/44bf8def/lazyload.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/44bf8def/fancybox.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/44bf8def/favicon.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/44bf8def/footer.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/44bf8def/avatar.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/44bf8def/codeblock.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/44bf8def/back2top.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/44bf8def/back2top_sidebar.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/44bf8def/lazyload.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/44bf8def/fancybox.png">
 <meta property="article:published_time" content="2020-01-07T07:39:30.000Z">
-<meta property="article:modified_time" content="2020-01-17T07:46:56.144Z">
+<meta property="article:modified_time" content="2020-06-28T06:08:27.689Z">
 <meta property="article:author" content="UPWNothing">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="NexT">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://securitytech.site/zh-CN/44bf8def/favicon.png">
+<meta name="twitter:image" content="https://upwnothing.github.io/zh-CN/44bf8def/favicon.png">
 
-<link rel="canonical" href="https://securitytech.site/zh-CN/44bf8def/">
+<link rel="canonical" href="https://upwnothing.github.io/zh-CN/44bf8def/">
 
 
 <script id="page-configurations">
@@ -67,12 +67,12 @@
             var indexOfEn = href.toLowerCase().indexOf('/en/');
             if(indexOfEn !== -1) {
                 //switchLang.href = href.replace('/en/', '/');
-		//switchLang.href = "https://securitytech.site";
+		//switchLang.href = "https://upwnothing.github.io";
                 switchLang.href = href.substr(0,indexOfEn);
             }
             else {
                 //switchLang.href = href.replace(/(^http[s]?:\/\/[a-z0-9.]*[:?0-9]*\/)(.*)/i, '$1en/$2');
-		//switchLang.href = "https://securitytech.site/en";
+		//switchLang.href = "https://upwnothing.github.io/en";
             }
     }
 </script>
@@ -233,7 +233,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://securitytech.site/zh-CN/44bf8def/">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/44bf8def/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon.jpeg">
@@ -263,7 +263,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-17 15:46:56" itemprop="dateModified" datetime="2020-01-17T15:46:56+08:00">2020-01-17</time>
+                <time title="修改时间：2020-06-28 14:08:27" itemprop="dateModified" datetime="2020-06-28T14:08:27+08:00">2020-06-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -340,9 +340,9 @@
 <p>如果之前对域名使用过其他的CDN服务，请先取消CDN服务。否则，你使用HTTPS访问自己的域名时，浏览器左侧的小锁会没法锁上！</p>
 </blockquote>
 <h2 id="修改文章永久链接"><a href="#修改文章永久链接" class="headerlink" title="修改文章永久链接"></a>修改文章永久链接</h2><p>默认的永久链接格式是<code>/year/month/day/title/</code>这样的形式。感觉有些冗余，也不美观。所以我对其进行修改：<br>在主题配置文件中搜索<strong>permalink:</strong>，并对其进行配置。以下是我使用的配置，仅供参考：<br>(这里使用到了<code>hexo-abbrlink</code>这个插件，需要通过<code>npm install hexo-abbrlink --save</code>安装。)  </p>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## <span class="keyword">If</span> your site <span class="keyword">is</span> put <span class="keyword">in</span> a subdirectory, <span class="keyword">set</span> url <span class="keyword">as</span> <span class="string">'http://yoursite.com/child'</span> <span class="keyword">and</span> root <span class="keyword">as</span> <span class="string">'/child/'</span></span><br><span class="line">url: https:<span class="comment">//securitytech.site</span></span><br><span class="line">root: /</span><br><span class="line">permalink: :lang/:abbrlink/</span><br><span class="line">abbrlink: </span><br><span class="line">  alg: crc32 #算法：crc16(<span class="keyword">default</span>), crc32</span><br><span class="line">  rep: hex   #进制：dec(<span class="keyword">default</span>), hex</span><br><span class="line">permalink_defaults:</span><br><span class="line">pretty_urls:</span><br><span class="line">  trailing_index: <span class="keyword">true</span> # <span class="keyword">Set</span> <span class="keyword">to</span> <span class="keyword">false</span> <span class="keyword">to</span> <span class="keyword">remove</span> trailing <span class="string">'index.html'</span> <span class="keyword">from</span> permalinks</span><br><span class="line">  trailing_html: <span class="keyword">true</span> # <span class="keyword">Set</span> <span class="keyword">to</span> <span class="keyword">false</span> <span class="keyword">to</span> <span class="keyword">remove</span> trailing <span class="string">'.html'</span> <span class="keyword">from</span> permalinks</span><br></pre></td></tr></table></figure>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## <span class="keyword">If</span> your site <span class="keyword">is</span> put <span class="keyword">in</span> a subdirectory, <span class="keyword">set</span> url <span class="keyword">as</span> <span class="string">'http://yoursite.com/child'</span> <span class="keyword">and</span> root <span class="keyword">as</span> <span class="string">'/child/'</span></span><br><span class="line">url: https:<span class="comment">//upwnothing.github.io</span></span><br><span class="line">root: /</span><br><span class="line">permalink: :lang/:abbrlink/</span><br><span class="line">abbrlink: </span><br><span class="line">  alg: crc32 #算法：crc16(<span class="keyword">default</span>), crc32</span><br><span class="line">  rep: hex   #进制：dec(<span class="keyword">default</span>), hex</span><br><span class="line">permalink_defaults:</span><br><span class="line">pretty_urls:</span><br><span class="line">  trailing_index: <span class="keyword">true</span> # <span class="keyword">Set</span> <span class="keyword">to</span> <span class="keyword">false</span> <span class="keyword">to</span> <span class="keyword">remove</span> trailing <span class="string">'index.html'</span> <span class="keyword">from</span> permalinks</span><br><span class="line">  trailing_html: <span class="keyword">true</span> # <span class="keyword">Set</span> <span class="keyword">to</span> <span class="keyword">false</span> <span class="keyword">to</span> <span class="keyword">remove</span> trailing <span class="string">'.html'</span> <span class="keyword">from</span> permalinks</span><br></pre></td></tr></table></figure>
 
-<h2 id="双语博客配置"><a href="#双语博客配置" class="headerlink" title="双语博客配置"></a>双语博客配置</h2><p>详见<a href="https://UPWNothing.github.io/zh-CN/78ced6ec/" target="_blank" rel="noopener">利用Hexo框架搭建中英文双语网站</a></p>
+<h2 id="双语博客配置"><a href="#双语博客配置" class="headerlink" title="双语博客配置"></a>双语博客配置</h2><p>详见<a href="https://UPWNothing.github.io/zh-CN/78ced6ec/">利用Hexo框架搭建中英文双语网站</a></p>
 <h2 id="添加About页面"><a href="#添加About页面" class="headerlink" title="添加About页面"></a>添加About页面</h2><p>待完善</p>
 <h2 id="添加个性化404页面"><a href="#添加个性化404页面" class="headerlink" title="添加个性化404页面"></a>添加个性化404页面</h2><p>其实如果像我一样在Github Page上部署网页，Github有提供统一的404页面。当然，如果希望可以对404页面进行个性化改造，那么就需要稍许折腾一番。<br>一种是直接在<code>source</code>目录下创建一个<code>404.html</code>文件，并将你想要的样式以及HTML源码都添加到这个文件中。同时在站点配置文件<code>_config.yml</code>中，配置<code>skip_render</code>:</p>
 <figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># Directory</span></span><br><span class="line"><span class="symbol">source_dir:</span> source</span><br><span class="line"><span class="symbol">public_dir:</span> public</span><br><span class="line"><span class="symbol">tag_dir:</span> tags</span><br><span class="line"><span class="symbol">archive_dir:</span> archives</span><br><span class="line"><span class="symbol">category_dir:</span> categories</span><br><span class="line"><span class="symbol">code_dir:</span> downloads/code</span><br><span class="line"><span class="symbol">i18n_dir:</span> :lang</span><br><span class="line"><span class="symbol">skip_render:</span></span><br><span class="line">  - <span class="string">"404.html"</span></span><br></pre></td></tr></table></figure>
@@ -453,7 +453,7 @@
 <p>顺带提一下，当前版本的NexT没有办法在配置文件中直接修改该组件的颜色，如果你觉得组件的颜色与自己的博客无法搭配，那么可以进入到<code>themes/next/source/lib/pace/pace-theme-[你要用的主题].min.css</code>，找到 <code>border-color:#29d</code> 将RGB变量修改为你需要的颜色。</p>
 </blockquote>
 <h2 id="站点首页不显示文章全文"><a href="#站点首页不显示文章全文" class="headerlink" title="站点首页不显示文章全文"></a>站点首页不显示文章全文</h2><p>其实，最佳的方法是在文章中间加入<code>&lt;!-- more --&gt;</code>来精确控制文章的摘要预览。<br>同时，NexT还提供了 <strong>Auto Excerpt</strong> 的功能来实现对文章的自动截取。<br>在主题的配置文件中可以找到<code>excerpt_description: true</code>。这项在当前版本是默认开启的。所以我们不需要进行额外配置。  </p>
-<h2 id="启用评论模块"><a href="#启用评论模块" class="headerlink" title="启用评论模块"></a>启用评论模块</h2><p>详见<a href="https://UPWNothing.github.io/zh-CN/c0899d18/" target="_blank" rel="noopener">为Hexo NexT 添加评论系统</a></p>
+<h2 id="启用评论模块"><a href="#启用评论模块" class="headerlink" title="启用评论模块"></a>启用评论模块</h2><p>详见<a href="https://UPWNothing.github.io/zh-CN/c0899d18/">为Hexo NexT 添加评论系统</a></p>
 <h2 id="开启赞赏功能"><a href="#开启赞赏功能" class="headerlink" title="开启赞赏功能"></a>开启赞赏功能</h2><p> NexT 主题还内置了打赏的功能。首先在<code>theme_config</code>下，添加  </p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Reward (Donate)</span></span><br><span class="line"><span class="comment"># Front-matter variable (unsupport animation).</span></span><br><span class="line"><span class="attr">reward_settings:</span></span><br><span class="line">  <span class="comment"># If true, reward will be displayed in every article by default.</span></span><br><span class="line">  <span class="comment"># 设置为True, 那么打赏按钮会默认显示在每篇文章的底部</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">animation:</span> <span class="literal">true</span>  <span class="comment"># 开启动画效果</span></span><br><span class="line">  <span class="comment"># comment: #加入显示的打赏用语 </span></span><br><span class="line"><span class="attr">reward:</span></span><br><span class="line">  <span class="attr">wechatpay:</span> <span class="string">/images/wechatpay.png</span> <span class="comment">#微信支付 </span></span><br><span class="line">  <span class="attr">alipay:</span> <span class="string">/images/alipay.png</span>  <span class="comment">#支付宝</span></span><br><span class="line">  <span class="comment"># bitcoin: /images/bitcoin.png  #比特比</span></span><br></pre></td></tr></table></figure>
 
@@ -723,12 +723,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">30k</span>
+    <span title="站点总字数">31k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27 分钟</span>
+    <span title="站点阅读时长">28 分钟</span>
 </div>
 
         

@@ -20,60 +20,64 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"securitytech.site","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="概述Root Me是一个非常不错的在线网络安全技能专项练习网站。比起其他的一些模拟练习平台，这个网站相对而言更”Noob friendly”…对于渗透测试有兴趣又不知道如何入门的同学，不妨可以从这个网站开始入手。   本文不定期，(极其)缓慢更新">
+  <meta name="description" content="概述Root Me是一个非常不错的在线网络安全技能专项练习网站。比起其他的一些模拟练习平台，这个网站相对而言更”Noob friendly”…对于渗透测试有兴趣又不知道如何入门的同学，不妨可以从这个网站开始入手。   本问包含前十六题全部的解题思路。第二部分正在施工中…">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Root.me WebClient分类 writeup">
-<meta property="og:url" content="https://securitytech.site/zh-CN/f0181575/index.html">
+<meta property="og:url" content="https://upwnothing.github.io/zh-CN/f0181575/index.html">
 <meta property="og:site_name" content="UPWNothing&#39;s Playground">
-<meta property="og:description" content="概述Root Me是一个非常不错的在线网络安全技能专项练习网站。比起其他的一些模拟练习平台，这个网站相对而言更”Noob friendly”…对于渗透测试有兴趣又不知道如何入门的同学，不妨可以从这个网站开始入手。   本文不定期，(极其)缓慢更新">
+<meta property="og:description" content="概述Root Me是一个非常不错的在线网络安全技能专项练习网站。比起其他的一些模拟练习平台，这个网站相对而言更”Noob friendly”…对于渗透测试有兴趣又不知道如何入门的同学，不妨可以从这个网站开始入手。   本问包含前十六题全部的解题思路。第二部分正在施工中…">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/html_sourcecode.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/open_redirect_0.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/open_redirect_1.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/open_redirect_2.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/open_redirect_3.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/user_agent_0.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/user_agent_1.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/user_agent_2.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/weak_password_0.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/weak_password_1.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/command_injection_0.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/command_injection_1.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/command_injection_2.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/backup_file_0.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/backup_file_1.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/directory_indexing_0.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/directory_indexing_1.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/headers_0.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/headers_0.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/post_0.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/post_1.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/post_2.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/post_3.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/improper_redirect_0.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/improper_redirect_0.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/verb_tampering_0.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/verb_tampering_1.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/install_files_0.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/crlf_0.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/crlf_1.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/double_extensions_0.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/double_extensions_1.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/mime_type_0.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/mime_type_1.png">
-<meta property="og:image" content="https://securitytech.site/zh-CN/f0181575/mime_type_2.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/html_sourcecode.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/open_redirect_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/open_redirect_1.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/open_redirect_2.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/open_redirect_3.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/user_agent_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/user_agent_1.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/user_agent_2.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/weak_password_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/weak_password_1.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/command_injection_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/command_injection_1.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/command_injection_2.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/backup_file_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/backup_file_1.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/directory_indexing_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/directory_indexing_1.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/headers_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/headers_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/post_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/post_1.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/post_2.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/post_3.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/improper_redirect_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/improper_redirect_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/verb_tampering_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/verb_tampering_1.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/install_files_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/crlf_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/crlf_1.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/double_extensions_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/double_extensions_1.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/mime_type_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/mime_type_1.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/mime_type_2.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/cookie_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/cookie_1.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/cookie_2.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/f0181575/cookie_3.png">
 <meta property="article:published_time" content="2020-01-22T07:32:47.000Z">
-<meta property="article:modified_time" content="2020-06-24T09:47:26.800Z">
+<meta property="article:modified_time" content="2020-06-28T08:13:52.881Z">
 <meta property="article:author" content="UPWNothing">
 <meta property="article:tag" content="Root Me">
 <meta property="article:tag" content="Web Application Security">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://securitytech.site/zh-CN/f0181575/html_sourcecode.png">
+<meta name="twitter:image" content="https://upwnothing.github.io/zh-CN/f0181575/html_sourcecode.png">
 
-<link rel="canonical" href="https://securitytech.site/zh-CN/f0181575/">
+<link rel="canonical" href="https://upwnothing.github.io/zh-CN/f0181575/">
 
 
 <script id="page-configurations">
@@ -94,12 +98,12 @@
             var indexOfEn = href.toLowerCase().indexOf('/en/');
             if(indexOfEn !== -1) {
                 //switchLang.href = href.replace('/en/', '/');
-		//switchLang.href = "https://securitytech.site";
+		//switchLang.href = "https://upwnothing.github.io";
                 switchLang.href = href.substr(0,indexOfEn);
             }
             else {
                 //switchLang.href = href.replace(/(^http[s]?:\/\/[a-z0-9.]*[:?0-9]*\/)(.*)/i, '$1en/$2');
-		//switchLang.href = "https://securitytech.site/en";
+		//switchLang.href = "https://upwnothing.github.io/en";
             }
     }
 </script>
@@ -260,7 +264,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://securitytech.site/zh-CN/f0181575/">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/f0181575/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon.jpeg">
@@ -290,7 +294,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-24 17:47:26" itemprop="dateModified" datetime="2020-06-24T17:47:26+08:00">2020-06-24</time>
+                <time title="修改时间：2020-06-28 16:13:52" itemprop="dateModified" datetime="2020-06-28T16:13:52+08:00">2020-06-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -340,7 +344,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>8.3k</span>
+              <span>9.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -360,10 +364,10 @@
 
       
         <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p><a href="https://root-me.org" target="_blank" rel="noopener">Root Me</a>是一个非常不错的在线网络安全技能专项练习网站。比起其他的一些模拟练习平台，这个网站相对而言更”Noob friendly”…对于渗透测试有兴趣又不知道如何入门的同学，不妨可以从这个网站开始入手。  </p>
-<p><em>本文不定期，(极其)缓慢更新</em></p>
+<p>本问包含前十六题全部的解题思路。第二部分正在施工中…</p>
 <a id="more"></a>
 
-<p><a href="#HTML-Sourde-code">HTML - Source code</a><br><a href="#HTTP-Open-redirect">HTTP - Open redirect</a></p>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p><a href="#HTML-Sourde-code">HTML - Source code</a><br><a href="#HTTP-Open-redirect">HTTP - Open redirect</a><br><a href="#HTTP-User-agent">HTTP - User-agent</a><br><a href="#Weak-password">Weak password</a><br><a href="#PHP-Command-injection">PHP - Command injection</a><br><a href="#Backup-file">Backup file</a><br><a href="#HTTP-Directory-indexing">HTTP - Directory indexing</a><br><a href="#HTTP-Headers">HTTP - Headers</a><br><a href="#HTTP-POST">HTTP - POST</a><br><a href="#HTTP-Improper-redirect">HTTP - Improper redirect</a><br><a href="#Install-files">Install files</a><br><a href="#CRLF">CRLF</a><br><a href="#File-upload-Double-extensions">File upload - Double extensions</a><br><a href="#File-upload-MIME-type">File upload - MIME type</a><br><a href="#HTTP-Cookies">HTTP - Cookies</a></p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="HTML-Source-code"><a href="#HTML-Source-code" class="headerlink" title="HTML - Source code"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTML-source-code" target="_blank" rel="noopener">HTML - Source code</a></h2><p>送分题。主要目的只是跟新用户打个招呼！</p>
 <p>直接查看页面源代码即可。解题密码在HTML的注释中。</p>
 <p><img data-src="/zh-CN/f0181575/html_sourcecode.png" alt></p>
@@ -542,6 +546,19 @@
 <blockquote>
 <p>要点：<br>这紧接着的两道题都是文件上传漏洞相关的题目。文件上传漏洞是一个经常被利用到的漏洞。通过这种方法，黑客可以上传一段小脚本到服务器上，一旦有办法执行这段脚本，那攻击者就可以进一步来实现对服务器的完全控制。<a href="https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload" target="_blank" rel="noopener">OWASP Unrestricted File Upload</a> 有完整的对于这一个漏洞的介绍。并且说明了应该如何有效地防止此类漏洞的产生。</p>
 </blockquote>
+<h2 id="HTTP-Cookies"><a href="#HTTP-Cookies" class="headerlink" title="HTTP -Cookies"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-Cookies" target="_blank" rel="noopener">HTTP -Cookies</a></h2><p>题目的描述是<code>Bob created a PHP script to gather user emails</code>。看上去，这是一道利用脚本获取用户Cookie的题目。 </p>
+<p>先点击进入页面了解一下这个页面的功能。用户可以输入Email地址，提交后会进行保存。页面下方还有一个<code>Saved email addresses</code>的链接，点击后会显示需要是admin才能查看。</p>
+<p><img data-src="/zh-CN/f0181575/cookie_0.png" alt></p>
+<p>那么，显而易见。我们需要做的是利用网页的漏洞，让自己变成admin身份。</p>
+<p><img data-src="/zh-CN/f0181575/cookie_1.png" alt></p>
+<p>在之前尝试的过程中，我发现在点击<code>Saved email adresses</code>链接后，url多了一个参数<code>c=visiteur</code>。所以首先对参数的值进行修改，尝试访问<code>http://challenge01.root-me.org/web-serveur/ch7/?c=visiteur</code>。</p>
+<p><img data-src="/zh-CN/f0181575/cookie_2.png" alt></p>
+<p>可以看到网页报出了一个新的错误提示：<code>Problem with cookie</code>。所以我们需要看一下该页面使用的cookie都有些什么值。查看cookie可以在浏览器中安装插件，Firefox和chrome的应用商店中都很容易找到cookie编辑的插件。查看cookie我们可以发现页面cookie中有一个名为ch7的参数。</p>
+<p><img data-src="/zh-CN/f0181575/cookie_3.png" alt></p>
+<p>OK！尝试把这个值从 <strong>visiteur</strong> 修改为 <strong>admin</strong>，并保存后重新点击链接。我们就轻易地获得到了通关密码：<code>ml-SYMPA</code>。</p>
+<blockquote>
+<p>要点：这个其实与HTTP头的概念类似，Cookie中的值其实也属于用户输入数据的一部分。这一点经常会被忽视。服务器要使用Cookie中的参数时，必须先要考虑到这一点，先进行输入校验再使用。将Cookie用于维持登录身份时，也要充分考虑cookie的参数可能被篡改的问题。</p>
+</blockquote>
 
     </div>
 
@@ -659,7 +676,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-Source-code"><span class="nav-number">2.1.</span> <span class="nav-text">HTML - Source code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Open-redirect"><span class="nav-number">2.2.</span> <span class="nav-text">HTTP - Open redirect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-User-agent"><span class="nav-number">2.3.</span> <span class="nav-text">HTTP - User-agent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weak-Password"><span class="nav-number">2.4.</span> <span class="nav-text">Weak Password</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-Command-Injection"><span class="nav-number">2.5.</span> <span class="nav-text">PHP - Command Injection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backup-File"><span class="nav-number">2.6.</span> <span class="nav-text">Backup File</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Directory-Indexing"><span class="nav-number">2.7.</span> <span class="nav-text">HTTP - Directory Indexing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Headers"><span class="nav-number">2.8.</span> <span class="nav-text">HTTP - Headers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-POST"><span class="nav-number">2.9.</span> <span class="nav-text">HTTP - POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Improper-redirect"><span class="nav-number">2.10.</span> <span class="nav-text">HTTP - Improper redirect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Verb-tampering"><span class="nav-number">2.11.</span> <span class="nav-text">HTTP - Verb tampering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-files"><span class="nav-number">2.12.</span> <span class="nav-text">Install files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRLF"><span class="nav-number">2.13.</span> <span class="nav-text">CRLF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-upload-Double-extensions"><span class="nav-number">2.14.</span> <span class="nav-text">File upload - Double extensions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-upload-MIME-type"><span class="nav-number">2.15.</span> <span class="nav-text">File upload - MIME type</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#目录"><span class="nav-number">2.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-Source-code"><span class="nav-number">3.1.</span> <span class="nav-text">HTML - Source code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Open-redirect"><span class="nav-number">3.2.</span> <span class="nav-text">HTTP - Open redirect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-User-agent"><span class="nav-number">3.3.</span> <span class="nav-text">HTTP - User-agent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weak-Password"><span class="nav-number">3.4.</span> <span class="nav-text">Weak Password</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-Command-Injection"><span class="nav-number">3.5.</span> <span class="nav-text">PHP - Command Injection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backup-File"><span class="nav-number">3.6.</span> <span class="nav-text">Backup File</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Directory-Indexing"><span class="nav-number">3.7.</span> <span class="nav-text">HTTP - Directory Indexing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Headers"><span class="nav-number">3.8.</span> <span class="nav-text">HTTP - Headers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-POST"><span class="nav-number">3.9.</span> <span class="nav-text">HTTP - POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Improper-redirect"><span class="nav-number">3.10.</span> <span class="nav-text">HTTP - Improper redirect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Verb-tampering"><span class="nav-number">3.11.</span> <span class="nav-text">HTTP - Verb tampering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-files"><span class="nav-number">3.12.</span> <span class="nav-text">Install files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRLF"><span class="nav-number">3.13.</span> <span class="nav-text">CRLF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-upload-Double-extensions"><span class="nav-number">3.14.</span> <span class="nav-text">File upload - Double extensions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-upload-MIME-type"><span class="nav-number">3.15.</span> <span class="nav-text">File upload - MIME type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Cookies"><span class="nav-number">3.16.</span> <span class="nav-text">HTTP -Cookies</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -744,12 +761,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">30k</span>
+    <span title="站点总字数">31k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27 分钟</span>
+    <span title="站点阅读时长">28 分钟</span>
 </div>
 
         
