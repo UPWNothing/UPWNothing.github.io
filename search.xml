@@ -170,10 +170,10 @@
       </tags>
   </entry>
   <entry>
-    <title>Root.me WebClient分类 writeup</title>
+    <title>Root-me WebServer分类 接替思路 （一）</title>
     <url>/zh-CN/f0181575/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p><a href="https://root-me.org" target="_blank" rel="noopener">Root Me</a>是一个非常不错的在线网络安全技能专项练习网站。比起其他的一些模拟练习平台，这个网站相对而言更”Noob friendly”…对于渗透测试有兴趣又不知道如何入门的同学，不妨可以从这个网站开始入手。  </p>
-<p>本问包含前十六题全部的解题思路。第二部分正在施工中…</p>
+<p>本文包含WebServer分类中前十六题全部的解题思路。<a href="https://upwnothing.github.io/zh-CN/afcc83f6">第二部分</a>正在施工中…</p>
 <a id="more"></a>
 
 <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p><a href="#HTML-Sourde-code">HTML - Source code</a><br><a href="#HTTP-Open-redirect">HTTP - Open redirect</a><br><a href="#HTTP-User-agent">HTTP - User-agent</a><br><a href="#Weak-password">Weak password</a><br><a href="#PHP-Command-injection">PHP - Command injection</a><br><a href="#Backup-file">Backup file</a><br><a href="#HTTP-Directory-indexing">HTTP - Directory indexing</a><br><a href="#HTTP-Headers">HTTP - Headers</a><br><a href="#HTTP-POST">HTTP - POST</a><br><a href="#HTTP-Improper-redirect">HTTP - Improper redirect</a><br><a href="#Install-files">Install files</a><br><a href="#CRLF">CRLF</a><br><a href="#File-upload-Double-extensions">File upload - Double extensions</a><br><a href="#File-upload-MIME-type">File upload - MIME type</a><br><a href="#HTTP-Cookies">HTTP - Cookies</a></p>
