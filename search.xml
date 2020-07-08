@@ -170,7 +170,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Root-me WebServer分类 接替思路 （一）</title>
+    <title>Root-me WebServer分类 解题思路 （一）</title>
     <url>/zh-CN/f0181575/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p><a href="https://root-me.org" target="_blank" rel="noopener">Root Me</a>是一个非常不错的在线网络安全技能专项练习网站。比起其他的一些模拟练习平台，这个网站相对而言更”Noob friendly”…对于渗透测试有兴趣又不知道如何入门的同学，不妨可以从这个网站开始入手。  </p>
 <p>本文包含WebServer分类中前十六题全部的解题思路。<a href="https://upwnothing.github.io/zh-CN/afcc83f6">第二部分</a>正在施工中…</p>
