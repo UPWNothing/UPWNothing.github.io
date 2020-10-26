@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>WebGoat安装运行步骤</title>
+    <url>/zh-CN/a0ebb04/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+<p>WebGoat 是一个由OWASP开发和维护的，专为网络应用安全教学所设计的网络应用靶机。 WebGoat中包含了常见的OWASP Top10漏洞的训练页面。对于有意掌握网络应用安全及渗透测试相关技术的用户来说，这是个非常有效的工具。</p>
+<p>这篇文章就简单介绍了如何下载，并在本地运行WebGoat。</p>
+<!-- more -->
+
+
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>从<a href="https://github.com/WebGoat/WebGoat/releases" target="_blank" rel="noopener">WebGoat的Github页面</a>下载最新版。 </p>
+<p><img data-src="/zh-CN/a0ebb04/download.png" alt="下载webgoat-server"></p>
+<h1 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h1><p>进入到下载文件的保存目录，执行下述命令：</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">java -jar webgoat-server<span class="number">-8.1</span><span class="number">.0</span>.jar --server.port=<span class="number">9090</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/zh-CN/a0ebb04/run.png" alt="运行"></p>
+<p>服务器成功开始运行后，在浏览器进入<a href="http://localhost:9090/WebGoat" target="_blank" rel="noopener">http://localhost:9090/WebGoat</a>页面。就可以看到如下登录界面：</p>
+<p><img data-src="/zh-CN/a0ebb04/main_page.png" alt="WebGoat主页"></p>
+<p>选择注册新用户。注册完成后就可以看到挑战页面：</p>
+<p><img data-src="/zh-CN/a0ebb04/main_page_2.png" alt="WebGoat首页"></p>
+<p>OK，现在就可以开始挑战了！！冲鸭～</p>
+<h1 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h1><p>再次多提醒一句，对于这类网络应用的靶机，由于都是有意地设计成存在漏洞，所以千万不要将其暴露在互联网上。 <strong>请在一个隔离的环境，进行实验。</strong></p>
+]]></content>
+      <categories>
+        <category>Security</category>
+        <category>Web Application</category>
+      </categories>
+      <tags>
+        <tag>Pentest</tag>
+        <tag>WebGoat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git配置文件泄漏的处理方法</title>
     <url>/zh-CN/55dd0f0b/</url>
     <content><![CDATA[<a id="more"></a>
