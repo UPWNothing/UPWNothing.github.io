@@ -3,12 +3,9 @@
   <entry>
     <title>WebGoat安装运行步骤</title>
     <url>/zh-CN/a0ebb04/</url>
-    <content><![CDATA[<a id="more"></a>
-
-
-<p>WebGoat 是一个由OWASP开发和维护的，专为网络应用安全教学所设计的网络应用靶机。 WebGoat中包含了常见的OWASP Top10漏洞的训练页面。对于有意掌握网络应用安全及渗透测试相关技术的用户来说，这是个非常有效的工具。</p>
+    <content><![CDATA[<p>WebGoat 是一个由OWASP开发和维护的，专为网络应用安全教学所设计的网络应用靶机。 WebGoat中包含了常见的OWASP Top10漏洞的训练页面。对于有意掌握网络应用安全及渗透测试相关技术的用户来说，这是个非常有效的工具。</p>
 <p>这篇文章就简单介绍了如何下载，并在本地运行WebGoat。</p>
-<!-- more -->
+<a id="more"></a>
 
 
 <h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>从<a href="https://github.com/WebGoat/WebGoat/releases" target="_blank" rel="noopener">WebGoat的Github页面</a>下载最新版。 </p>
