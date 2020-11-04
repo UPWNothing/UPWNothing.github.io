@@ -55,7 +55,7 @@
 <p>好了，这样一眼就可以看出来，IP地址的第一位是<code>1</code>。再对第二第三位进行重复操作。这样子，就可以获得IP地址的前三位为<code>104</code>。</p>
 <p>提交答案！搞定！</p>
 <h2 id="13-Least-Privilege"><a href="#13-Least-Privilege" class="headerlink" title="13. Least Privilege"></a>13. Least Privilege</h2><p>再次强调了最小化权限的重要性。</p>
-<h3 id="Path-Traversal"><a href="#Path-Traversal" class="headerlink" title="Path Traversal"></a>Path Traversal</h3><h2 id="路径-目录-遍历攻击"><a href="#路径-目录-遍历攻击" class="headerlink" title="路径(目录)遍历攻击"></a>路径(目录)遍历攻击</h2><p>另一种非常常见的注入攻击类型。路径遍历攻击利用网站的漏洞，可以获取目标系统根目录之外的非授权访问。</p>
+<h1 id="Path-Traversal"><a href="#Path-Traversal" class="headerlink" title="Path Traversal"></a>Path Traversal</h1><h2 id="路径-目录-遍历攻击"><a href="#路径-目录-遍历攻击" class="headerlink" title="路径(目录)遍历攻击"></a>路径(目录)遍历攻击</h2><p>另一种非常常见的注入攻击类型。路径遍历攻击利用网站的漏洞，可以获取目标系统根目录之外的非授权访问。</p>
 <h2 id="Path-traversal-while-uploading-files"><a href="#Path-traversal-while-uploading-files" class="headerlink" title="Path traversal while uploading files"></a>Path traversal while uploading files</h2><p>这个练习需要利用当前系统中的图片上传功能，将文件上传到不同于默认上传目录的另一个目录中。</p>
 <p>由于目标系统是构建在Linux系统上的，所以往往使用的方法都是利用burp，在上传的文件名之前加上<code>../</code>达到跨路径的目的。</p>
 <p>首先随意选择一个文件作为头像进行上传，并使用BurpSuite拦截请求。</p>
