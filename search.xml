@@ -1,7 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>WebGoat Injection 解题思路 （一）</title>
+    <title>WebGoat Injection 解题思路 （下）</title>
+    <url>/zh-CN/aa0b11b6/</url>
+    <content><![CDATA[<h1 id="WebGoat-版本信息"><a href="#WebGoat-版本信息" class="headerlink" title="WebGoat 版本信息"></a>WebGoat 版本信息</h1><ul>
+<li>WebGoat v8.1.0</li>
+</ul>
+<h1 id="SQL-Injection-mitigation"><a href="#SQL-Injection-mitigation" class="headerlink" title="SQL Injection (mitigation)"></a>SQL Injection (mitigation)</h1><h2 id="1～4-Immutable-Queries"><a href="#1～4-Immutable-Queries" class="headerlink" title="1～4. Immutable Queries"></a>1～4. Immutable Queries</h2><p>介绍了可以防御SQL注入的三种方法：</p>
+<ul>
+<li>Static Queries 静态查询语句</li>
+<li>Parameterized Queries 参数化查询语句</li>
+<li>Stored Procedures 储存过程</li>
+</ul>
+<h2 id="5-Try-it-Writing-safe-code"><a href="#5-Try-it-Writing-safe-code" class="headerlink" title="5. Try it! Writing safe code"></a>5. Try it! Writing safe code</h2><p>填空题！！完成一段可以抵御SQL注入攻击的安全代码。</p>
+<p>基本按照第四节中的JAVA代码样例即可：</p>
+<p><img data-src="/zh-CN/aa0b11b6/3_0.png" alt></p>
+<h2 id="6-Try-it-Writing-safe-code"><a href="#6-Try-it-Writing-safe-code" class="headerlink" title="6. Try it! Writing safe code"></a>6. Try it! Writing safe code</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">tring data;</span><br><span class="line">String accountID = <span class="string">"1"</span>;</span><br><span class="line">String query = <span class="string">"SELECT first_name, last_name, acct_id, balance FROM user_data WHERE acct_id = ?"</span>;</span><br><span class="line"><span class="keyword">try</span> (Connection connection = DriverManager.getConnection(DBURL, DBUSER, DBPW))&#123;</span><br><span class="line">    PreparedStatement statement = connection.prepareStatement(query);</span><br><span class="line">    statement.setString(<span class="number">1</span>, accountID);</span><br><span class="line">    ResultSet results = statement.executeQuery();</span><br><span class="line">    <span class="keyword">if</span> (results != <span class="keyword">null</span> &amp;&amp; results.first()) &#123;</span><br><span class="line">       results.last(); <span class="comment">// Only one record should be returned for this query</span></span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       <span class="comment">// Handle the error - no records found &#125;</span></span><br><span class="line">     &#125;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (SQLException sqle) &#123;</span><br><span class="line">    <span class="comment">// Log and handle the SQL Exception &#125;</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="7-Parameterized-Queries-NET"><a href="#7-Parameterized-Queries-NET" class="headerlink" title="7. Parameterized Queries - .NET"></a>7. Parameterized Queries - .NET</h2><p>这里又另外展示了一段.NET中的参数话查询代码</p>
+<h2 id="8-Input-Validation-Required"><a href="#8-Input-Validation-Required" class="headerlink" title="8. Input Validation Required?"></a>8. Input Validation Required?</h2><p>简单解释了在使用了正确的方法进行SQL语句的查询之后，用户输入校验为什么依然是必要的。</p>
+<h2 id="9-Input-validation-alone-is-not-enough"><a href="#9-Input-validation-alone-is-not-enough" class="headerlink" title="9. Input validation alone is not enough!!"></a>9. Input validation alone is not enough!!</h2><p>如同标题所说的： <strong>单单使用输入校验是不够的</strong>。攻击者总能找到办法针对输入校验进行绕过。这里我们就需要尝试绕过，以此来实现注入。</p>
+<p>先简单尝试最普通的注入语句：<code>d&#39; or 1=1 --</code>。我们可以看到程序进行了输入校验，不接受输入中包含空格。</p>
+<p><img data-src="/zh-CN/aa0b11b6/3_9.png" alt></p>
+<p>尝试用空注释符<code>/**/</code>来代替空格：<code>d&#39;/**/or/**/1=1/**/--</code></p>
+<p><img data-src="/zh-CN/aa0b11b6/3_9_1.png" alt></p>
+<p>Emmm…答案还是不正确。但是，可以看到，输入的语句已经按照我们所设想的被成功执行了。回忆一下之前相同的一题，好像是要拉去另一张表的内容…</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">d';<span class="keyword">SELECT</span><span class="comment">/**/</span>*<span class="comment">/**/</span><span class="keyword">from</span><span class="comment">/**/</span>user_system_data<span class="comment">--</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/zh-CN/aa0b11b6/3_9_2.png" alt></p>
+<p>嘿嘿！果然，这下就对了！</p>
+<h2 id="10-Input-validation-alone-is-not-enough-2"><a href="#10-Input-validation-alone-is-not-enough-2" class="headerlink" title="10. Input validation alone is not enough!! (2)"></a>10. Input validation alone is not enough!! (2)</h2><p>继续上一题的内容。开发团队在仅使用输入校验这条路上…不撞破南墙不回头了…</p>
+<p>先使用上一题的payload进行简单尝试：<code>d&#39;;SELECT/**/*/**/from/**/user_system_data--</code>。果然，得到了报错…</p>
+<p><img data-src="/zh-CN/aa0b11b6/3_10_1.png" alt></p>
+<p>仔细看一下最终被执行的SQL命令，不难发现<code>SELECT</code>和<code>from</code>都被系统删除了。那如果输入的时候将<code>SELECT</code>替换为<code>SESELCETLECT</code>会有什么结果呢？</p>
+<p>将输入简单修改为：<code>d&#39;;SELSELECTECT/**/*/**/frfromom/**/user_system_data--</code></p>
+<p><img data-src="/zh-CN/aa0b11b6/3_10_2.png" alt></p>
+<p>Bingo!!系统删除了一个<code>SELECT</code>，然后又刚好剩下了一个<code>SELECT</code>来完成完整的SQL注入。</p>
+<blockquote>
+<p>即使要使用这种方法来抵御SQL注入，也要使用递归删除的方法。直到用户输入完全匹配不到关键词列表中的任何一个为止。</p>
+</blockquote>
+<h2 id="11-Order-by-clause"><a href="#11-Order-by-clause" class="headerlink" title="11. Order by clause"></a>11. Order by clause</h2><p>Prepared Statement可以有效地阻止SQL注入的发生，但这也并不意味着只要使用了这种方式就可以防止所有的SQL注入。这里举例了一种基于<code>Order</code>语句的注入方式。</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">SELECT * <span class="keyword">FROM</span><span class="built_in"> users </span>ORDER BY (CASE WHEN (<span class="literal">TRUE</span>) THEN lastname <span class="keyword">ELSE</span> firstname)</span><br></pre></td></tr></table></figure>
+
+<p>将True改为任意判断语句即可通过返回值的排列顺序获取到数据库的信息。</p>
+<h2 id="12-SQL-Injection-Through-Order-By-Field"><a href="#12-SQL-Injection-Through-Order-By-Field" class="headerlink" title="12. SQL Injection Through Order By Field"></a>12. SQL Injection Through Order By Field</h2><p>目标是通过对<code>ORDER BY</code>进行注入，进而获取到webgoat-prd服务器的IP地址。</p>
+<p>通过Burp截取排序相关的请求，可以通过服务器的报错信息得到相关的表明。</p>
+<p><img data-src="/zh-CN/aa0b11b6/3_12.png" alt></p>
+<p>首先将payload修改为<code>(CASE+WHEN+(SELECT+SUBSTRING(ip,1,1)+FROM+servers+where+hostname=&#39;webgoat-prd&#39;)=80+THEN+ip+ELSE+id+END)</code>，看看语法是否正确。由于IP地址的前几位都是数字，所以需要爆破的量并不算多。</p>
+<p>首先对IP的第一位进行尝试，使用BurpSuite的Intruder功能。</p>
+<p><img data-src="/zh-CN/aa0b11b6/3_12_1.png" alt></p>
+<p>将爆破的值设为数字类型，从0-9。并且简单设置Grep-Payload选项，以此方便我们在结果中进行比对。</p>
+<p><img data-src="/zh-CN/aa0b11b6/3_12_2.png" alt></p>
+<p>好了，这样一眼就可以看出来，IP地址的第一位是<code>1</code>。再对第二第三位进行重复操作。这样子，就可以获得IP地址的前三位为<code>104</code>。</p>
+<p>提交答案！搞定！</p>
+<h2 id="13-Least-Privilege"><a href="#13-Least-Privilege" class="headerlink" title="13. Least Privilege"></a>13. Least Privilege</h2><p>再次强调了最小化权限的重要性。</p>
+<h3 id="Path-Traversal"><a href="#Path-Traversal" class="headerlink" title="Path Traversal"></a>Path Traversal</h3><h2 id="路径-目录-遍历攻击"><a href="#路径-目录-遍历攻击" class="headerlink" title="路径(目录)遍历攻击"></a>路径(目录)遍历攻击</h2><p>另一种非常常见的注入攻击类型。路径遍历攻击利用网站的漏洞，可以获取目标系统根目录之外的非授权访问。</p>
+<h2 id="Path-traversal-while-uploading-files"><a href="#Path-traversal-while-uploading-files" class="headerlink" title="Path traversal while uploading files"></a>Path traversal while uploading files</h2><p>这个练习需要利用当前系统中的图片上传功能，将文件上传到不同于默认上传目录的另一个目录中。</p>
+<p>由于目标系统是构建在Linux系统上的，所以往往使用的方法都是利用burp，在上传的文件名之前加上<code>../</code>达到跨路径的目的。</p>
+<p>首先随意选择一个文件作为头像进行上传，并使用BurpSuite拦截请求。</p>
+<p><img data-src="/zh-CN/aa0b11b6/4_2.png" alt></p>
+<p>将文件名修改为：<code>../../../../../../../home/richard/.webgoat-8.1.0/PathTraversal/test2.php.jpg</code>。即先确保返回到文件系统的根目录，再连接上页面上显示的目标路径，确保路径是正确的。</p>
+<p>submit！咿呀？？好像不大对头…系统返回的错误信息是：</p>
+<p><img data-src="/zh-CN/aa0b11b6/4_2_1.png" alt></p>
+<p>看来文件并没有传到我们相传的地方。再仔细一想，这个路径应该是根据表格中的<code>Full Name</code>项构建的，所以我应该是找错了注入点。这样的话，那就尝试将用户名修改为<code>../test</code>试试看吧～</p>
+<p>Bingo！这下对了！</p>
+<h2 id="Path-traversal-while-uploading-files-2"><a href="#Path-traversal-while-uploading-files-2" class="headerlink" title="Path traversal while uploading files (2)"></a>Path traversal while uploading files (2)</h2><p>这下进行了一些修改，系统会将输入中的<code>../</code>删除，所以我们要想办法进行绕过。那么先测试一下系统是否递归的删除<code>../</code>了呢？还是只进行了一次匹配？</p>
+<p>将Full Name修改为<code>..././test</code>进行尝试。直接成功了…</p>
+<h2 id="Path-traversal-while-uploading-files-3"><a href="#Path-traversal-while-uploading-files-3" class="headerlink" title="Path traversal while uploading files (3)"></a>Path traversal while uploading files (3)</h2><p>这次系统对于Full Name进行了完整的校验，所以终于轮到对于文件名进行注入了…</p>
+<p>再次尝试类似于在第一步尝试中所做的那样，但是现在我们了解了路径情况，所以只要把文件名前加上<code>../</code>就可以了。</p>
+<p><img data-src="/zh-CN/aa0b11b6/4_4.png" alt></p>
+<p>顺利通过！！</p>
+<h2 id="Retrieving-other-files-with-a-path-traversal"><a href="#Retrieving-other-files-with-a-path-traversal" class="headerlink" title="Retrieving other files with a path traversal"></a>Retrieving other files with a path traversal</h2><p>这次更换了一个场景。需要通过利用路径遍历漏洞来读取一个名为<code>path-traversal-secret.jpg</code>的图片。</p>
+<p>先来看一下这个系统的功能。点击Show random cat picture系统会随机返回一张喵喵的图片。（啊，好可爱…）</p>
+<p><img data-src="/zh-CN/aa0b11b6/4_5.png" alt></p>
+<p>先用BurpSuite来截取一下请求，看看有没有什么发现呗。</p>
+<p><img data-src="/zh-CN/aa0b11b6/4_5_1.png" alt></p>
+<p>Hmm…没有任何参数，仅仅是调用了random-picture这个页面而已。那就只能再进一步看看Response吧！</p>
+<p><img data-src="/zh-CN/aa0b11b6/4_5_2.png" alt></p>
+<p>哦？！在系统响应回来的页面里，我看到了这么一行：<code>Location: /PathTraversal/random-picture?id=2.jpg</code>。好家伙！这个页面同样接受<code>id</code>参数，并且这个参数的值直接是文件名的…</p>
+<p>那就不客气了呗，直接请求 <a href="http://localhost:9090/WebGoat/PathTraversal/random-picture?id=path-traversal-secret.jpg" target="_blank" rel="noopener">http://localhost:9090/WebGoat/PathTraversal/random-picture?id=path-traversal-secret.jpg</a> 这个页面去咯！</p>
+<p>嗷呜！失败了！直接是一个400。那就改一下参数:<code>id=2.jpg</code>试试看。</p>
+<p><img data-src="/zh-CN/aa0b11b6/4_5_3.png" alt></p>
+<p>原来<code>.jpg</code>系统是自动添加的。不过同时还有额外收获，我们看到了当路径不存在时，系统会列出当前路径中的文件，而且当前路径中并没有我们想要找的<code>path-traversal-secret.jpg</code>。</p>
+<p>那么尝试<code>id=../</code>返回上级菜单试试？</p>
+<p><img data-src="/zh-CN/aa0b11b6/4_5_4.png" alt></p>
+<p>提示参数中不接受非法字符，于是乎尝试将<code>../</code>进行URL编码：<code>id=%2E%2E%2F</code>。这下我们终于看到了列出的目录，但是并没有我们想找的图片。再试着多返回一级！终于有发现了！！</p>
+<p><img data-src="/zh-CN/aa0b11b6/4_5_5.png" alt></p>
+<p>这下就离成功不远了！！<code>id=%2E%2E%2F%2E%2E%2Fpath-traversal-secret</code>访问这个页面，终于看到提示：密钥就是用户名的SHA-512的值。</p>
+<p><img data-src="/zh-CN/aa0b11b6/4_5_6.png" alt></p>
+<p>最后计算一下哈希值，提交一下就好了。</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">┌──<span class="params">(richard㉿richard-Kali)</span>-[~<span class="string">/Tools/Forensics</span>]</span><br><span class="line">└─$ <span class="keyword">echo</span> -ne 'pentester' | sha512sum</span><br><span class="line">f167e76e501a479aa05b927d6dc9e05de8d66a8ebffd411e24dd30ef1e435deec8478a819<span class="keyword">cd</span>26d1a1eda2fb3a1c18fafeff64b536bc351265b09<span class="keyword">cd</span>99e967d787  -</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>Security</category>
+        <category>Web Application</category>
+      </categories>
+      <tags>
+        <tag>Pentest</tag>
+        <tag>WebGoat</tag>
+        <tag>OWASP Top10</tag>
+        <tag>SQLMap</tag>
+        <tag>SQL Injection</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WebGoat Injection 解题思路 （上）</title>
     <url>/zh-CN/3dea2b22/</url>
     <content><![CDATA[<h1 id="WebGoat-版本信息"><a href="#WebGoat-版本信息" class="headerlink" title="WebGoat 版本信息"></a>WebGoat 版本信息</h1><ul>
 <li>WebGoat v8.1.0</li>
@@ -47,8 +153,8 @@
 <p>成功！</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这一小节介绍了SQL注入中一些最为基础的概念。并通过一个比较真实的场景，来展现了一个攻击者在面对一个存在漏洞的系统时，可以实现哪些操作。</p>
 <p>当然，由于这一部分主要是面对刚刚入门的初学者，为了更好的实现展示的目的，所以这一部分中的漏洞非常的显而易见，也非常容易利用。而在实际的生产环境中，大多数的漏洞并不是那么简单地就能被利用。下一节就要尝试更困难的挑战了！</p>
-<h2 id="SQL-Injection-advanced"><a href="#SQL-Injection-advanced" class="headerlink" title="SQL Injection (advanced)"></a>SQL Injection (advanced)</h2><h3 id="1-2"><a href="#1-2" class="headerlink" title="1,2"></a>1,2</h3><p>这两节简单得介绍了SQL注入实操的一些基本技巧。这些技巧其实非常有用，虽然我们可以使用SQL Map这类的工具来帮助我们完成一些自动化的SQL注入操作，但是对于基本原理的理解可以让你最大化发挥出工具的价值。</p>
-<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>这里需要通过SQL注入获取数据库中表的完整信息，而且这次我们已经不满足于获得当前的数据表。我们还需要同时获取另一张表中的内容。这里我们可以使用<code>UNION SELECT</code>语句来实现两张表的数据拼接：</p>
+<h2 id="SQL-Injection-advanced"><a href="#SQL-Injection-advanced" class="headerlink" title="SQL Injection (advanced)"></a>SQL Injection (advanced)</h2><h3 id="Challenge-1-2"><a href="#Challenge-1-2" class="headerlink" title="Challenge 1,2"></a>Challenge 1,2</h3><p>这两节简单得介绍了SQL注入实操的一些基本技巧。这些技巧其实非常有用，虽然我们可以使用SQL Map这类的工具来帮助我们完成一些自动化的SQL注入操作，但是对于基本原理的理解可以让你最大化发挥出工具的价值。</p>
+<h3 id="Challenge-3"><a href="#Challenge-3" class="headerlink" title="Challenge 3"></a>Challenge 3</h3><p>这里需要通过SQL注入获取数据库中表的完整信息，而且这次我们已经不满足于获得当前的数据表。我们还需要同时获取另一张表中的内容。这里我们可以使用<code>UNION SELECT</code>语句来实现两张表的数据拼接：</p>
 <p><code>d&#39; and 1=2 UNION SELECT user_system_data.*,NULL,NULL,NULL from user_system_data --</code></p>
 <p>这里需要注意的有两点：  </p>
 <ul>
@@ -60,9 +166,9 @@
 <p><code>d&#39;; SELECT * from user_system_data</code> </p>
 <p><img data-src="/zh-CN/3dea2b22/1_2_3_1.png" alt></p>
 <p>输入Dave的密码： <code>passW0rD</code> 最终完成。 </p>
-<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><p>这边介绍了SqL盲注。之前的挑战中，页面上会返回完整的信息，包括了数据库的报错信息还有完整的查询结果。但在现实的环境中，大多数的情况是，数据库仅会返回查询是成功还是失败。在这种情况下，我们每次可以从数据库获得的信息会大大减少，这也很大程度增加了注入的难度。</p>
+<h3 id="Challenge-4"><a href="#Challenge-4" class="headerlink" title="Challenge 4"></a>Challenge 4</h3><p>这边介绍了SqL盲注。之前的挑战中，页面上会返回完整的信息，包括了数据库的报错信息还有完整的查询结果。但在现实的环境中，大多数的情况是，数据库仅会返回查询是成功还是失败。在这种情况下，我们每次可以从数据库获得的信息会大大减少，这也很大程度增加了注入的难度。</p>
 <p>这一节的说明简要解释了两种最常见的盲注方法： <strong>基于内容的盲注</strong> 和 <strong>基于时间的盲注</strong> </p>
-<h3 id="5"><a href="#5" class="headerlink" title="5"></a>5</h3><p>来吧，亲自尝试一下！！</p>
+<h3 id="Challenge-5"><a href="#Challenge-5" class="headerlink" title="Challenge 5"></a>Challenge 5</h3><p>来吧，亲自尝试一下！！</p>
 <p>这里我们看到了一个最为常见的功能：登录与注册。我们需要最终以Tom的身份登录进系统。</p>
 <p><img data-src="/zh-CN/3dea2b22/1_2_5.png" alt></p>
 <p>简单尝试使用SQL注入绕过登录，发现失败了。然后尝试在Register功能中注入。</p>
@@ -95,6 +201,31 @@
 <blockquote>
 <p>当然，这道题同样可以在password参数中爆破出密码，这里只是给出了一种完全使用SQLMap的思路。</p>
 </blockquote>
+<h3 id="Challenge-6"><a href="#Challenge-6" class="headerlink" title="Challenge 6"></a>Challenge 6</h3><p>最后是Quiz部分，总共五道选择题，全部做对视为通过。所有的题目都是关于 <strong>Prepared statement（预编译查询语句）</strong>。</p>
+<ol>
+<li>What is the difference between a prepared statement and a statement?</li>
+</ol>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">Solution <span class="number">4</span>: A <span class="keyword">statement</span> has got <span class="keyword">values</span> <span class="keyword">instead</span> <span class="keyword">of</span> a <span class="keyword">prepared</span> <span class="keyword">statement</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Which one of the following characters is a placeholder for variables?</li>
+</ol>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">Solution <span class="number">3</span>: ?</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>How can prepared statements be faster than statements?</li>
+</ol>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Solution 2: Prepared statements are compiled once by the database management<span class="built_in"> system </span>waitingfor input <span class="keyword">and</span> are pre-compiled this way.</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>How can a prepared statement prevent SQL-Injection?</li>
+</ol>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Solution 3: Placeholders can prevent that the<span class="built_in"> users </span>input gets attached <span class="keyword">to</span> the SQL query resulting <span class="keyword">in</span> a seperation of code <span class="keyword">and</span> data.</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>What happens if a person with malicious intent writes into a register form :Robert); DROP TABLE Students;– that has a prepared statement?</li>
+</ol>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">Solution <span class="number">4</span>: The <span class="keyword">database</span> registers <span class="string">'Robert'</span> ); <span class="keyword">DROP</span> <span class="keyword">TABLE</span> Students;<span class="comment">--'.</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Security</category>

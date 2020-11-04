@@ -25,7 +25,7 @@
 
   <meta name="description" content="WebGoat (A1) Injection 解题思路 上半部分">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WebGoat Injection 解题思路 （一）">
+<meta property="og:title" content="WebGoat Injection 解题思路 （上）">
 <meta property="og:url" content="https://upwnothing.github.io/zh-CN/3dea2b22/index.html">
 <meta property="og:site_name" content="UPWNothing&#39;s Playground">
 <meta property="og:description" content="WebGoat (A1) Injection 解题思路 上半部分">
@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_2_5_5.png">
 <meta property="og:image" content="https://upwnothing.github.io/zh-CN/3dea2b22/1_2_6.png">
 <meta property="article:published_time" content="2020-11-02T03:56:09.000Z">
-<meta property="article:modified_time" content="2020-11-02T03:56:51.757Z">
+<meta property="article:modified_time" content="2020-11-02T07:48:28.358Z">
 <meta property="article:author" content="UPWNothing">
 <meta property="article:tag" content="Pentest">
 <meta property="article:tag" content="WebGoat">
@@ -87,7 +87,7 @@
 </script>
 <script data-ad-client="ca-pub-2179953596008833" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  <title>WebGoat Injection 解题思路 （一） | UPWNothing's Playground</title>
+  <title>WebGoat Injection 解题思路 （上） | UPWNothing's Playground</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
     <script>
@@ -172,7 +172,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -255,7 +255,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          WebGoat Injection 解题思路 （一）
+          WebGoat Injection 解题思路 （上）
         </h1>
 
         <div class="post-meta">
@@ -266,7 +266,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-11-02 11:56:09 / 修改时间：11:56:51" itemprop="dateCreated datePublished" datetime="2020-11-02T11:56:09+08:00">2020-11-02</time>
+              <time title="创建时间：2020-11-02 11:56:09 / 修改时间：15:48:28" itemprop="dateCreated datePublished" datetime="2020-11-02T11:56:09+08:00">2020-11-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -283,7 +283,7 @@
             </span>
 
           
-            <span id="/zh-CN/3dea2b22/" class="post-meta-item leancloud_visitors" data-flag-title="WebGoat Injection 解题思路 （一）" title="阅读次数">
+            <span id="/zh-CN/3dea2b22/" class="post-meta-item leancloud_visitors" data-flag-title="WebGoat Injection 解题思路 （上）" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -316,7 +316,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.8k</span>
+              <span>3.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -380,8 +380,8 @@
 <p>成功！</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这一小节介绍了SQL注入中一些最为基础的概念。并通过一个比较真实的场景，来展现了一个攻击者在面对一个存在漏洞的系统时，可以实现哪些操作。</p>
 <p>当然，由于这一部分主要是面对刚刚入门的初学者，为了更好的实现展示的目的，所以这一部分中的漏洞非常的显而易见，也非常容易利用。而在实际的生产环境中，大多数的漏洞并不是那么简单地就能被利用。下一节就要尝试更困难的挑战了！</p>
-<h2 id="SQL-Injection-advanced"><a href="#SQL-Injection-advanced" class="headerlink" title="SQL Injection (advanced)"></a>SQL Injection (advanced)</h2><h3 id="1-2"><a href="#1-2" class="headerlink" title="1,2"></a>1,2</h3><p>这两节简单得介绍了SQL注入实操的一些基本技巧。这些技巧其实非常有用，虽然我们可以使用SQL Map这类的工具来帮助我们完成一些自动化的SQL注入操作，但是对于基本原理的理解可以让你最大化发挥出工具的价值。</p>
-<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>这里需要通过SQL注入获取数据库中表的完整信息，而且这次我们已经不满足于获得当前的数据表。我们还需要同时获取另一张表中的内容。这里我们可以使用<code>UNION SELECT</code>语句来实现两张表的数据拼接：</p>
+<h2 id="SQL-Injection-advanced"><a href="#SQL-Injection-advanced" class="headerlink" title="SQL Injection (advanced)"></a>SQL Injection (advanced)</h2><h3 id="Challenge-1-2"><a href="#Challenge-1-2" class="headerlink" title="Challenge 1,2"></a>Challenge 1,2</h3><p>这两节简单得介绍了SQL注入实操的一些基本技巧。这些技巧其实非常有用，虽然我们可以使用SQL Map这类的工具来帮助我们完成一些自动化的SQL注入操作，但是对于基本原理的理解可以让你最大化发挥出工具的价值。</p>
+<h3 id="Challenge-3"><a href="#Challenge-3" class="headerlink" title="Challenge 3"></a>Challenge 3</h3><p>这里需要通过SQL注入获取数据库中表的完整信息，而且这次我们已经不满足于获得当前的数据表。我们还需要同时获取另一张表中的内容。这里我们可以使用<code>UNION SELECT</code>语句来实现两张表的数据拼接：</p>
 <p><code>d&#39; and 1=2 UNION SELECT user_system_data.*,NULL,NULL,NULL from user_system_data --</code></p>
 <p>这里需要注意的有两点：  </p>
 <ul>
@@ -393,9 +393,9 @@
 <p><code>d&#39;; SELECT * from user_system_data</code> </p>
 <p><img data-src="/zh-CN/3dea2b22/1_2_3_1.png" alt></p>
 <p>输入Dave的密码： <code>passW0rD</code> 最终完成。 </p>
-<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><p>这边介绍了SqL盲注。之前的挑战中，页面上会返回完整的信息，包括了数据库的报错信息还有完整的查询结果。但在现实的环境中，大多数的情况是，数据库仅会返回查询是成功还是失败。在这种情况下，我们每次可以从数据库获得的信息会大大减少，这也很大程度增加了注入的难度。</p>
+<h3 id="Challenge-4"><a href="#Challenge-4" class="headerlink" title="Challenge 4"></a>Challenge 4</h3><p>这边介绍了SqL盲注。之前的挑战中，页面上会返回完整的信息，包括了数据库的报错信息还有完整的查询结果。但在现实的环境中，大多数的情况是，数据库仅会返回查询是成功还是失败。在这种情况下，我们每次可以从数据库获得的信息会大大减少，这也很大程度增加了注入的难度。</p>
 <p>这一节的说明简要解释了两种最常见的盲注方法： <strong>基于内容的盲注</strong> 和 <strong>基于时间的盲注</strong> </p>
-<h3 id="5"><a href="#5" class="headerlink" title="5"></a>5</h3><p>来吧，亲自尝试一下！！</p>
+<h3 id="Challenge-5"><a href="#Challenge-5" class="headerlink" title="Challenge 5"></a>Challenge 5</h3><p>来吧，亲自尝试一下！！</p>
 <p>这里我们看到了一个最为常见的功能：登录与注册。我们需要最终以Tom的身份登录进系统。</p>
 <p><img data-src="/zh-CN/3dea2b22/1_2_5.png" alt></p>
 <p>简单尝试使用SQL注入绕过登录，发现失败了。然后尝试在Register功能中注入。</p>
@@ -428,6 +428,31 @@
 <blockquote>
 <p>当然，这道题同样可以在password参数中爆破出密码，这里只是给出了一种完全使用SQLMap的思路。</p>
 </blockquote>
+<h3 id="Challenge-6"><a href="#Challenge-6" class="headerlink" title="Challenge 6"></a>Challenge 6</h3><p>最后是Quiz部分，总共五道选择题，全部做对视为通过。所有的题目都是关于 <strong>Prepared statement（预编译查询语句）</strong>。</p>
+<ol>
+<li>What is the difference between a prepared statement and a statement?</li>
+</ol>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Solution <span class="number">4</span>: A <span class="keyword">statement</span> has got <span class="keyword">values</span> <span class="keyword">instead</span> <span class="keyword">of</span> a <span class="keyword">prepared</span> <span class="keyword">statement</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Which one of the following characters is a placeholder for variables?</li>
+</ol>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Solution <span class="number">3</span>: ?</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>How can prepared statements be faster than statements?</li>
+</ol>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Solution 2: Prepared statements are compiled once by the database management<span class="built_in"> system </span>waitingfor input <span class="keyword">and</span> are pre-compiled this way.</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>How can a prepared statement prevent SQL-Injection?</li>
+</ol>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Solution 3: Placeholders can prevent that the<span class="built_in"> users </span>input gets attached <span class="keyword">to</span> the SQL query resulting <span class="keyword">in</span> a seperation of code <span class="keyword">and</span> data.</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>What happens if a person with malicious intent writes into a register form :Robert); DROP TABLE Students;– that has a prepared statement?</li>
+</ol>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Solution <span class="number">4</span>: The <span class="keyword">database</span> registers <span class="string">'Robert'</span> ); <span class="keyword">DROP</span> <span class="keyword">TABLE</span> Students;<span class="comment">--'.</span></span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -437,6 +462,9 @@
       
   <div class="popular-posts-header">你可能感兴趣的文章</div>
   <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/zh-CN/aa0b11b6/" rel="bookmark">WebGoat Injection 解题思路 （下）</a></div>
+    </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/zh-CN/a0ebb04/" rel="bookmark">WebGoat安装运行步骤</a></div>
     </li>
@@ -491,7 +519,10 @@
     <a href="/zh-CN/a0ebb04/" rel="prev" title="WebGoat安装运行步骤">
       <i class="fa fa-chevron-left"></i> WebGoat安装运行步骤
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/zh-CN/aa0b11b6/" rel="next" title="WebGoat Injection 解题思路 （下）">
+      WebGoat Injection 解题思路 （下） <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -551,7 +582,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WebGoat-版本信息"><span class="nav-number">1.</span> <span class="nav-text">WebGoat 版本信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A1-Injection-注入"><span class="nav-number">2.</span> <span class="nav-text">(A1) Injection 注入</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-Injection-intro"><span class="nav-number">2.1.</span> <span class="nav-text">SQL Injection (intro)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Concept"><span class="nav-number">2.1.1.</span> <span class="nav-text">1 - Concept</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-What-is-SQL"><span class="nav-number">2.1.2.</span> <span class="nav-text">2 - What is SQL?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-DML"><span class="nav-number">2.1.3.</span> <span class="nav-text">3 - DML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-DDL"><span class="nav-number">2.1.4.</span> <span class="nav-text">4 - DDL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-DCL"><span class="nav-number">2.1.5.</span> <span class="nav-text">5 - DCL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-amp-7-amp-8-What-is-SQL-injection"><span class="nav-number">2.1.6.</span> <span class="nav-text">6 &amp; 7 &amp; 8 - What is SQL injection?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-Try-It"><span class="nav-number">2.1.7.</span> <span class="nav-text">9 - Try It!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-Numeric-SQL-Injection"><span class="nav-number">2.1.8.</span> <span class="nav-text">10 - Numeric SQL Injection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-String-SQL-Injection"><span class="nav-number">2.1.9.</span> <span class="nav-text">11 - String SQL Injection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-Compromising-Integrity-with-Query-chaining"><span class="nav-number">2.1.10.</span> <span class="nav-text">12 - Compromising Integrity with Query chaining</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-Compromising-Availability"><span class="nav-number">2.1.11.</span> <span class="nav-text">13 - Compromising Availability</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.1.12.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-Injection-advanced"><span class="nav-number">2.2.</span> <span class="nav-text">SQL Injection (advanced)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2"><span class="nav-number">2.2.1.</span> <span class="nav-text">1,2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3"><span class="nav-number">2.2.2.</span> <span class="nav-text">3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4"><span class="nav-number">2.2.3.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5"><span class="nav-number">2.2.4.</span> <span class="nav-text">5</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WebGoat-版本信息"><span class="nav-number">1.</span> <span class="nav-text">WebGoat 版本信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A1-Injection-注入"><span class="nav-number">2.</span> <span class="nav-text">(A1) Injection 注入</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-Injection-intro"><span class="nav-number">2.1.</span> <span class="nav-text">SQL Injection (intro)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Concept"><span class="nav-number">2.1.1.</span> <span class="nav-text">1 - Concept</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-What-is-SQL"><span class="nav-number">2.1.2.</span> <span class="nav-text">2 - What is SQL?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-DML"><span class="nav-number">2.1.3.</span> <span class="nav-text">3 - DML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-DDL"><span class="nav-number">2.1.4.</span> <span class="nav-text">4 - DDL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-DCL"><span class="nav-number">2.1.5.</span> <span class="nav-text">5 - DCL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-amp-7-amp-8-What-is-SQL-injection"><span class="nav-number">2.1.6.</span> <span class="nav-text">6 &amp; 7 &amp; 8 - What is SQL injection?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-Try-It"><span class="nav-number">2.1.7.</span> <span class="nav-text">9 - Try It!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-Numeric-SQL-Injection"><span class="nav-number">2.1.8.</span> <span class="nav-text">10 - Numeric SQL Injection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-String-SQL-Injection"><span class="nav-number">2.1.9.</span> <span class="nav-text">11 - String SQL Injection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-Compromising-Integrity-with-Query-chaining"><span class="nav-number">2.1.10.</span> <span class="nav-text">12 - Compromising Integrity with Query chaining</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-Compromising-Availability"><span class="nav-number">2.1.11.</span> <span class="nav-text">13 - Compromising Availability</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.1.12.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-Injection-advanced"><span class="nav-number">2.2.</span> <span class="nav-text">SQL Injection (advanced)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-1-2"><span class="nav-number">2.2.1.</span> <span class="nav-text">Challenge 1,2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-3"><span class="nav-number">2.2.2.</span> <span class="nav-text">Challenge 3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-4"><span class="nav-number">2.2.3.</span> <span class="nav-text">Challenge 4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-5"><span class="nav-number">2.2.4.</span> <span class="nav-text">Challenge 5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-6"><span class="nav-number">2.2.5.</span> <span class="nav-text">Challenge 6</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -567,7 +598,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -636,12 +667,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">34k</span>
+    <span title="站点总字数">38k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">31 分钟</span>
+    <span title="站点阅读时长">34 分钟</span>
 </div>
 
         
