@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN,en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.2.0">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
@@ -13,19 +15,19 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
 
-<script id="hexo-configurations">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
   <meta name="description" content="After you installed a new Kali (Virtual) Machine, what’s the next step? Here are some “Must Do” list to make your Kali more handy: Update to latest versionFirst, edit the &#x2F;etc&#x2F;apt&#x2F;sources.list.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TODO List For New Kali">
+<meta property="og:title" content="TODO List for New Kali">
 <meta property="og:url" content="https://upwnothing.github.io/en/da9fccd6/index.html">
 <meta property="og:site_name" content="UPWNothing&#39;s Playground">
 <meta property="og:description" content="After you installed a new Kali (Virtual) Machine, what’s the next step? Here are some “Must Do” list to make your Kali more handy: Update to latest versionFirst, edit the &#x2F;etc&#x2F;apt&#x2F;sources.list.">
@@ -40,10 +42,11 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://upwnothing.github.io/en/da9fccd6/fcitx_config.png">
 
+
 <link rel="canonical" href="https://upwnothing.github.io/en/da9fccd6/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -51,8 +54,7 @@
     isPost : true,
     lang   : 'en'
   };
-</script>
-<script type="text/javascript">
+</script><script type="text/javascript">
     // Wait for the page to load first
     var _prevOnload = window.onload;
     window.onload = function() {
@@ -72,7 +74,8 @@
 </script>
 <script data-ad-client="ca-pub-2179953596008833" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  <title>TODO List For New Kali | UPWNothing's Playground</title>
+
+  <title>TODO List for New Kali | UPWNothing's Playground</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
     <script>
@@ -91,49 +94,61 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">UPWNothing's Playground</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">一个关于安全的小宝箱</p>
   </div>
@@ -147,17 +162,11 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">22</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -170,9 +179,14 @@
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">10</span></a>
 
   </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">22</span></a>
+
+  </li>
         <li class="menu-item menu-item-switch_lang">
 
-    <a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>-->简体中文</a>
+    <a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>switch_lang</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -191,7 +205,7 @@
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
            placeholder="Searching..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -199,9 +213,9 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
 
@@ -209,30 +223,104 @@
   </div>
 
 </div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Update-to-latest-version"><span class="nav-number">1.</span> <span class="nav-text">Update to latest version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Desktop-Environment"><span class="nav-number">2.</span> <span class="nav-text">Install Desktop Environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-a-new-%E2%80%9Csudo%E2%80%9D-user"><span class="nav-number">3.</span> <span class="nav-text">Add a new “sudo” user</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-your-Vim"><span class="nav-number">4.</span> <span class="nav-text">Configure your Vim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-Input-Method-For-Non-English-Speaking-Users"><span class="nav-number">5.</span> <span class="nav-text">Configure Input Method (For Non-English Speaking Users)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-Bash-Aliases"><span class="nav-number">6.</span> <span class="nav-text">Configure Bash Aliases</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number"></span> <span class="nav-text">References</span></a></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="UPWNothing"
+      src="/images/icon.jpeg">
+  <p class="site-author-name" itemprop="name">UPWNothing</p>
+  <div class="site-description" itemprop="description">记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content post posts-expand">
-            
+    <div class="main-inner post posts-expand">
+      
 
-    
+      
+
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/en/da9fccd6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/icon.jpeg">
       <meta itemprop="name" content="UPWNothing">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -240,90 +328,80 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          TODO List For New Kali
+          TODO List for New Kali
         </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-02-26 02:43:40" itemprop="dateCreated datePublished" datetime="2020-02-26T02:43:40+08:00">2020-02-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-28 14:07:53" itemprop="dateModified" datetime="2020-06-28T14:07:53+08:00">2020-06-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/Kali/" itemprop="url" rel="index"><span itemprop="name">Kali</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Security/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/en/da9fccd6/" class="post-meta-item leancloud_visitors" data-flag-title="TODO List For New Kali" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
+        <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/en/da9fccd6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/en/da9fccd6/" itemprop="commentCount"></span>
-    </a>
-  </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-02-26 02:43:40" itemprop="dateCreated datePublished" datetime="2020-02-26T02:43:40+08:00">2020-02-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-06-28 14:07:53" itemprop="dateModified" datetime="2020-06-28T14:07:53+08:00">2020-06-28</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/Kali/" itemprop="url" rel="index"><span itemprop="name">Kali</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Security/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+        </span>
+    </span>
+
   
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
+    <span id="/en/da9fccd6/" class="post-meta-item leancloud_visitors" data-flag-title="TODO List for New Kali" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>2.2k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>2 mins.</span>
+    </span>
+</div>
 
         </div>
       </header>
@@ -332,8 +410,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <p>After you installed a new Kali (Virtual) Machine, what’s the next step? Here are some “Must Do” list to make your Kali more handy:</p>
 <h2 id="Update-to-latest-version"><a href="#Update-to-latest-version" class="headerlink" title="Update to latest version"></a>Update to latest version</h2><p>First, edit the <code>/etc/apt/sources.list</code>. </p>
 <a id="more"></a>
@@ -341,7 +417,7 @@
 
 <p><code>deb http://http.kali.org/kali kali-rolling main non-free contrib</code> is the official repository for Kali. </p>
 <p>And you can configure the <em>sources.list</em> based on your location.<br>For example, if you’re in China, you can use the following list:</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#中科大</span><br><span class="line"><span class="keyword">deb</span> http://mirrors.ustc.edu.<span class="keyword">cn</span>/kali kali-rolling main non-free contrib</span><br><span class="line"><span class="keyword">deb</span>-src http://mirrors.ustc.edu.<span class="keyword">cn</span>/kali kali-rolling main non-free contrib</span><br><span class="line"></span><br><span class="line">#阿里云</span><br><span class="line"><span class="keyword">deb</span> http://mirrors.aliyun.<span class="keyword">com</span>/kali kali-rolling main non-free contrib</span><br><span class="line"><span class="keyword">deb</span>-src http://mirrors.aliyun.<span class="keyword">com</span>/kali kali-rolling main non-free contrib</span><br><span class="line"></span><br><span class="line">#清华大学</span><br><span class="line"><span class="keyword">deb</span> http://mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/kali kali-rolling main contrib non-free</span><br><span class="line"><span class="keyword">deb</span>-src http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/kali kali-rolling main contrib non-free</span><br><span class="line"></span><br><span class="line">#浙大</span><br><span class="line"><span class="keyword">deb</span> http://mirrors.zju.edu.<span class="keyword">cn</span>/kali kali-rolling main contrib non-free</span><br><span class="line"><span class="keyword">deb</span>-src http://mirrors.zju.edu.<span class="keyword">cn</span>/kali kali-rolling main contrib non-free</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#中科大</span></span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment">#阿里云</span></span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com/kali kali-rolling main non-free contrib</span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com/kali kali-rolling main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment">#清华大学</span></span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free</span><br><span class="line">deb-src https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free</span><br><span class="line"></span><br><span class="line"><span class="comment">#浙大</span></span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.zju.edu.cn/kali kali-rolling main contrib non-free</span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.zju.edu.cn/kali kali-rolling main contrib non-free</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>It can effectively boost the package download from the internet. </p>
 <p>After that, just do the upgrade! </p>
@@ -355,7 +431,7 @@
 
 <h2 id="Install-Desktop-Environment"><a href="#Install-Desktop-Environment" class="headerlink" title="Install Desktop Environment"></a>Install Desktop Environment</h2><p>Starting from Kali 2019.4, the default desktop environment of Kali has been changed to Xfce (Used to be Gnome). </p>
 <p>If you upgrade from a earlier version, then you might also want to migrate to Xfce. Relax, it’s easy to do. Just one line command: </p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># apt -y install kali-desktop-xfce.</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># apt -y install kali-desktop-xfce. </span></span><br></pre></td></tr></table></figure>
 
 <p>When you are asked to select “<em>Default display manager</em>“, select <code>lightdm</code>. </p>
 <p>Up till now, the <strong>Xfce</strong> Desktop Environment has been installed on your machine. Next time when you try to login, you can select it before you submit your login password. </p>
@@ -381,14 +457,14 @@
 <p>Now, it should work! </p>
 <h2 id="Configure-Bash-Aliases"><a href="#Configure-Bash-Aliases" class="headerlink" title="Configure Bash Aliases"></a>Configure Bash Aliases</h2><p>Bash aliases can be used for creating customized command line shortcuts. For example, we can reassign the <strong>ls</strong> command. Here is how to do that:</p>
 <p>Open <code>~/.bash_aliases</code> and add the following line to this file. </p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alias</span> <span class="keyword">ls</span>='<span class="keyword">ls</span> -rthal <span class="params">--color=always</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alias</span> <span class="keyword">ls</span>=&#x27;<span class="keyword">ls</span> -rthal <span class="params">--color=always</span></span><br></pre></td></tr></table></figure>
 
 <p>Now, restart the terminal and do <code>ls</code>. </p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">richard@</span>richard-Kali:~/Desktop$ ls                                                                                                                                         </span><br><span class="line">total <span class="number">172</span>K</span><br><span class="line">-rwxr-xr-x  <span class="number">1</span> richard richard <span class="number">8.3</span>K Dec <span class="number">14</span> <span class="number">11</span>:<span class="number">18</span> google-chrome.desktop</span><br><span class="line">-rwxr-----  <span class="number">1</span> richard richard  <span class="number">66</span>K Jan  <span class="number">3</span> <span class="number">13</span>:<span class="number">54</span> IMG_20200103_135404.png</span><br><span class="line">-rwxr-----  <span class="number">1</span> richard richard  <span class="number">84</span>K Jan  <span class="number">3</span> <span class="number">13</span>:<span class="number">54</span> IMG_20200103_135431.jpg</span><br><span class="line">drwxr-xr-x  <span class="number">2</span> richard richard <span class="number">4.0</span>K Jan  <span class="number">3</span> <span class="number">13</span>:<span class="number">56</span> .</span><br><span class="line">drwxr-xr-x <span class="number">21</span> richard richard <span class="number">4.0</span>K Jan <span class="number">14</span> <span class="number">14</span>:<span class="number">51</span> ..</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">richard@</span>richard-Kali:~/Desktop$ ls                                                                                                                                         </span><br><span class="line">total <span class="number">172</span>K</span><br><span class="line">-rwxr-xr-x  <span class="number">1</span> richard richard <span class="number">8.3</span>K Dec <span class="number">14</span> <span class="number">11</span>:<span class="number">18</span> google-chrome.desktop</span><br><span class="line">-rwxr-----  <span class="number">1</span> richard richard  <span class="number">66</span>K Jan  <span class="number">3</span> <span class="number">13</span>:<span class="number">54</span> IMG_20200103_135404.png</span><br><span class="line">-rwxr-----  <span class="number">1</span> richard richard  <span class="number">84</span>K Jan  <span class="number">3</span> <span class="number">13</span>:<span class="number">54</span> IMG_20200103_135431.jpg</span><br><span class="line">drwxr-xr-x  <span class="number">2</span> richard richard <span class="number">4.0</span>K Jan  <span class="number">3</span> <span class="number">13</span>:<span class="number">56</span> .</span><br><span class="line">drwxr-xr-x <span class="number">21</span> richard richard <span class="number">4.0</span>K Jan <span class="number">14</span> <span class="number">14</span>:<span class="number">51</span> ..</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>The detailed information are listed by default. </p>
 <h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
-<li><a href="https://null-byte.wonderhowto.com/how-to/top-10-things-do-after-installing-kali-linux-0186450/" target="_blank" rel="noopener">https://null-byte.wonderhowto.com/how-to/top-10-things-do-after-installing-kali-linux-0186450/</a></li>
+<li><a target="_blank" rel="noopener" href="https://null-byte.wonderhowto.com/how-to/top-10-things-do-after-installing-kali-linux-0186450/">https://null-byte.wonderhowto.com/how-to/top-10-things-do-after-installing-kali-linux-0186450/</a></li>
 <li></li>
 </ul>
 
@@ -417,33 +493,47 @@
     </li>
   </ul>
 
-        <div class="reward-container">
+
+    <footer class="post-footer">
+          <div class="reward-container">
   <div>觉得好的话不妨赏一杯奶茶吧～</div>
-  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
     Donate
   </button>
-  <div id="qr" style="display: none;">
-      
-      <div style="display: inline-block;">
+  <div class="post-reward">
+      <div>
         <img src="/images/wechatpay.png" alt="UPWNothing WeChat Pay">
-        <p>WeChat Pay</p>
+        <span>WeChat Pay</span>
       </div>
-      
-      <div style="display: inline-block;">
+      <div>
         <img src="/images/alipay.png" alt="UPWNothing Alipay">
-        <p>Alipay</p>
+        <span>Alipay</span>
       </div>
-      
-      <div style="display: inline-block;">
+      <div>
         <img src="/images/bitcoin.png" alt="UPWNothing Bitcoin">
-        <p>Bitcoin</p>
+        <span>Bitcoin</span>
       </div>
 
   </div>
 </div>
 
+          
 
-      <footer class="post-footer">
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>UPWNothing
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://upwnothing.github.io/en/da9fccd6/" title="TODO List for New Kali">https://upwnothing.github.io/en/da9fccd6/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
           <div class="post-tags">
               <a href="/tags/Configuration/" rel="tag"># Configuration</a>
               <a href="/tags/Kali/" rel="tag"># Kali</a>
@@ -456,30 +546,28 @@
     </div>
   </div>
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/zh-CN/f0181575/" rel="prev" title="Root-me WebServer分类 解题思路 （一）">
-      <i class="fa fa-chevron-left"></i> Root-me WebServer分类 解题思路 （一）
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/zh-CN/8768734d/" rel="next" title="在Kali Linux中安装磁盘镜像工具Autopsy 4">
-      在Kali Linux中安装磁盘镜像工具Autopsy 4 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/zh-CN/f0181575/" rel="prev" title="Root-Me WebServer分类 解题思路 （一）">
+                  <i class="fa fa-chevron-left"></i> Root-Me WebServer分类 解题思路 （一）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/zh-CN/8768734d/" rel="next" title="在Kali Linux中安装磁盘镜像工具Autopsy 4">
+                  在Kali Linux中安装磁盘镜像工具Autopsy 4 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-          
-    <div class="comments" id="valine-comments"></div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -488,7 +576,7 @@
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
     if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
       if (activeTab) {
         activeTab.click();
       }
@@ -497,87 +585,18 @@
   if (CONFIG.comments.storage) {
     window.addEventListener('tabs:click', event => {
       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
+      const commentClass = event.target.classList[1];
       localStorage.setItem('comments_active', commentClass);
     });
   }
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Update-to-latest-version"><span class="nav-number">1.</span> <span class="nav-text">Update to latest version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Desktop-Environment"><span class="nav-number">2.</span> <span class="nav-text">Install Desktop Environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-a-new-“sudo”-user"><span class="nav-number">3.</span> <span class="nav-text">Add a new “sudo” user</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-your-Vim"><span class="nav-number">4.</span> <span class="nav-text">Configure your Vim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-Input-Method-For-Non-English-Speaking-Users"><span class="nav-number">5.</span> <span class="nav-text">Configure Input Method (For Non-English Speaking Users)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-Bash-Aliases"><span class="nav-number">6.</span> <span class="nav-text">Configure Bash Aliases</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number"></span> <span class="nav-text">References</span></a></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="UPWNothing"
-      src="/images/icon.jpeg">
-  <p class="site-author-name" itemprop="name">UPWNothing</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">22</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">10</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">31</span>
-        <span class="site-state-item-name">tags</span>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
+  <footer class="footer">
+    <div class="footer-inner">
+      
   <div class="languages">
     <label class="lang-select-label">
       <i class="fa fa-language"></i>
@@ -597,7 +616,7 @@
     </select>
   </div>
 
-        
+      
 
 <div class="copyright">
   
@@ -607,21 +626,22 @@
     <i class="paw"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">UPWNothing</span>
-    <span class="post-meta-divider">|</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
     <span title="Symbols count total">38k</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">34 mins.</span>
+    <span title="Reading time total">35 mins.</span>
+  </span>
 </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -630,7 +650,6 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -639,40 +658,18 @@
         <span id="busuanzi_value_site_pv"></span>
       </span>
     </span>
-</div>
+</div><script color="72,97,152" opacity="0.8" zIndex="-1" count="199" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script color='72,97,152' opacity='0.8' zIndex='' count='150' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js"></script>
-  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -699,13 +696,24 @@
   }
   </script>
 
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-<script src="/js/local-search.js"></script>
-
-
-
-
-
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
@@ -717,35 +725,6 @@
   
 
   
-
-
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : 'DUtYTL3VYq8Mgbo2uSd9pEE8-9Nh9j0Va',
-      appKey     : 'RFEfNupULNUbbjBv7Cw7J4Ls',
-      placeholder: "请留下您的评论～（填写邮箱的话，有回复时会通过邮箱提醒哦～邮箱并不会显示在评论中）",
-      avatar     : 'monsterid',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : true,
-      lang       : 'en' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : true,
-      serverURLs : ''
-    });
-  }, window.Valine);
-});
-</script>
 
 </body>
 </html>

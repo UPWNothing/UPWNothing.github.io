@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN,en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.2.0">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
@@ -13,14 +15,14 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
 
-<script id="hexo-configurations">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
   <meta name="description" content="Autopsy是Kali Linux中预安装的磁盘镜像分析&#x2F;取证软件。Autopsy基于The Sleuth Kit的开源电子取证工具。Autopsy在The Sleuth Kit的基础上增加了图形界面，大大增加了易用性。   那么问题来了：Kali明明都自带了那么还要装一遍做甚？！原因是这样的：截止到现在的最新版（Kali 2019.4），Kali自带的Autopsy均是Autopsy 2. A">
@@ -41,10 +43,11 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://upwnothing.github.io/zh-CN/8768734d/autopsy.jpeg">
 
+
 <link rel="canonical" href="https://upwnothing.github.io/zh-CN/8768734d/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -52,8 +55,7 @@
     isPost : true,
     lang   : 'zh-CN'
   };
-</script>
-<script type="text/javascript">
+</script><script type="text/javascript">
     // Wait for the page to load first
     var _prevOnload = window.onload;
     window.onload = function() {
@@ -72,6 +74,7 @@
     }
 </script>
 <script data-ad-client="ca-pub-2179953596008833" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 
   <title>在Kali Linux中安装磁盘镜像工具Autopsy 4 | UPWNothing's Playground</title>
   
@@ -92,49 +95,61 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">UPWNothing's Playground</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">一个关于安全的小宝箱</p>
   </div>
@@ -148,17 +163,11 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -171,9 +180,14 @@
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
 
   </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
+
+  </li>
         <li class="menu-item menu-item-switch_lang">
 
-    <a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>-->English</a>
+    <a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>switch_lang</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -192,7 +206,7 @@
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -200,9 +214,9 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
 
@@ -210,284 +224,18 @@
   </div>
 
 </div>
-    </header>
-
-    
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/8768734d/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon.jpeg">
-      <meta itemprop="name" content="UPWNothing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="UPWNothing's Playground">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          在Kali Linux中安装磁盘镜像工具Autopsy 4
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-04-13 17:59:41 / 修改时间：18:06:34" itemprop="dateCreated datePublished" datetime="2020-04-13T17:59:41+08:00">2020-04-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Security/Forensics/" itemprop="url" rel="index"><span itemprop="name">Forensics</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/Kali/" itemprop="url" rel="index"><span itemprop="name">Kali</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/zh-CN/8768734d/" class="post-meta-item leancloud_visitors" data-flag-title="在Kali Linux中安装磁盘镜像工具Autopsy 4" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/zh-CN/8768734d/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/8768734d/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <p>Autopsy是Kali Linux中预安装的磁盘镜像分析/取证软件。Autopsy基于The Sleuth Kit的开源电子取证工具。Autopsy在The Sleuth Kit的基础上增加了图形界面，大大增加了易用性。  </p>
-<p>那么问题来了：Kali明明都自带了那么还要装一遍做甚？！原因是这样的：截止到现在的最新版（Kali 2019.4），Kali自带的Autopsy均是Autopsy 2. Autopsy 2通过Web服务器-客户端的形式来呈现用户界面，但是使用起来其实存在不少的限制，无论是功能还是界面都存在着不足。看下图感受一下：</p>
-<p><img data-src="/zh-CN/8768734d/autopsy.jpeg" alt="Autopsy 2 用户界面"></p>
-<p>而从Autopsy 3起, 程序移植成为了基于Java的应用程序。而Autopsy 4则在Autopsy 3的基础上，提升了多人协作的能力。</p>
-<p><img data-src="/zh-CN/8768734d/Autopsy4.png" alt="Autopsy 4 用户界面"></p>
-<p>不难发现，Autopsy 4无论从用户界面，还是软件的功能性来说，都相较于Autopsy 2有了明显的提升。然而，关于Autopsy 4的中文文档却相当的不足。所以，通过这篇博文来记录安装的各个步骤以及遇到的问题。</p>
-<a id="more"></a>
-
-
-<h1 id="Autopsy下载"><a href="#Autopsy下载" class="headerlink" title="Autopsy下载"></a>Autopsy下载</h1><p>在<a href="https://www.autopsy.com/download" target="_blank" rel="noopener">Autopsy首页</a> 下载。页面仅支持英语与日语。</p>
-<p><img data-src="/zh-CN/8768734d/Download.png" alt="Autopsy 4 下载"></p>
-<p>点击 <strong>ZIP file</strong> 链接，下载Autopsy的Linux安装包。</p>
-<p>点击 <strong>Java .deb Debian package</strong> 链接，下载 The Sleuth Kit Java库安装包。</p>
-<h1 id="安装依赖文件"><a href="#安装依赖文件" class="headerlink" title="安装依赖文件"></a>安装依赖文件</h1><p>以下这些步骤，仅需要在第一次安装Autopsy时执行。如果Autopsy已经存在，但你依旧希望安装其他的版本，那这些步骤不需要再执行一遍。</p>
-<h2 id="安装-testdisk"><a href="#安装-testdisk" class="headerlink" title="安装 testdisk"></a>安装 testdisk</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install testdisk</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装-BellSoft-Java-8-JRE-和-JavaFX-8-发行版"><a href="#安装-BellSoft-Java-8-JRE-和-JavaFX-8-发行版" class="headerlink" title="安装 BellSoft Java 8 JRE 和 JavaFX 8 发行版"></a>安装 BellSoft Java 8 JRE 和 JavaFX 8 发行版</h2><ul>
-<li>安装 BellSoft Java 8</li>
-</ul>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget -q -O - http<span class="variable">s:</span>//download.bell-<span class="keyword">sw</span>.<span class="keyword">com</span>/pki/GPG-KEY-bellsoft | sudo apt-key <span class="built_in">add</span> -</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"deb [arch=amd64] https://apt.bell-sw.com/ stable main"</span> | sudo tee /etc/apt/sources.<span class="keyword">list</span>.d/bellsoft.<span class="keyword">list</span></span><br><span class="line">sudo apt-<span class="built_in">get</span> <span class="keyword">update</span></span><br><span class="line">sudo apt-<span class="built_in">get</span> install bellsoft-java8-full</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>配置JAVA 环境变量</li>
-</ul>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/lib/jvm/bellsoft-java8-full-amd64</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意：可能需要注销并重新登录使JAVA环境变量配置生效</p>
-</blockquote>
-<ul>
-<li>确认当前运行的JAVA版本</li>
-</ul>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">richard@richard-Kali:~$ java -version</span><br><span class="line">Picked up _JAVA_OPTIONS: -Dawt.<span class="attribute">useSystemAAFontSettings</span>=on -Dswing.<span class="attribute">aatext</span>=<span class="literal">true</span></span><br><span class="line">openjdk version <span class="string">"1.8.0_242"</span></span><br><span class="line">OpenJDK Runtime Environment (build 1.8.0_242-b07)</span><br><span class="line">OpenJDK 64-Bit<span class="built_in"> Server </span>VM (build 25.242-b07, mixed mode)</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装The-Sleuth-Kit-Java库"><a href="#安装The-Sleuth-Kit-Java库" class="headerlink" title="安装The Sleuth Kit Java库"></a>安装The Sleuth Kit Java库</h2><p>Autopsy 4 依赖于特定版本的 The Sleuth Kit。所以我们需要安装基于特定Java版本的Sleuth Kit安装包：</p>
-<p>使用我们在第0步下载获得的sleuthkit-java_4.8.0-1_amd64.deb (具体文件名可能根据版本发生变化)。</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install ./sleuthkit-java_4<span class="number">.8</span><span class="number">.0</span><span class="number">-1</span>_amd64.deb</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装Autopsy-4"><a href="#安装Autopsy-4" class="headerlink" title="安装Autopsy 4"></a>安装Autopsy 4</h2><p>解压下载的Autopsy 压缩包。通过<code>cd</code>命令进入Autopsy目录。</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd <span class="built_in">auto</span>psy<span class="number">-4.14</span><span class="number">.0</span>/</span><br></pre></td></tr></table></figure>
-
-<p>执行<code>unix_setup.sh</code>来完成Autopsy配置。</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sh</span> unix_setup.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="执行Autopsy-4"><a href="#执行Autopsy-4" class="headerlink" title="执行Autopsy 4"></a>执行Autopsy 4</h2><p>进入<code>bin</code>目录，执行</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./<span class="built_in">auto</span>psy</span><br></pre></td></tr></table></figure>
-
-<p>此时，Autopsy 4应该可以顺利执行了。</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><a href="https://sleuthkit.org" target="_blank" rel="noopener">https://sleuthkit.org</a></li>
-<li><a href="https://github.com/sleuthkit/autopsy" target="_blank" rel="noopener">https://github.com/sleuthkit/autopsy</a></li>
-</ul>
-
-    </div>
-
-    
-    
-    
-      
-
-        <div class="reward-container">
-  <div>觉得好的话不妨赏一杯奶茶吧～</div>
-  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    打赏
-  </button>
-  <div id="qr" style="display: none;">
-      
-      <div style="display: inline-block;">
-        <img src="/images/wechatpay.png" alt="UPWNothing 微信支付">
-        <p>微信支付</p>
-      </div>
-      
-      <div style="display: inline-block;">
-        <img src="/images/alipay.png" alt="UPWNothing 支付宝">
-        <p>支付宝</p>
-      </div>
-      
-      <div style="display: inline-block;">
-        <img src="/images/bitcoin.png" alt="UPWNothing 比特币">
-        <p>比特币</p>
-      </div>
-
-  </div>
-</div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/AutoPsy/" rel="tag"># AutoPsy</a>
-              <a href="/tags/Installation/" rel="tag"># Installation</a>
-          </div>
-
         
-  <div class="post-widgets">
-    <div class="wp_rating">
-      <div id="wpac-rating"></div>
-    </div>
-  </div>
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/en/da9fccd6/" rel="prev" title="TODO List For New Kali">
-      <i class="fa fa-chevron-left"></i> TODO List For New Kali
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/zh-CN/55dd0f0b/" rel="next" title="Git配置文件泄漏的处理方法">
-      Git配置文件泄漏的处理方法 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="valine-comments"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
         </li>
@@ -496,20 +244,21 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Autopsy下载"><span class="nav-number">1.</span> <span class="nav-text">Autopsy下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装依赖文件"><span class="nav-number">2.</span> <span class="nav-text">安装依赖文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-testdisk"><span class="nav-number">2.1.</span> <span class="nav-text">安装 testdisk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-BellSoft-Java-8-JRE-和-JavaFX-8-发行版"><span class="nav-number">2.2.</span> <span class="nav-text">安装 BellSoft Java 8 JRE 和 JavaFX 8 发行版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装The-Sleuth-Kit-Java库"><span class="nav-number">2.3.</span> <span class="nav-text">安装The Sleuth Kit Java库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Autopsy-4"><span class="nav-number">2.4.</span> <span class="nav-text">安装Autopsy 4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行Autopsy-4"><span class="nav-number">2.5.</span> <span class="nav-text">执行Autopsy 4</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Autopsy%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.</span> <span class="nav-text">Autopsy下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">安装依赖文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-testdisk"><span class="nav-number">2.1.</span> <span class="nav-text">安装 testdisk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-BellSoft-Java-8-JRE-%E5%92%8C-JavaFX-8-%E5%8F%91%E8%A1%8C%E7%89%88"><span class="nav-number">2.2.</span> <span class="nav-text">安装 BellSoft Java 8 JRE 和 JavaFX 8 发行版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85The-Sleuth-Kit-Java%E5%BA%93"><span class="nav-number">2.3.</span> <span class="nav-text">安装The Sleuth Kit Java库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Autopsy-4"><span class="nav-number">2.4.</span> <span class="nav-text">安装Autopsy 4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CAutopsy-4"><span class="nav-number">2.5.</span> <span class="nav-text">执行Autopsy 4</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="UPWNothing"
       src="/images/icon.jpeg">
   <p class="site-author-name" itemprop="name">UPWNothing</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻</div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -533,23 +282,293 @@
 
 
 
+        </section>
       </div>
-        <div class="back-to-top motion-element">
+        <div class="back-to-top animated">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
-
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/8768734d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.jpeg">
+      <meta itemprop="name" content="UPWNothing">
+      <meta itemprop="description" content="记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="UPWNothing's Playground">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在Kali Linux中安装磁盘镜像工具Autopsy 4
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-04-13 17:59:41 / 修改时间：18:06:34" itemprop="dateCreated datePublished" datetime="2020-04-13T17:59:41+08:00">2020-04-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Security/Forensics/" itemprop="url" rel="index"><span itemprop="name">Forensics</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/Kali/" itemprop="url" rel="index"><span itemprop="name">Kali</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/zh-CN/8768734d/" class="post-meta-item leancloud_visitors" data-flag-title="在Kali Linux中安装磁盘镜像工具Autopsy 4" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
       </div>
-    </main>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
 
-    <footer class="footer">
-      <div class="footer-inner">
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Autopsy是Kali Linux中预安装的磁盘镜像分析/取证软件。Autopsy基于The Sleuth Kit的开源电子取证工具。Autopsy在The Sleuth Kit的基础上增加了图形界面，大大增加了易用性。  </p>
+<p>那么问题来了：Kali明明都自带了那么还要装一遍做甚？！原因是这样的：截止到现在的最新版（Kali 2019.4），Kali自带的Autopsy均是Autopsy 2. Autopsy 2通过Web服务器-客户端的形式来呈现用户界面，但是使用起来其实存在不少的限制，无论是功能还是界面都存在着不足。看下图感受一下：</p>
+<p><img data-src="/zh-CN/8768734d/autopsy.jpeg" alt="Autopsy 2 用户界面"></p>
+<p>而从Autopsy 3起, 程序移植成为了基于Java的应用程序。而Autopsy 4则在Autopsy 3的基础上，提升了多人协作的能力。</p>
+<p><img data-src="/zh-CN/8768734d/Autopsy4.png" alt="Autopsy 4 用户界面"></p>
+<p>不难发现，Autopsy 4无论从用户界面，还是软件的功能性来说，都相较于Autopsy 2有了明显的提升。然而，关于Autopsy 4的中文文档却相当的不足。所以，通过这篇博文来记录安装的各个步骤以及遇到的问题。</p>
+<a id="more"></a>
+
+
+<h1 id="Autopsy下载"><a href="#Autopsy下载" class="headerlink" title="Autopsy下载"></a>Autopsy下载</h1><p>在<a target="_blank" rel="noopener" href="https://www.autopsy.com/download">Autopsy首页</a> 下载。页面仅支持英语与日语。</p>
+<p><img data-src="/zh-CN/8768734d/Download.png" alt="Autopsy 4 下载"></p>
+<p>点击 <strong>ZIP file</strong> 链接，下载Autopsy的Linux安装包。</p>
+<p>点击 <strong>Java .deb Debian package</strong> 链接，下载 The Sleuth Kit Java库安装包。</p>
+<h1 id="安装依赖文件"><a href="#安装依赖文件" class="headerlink" title="安装依赖文件"></a>安装依赖文件</h1><p>以下这些步骤，仅需要在第一次安装Autopsy时执行。如果Autopsy已经存在，但你依旧希望安装其他的版本，那这些步骤不需要再执行一遍。</p>
+<h2 id="安装-testdisk"><a href="#安装-testdisk" class="headerlink" title="安装 testdisk"></a>安装 testdisk</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install testdisk</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-BellSoft-Java-8-JRE-和-JavaFX-8-发行版"><a href="#安装-BellSoft-Java-8-JRE-和-JavaFX-8-发行版" class="headerlink" title="安装 BellSoft Java 8 JRE 和 JavaFX 8 发行版"></a>安装 BellSoft Java 8 JRE 和 JavaFX 8 发行版</h2><ul>
+<li>安装 BellSoft Java 8</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget -q -O - http<span class="variable">s:</span>//download.bell-<span class="keyword">sw</span>.<span class="keyword">com</span>/pki/GPG-KEY-bellsoft | sudo apt-key <span class="built_in">add</span> -</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;deb [arch=amd64] https://apt.bell-sw.com/ stable main&quot;</span> | sudo tee /etc/apt/sources.<span class="keyword">list</span>.d/bellsoft.<span class="keyword">list</span></span><br><span class="line">sudo apt-<span class="built_in">get</span> <span class="keyword">update</span></span><br><span class="line">sudo apt-<span class="built_in">get</span> install bellsoft-java8-full</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置JAVA 环境变量</li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=<span class="regexp">/usr/</span>lib<span class="regexp">/jvm/</span>bellsoft-java8-full-amd64</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：可能需要注销并重新登录使JAVA环境变量配置生效</p>
+</blockquote>
+<ul>
+<li>确认当前运行的JAVA版本</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">richard@richard-Kali:~$ java -version</span><br><span class="line">Picked up _JAVA_OPTIONS: -Dawt.<span class="attribute">useSystemAAFontSettings</span>=on -Dswing.<span class="attribute">aatext</span>=<span class="literal">true</span></span><br><span class="line">openjdk version <span class="string">&quot;1.8.0_242&quot;</span></span><br><span class="line">OpenJDK Runtime Environment (build 1.8.0_242-b07)</span><br><span class="line">OpenJDK 64-Bit<span class="built_in"> Server </span>VM (build 25.242-b07, mixed mode)</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装The-Sleuth-Kit-Java库"><a href="#安装The-Sleuth-Kit-Java库" class="headerlink" title="安装The Sleuth Kit Java库"></a>安装The Sleuth Kit Java库</h2><p>Autopsy 4 依赖于特定版本的 The Sleuth Kit。所以我们需要安装基于特定Java版本的Sleuth Kit安装包：</p>
+<p>使用我们在第0步下载获得的sleuthkit-java_4.8.0-1_amd64.deb (具体文件名可能根据版本发生变化)。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo</span> apt install ./sleuthkit-java_<span class="number">4</span>.<span class="number">8</span>.<span class="number">0</span>-<span class="number">1</span>_amd<span class="number">64</span>.deb</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装Autopsy-4"><a href="#安装Autopsy-4" class="headerlink" title="安装Autopsy 4"></a>安装Autopsy 4</h2><p>解压下载的Autopsy 压缩包。通过<code>cd</code>命令进入Autopsy目录。</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd <span class="built_in">auto</span>psy<span class="number">-4.14</span><span class="number">.0</span>/</span><br></pre></td></tr></table></figure>
+
+<p>执行<code>unix_setup.sh</code>来完成Autopsy配置。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sh</span> unix_setup.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="执行Autopsy-4"><a href="#执行Autopsy-4" class="headerlink" title="执行Autopsy 4"></a>执行Autopsy 4</h2><p>进入<code>bin</code>目录，执行</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./<span class="built_in">auto</span>psy</span><br></pre></td></tr></table></figure>
+
+<p>此时，Autopsy 4应该可以顺利执行了。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://sleuthkit.org/">https://sleuthkit.org</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/sleuthkit/autopsy">https://github.com/sleuthkit/autopsy</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>觉得好的话不妨赏一杯奶茶吧～</div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="UPWNothing 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="UPWNothing 支付宝">
+        <span>支付宝</span>
+      </div>
+      <div>
+        <img src="/images/bitcoin.png" alt="UPWNothing 比特币">
+        <span>比特币</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>UPWNothing
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://upwnothing.github.io/zh-CN/8768734d/" title="在Kali Linux中安装磁盘镜像工具Autopsy 4">https://upwnothing.github.io/zh-CN/8768734d/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/AutoPsy/" rel="tag"># AutoPsy</a>
+              <a href="/tags/Installation/" rel="tag"># Installation</a>
+          </div>
+
         
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/en/da9fccd6/" rel="prev" title="TODO List for New Kali">
+                  <i class="fa fa-chevron-left"></i> TODO List for New Kali
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/zh-CN/55dd0f0b/" rel="next" title="Git配置文件泄漏的处理方法">
+                  Git配置文件泄漏的处理方法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
   <div class="languages">
     <label class="lang-select-label">
       <i class="fa fa-language"></i>
@@ -569,7 +588,7 @@
     </select>
   </div>
 
-        
+      
 
 <div class="copyright">
   
@@ -579,21 +598,22 @@
     <i class="paw"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">UPWNothing</span>
-    <span class="post-meta-divider">|</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
     <span title="站点总字数">38k</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">34 分钟</span>
+    <span title="站点阅读时长">35 分钟</span>
+  </span>
 </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -602,7 +622,6 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -611,40 +630,18 @@
         <span id="busuanzi_value_site_pv"></span>
       </span>
     </span>
-</div>
+</div><script color="72,97,152" opacity="0.8" zIndex="-1" count="199" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script color='72,97,152' opacity='0.8' zIndex='' count='150' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js"></script>
-  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -671,13 +668,24 @@
   }
   </script>
 
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-<script src="/js/local-search.js"></script>
-
-
-
-
-
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
@@ -689,35 +697,6 @@
   
 
   
-
-
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : 'DUtYTL3VYq8Mgbo2uSd9pEE8-9Nh9j0Va',
-      appKey     : 'RFEfNupULNUbbjBv7Cw7J4Ls',
-      placeholder: "请留下您的评论～（填写邮箱的话，有回复时会通过邮箱提醒哦～邮箱并不会显示在评论中）",
-      avatar     : 'monsterid',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : true,
-      lang       : 'en' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : true,
-      serverURLs : ''
-    });
-  }, window.Valine);
-});
-</script>
 
 </body>
 </html>

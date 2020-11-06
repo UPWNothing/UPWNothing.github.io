@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN,en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.2.0">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
@@ -13,14 +15,14 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
 
-<script id="hexo-configurations">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
   <meta name="description" content="选择合适的评论系统我选择评论系统时，考虑到以下几点：  免费 ( 排除 hypercomments ) 无需翻墙 ( 排除 disqus ) 评论无需注册登录 ( 排除 gitment, gitalk, gitter 这三个github相关的评论系统 ) 不要求网站备案 ( 排除一系列国内的评论系统 )  在剩下的为数不多的可选项中，Valine就成为了那个被我最终选择的评论系统。 最终效果图:">
@@ -46,10 +48,11 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://upwnothing.github.io/zh-CN/c0899d18/result.PNG">
 
+
 <link rel="canonical" href="https://upwnothing.github.io/zh-CN/c0899d18/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -57,8 +60,7 @@
     isPost : true,
     lang   : 'zh-CN'
   };
-</script>
-<script type="text/javascript">
+</script><script type="text/javascript">
     // Wait for the page to load first
     var _prevOnload = window.onload;
     window.onload = function() {
@@ -77,6 +79,7 @@
     }
 </script>
 <script data-ad-client="ca-pub-2179953596008833" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 
   <title>为Hexo NexT 添加评论系统 | UPWNothing's Playground</title>
   
@@ -97,49 +100,61 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">UPWNothing's Playground</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">一个关于安全的小宝箱</p>
   </div>
@@ -153,17 +168,11 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -176,9 +185,14 @@
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
 
   </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
+
+  </li>
         <li class="menu-item menu-item-switch_lang">
 
-    <a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>-->English</a>
+    <a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>switch_lang</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -197,7 +211,7 @@
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -205,9 +219,9 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
 
@@ -215,291 +229,18 @@
   </div>
 
 </div>
-    </header>
-
-    
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/c0899d18/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon.jpeg">
-      <meta itemprop="name" content="UPWNothing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="UPWNothing's Playground">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          为Hexo NexT 添加评论系统
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-06 14:50:11 / 修改时间：16:12:56" itemprop="dateCreated datePublished" datetime="2020-01-06T14:50:11+08:00">2020-01-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/zh-CN/c0899d18/" class="post-meta-item leancloud_visitors" data-flag-title="为Hexo NexT 添加评论系统" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/zh-CN/c0899d18/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/c0899d18/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <h1 id="选择合适的评论系统"><a href="#选择合适的评论系统" class="headerlink" title="选择合适的评论系统"></a>选择合适的评论系统</h1><p>我选择评论系统时，考虑到以下几点：</p>
-<ul>
-<li>免费 ( 排除 <strong>hypercomments</strong> )</li>
-<li>无需翻墙 ( 排除 <strong>disqus</strong> )</li>
-<li>评论无需注册登录 ( 排除 <strong>gitment</strong>, <strong>gitalk</strong>, <strong>gitter</strong> 这三个github相关的评论系统 )</li>
-<li>不要求网站备案 ( 排除一系列国内的评论系统 )</li>
-</ul>
-<p>在剩下的为数不多的可选项中，<a href="https://valine.js.org/" target="_blank" rel="noopener">Valine</a>就成为了那个被我最终选择的评论系统。</p>
-<p><strong>最终效果图:</strong><br><img data-src="/zh-CN/c0899d18/result.PNG" alt="效果图"></p>
-<a id="more"></a>
-
-<h1 id="LeanCloud-注册及配置"><a href="#LeanCloud-注册及配置" class="headerlink" title="LeanCloud 注册及配置"></a><a href="https://www.leancloud.cn/" target="_blank" rel="noopener">LeanCloud</a> 注册及配置</h1><h2 id="账号注册"><a href="#账号注册" class="headerlink" title="账号注册"></a>账号注册</h2><p><strong>Valine</strong>是一款基于<strong>LeanCloud</strong>的快速、简洁且高效的无后端评论系统。所以我们需要先注册一个账号。  </p>
-<p>这里顺带提一句，在Valine上注册需要手机号码接受验证码，以及通过实名身份认证。</p>
-<p><img data-src="/zh-CN/c0899d18/Valine_register.PNG" alt="Valine_register"></p>
-<p>Valine已经计划在未来支持基于Firebase的评论存储。Firebase可以避免实名身份认证等问题。</p>
-<h2 id="创建应用并获取APP-ID-和-APP-Key"><a href="#创建应用并获取APP-ID-和-APP-Key" class="headerlink" title="创建应用并获取APP ID 和 APP Key"></a>创建应用并获取APP ID 和 APP Key</h2><p>在完成上述认证步骤之后，我们可以开始创建应用。  </p>
-<p><img data-src="/zh-CN/c0899d18/LeanCloud_Create.jpg" alt="创建应用">  </p>
-<p>应用创建好以后，进入刚刚创建的应用，选择左下角的设置&gt;应用Key，然后就能看到你的APP ID和APP Key了：</p>
-<p><img data-src="/zh-CN/c0899d18/LeanCloud_AppKey.jpg" alt="获取App ID和Key"></p>
-<p>之后再在左边栏点击储存，查看结构化数据中有没有<em>Comment</em>和<em>Counter</em>这两个Classes。如果没有，点击创建Class，默认选项即可直接创建。</p>
-<p><img data-src="/zh-CN/c0899d18/LeanCloud_AddClass.PNG" alt="LeanCloud_AddClass"></p>
-<p>再进入设置-安全中心，设置自己的安全域名：</p>
-<p><img data-src="/zh-CN/c0899d18/LeanCloud_SecuredDomain.PNG" alt="LeanCloud_SecuredDomain"></p>
-<p>至此，就是全部需要在LeanCloud中进行的操作了。</p>
-<h1 id="配置NexT"><a href="#配置NexT" class="headerlink" title="配置NexT"></a>配置NexT</h1><p>在主题配置文件中找到Valine配置项，根据自己的需要进行配置。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Valine</span></span><br><span class="line"><span class="comment"># For more information: https://valine.js.org, https://github.com/xCss/Valine</span></span><br><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">appid:</span> <span class="comment"># Your leancloud application appid</span></span><br><span class="line">  <span class="attr">appkey:</span> <span class="comment"># Your leancloud application appkey</span></span><br><span class="line">  <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier</span></span><br><span class="line">  <span class="attr">verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">Your</span> <span class="string">comments...</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">monsterid</span> <span class="comment"># Gravatar style</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line">  <span class="attr">language:</span> <span class="string">en</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># Article reading statistic</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="attr">recordIP:</span> <span class="literal">true</span> <span class="comment"># Whether to record the commenter IP</span></span><br><span class="line">  <span class="attr">serverURLs:</span> <span class="comment"># When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure>
-
-<p>具体参数的含义可以查看<a href="https://valine.js.org/configuration.html" target="_blank" rel="noopener">官方文档</a>.<br>这里简单说明一下：</p>
-<ul>
-<li>enable: true   不解释</li>
-<li>appid 和 appkey, 填上之前LeanCloud中获得的对应值</li>
-<li>notify: 控制邮件通知。需要配合LeanCloud的配置，详见：<a href="https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE" target="_blank" rel="noopener">https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE</a></li>
-<li>verify: 验证码服务</li>
-<li>placeholder: 评论框的占位提示符，默认为”Just go go”。这里可以修改成任意你觉得有趣的话。</li>
-<li>avatar: 默认为mm，具体详见：<a href="https://valine.js.org/avatar.html" target="_blank" rel="noopener">https://valine.js.org/avatar.html</a></li>
-<li>pageSize: 评论分页每页条数</li>
-<li>language: 目前仅支持en和zh-cn。暂时还不知道如何可以让评论区的语言与文章的语言统一。</li>
-<li>visitor: 是否启用阅读量统计</li>
-<li>comment_count: 如果是true评论数统计会显示在主页上，false的话则评论数仅在文章页面显示。</li>
-<li>recordIP: 是否记录评论者IP</li>
-</ul>
-<h1 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h1><p>完成配置后，执行<code>hexo cl &amp;&amp; hexo g</code>来观察效果。</p>
-<p><img data-src="/zh-CN/c0899d18/result.PNG" alt="最终效果"></p>
-<p>Perfect! 一次成功！</p>
-<p><em>评论的功能在所有页面都默认开启，我们可以通过在Front-matter中添加comments: false 来关闭评论</em></p>
-<h1 id="评论管理"><a href="#评论管理" class="headerlink" title="评论管理"></a>评论管理</h1><p>通过 <a href="https://github.com/panjunwen/Valine-Admin" target="_blank" rel="noopener">Valine Admin</a> 可以实现了评论邮件通知、评论管理、垃圾评论过滤等功能。支持完全自定义的邮件通知模板。<br>目前我并没有启用这个功能。毕竟几乎没有评论，也不需要集中管理。如果之后有需要添加，再更新这一部分的内容。</p>
-<hr>
-<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul>
-<li><a href="https://www.zhihu.com/question/267598518" target="_blank" rel="noopener">Hexo（NexT 主题）评论系统哪个好？</a></li>
-<li><a href="https://www.jianshu.com/p/3e200908b9fc" target="_blank" rel="noopener">Hexo NexT主题评论功能的筛选对比</a></li>
-<li><a href="https://valine.js.org/quickstart.html" target="_blank" rel="noopener">Valine官方文档</a></li>
-</ul>
-
-    </div>
-
-    
-    
-    
-      
-  <div class="popular-posts-header">你可能感兴趣的文章</div>
-  <ul class="popular-posts">
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/zh-CN/78ced6ec/" rel="bookmark">利用Hexo框架搭建中英文双语网站</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/zh-CN/44bf8def/" rel="bookmark">Hexo + NexT 深度个性化配置 (2020.1 更新)</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/zh-CN/be16ea65/" rel="bookmark">解决Hexo NexT中Fancybox与Lazyload冲突的问题</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/zh-CN/3ba3be9/" rel="bookmark">Hexo版本升级指南</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/en/a45b1048/" rel="bookmark">Insert Images to an Hexo Post</a></div>
-    </li>
-  </ul>
-
-        <div class="reward-container">
-  <div>觉得好的话不妨赏一杯奶茶吧～</div>
-  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    打赏
-  </button>
-  <div id="qr" style="display: none;">
-      
-      <div style="display: inline-block;">
-        <img src="/images/wechatpay.png" alt="UPWNothing 微信支付">
-        <p>微信支付</p>
-      </div>
-      
-      <div style="display: inline-block;">
-        <img src="/images/alipay.png" alt="UPWNothing 支付宝">
-        <p>支付宝</p>
-      </div>
-      
-      <div style="display: inline-block;">
-        <img src="/images/bitcoin.png" alt="UPWNothing 比特币">
-        <p>比特币</p>
-      </div>
-
-  </div>
-</div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
-              <a href="/tags/NexT/" rel="tag"># NexT</a>
-              <a href="/tags/Valine/" rel="tag"># Valine</a>
-          </div>
-
         
-  <div class="post-widgets">
-    <div class="wp_rating">
-      <div id="wpac-rating"></div>
-    </div>
-  </div>
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/zh-CN/3ba3be9/" rel="prev" title="Hexo版本升级指南">
-      <i class="fa fa-chevron-left"></i> Hexo版本升级指南
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/zh-CN/44bf8def/" rel="next" title="Hexo + NexT 深度个性化配置 (2020.1 更新)">
-      Hexo + NexT 深度个性化配置 (2020.1 更新) <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="valine-comments"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
         </li>
@@ -508,20 +249,21 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#选择合适的评论系统"><span class="nav-number">1.</span> <span class="nav-text">选择合适的评论系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LeanCloud-注册及配置"><span class="nav-number">2.</span> <span class="nav-text">LeanCloud 注册及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#账号注册"><span class="nav-number">2.1.</span> <span class="nav-text">账号注册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建应用并获取APP-ID-和-APP-Key"><span class="nav-number">2.2.</span> <span class="nav-text">创建应用并获取APP ID 和 APP Key</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置NexT"><span class="nav-number">3.</span> <span class="nav-text">配置NexT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最终效果"><span class="nav-number">4.</span> <span class="nav-text">最终效果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#评论管理"><span class="nav-number">5.</span> <span class="nav-text">评论管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文档"><span class="nav-number">6.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.</span> <span class="nav-text">选择合适的评论系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LeanCloud-%E6%B3%A8%E5%86%8C%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">LeanCloud 注册及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%A6%E5%8F%B7%E6%B3%A8%E5%86%8C"><span class="nav-number">2.1.</span> <span class="nav-text">账号注册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8%E5%B9%B6%E8%8E%B7%E5%8F%96APP-ID-%E5%92%8C-APP-Key"><span class="nav-number">2.2.</span> <span class="nav-text">创建应用并获取APP ID 和 APP Key</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AENexT"><span class="nav-number">3.</span> <span class="nav-text">配置NexT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C"><span class="nav-number">4.</span> <span class="nav-text">最终效果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%84%E8%AE%BA%E7%AE%A1%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">评论管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="nav-number">6.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="UPWNothing"
       src="/images/icon.jpeg">
   <p class="site-author-name" itemprop="name">UPWNothing</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻</div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -545,23 +287,300 @@
 
 
 
+        </section>
       </div>
-        <div class="back-to-top motion-element">
+        <div class="back-to-top animated">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
-
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/c0899d18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.jpeg">
+      <meta itemprop="name" content="UPWNothing">
+      <meta itemprop="description" content="记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="UPWNothing's Playground">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          为Hexo NexT 添加评论系统
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-01-06 14:50:11 / 修改时间：16:12:56" itemprop="dateCreated datePublished" datetime="2020-01-06T14:50:11+08:00">2020-01-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/zh-CN/c0899d18/" class="post-meta-item leancloud_visitors" data-flag-title="为Hexo NexT 添加评论系统" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
       </div>
-    </main>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
 
-    <footer class="footer">
-      <div class="footer-inner">
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="选择合适的评论系统"><a href="#选择合适的评论系统" class="headerlink" title="选择合适的评论系统"></a>选择合适的评论系统</h1><p>我选择评论系统时，考虑到以下几点：</p>
+<ul>
+<li>免费 ( 排除 <strong>hypercomments</strong> )</li>
+<li>无需翻墙 ( 排除 <strong>disqus</strong> )</li>
+<li>评论无需注册登录 ( 排除 <strong>gitment</strong>, <strong>gitalk</strong>, <strong>gitter</strong> 这三个github相关的评论系统 )</li>
+<li>不要求网站备案 ( 排除一系列国内的评论系统 )</li>
+</ul>
+<p>在剩下的为数不多的可选项中，<a target="_blank" rel="noopener" href="https://valine.js.org/">Valine</a>就成为了那个被我最终选择的评论系统。</p>
+<p><strong>最终效果图:</strong><br><img data-src="/zh-CN/c0899d18/result.PNG" alt="效果图"></p>
+<a id="more"></a>
+
+<h1 id="LeanCloud-注册及配置"><a href="#LeanCloud-注册及配置" class="headerlink" title="LeanCloud 注册及配置"></a><a target="_blank" rel="noopener" href="https://www.leancloud.cn/">LeanCloud</a> 注册及配置</h1><h2 id="账号注册"><a href="#账号注册" class="headerlink" title="账号注册"></a>账号注册</h2><p><strong>Valine</strong>是一款基于<strong>LeanCloud</strong>的快速、简洁且高效的无后端评论系统。所以我们需要先注册一个账号。  </p>
+<p>这里顺带提一句，在Valine上注册需要手机号码接受验证码，以及通过实名身份认证。</p>
+<p><img data-src="/zh-CN/c0899d18/Valine_register.PNG" alt="Valine_register"></p>
+<p>Valine已经计划在未来支持基于Firebase的评论存储。Firebase可以避免实名身份认证等问题。</p>
+<h2 id="创建应用并获取APP-ID-和-APP-Key"><a href="#创建应用并获取APP-ID-和-APP-Key" class="headerlink" title="创建应用并获取APP ID 和 APP Key"></a>创建应用并获取APP ID 和 APP Key</h2><p>在完成上述认证步骤之后，我们可以开始创建应用。  </p>
+<p><img data-src="/zh-CN/c0899d18/LeanCloud_Create.jpg" alt="创建应用">  </p>
+<p>应用创建好以后，进入刚刚创建的应用，选择左下角的设置&gt;应用Key，然后就能看到你的APP ID和APP Key了：</p>
+<p><img data-src="/zh-CN/c0899d18/LeanCloud_AppKey.jpg" alt="获取App ID和Key"></p>
+<p>之后再在左边栏点击储存，查看结构化数据中有没有<em>Comment</em>和<em>Counter</em>这两个Classes。如果没有，点击创建Class，默认选项即可直接创建。</p>
+<p><img data-src="/zh-CN/c0899d18/LeanCloud_AddClass.PNG" alt="LeanCloud_AddClass"></p>
+<p>再进入设置-安全中心，设置自己的安全域名：</p>
+<p><img data-src="/zh-CN/c0899d18/LeanCloud_SecuredDomain.PNG" alt="LeanCloud_SecuredDomain"></p>
+<p>至此，就是全部需要在LeanCloud中进行的操作了。</p>
+<h1 id="配置NexT"><a href="#配置NexT" class="headerlink" title="配置NexT"></a>配置NexT</h1><p>在主题配置文件中找到Valine配置项，根据自己的需要进行配置。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Valine</span></span><br><span class="line"><span class="comment"># For more information: https://valine.js.org, https://github.com/xCss/Valine</span></span><br><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">appid:</span> <span class="comment"># Your leancloud application appid</span></span><br><span class="line">  <span class="attr">appkey:</span> <span class="comment"># Your leancloud application appkey</span></span><br><span class="line">  <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier</span></span><br><span class="line">  <span class="attr">verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">Your</span> <span class="string">comments...</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">monsterid</span> <span class="comment"># Gravatar style</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line">  <span class="attr">language:</span> <span class="string">en</span> <span class="comment"># Language, available values: en, zh-cn</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># Article reading statistic</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="attr">recordIP:</span> <span class="literal">true</span> <span class="comment"># Whether to record the commenter IP</span></span><br><span class="line">  <span class="attr">serverURLs:</span> <span class="comment"># When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure>
+
+<p>具体参数的含义可以查看<a target="_blank" rel="noopener" href="https://valine.js.org/configuration.html">官方文档</a>.<br>这里简单说明一下：</p>
+<ul>
+<li>enable: true   不解释</li>
+<li>appid 和 appkey, 填上之前LeanCloud中获得的对应值</li>
+<li>notify: 控制邮件通知。需要配合LeanCloud的配置，详见：<a target="_blank" rel="noopener" href="https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE">https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE</a></li>
+<li>verify: 验证码服务</li>
+<li>placeholder: 评论框的占位提示符，默认为”Just go go”。这里可以修改成任意你觉得有趣的话。</li>
+<li>avatar: 默认为mm，具体详见：<a target="_blank" rel="noopener" href="https://valine.js.org/avatar.html">https://valine.js.org/avatar.html</a></li>
+<li>pageSize: 评论分页每页条数</li>
+<li>language: 目前仅支持en和zh-cn。暂时还不知道如何可以让评论区的语言与文章的语言统一。</li>
+<li>visitor: 是否启用阅读量统计</li>
+<li>comment_count: 如果是true评论数统计会显示在主页上，false的话则评论数仅在文章页面显示。</li>
+<li>recordIP: 是否记录评论者IP</li>
+</ul>
+<h1 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h1><p>完成配置后，执行<code>hexo cl &amp;&amp; hexo g</code>来观察效果。</p>
+<p><img data-src="/zh-CN/c0899d18/result.PNG" alt="最终效果"></p>
+<p>Perfect! 一次成功！</p>
+<p><em>评论的功能在所有页面都默认开启，我们可以通过在Front-matter中添加comments: false 来关闭评论</em></p>
+<h1 id="评论管理"><a href="#评论管理" class="headerlink" title="评论管理"></a>评论管理</h1><p>通过 <a target="_blank" rel="noopener" href="https://github.com/panjunwen/Valine-Admin">Valine Admin</a> 可以实现了评论邮件通知、评论管理、垃圾评论过滤等功能。支持完全自定义的邮件通知模板。<br>目前我并没有启用这个功能。毕竟几乎没有评论，也不需要集中管理。如果之后有需要添加，再更新这一部分的内容。</p>
+<hr>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/267598518">Hexo（NexT 主题）评论系统哪个好？</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3e200908b9fc">Hexo NexT主题评论功能的筛选对比</a></li>
+<li><a target="_blank" rel="noopener" href="https://valine.js.org/quickstart.html">Valine官方文档</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">你可能感兴趣的文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/zh-CN/78ced6ec/" rel="bookmark">利用Hexo框架搭建中英文双语网站</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/zh-CN/be16ea65/" rel="bookmark">解决Hexo NexT中Fancybox与Lazyload冲突的问题</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/zh-CN/44bf8def/" rel="bookmark">Hexo + NexT 深度个性化配置 (2020.1 更新)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/zh-CN/3ba3be9/" rel="bookmark">Hexo版本升级指南</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/en/a45b1048/" rel="bookmark">Insert Images to an Hexo Post</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>觉得好的话不妨赏一杯奶茶吧～</div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="UPWNothing 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="UPWNothing 支付宝">
+        <span>支付宝</span>
+      </div>
+      <div>
+        <img src="/images/bitcoin.png" alt="UPWNothing 比特币">
+        <span>比特币</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>UPWNothing
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://upwnothing.github.io/zh-CN/c0899d18/" title="为Hexo NexT 添加评论系统">https://upwnothing.github.io/zh-CN/c0899d18/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/NexT/" rel="tag"># NexT</a>
+              <a href="/tags/Valine/" rel="tag"># Valine</a>
+          </div>
+
         
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/zh-CN/3ba3be9/" rel="prev" title="Hexo版本升级指南">
+                  <i class="fa fa-chevron-left"></i> Hexo版本升级指南
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/zh-CN/44bf8def/" rel="next" title="Hexo + NexT 深度个性化配置 (2020.1 更新)">
+                  Hexo + NexT 深度个性化配置 (2020.1 更新) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
   <div class="languages">
     <label class="lang-select-label">
       <i class="fa fa-language"></i>
@@ -581,7 +600,7 @@
     </select>
   </div>
 
-        
+      
 
 <div class="copyright">
   
@@ -591,21 +610,22 @@
     <i class="paw"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">UPWNothing</span>
-    <span class="post-meta-divider">|</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
     <span title="站点总字数">38k</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">34 分钟</span>
+    <span title="站点阅读时长">35 分钟</span>
+  </span>
 </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -614,7 +634,6 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -623,40 +642,18 @@
         <span id="busuanzi_value_site_pv"></span>
       </span>
     </span>
-</div>
+</div><script color="72,97,152" opacity="0.8" zIndex="-1" count="199" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script color='72,97,152' opacity='0.8' zIndex='' count='150' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js"></script>
-  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -683,13 +680,24 @@
   }
   </script>
 
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-<script src="/js/local-search.js"></script>
-
-
-
-
-
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
@@ -701,35 +709,6 @@
   
 
   
-
-
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : 'DUtYTL3VYq8Mgbo2uSd9pEE8-9Nh9j0Va',
-      appKey     : 'RFEfNupULNUbbjBv7Cw7J4Ls',
-      placeholder: "请留下您的评论～（填写邮箱的话，有回复时会通过邮箱提醒哦～邮箱并不会显示在评论中）",
-      avatar     : 'monsterid',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : true,
-      lang       : 'en' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : true,
-      serverURLs : ''
-    });
-  }, window.Valine);
-});
-</script>
 
 </body>
 </html>

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN,en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 5.2.0">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
@@ -13,19 +15,19 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
 
-<script id="hexo-configurations">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
   <meta name="description" content="概述Root Me是一个非常不错的在线网络安全技能专项练习网站。比起其他的一些模拟练习平台，这个网站相对而言更”Noob friendly”…对于渗透测试有兴趣又不知道如何入门的同学，不妨可以从这个网站开始入手。   本文包含WebServer分类中前十六题全部的解题思路。第二部分正在施工中…">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Root-me WebServer分类 解题思路 （一）">
+<meta property="og:title" content="Root-Me WebServer分类 解题思路 （一）">
 <meta property="og:url" content="https://upwnothing.github.io/zh-CN/f0181575/index.html">
 <meta property="og:site_name" content="UPWNothing&#39;s Playground">
 <meta property="og:description" content="概述Root Me是一个非常不错的在线网络安全技能专项练习网站。比起其他的一些模拟练习平台，这个网站相对而言更”Noob friendly”…对于渗透测试有兴趣又不知道如何入门的同学，不妨可以从这个网站开始入手。   本文包含WebServer分类中前十六题全部的解题思路。第二部分正在施工中…">
@@ -77,10 +79,11 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://upwnothing.github.io/zh-CN/f0181575/html_sourcecode.png">
 
+
 <link rel="canonical" href="https://upwnothing.github.io/zh-CN/f0181575/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -88,8 +91,7 @@
     isPost : true,
     lang   : 'zh-CN'
   };
-</script>
-<script type="text/javascript">
+</script><script type="text/javascript">
     // Wait for the page to load first
     var _prevOnload = window.onload;
     window.onload = function() {
@@ -109,7 +111,8 @@
 </script>
 <script data-ad-client="ca-pub-2179953596008833" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  <title>Root-me WebServer分类 解题思路 （一） | UPWNothing's Playground</title>
+
+  <title>Root-Me WebServer分类 解题思路 （一） | UPWNothing's Playground</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
     <script>
@@ -128,49 +131,61 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">UPWNothing's Playground</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">一个关于安全的小宝箱</p>
   </div>
@@ -184,17 +199,11 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -207,9 +216,14 @@
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
 
   </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
+
+  </li>
         <li class="menu-item menu-item-switch_lang">
 
-    <a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>-->English</a>
+    <a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>switch_lang</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -228,7 +242,7 @@
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -236,9 +250,9 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
 
@@ -246,426 +260,18 @@
   </div>
 
 </div>
-    </header>
-
-    
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/f0181575/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon.jpeg">
-      <meta itemprop="name" content="UPWNothing">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="UPWNothing's Playground">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Root-me WebServer分类 解题思路 （一）
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-22 15:32:47" itemprop="dateCreated datePublished" datetime="2020-01-22T15:32:47+08:00">2020-01-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-02 17:19:32" itemprop="dateModified" datetime="2020-07-02T17:19:32+08:00">2020-07-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Security/Web-Application/" itemprop="url" rel="index"><span itemprop="name">Web Application</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/zh-CN/f0181575/" class="post-meta-item leancloud_visitors" data-flag-title="Root-me WebServer分类 解题思路 （一）" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/zh-CN/f0181575/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/zh-CN/f0181575/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>9.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p><a href="https://root-me.org" target="_blank" rel="noopener">Root Me</a>是一个非常不错的在线网络安全技能专项练习网站。比起其他的一些模拟练习平台，这个网站相对而言更”Noob friendly”…对于渗透测试有兴趣又不知道如何入门的同学，不妨可以从这个网站开始入手。  </p>
-<p>本文包含WebServer分类中前十六题全部的解题思路。<a href="https://upwnothing.github.io/zh-CN/afcc83f6">第二部分</a>正在施工中…</p>
-<a id="more"></a>
-
-<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p><a href="#HTML-Sourde-code">HTML - Source code</a><br><a href="#HTTP-Open-redirect">HTTP - Open redirect</a><br><a href="#HTTP-User-agent">HTTP - User-agent</a><br><a href="#Weak-password">Weak password</a><br><a href="#PHP-Command-injection">PHP - Command injection</a><br><a href="#Backup-file">Backup file</a><br><a href="#HTTP-Directory-indexing">HTTP - Directory indexing</a><br><a href="#HTTP-Headers">HTTP - Headers</a><br><a href="#HTTP-POST">HTTP - POST</a><br><a href="#HTTP-Improper-redirect">HTTP - Improper redirect</a><br><a href="#Install-files">Install files</a><br><a href="#CRLF">CRLF</a><br><a href="#File-upload-Double-extensions">File upload - Double extensions</a><br><a href="#File-upload-MIME-type">File upload - MIME type</a><br><a href="#HTTP-Cookies">HTTP - Cookies</a></p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="HTML-Source-code"><a href="#HTML-Source-code" class="headerlink" title="HTML - Source code"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTML-source-code" target="_blank" rel="noopener">HTML - Source code</a></h2><p>送分题。主要目的只是跟新用户打个招呼！</p>
-<p>直接查看页面源代码即可。解题密码在HTML的注释中。</p>
-<p><img data-src="/zh-CN/f0181575/html_sourcecode.png" alt></p>
-<blockquote>
-<p>虽然这只是一道送分题，但同时，这种题目也给刚接触Web App渗透测试的新手一个非常不错的提示：<br>千万不要忽视任何你可以获得的信息。对于在页面源码注释中发现造成安全漏洞的关键信息，在现实中其实也很常见。会有开发者将一些测试用帐号密码直接注释，就发布到了网络上。更多的情况下，泄漏的信息不像密码这么直接，但绝对能给有攻击意图的黑客带去极大的帮助/提示。</p>
-</blockquote>
-<h2 id="HTTP-Open-redirect"><a href="#HTTP-Open-redirect" class="headerlink" title="HTTP - Open redirect"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-Open-redirect" target="_blank" rel="noopener">HTTP - Open redirect</a></h2><p><img data-src="/zh-CN/f0181575/open_redirect_0.png" alt></p>
-<p>这个页面的功能很简单，页面中间有三个按钮。你点击了某个按钮，页面就会跳转到对应的社交网络应用(Facebook, Twitter, Slack)。<br>根据描述，我们的目标是让页面跳转到除上述三个网站外的任何一个网页。所以，研究一下这个页面是如何实现跳转功能的： </p>
-<p>查看源码，我们可以看到，网页将目标地址作为url参数进行传递，通过服务器端实现重定向的跳转。除了url参数之外，还有一个h参数。参数的值是一个32位的16进制字符串。具体作用还不知道。但是根据参数名字h，以及32位长度的特征，可以大致猜测应该是一个MD5的Hash值。</p>
-<p><img data-src="/zh-CN/f0181575/open_redirect_1.png" alt></p>
-<p>首先尝试仅修改<code>url=</code>后面的值，观察是否能够完成跳转。完整的url为: <code>http://challenge01.root-me.org/web-serveur/ch52/?url=https://baidu.com&amp;h=a023cfbf5f1c39bdf8407f28b60cd134</code>  </p>
-<p><img data-src="/zh-CN/f0181575/open_redirect_2.png" alt></p>
-<p>看上去，我们没有能够成功进行跳转。错误的信息为:”incorrect hash!”(错误的哈希）。这证实了我之前关于h参数是哈希值的猜测。现在的任务就是找出这个是谁的哈希值。</p>
-<p>简单尝试两次：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">richard<span class="meta">@richard</span>-<span class="string">Kali:</span>~$ echo -n <span class="string">https:</span><span class="comment">//facebook.com | md5sum</span></span><br><span class="line">a023cfbf5f1c39bdf8407f28b60cd134  -</span><br><span class="line">richard<span class="meta">@richard</span>-<span class="string">Kali:</span>~$ echo -n url=<span class="string">https:</span><span class="comment">//facebook.com | md5sum</span></span><br><span class="line"><span class="number">44</span>c27492004e8d0d46ac5b19377f8a16  -</span><br></pre></td></tr></table></figure>
-
-<p>Bingo！很轻松就找到了。就是对<code>url</code>参数的值进行了md5哈希。所以我们只需要对我们提供的值计算一次md5即可。</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">richard<span class="meta">@richard</span>-<span class="string">Kali:</span>~$ echo -n <span class="string">https:</span><span class="comment">//baidu.com | md5sum</span></span><br><span class="line"><span class="number">40674</span>b7fe4c1ee59dbaffe877c6ac2e3  -</span><br></pre></td></tr></table></figure>
-
-<p>将得到的结果重新组合构成新的URL请求： <code>http://challenge01.root-me.org/web-serveur/ch52/?url=https://baidu.com&amp;h=bb6e082d5c360ce6a0c64f926feea905</code>  </p>
-<p>再次尝试，顺利拿到了flag： <code>e6f8a530811d5a479812d7b82fc1a5c5</code>  10分顺利到手～</p>
-<p><img data-src="/zh-CN/f0181575/open_redirect_3.png" alt></p>
-<blockquote>
-<p>要点1：</p>
-<p>可能有人会产生疑问：跳转到百度又怎么了？这有什么不安全的？<br>跳转到百度确实没怎么样，但是允许任何人通过修改URL来控制网页的跳转，是会产生极大的安全风险的！！设想以下场景：某个银行的网站存在这么一个参数可以完成任意跳转，那么攻击者可以创建一个 <a href="http://www.fakebank.com" target="_blank" rel="noopener">www.fakebank.com</a> 的网页，使其与银行的页面看上去完全一样，然后将以下链接发送给受害者：<a href="http://www.bank.com/?url=www.fakebank.com" target="_blank" rel="noopener">www.bank.com/?url=www.fakebank.com</a>. 光看链接的开头，受害者很容易就相信这是真实的官方网站。然而，点击这个链接进入的实际却是黑客精心准备的”陷阱“！ 攻击者还会在链接中加入其他无效参数进行混淆，使url参数的值变得极其难以发现，增加攻击的成功率。所以，一定要避免使用这样的方式实现跳转。这确确实实会造成安全风险。</p>
-</blockquote>
-<blockquote>
-<p>要点2：</p>
-<p>这个网页能可考虑到了上述的问题，所以加入了哈系进行校验。但是，显而易见，这样的校验完全没有起到作用。这说明了，永远不要依赖用户可以修改的值作为数据校验。这只是掩耳盗铃罢了…</p>
-</blockquote>
-<h2 id="HTTP-User-agent"><a href="#HTTP-User-agent" class="headerlink" title="HTTP - User-agent"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-User-agent" target="_blank" rel="noopener">HTTP - User-agent</a></h2><p>点开这个挑战的页面，提示其实很明确：“Wrong user-agent: you are not the “admin” browser!” （错误的user-agent:你没有使用”admin”浏览器）  </p>
-<p>这个挑战是关于修改HTTP请求头中User-Agent的值。这里就不多对HTTP请求头及User-Agent属性做过多的介绍了。随手搜一下就能找到非常多的详细讲解。简而言之，User-Agent是HTTP请求头中记录用户浏览器信息的属性。  </p>
-<p>为了修改HTTP请求头中的属性，用到的思路是在本地设置代理，截取浏览器发出的HTTP请求。在代理中对请求进行篡改后，再将请求发送到目标服务器上。具体的实现方法有很多：通过代理工具（Burp），浏览器插件或者是Python脚本来实现。这里我使用Burp来完成。</p>
-<p>在浏览器中将代理设置为127.0.0.1:8080 (Burp的默认端口，可以根据情况自行配置）。设置完成后，重新发送请求。可以看到Burp成功截取了这个HTTP请求。</p>
-<p><img data-src="/zh-CN/f0181575/user_agent_0.png" alt="Burp截取到的HTTP请求"></p>
-<p>将<code>User-Agent</code>的值修改为要求的<code>admin</code>。并点击Forward将请求转发到目标服务器。</p>
-<p><img data-src="/zh-CN/f0181575/user_agent_1.png" alt="修改User-Agent"></p>
-<p>Bingo! 成功获取了Flag～</p>
-<p><img data-src="/zh-CN/f0181575/user_agent_2.png" alt></p>
-<p>解题密码： <code>rr$Li9%L34qd1AAe27</code></p>
-<blockquote>
-<p>要点：<br>HTTP请求头中的数据也属于“用户输入”数据。不要轻易信赖HTTP请求头中的数据,</p>
-</blockquote>
-<h2 id="Weak-Password"><a href="#Weak-Password" class="headerlink" title="Weak Password"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/Weak-password" target="_blank" rel="noopener">Weak Password</a></h2><p>点开<a href="http://challenge01.root-me.org/web-serveur/ch3/" target="_blank" rel="noopener">页面</a>，首先弹出的是一个身份验证的对话框。</p>
-<p><img data-src="/zh-CN/f0181575/weak_password_0.png" alt></p>
-<p>结合挑战的主题，首先尝试一下最常见的几组弱密码：user/user; admin/admin; user/password;…</p>
-<p>结果admin/admin的用户名密码对就直接成功登录了！</p>
-<p><img data-src="/zh-CN/f0181575/weak_password_1.png" alt></p>
-<p>喂喂喂！这也太简单了吧…完全没想到居然这么容易就通过了。。。这题居然只有34%的通过率我也是没有料到。</p>
-<blockquote>
-<p>要点：<br>在安全运营的过程中，要设计合理完善的密码策略，避免弱密码，尤其是默认密码的出现。因为弱密码而产生的安全事件连起来已经可以绕地球好几圈了，一次又一次地因为这种相当容易避免的问题而造成非常大的损失是一件很让人沮丧的事情。</p>
-</blockquote>
-<h2 id="PHP-Command-Injection"><a href="#PHP-Command-Injection" class="headerlink" title="PHP - Command Injection"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/PHP-Command-injection" target="_blank" rel="noopener">PHP - Command Injection</a></h2><p>题目很明确的说明了，这是一道命令注入的挑战题。进入页面尝试一下，发现这个页面实现的是ping用户提供的IP地址的功能。</p>
-<p><img data-src="/zh-CN/f0181575/command_injection_0.png" alt></p>
-<p>可以大概思考一下实现的方式：PHP接受用户的输入，然后将其与”ping”进行拼接，然后发送给系统进行执行。所以注入的方式也很明显，就是在IP地址之后加入分割符，然后再加上自己想要执行的命令。所以尝试一下<code>127.0.0.1; ls</code>看看这个页面有没有输入校验。</p>
-<p><img data-src="/zh-CN/f0181575/command_injection_1.png" alt></p>
-<p>啊哈！果然是一道比较初级的题目，ls命令被成功执行了。我们看到多了一行index.php的输出。根据提示，在<code>index.php</code>文件中，有我们想要找到的解题密码。所以调整输入：</p>
-<p><code>127.0.0.1; cat index.php</code></p>
-<p>结果，只是在末尾多了一个输入框。看起来，应该是输出的php脚本被页面同时做了解析。看看页面源码确认一下吧？ </p>
-<p><img data-src="/zh-CN/f0181575/command_injection_2.png" alt></p>
-<p>哈哈，有意外发现。flag被加在了php的注释区域内。ok，这道题就完成了！</p>
-<p>Flag为<code>S3rv1ceP1n9Sup3rS3cure</code></p>
-<blockquote>
-<p>要点：<br>这道题再次反应了用户输入校验的重要性。在应用开发的过程中，务必要确保对接受到的用户输入进行校验，确保用户的输入与设计的功能是相匹配的，否则的话，狡猾的用户们一定会制造出你意想不到的效果。</p>
-</blockquote>
-<h2 id="Backup-File"><a href="#Backup-File" class="headerlink" title="Backup File"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/Backup-file" target="_blank" rel="noopener">Backup File</a></h2><p>打开页面，看到的是如下的登录界面。简单尝试了几个简单用户名密码，发现并不能成功登录。</p>
-<p><img data-src="/zh-CN/f0181575/backup_file_0.png" alt></p>
-<p>先快速查看一下页面源码，可惜没有发现任何线索。根据题目的名字 <em>backup file</em> , 尝试在URL后面添加backup等路径名，尝试是否存在跨目录攻击。但也没有任何发现。</p>
-<p>Emmmm…第一次陷入僵局！好的呗，偷偷瞄一眼论坛讨论。有一条回复给出了这个链接<a href="https://en.wikipedia.org/wiki/List_of_filename_extensions" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/List_of_filename_extensions </a>作为提示。</p>
-<p>原来是跟备份文件的文件后缀有关。常见的备份文件后缀名有：  </p>
-<ul>
-<li>??$</li>
-<li><del>1</del></li>
-<li>~??</li>
-</ul>
-<p>现在的问题就是我们需要在哪个文件后面加上后缀呢？最原始的页面路径为<code>http://challenge01.root-me.org/web-serveur/ch11/</code>,没有包含任何文件名称。所以，我们需要猜测一下默认的文件名称。对于PHP比较熟悉的童鞋肯定会知道PHP的默认主页文件是index.php. 那就尝试一下呗！访问<code>http://challenge01.root-me.org/web-serveur/ch11/index.php</code>,嘿嘿！果然，我们看到了完全相同的页面。好叻，既然已经知道了文件名，那么下一步只需要添加上文件后缀，再逐个尝试就可以了。</p>
-<p>当访问<code>http://challenge01.root-me.org/web-serveur/ch11/index.php~??</code>时，页面自动下载了一个名为<code>index.php_</code>的文件。</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line"><span class="variable">$username</span>=<span class="string">"ch11"</span>;</span><br><span class="line"><span class="variable">$password</span>=<span class="string">"OCCY9AcNm1tj"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo '</span><br><span class="line">      &lt;html&gt;</span><br><span class="line">      &lt;body&gt;</span><br><span class="line">	&lt;h1&gt;Authentication v 0.00&lt;/h1&gt;</span><br><span class="line">';</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_POST</span>[<span class="string">"username"</span>]!=<span class="string">""</span> &amp;&amp; <span class="variable">$_POST</span>[<span class="string">"password"</span>]!=<span class="string">""</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$_POST</span>[<span class="string">"username"</span>]==<span class="variable">$user</span> &amp;&amp; <span class="variable">$_POST</span>[<span class="string">"password"</span>]==<span class="variable">$password</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">print</span>(<span class="string">"&lt;h2&gt;Welcome back &#123;$row['username']&#125; !&lt;/h2&gt;"</span>);</span><br><span class="line">      <span class="keyword">print</span>(<span class="string">"&lt;h3&gt;Your informations :&lt;/h3&gt;&lt;p&gt;- username : $row[username]&lt;/p&gt;&lt;br /&gt;"</span>);</span><br><span class="line">      <span class="keyword">print</span>(<span class="string">"To validate the challenge use this password&lt;/b&gt;"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">print</span>(<span class="string">"&lt;h3&gt;Error : no such user/password&lt;/h2&gt;&lt;br /&gt;"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo '</span><br><span class="line">	&lt;<span class="keyword">form</span> action=<span class="string">""</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">	  Login&amp;nbsp;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"text"</span> name=<span class="string">"username"</span> /&gt;&lt;<span class="keyword">br</span>/&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  Password&amp;nbsp;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"password"</span> name=<span class="string">"password"</span> /&gt;&lt;<span class="keyword">br</span>/&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  &lt;<span class="keyword">br</span>/&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">"submit"</span> value=<span class="string">"connect"</span> /&gt;&lt;<span class="keyword">br</span>/&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	&lt;/<span class="keyword">form</span>&gt;</span><br><span class="line">      &lt;/body&gt;</span><br><span class="line">      &lt;/html&gt;</span><br><span class="line">';</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-<p>用得到的帐号密码登录，即可！</p>
-<p><img data-src="/zh-CN/f0181575/backup_file_1.png" alt></p>
-<p>根据提示，原来用密码直接验证就可以。15分到手！</p>
-<p>Flag为<code>OCCY9AcNm1tj</code>。</p>
-<blockquote>
-<p>要点：<br>在实际生产环境中，类似的问题其实也经常会发生。我们需要额外注意系统产生的备份文件与临时文件（比如vim编辑时也会在相同路径下生成临时文件）。这类文件如果被外部访问，就会直接产生源代码泄漏的事件。虽然在实际情况下，源码不会包含网页的登录信息，但是在很多时候的的确确会有数据库连接的登录信息。 一旦发生源代码泄露，同时数据库的access control又存在缺陷的话，那就直接是一起非常严重的数据库泄漏事件了。[坏笑]</p>
-</blockquote>
-<h2 id="HTTP-Directory-Indexing"><a href="#HTTP-Directory-Indexing" class="headerlink" title="HTTP - Directory Indexing"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-Directory-indexing" target="_blank" rel="noopener">HTTP - Directory Indexing</a></h2><p>点进页面一片空白，那就查看一下源码呗。然后源码里有一段注释：<code>&lt;!-- include(&quot;admin/pass.html&quot;) --&gt;</code> 啊…就这？就这？</p>
-<p>访问一下这个页面看看呗…？？？？被骗了？</p>
-<p><img data-src="/zh-CN/f0181575/directory_indexing_0.png" alt></p>
-<p>大致意思就是“被骗了吧！你肯定不是最后一个被骗的！好好再找找去吧！”。Hmmm…法式幽默！行吧，那就再找找咯！</p>
-<p>仔细再看看这题的名字： <strong>Directory Indexing</strong>。既然已经提到了是目录索引，应该是跟访问目录的访问控制问题有关。那哪个路径可能存在类似的问题呢？你们肯定也都想到了吧：admin。</p>
-<p>尝试访问一下admin路径：<code>http://challenge01.root-me.org/web-serveur/ch4/admin/</code> 果然！我们直接看到了admin路径下的索引列表：</p>
-<p><img data-src="/zh-CN/f0181575/directory_indexing_1.png" alt></p>
-<p>接下去的步骤不难猜测，顺着目录一步步找下去，在<code>backup/</code>下有一个名为<code>admin.txt</code>的文件。 </p>
-<p>直接找到Flag: <code>Linux</code>。这15分应该还算是比较简单的。</p>
-<blockquote>
-<p>要点：<br>这属于错误安全配置所造成的一个常见的结果。可以参考<a href="https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A6-Security_Misconfiguration" target="_blank" rel="noopener">OWASP Security Misconfiguration</a>中的Scenario #2. 攻击者可以随意浏览服务器上，与网页相关的文件。通过这种方式，攻击者可以获得到源代码，配置信息，身份认证信息等等关键文件。可能产生的影响不言而喻。 </p>
-</blockquote>
-<h2 id="HTTP-Headers"><a href="#HTTP-Headers" class="headerlink" title="HTTP - Headers"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-Headers" target="_blank" rel="noopener">HTTP - Headers</a></h2><p>先看题目与提示：HTTP Header, HTTP response give informations (HTTP响应会提供信息) </p>
-<p>OK，这个提示算是相当明显了。我们需要查看页面返回的HTTP头中的内容。</p>
-<p><img data-src="/zh-CN/f0181575/headers_0.png" alt></p>
-<p>我们看到了一项名为<code>Header-RootMe-Admin: none</code>的Header参数值。那我们在发出的请求中加入这个HTTP头部字段，并修改他的值，看看会产生什么样的结果。</p>
-<p><img data-src="/zh-CN/f0181575/headers_0.png" alt></p>
-<p>哦霍！直接成功。一下子就获取到了Flag: <code>HeadersMayBeUseful</code></p>
-<blockquote>
-<p>要点：<br>就像原题中提示的那样，HTTP响应的信息并不仅仅包含你所看到的页面的内容。HTTP的头部字段里也会有很多重要的信息。而且，这部分信息是用户可控的！！如果要使用HTTP头部字段的值，那就千万要记得把这个数据作为用户输入数据来对待，进行输入校验后再拿来使用。</p>
-</blockquote>
-<h2 id="HTTP-POST"><a href="#HTTP-POST" class="headerlink" title="HTTP - POST"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-POST" target="_blank" rel="noopener">HTTP - POST</a></h2><p>这道题目的说明是: Find a way to beat the top score! (想个办法来击败最高分)  </p>
-<p>挑战页面如下：</p>
-<p><img data-src="/zh-CN/f0181575/post_0.png" alt> </p>
-<p>点击”Give a try!”按钮，页面会随机生成一个数字。当然，结果永远是一样的，都比不过999999。咋办？只能开挂了！！既然标题是POST，那么就使用Burp拦截一下看看，POST有什么内容。</p>
-<p><img data-src="/zh-CN/f0181575/post_1.png" alt> </p>
-<p>这就简单了。分数原来是在客户端生成，并通过POST中的一个参数进行传递的。那我们只需要对POST中的数字进行篡改，就可以了。就像这样：</p>
-<p><img data-src="/zh-CN/f0181575/post_2.png" alt> </p>
-<p>发送！顺利得到flag: <code>H7tp_h4s_N0_s3Cr37S_F0r_y0U</code>  </p>
-<p><img data-src="/zh-CN/f0181575/post_3.png" alt> </p>
-<blockquote>
-<p>要点：<br>这道题的主要目的就是了解HTTP协议中，通过POST来传递数据的方法。虽然我们通过浏览器没法直接修改POST中的数据，但这并不意味着POST传递的数据就可以保证数据是可靠的。修改POST的数据同样也是非常容易办到的。</p>
-</blockquote>
-<h2 id="HTTP-Improper-redirect"><a href="#HTTP-Improper-redirect" class="headerlink" title="HTTP - Improper redirect"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-Improper-redirect" target="_blank" rel="noopener">HTTP - Improper redirect</a></h2><p>同样的，还是先看一眼描述与提示：Don’t trust your browser(不要相信你的浏览器); Get access to index (想办法进入index)。ok，先看看页面具体是怎么样的。</p>
-<p><img data-src="/zh-CN/f0181575/improper_redirect_0.png" alt></p>
-<p>有一个用户登录界面，看描述应该是需要通过php重定向的方法来绕过验证，进入到index页面。在浏览器中直接访问index.php，我们会被重定向到login.php进行身份验证。看似好像没有什么毛病。但是，如果我们尝试用Burp来仔细观察一下重定向的过程，问题就显现出来了。</p>
-<p><img data-src="/zh-CN/f0181575/improper_redirect_0.png" alt></p>
-<p>虽然状态码是302重定向，但是我们可以惊讶地发现，index.php页面源码居然也完完整整地显示了出来。。。通过这种方式，我们就相当于绕开了用户认证，就访问到了受限制的页面。我们可以轻易地看到Flag: <code>ExecutionAfterRedirectIsBad</code>  </p>
-<p>这个问题产生的原因是这样的：在PHP编写的时候，判断用户未授权的条件下，直接使用了<code>header(&#39;Location:xxx/login.php&#39;)</code>。脚本执行的时候，确实会返回302的HTTP响应，但除此之外，PHP在添加了重定向路径后，并没有停止执行，而是继续将页面的内容输出到了HTTP响应的body中。虽然在浏览器上，用户并不会直接看到未授权的页面，但是实际上，这个页面的内容已经完完整整地发送到了用户手里。</p>
-<blockquote>
-<p>要点：<br>就跟描述里说的那样，你通过浏览器所看到的内容并不一定就是实际从服务器返回的全部内容。这点在安全测试的过程中尤为重要。</p>
-</blockquote>
-<h2 id="HTTP-Verb-tampering"><a href="#HTTP-Verb-tampering" class="headerlink" title="HTTP - Verb tampering"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-verb-tampering" target="_blank" rel="noopener">HTTP - Verb tampering</a></h2><p>动词篡改？看到这个挑战的标题，我第一反映是有点懵… 但是后来仔细思考了一下，这里的verb应该指的是HTTP请求的方法。  </p>
-<p>众所周知（应该是吧），HTTP请求的方法有 GET, POST (最常用), HEAD, PUT, DELETE, TRACE, OPTIONS, CONNECT 这八种。这里面HEAD和OPTIONS也不是动词呀…? Anyway,先看一下挑战页面呗。</p>
-<p><img data-src="/zh-CN/f0181575/verb_tampering_0.png" alt></p>
-<p>好的呗，这个页面被保护了，需要用户身份验证才能访问。所以，我们要做的就是尝试修改HTTP请求的方法，看看是不是有机会绕过身份验证。默认的HTTP请求方法是GET。我们使用Burp将请求的方法改成上述列出的其他方法逐个尝试一下：</p>
-<p><img data-src="/zh-CN/f0181575/verb_tampering_1.png" alt></p>
-<p>使用DELETE方法发送请求，服务器直接给我们返回了解题的flag: <code>a23e$dme96d3saez$$prap</code> </p>
-<blockquote>
-<p>要点：<br>这个挑战说明的是通过篡改HTTP请求方法来绕过Web授权和认证的例子。这种情况大多数是在配置的时候产生的。由于GET/POST请求相对而言更加常用，所有很多开发者/运维人员会只考虑到对这两种HTTP请求方法进行配置，而忽视了剩余的HTTP请求方法。因此，在进行配置时，一定要确保安全约束策略覆盖到所有的HTTP请求方法。</p>
-</blockquote>
-<h2 id="Install-files"><a href="#Install-files" class="headerlink" title="Install files"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/Install-files" target="_blank" rel="noopener">Install files</a></h2><p>这道题打开页面一片空白。我一开始还以为网络连接有问题，后来发现并不是。那就先观察一下页面的源码。果然，在注释中发现了这么一行：</p>
-<p><img data-src="/zh-CN/f0181575/install_files_0.png" alt></p>
-<p>根据这个提示再点开<code>http://challenge01.root-me.org/web-serveur/ch6/phpbb</code>。点开以后我们发现！！除了Root-me的header之外，依旧是一片空白。。。- -</p>
-<p>好吧，结合这题的提示”You know phpBB ?”，先去往上查一下PHPBB的相关信息：PHPBB是一个使用PHP开发的开源网络论坛系统。再简单搜索一下PHPBB与文件安装相关的漏洞，我们发现，phpBB的安装路径为install目录。我们访问该路径就可以看到目录下的文件列表，我们可以看到有<code>install.php</code>这么一个文件。访问这个文件，我们直接可以获取到解题flag:<code>karambar</code>  </p>
-<blockquote>
-<p>要点：<br>其实这道题的总结，在install.php里面已经全部写出来了。只不过是法语的，我们需要翻译一下：<br>这个缺陷实际上是对网站站长的监督，这些文件应该在使用后都被正确地删除，包含 phpbb 论坛的安装页。<br>虽然此类漏洞已经越来越少地发生，因为开发人员使用了验证系统。<br>然而，我们需要了解的是，我们还是可以发现许多篡改 URL的方法…<br>通过这些方法，攻击者可以重置论坛，并更改所有管理员密码，初始化论坛。</p>
-</blockquote>
-<h2 id="CRLF"><a href="#CRLF" class="headerlink" title="CRLF"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/CRLF" target="_blank" rel="noopener">CRLF</a></h2><p>同样的，登录到挑战页面，可以看到一个用户登录界面。随便尝试登录会发现，每次登录尝试都会在日志中生成一条记录。</p>
-<p>我第一个想到的是这可能是一道XSS的题目，所以尝试用户名<code>test&lt;script&gt;</code>。啊偶，看上去<code>&lt;script&gt;</code>被正确地打印了出来，不太对。</p>
-<p><img data-src="/zh-CN/f0181575/crlf_0.png" alt></p>
-<p>这个时候才想起来返回重新看一下题目的说明，原来是需要在日志里面注入内容。结合挑战的名称，那应该就是利用换行符进行分割，注入一行成功登录的信息。在日志中我们可以看到有admin用户成功登录的记录。所以就使用同样的内容进行注入： </p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">GET</span> /web-serveur/ch14/?<span class="attribute">username</span>=admin authenticated.%0d%0atest123&amp;password= HTTP/1.1</span><br></pre></td></tr></table></figure>
-
-<p>顺利获得flag: <code>rFSP&amp;G0p&amp;5uAg1%</code></p>
-<p><img data-src="/zh-CN/f0181575/crlf_1.png" alt></p>
-<h2 id="File-upload-Double-extensions"><a href="#File-upload-Double-extensions" class="headerlink" title="File upload - Double extensions"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/File-upload-Double-extensions" target="_blank" rel="noopener">File upload - Double extensions</a></h2><p>题目就非常明显了，通过双后缀来绕过服务器端的文件上传类型检查。登录页面，找到上传功能。然后在本地编辑一段读取/etc/passwd的PHP代码：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php"><span class="keyword">echo</span> file_get_contents(<span class="string">'../../../../etc/passwd'</span>);</span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<p>并命名为<code>test.php.jpg</code>保存到本地。再将其上传。果然！！失败了…</p>
-<p><img data-src="/zh-CN/f0181575/double_extensions_0.png" alt></p>
-<p>但好消息是，我们的脚本顺利地绕过了文件上传的类型检测，并被服务器解析了。但是，php代码本身存在一些问题，所以没有顺利读取到<code>/etc/passwd</code>的内容。所以，我们需要对我们的php代码进行一下微调。<br>既然无法直接用PHP函数读取文件的内容，我们就尝试通过调用系统命令执行函数来完成。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php"><span class="keyword">echo</span> shell_exec(<span class="string">"cat ../../../../../../etc/passwd"</span>);</span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<p>OK!这下我们可以成功看到/etc/passwd的内容了！</p>
-<p><img data-src="/zh-CN/f0181575/double_extensions_1.png" alt></p>
-<p>但是flag呢？flag在哪里呀…找了一圈没找到…然后再仔细看了一遍题目才发现！!<code>Retrieve the validation password in the file .passwd at the root of the application.</code>:原来要读取的文件是应用根目录下的.passwd 文件! 晕！！！</p>
-<p>唯一的问题就是不知道应用的根目录在哪一层，需要向上返回几次。这个情况下，我们就需要使用到————枚举法！！几次尝试后，最终上传的PHP脚本内容为：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php"><span class="keyword">echo</span> shell_exec(<span class="string">"cat ../../../.passwd"</span>);</span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<p>这样我们就可以成功获得到Flag: <code>Gg9LRz-hWSxqqUKd77-_q-6G8</code></p>
-<h2 id="File-upload-MIME-type"><a href="#File-upload-MIME-type" class="headerlink" title="File upload - MIME type"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/File-upload-MIME-type" target="_blank" rel="noopener">File upload - MIME type</a></h2><p>这道题跟前面的题非常类似，需要达到的目的是完全一样的。所以脚本的内容应该可以不用修改。不同的应该是绕过的方式，这次需要使用到的方法不再是通过给PHP文件添加合法的后缀名。</p>
-<p>尝试上传PHP脚本，使用Burp截取发送的请求，可以看到<code>Content-Type</code>的值为<code>application/x-php</code>。这个值也可以体现出上传的文件的类型。</p>
-<p><img data-src="/zh-CN/f0181575/mime_type_0.png" alt></p>
-<p>直接发送到服务器，毫无意外，被服务器拒绝了！</p>
-<p><img data-src="/zh-CN/f0181575/mime_type_1.png" alt></p>
-<p>这里我们需要做的是，让服务器端认为我们上传的文件是个人畜无害的图片文件。所以，我们需要把这个<code>Content-Type</code>的值修改为<code>image/jpeg</code>。再上传试试～</p>
-<p><img data-src="/zh-CN/f0181575/mime_type_2.png" alt></p>
-<p>Bingo～成功获取到了flag:<code>a7n4nizpgQgnPERy89uanf6T4</code>.</p>
-<blockquote>
-<p>要点：<br>这紧接着的两道题都是文件上传漏洞相关的题目。文件上传漏洞是一个经常被利用到的漏洞。通过这种方法，黑客可以上传一段小脚本到服务器上，一旦有办法执行这段脚本，那攻击者就可以进一步来实现对服务器的完全控制。<a href="https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload" target="_blank" rel="noopener">OWASP Unrestricted File Upload</a> 有完整的对于这一个漏洞的介绍。并且说明了应该如何有效地防止此类漏洞的产生。</p>
-</blockquote>
-<h2 id="HTTP-Cookies"><a href="#HTTP-Cookies" class="headerlink" title="HTTP -Cookies"></a><a href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-Cookies" target="_blank" rel="noopener">HTTP -Cookies</a></h2><p>题目的描述是<code>Bob created a PHP script to gather user emails</code>。看上去，这是一道利用脚本获取用户Cookie的题目。 </p>
-<p>先点击进入页面了解一下这个页面的功能。用户可以输入Email地址，提交后会进行保存。页面下方还有一个<code>Saved email addresses</code>的链接，点击后会显示需要是admin才能查看。</p>
-<p><img data-src="/zh-CN/f0181575/cookie_0.png" alt></p>
-<p>那么，显而易见。我们需要做的是利用网页的漏洞，让自己变成admin身份。</p>
-<p><img data-src="/zh-CN/f0181575/cookie_1.png" alt></p>
-<p>在之前尝试的过程中，我发现在点击<code>Saved email adresses</code>链接后，url多了一个参数<code>c=visiteur</code>。所以首先对参数的值进行修改，尝试访问<code>http://challenge01.root-me.org/web-serveur/ch7/?c=visiteur</code>。</p>
-<p><img data-src="/zh-CN/f0181575/cookie_2.png" alt></p>
-<p>可以看到网页报出了一个新的错误提示：<code>Problem with cookie</code>。所以我们需要看一下该页面使用的cookie都有些什么值。查看cookie可以在浏览器中安装插件，Firefox和chrome的应用商店中都很容易找到cookie编辑的插件。查看cookie我们可以发现页面cookie中有一个名为ch7的参数。</p>
-<p><img data-src="/zh-CN/f0181575/cookie_3.png" alt></p>
-<p>OK！尝试把这个值从 <strong>visiteur</strong> 修改为 <strong>admin</strong>，并保存后重新点击链接。我们就轻易地获得到了通关密码：<code>ml-SYMPA</code>。</p>
-<blockquote>
-<p>要点：这个其实与HTTP头的概念类似，Cookie中的值其实也属于用户输入数据的一部分。这一点经常会被忽视。服务器要使用Cookie中的参数时，必须先要考虑到这一点，先进行输入校验再使用。将Cookie用于维持登录身份时，也要充分考虑cookie的参数可能被篡改的问题。</p>
-</blockquote>
-
-    </div>
-
-    
-    
-    
-      
-
-        <div class="reward-container">
-  <div>觉得好的话不妨赏一杯奶茶吧～</div>
-  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    打赏
-  </button>
-  <div id="qr" style="display: none;">
-      
-      <div style="display: inline-block;">
-        <img src="/images/wechatpay.png" alt="UPWNothing 微信支付">
-        <p>微信支付</p>
-      </div>
-      
-      <div style="display: inline-block;">
-        <img src="/images/alipay.png" alt="UPWNothing 支付宝">
-        <p>支付宝</p>
-      </div>
-      
-      <div style="display: inline-block;">
-        <img src="/images/bitcoin.png" alt="UPWNothing 比特币">
-        <p>比特币</p>
-      </div>
-
-  </div>
-</div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Root-Me/" rel="tag"># Root Me</a>
-              <a href="/tags/Web-Application-Security/" rel="tag"># Web Application Security</a>
-          </div>
-
         
-  <div class="post-widgets">
-    <div class="wp_rating">
-      <div id="wpac-rating"></div>
-    </div>
-  </div>
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/zh-CN/b13d8a67/" rel="prev" title="在Kali Linux中安装Ghidra">
-      <i class="fa fa-chevron-left"></i> 在Kali Linux中安装Ghidra
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/en/da9fccd6/" rel="next" title="TODO List For New Kali">
-      TODO List For New Kali <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="valine-comments"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
         </li>
@@ -674,20 +280,21 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#目录"><span class="nav-number">2.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-Source-code"><span class="nav-number">3.1.</span> <span class="nav-text">HTML - Source code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Open-redirect"><span class="nav-number">3.2.</span> <span class="nav-text">HTTP - Open redirect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-User-agent"><span class="nav-number">3.3.</span> <span class="nav-text">HTTP - User-agent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weak-Password"><span class="nav-number">3.4.</span> <span class="nav-text">Weak Password</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-Command-Injection"><span class="nav-number">3.5.</span> <span class="nav-text">PHP - Command Injection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backup-File"><span class="nav-number">3.6.</span> <span class="nav-text">Backup File</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Directory-Indexing"><span class="nav-number">3.7.</span> <span class="nav-text">HTTP - Directory Indexing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Headers"><span class="nav-number">3.8.</span> <span class="nav-text">HTTP - Headers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-POST"><span class="nav-number">3.9.</span> <span class="nav-text">HTTP - POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Improper-redirect"><span class="nav-number">3.10.</span> <span class="nav-text">HTTP - Improper redirect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Verb-tampering"><span class="nav-number">3.11.</span> <span class="nav-text">HTTP - Verb tampering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-files"><span class="nav-number">3.12.</span> <span class="nav-text">Install files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRLF"><span class="nav-number">3.13.</span> <span class="nav-text">CRLF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-upload-Double-extensions"><span class="nav-number">3.14.</span> <span class="nav-text">File upload - Double extensions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-upload-MIME-type"><span class="nav-number">3.15.</span> <span class="nav-text">File upload - MIME type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Cookies"><span class="nav-number">3.16.</span> <span class="nav-text">HTTP -Cookies</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E6%96%87"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-Source-code"><span class="nav-number">3.1.</span> <span class="nav-text">HTML - Source code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Open-redirect"><span class="nav-number">3.2.</span> <span class="nav-text">HTTP - Open redirect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-User-agent"><span class="nav-number">3.3.</span> <span class="nav-text">HTTP - User-agent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weak-Password"><span class="nav-number">3.4.</span> <span class="nav-text">Weak Password</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-Command-Injection"><span class="nav-number">3.5.</span> <span class="nav-text">PHP - Command Injection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backup-File"><span class="nav-number">3.6.</span> <span class="nav-text">Backup File</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Directory-Indexing"><span class="nav-number">3.7.</span> <span class="nav-text">HTTP - Directory Indexing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Headers"><span class="nav-number">3.8.</span> <span class="nav-text">HTTP - Headers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-POST"><span class="nav-number">3.9.</span> <span class="nav-text">HTTP - POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Improper-redirect"><span class="nav-number">3.10.</span> <span class="nav-text">HTTP - Improper redirect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Verb-tampering"><span class="nav-number">3.11.</span> <span class="nav-text">HTTP - Verb tampering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-files"><span class="nav-number">3.12.</span> <span class="nav-text">Install files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRLF"><span class="nav-number">3.13.</span> <span class="nav-text">CRLF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-upload-Double-extensions"><span class="nav-number">3.14.</span> <span class="nav-text">File upload - Double extensions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-upload-MIME-type"><span class="nav-number">3.15.</span> <span class="nav-text">File upload - MIME type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Cookies"><span class="nav-number">3.16.</span> <span class="nav-text">HTTP -Cookies</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="UPWNothing"
       src="/images/icon.jpeg">
   <p class="site-author-name" itemprop="name">UPWNothing</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻</div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -711,23 +318,435 @@
 
 
 
+        </section>
       </div>
-        <div class="back-to-top motion-element">
+        <div class="back-to-top animated">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
-
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/f0181575/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.jpeg">
+      <meta itemprop="name" content="UPWNothing">
+      <meta itemprop="description" content="记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="UPWNothing's Playground">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Root-Me WebServer分类 解题思路 （一）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-01-22 15:32:47" itemprop="dateCreated datePublished" datetime="2020-01-22T15:32:47+08:00">2020-01-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-07-02 17:19:32" itemprop="dateModified" datetime="2020-07-02T17:19:32+08:00">2020-07-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Security/Web-Application/" itemprop="url" rel="index"><span itemprop="name">Web Application</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/zh-CN/f0181575/" class="post-meta-item leancloud_visitors" data-flag-title="Root-Me WebServer分类 解题思路 （一）" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
       </div>
-    </main>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>9.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
 
-    <footer class="footer">
-      <div class="footer-inner">
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p><a target="_blank" rel="noopener" href="https://root-me.org/">Root Me</a>是一个非常不错的在线网络安全技能专项练习网站。比起其他的一些模拟练习平台，这个网站相对而言更”Noob friendly”…对于渗透测试有兴趣又不知道如何入门的同学，不妨可以从这个网站开始入手。  </p>
+<p>本文包含WebServer分类中前十六题全部的解题思路。<a href="https://upwnothing.github.io/zh-CN/afcc83f6">第二部分</a>正在施工中…</p>
+<a id="more"></a>
+
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p><a href="#HTML-Sourde-code">HTML - Source code</a><br><a href="#HTTP-Open-redirect">HTTP - Open redirect</a><br><a href="#HTTP-User-agent">HTTP - User-agent</a><br><a href="#Weak-password">Weak password</a><br><a href="#PHP-Command-injection">PHP - Command injection</a><br><a href="#Backup-file">Backup file</a><br><a href="#HTTP-Directory-indexing">HTTP - Directory indexing</a><br><a href="#HTTP-Headers">HTTP - Headers</a><br><a href="#HTTP-POST">HTTP - POST</a><br><a href="#HTTP-Improper-redirect">HTTP - Improper redirect</a><br><a href="#Install-files">Install files</a><br><a href="#CRLF">CRLF</a><br><a href="#File-upload-Double-extensions">File upload - Double extensions</a><br><a href="#File-upload-MIME-type">File upload - MIME type</a><br><a href="#HTTP-Cookies">HTTP - Cookies</a></p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="HTML-Source-code"><a href="#HTML-Source-code" class="headerlink" title="HTML - Source code"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/HTML-source-code">HTML - Source code</a></h2><p>送分题。主要目的只是跟新用户打个招呼！</p>
+<p>直接查看页面源代码即可。解题密码在HTML的注释中。</p>
+<p><img data-src="/zh-CN/f0181575/html_sourcecode.png"></p>
+<blockquote>
+<p>虽然这只是一道送分题，但同时，这种题目也给刚接触Web App渗透测试的新手一个非常不错的提示：<br>千万不要忽视任何你可以获得的信息。对于在页面源码注释中发现造成安全漏洞的关键信息，在现实中其实也很常见。会有开发者将一些测试用帐号密码直接注释，就发布到了网络上。更多的情况下，泄漏的信息不像密码这么直接，但绝对能给有攻击意图的黑客带去极大的帮助/提示。</p>
+</blockquote>
+<h2 id="HTTP-Open-redirect"><a href="#HTTP-Open-redirect" class="headerlink" title="HTTP - Open redirect"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-Open-redirect">HTTP - Open redirect</a></h2><p><img data-src="/zh-CN/f0181575/open_redirect_0.png"></p>
+<p>这个页面的功能很简单，页面中间有三个按钮。你点击了某个按钮，页面就会跳转到对应的社交网络应用(Facebook, Twitter, Slack)。<br>根据描述，我们的目标是让页面跳转到除上述三个网站外的任何一个网页。所以，研究一下这个页面是如何实现跳转功能的： </p>
+<p>查看源码，我们可以看到，网页将目标地址作为url参数进行传递，通过服务器端实现重定向的跳转。除了url参数之外，还有一个h参数。参数的值是一个32位的16进制字符串。具体作用还不知道。但是根据参数名字h，以及32位长度的特征，可以大致猜测应该是一个MD5的Hash值。</p>
+<p><img data-src="/zh-CN/f0181575/open_redirect_1.png"></p>
+<p>首先尝试仅修改<code>url=</code>后面的值，观察是否能够完成跳转。完整的url为: <code>http://challenge01.root-me.org/web-serveur/ch52/?url=https://baidu.com&amp;h=a023cfbf5f1c39bdf8407f28b60cd134</code>  </p>
+<p><img data-src="/zh-CN/f0181575/open_redirect_2.png"></p>
+<p>看上去，我们没有能够成功进行跳转。错误的信息为:”incorrect hash!”(错误的哈希）。这证实了我之前关于h参数是哈希值的猜测。现在的任务就是找出这个是谁的哈希值。</p>
+<p>简单尝试两次：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">richard<span class="meta">@richard</span>-<span class="attr">Kali:</span>~$ echo -n <span class="attr">https:</span><span class="comment">//facebook.com | md5sum</span></span><br><span class="line">a023cfbf5f1c39bdf8407f28b60cd134  -</span><br><span class="line">richard<span class="meta">@richard</span>-<span class="attr">Kali:</span>~$ echo -n url=<span class="attr">https:</span><span class="comment">//facebook.com | md5sum</span></span><br><span class="line"><span class="number">44</span>c27492004e8d0d46ac5b19377f8a16  -</span><br></pre></td></tr></table></figure>
+
+<p>Bingo！很轻松就找到了。就是对<code>url</code>参数的值进行了md5哈希。所以我们只需要对我们提供的值计算一次md5即可。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">richard<span class="meta">@richard</span>-<span class="attr">Kali:</span>~$ echo -n <span class="attr">https:</span><span class="comment">//baidu.com | md5sum</span></span><br><span class="line"><span class="number">40674</span>b7fe4c1ee59dbaffe877c6ac2e3  -</span><br></pre></td></tr></table></figure>
+
+<p>将得到的结果重新组合构成新的URL请求： <code>http://challenge01.root-me.org/web-serveur/ch52/?url=https://baidu.com&amp;h=bb6e082d5c360ce6a0c64f926feea905</code>  </p>
+<p>再次尝试，顺利拿到了flag： <code>e6f8a530811d5a479812d7b82fc1a5c5</code>  10分顺利到手～</p>
+<p><img data-src="/zh-CN/f0181575/open_redirect_3.png"></p>
+<blockquote>
+<p>要点1：</p>
+<p>可能有人会产生疑问：跳转到百度又怎么了？这有什么不安全的？<br>跳转到百度确实没怎么样，但是允许任何人通过修改URL来控制网页的跳转，是会产生极大的安全风险的！！设想以下场景：某个银行的网站存在这么一个参数可以完成任意跳转，那么攻击者可以创建一个 <a target="_blank" rel="noopener" href="http://www.fakebank.com/">www.fakebank.com</a> 的网页，使其与银行的页面看上去完全一样，然后将以下链接发送给受害者：<a target="_blank" rel="noopener" href="http://www.bank.com/?url=www.fakebank.com">www.bank.com/?url=www.fakebank.com</a>. 光看链接的开头，受害者很容易就相信这是真实的官方网站。然而，点击这个链接进入的实际却是黑客精心准备的”陷阱“！ 攻击者还会在链接中加入其他无效参数进行混淆，使url参数的值变得极其难以发现，增加攻击的成功率。所以，一定要避免使用这样的方式实现跳转。这确确实实会造成安全风险。</p>
+</blockquote>
+<blockquote>
+<p>要点2：</p>
+<p>这个网页能可考虑到了上述的问题，所以加入了哈系进行校验。但是，显而易见，这样的校验完全没有起到作用。这说明了，永远不要依赖用户可以修改的值作为数据校验。这只是掩耳盗铃罢了…</p>
+</blockquote>
+<h2 id="HTTP-User-agent"><a href="#HTTP-User-agent" class="headerlink" title="HTTP - User-agent"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-User-agent">HTTP - User-agent</a></h2><p>点开这个挑战的页面，提示其实很明确：“Wrong user-agent: you are not the “admin” browser!” （错误的user-agent:你没有使用”admin”浏览器）  </p>
+<p>这个挑战是关于修改HTTP请求头中User-Agent的值。这里就不多对HTTP请求头及User-Agent属性做过多的介绍了。随手搜一下就能找到非常多的详细讲解。简而言之，User-Agent是HTTP请求头中记录用户浏览器信息的属性。  </p>
+<p>为了修改HTTP请求头中的属性，用到的思路是在本地设置代理，截取浏览器发出的HTTP请求。在代理中对请求进行篡改后，再将请求发送到目标服务器上。具体的实现方法有很多：通过代理工具（Burp），浏览器插件或者是Python脚本来实现。这里我使用Burp来完成。</p>
+<p>在浏览器中将代理设置为127.0.0.1:8080 (Burp的默认端口，可以根据情况自行配置）。设置完成后，重新发送请求。可以看到Burp成功截取了这个HTTP请求。</p>
+<p><img data-src="/zh-CN/f0181575/user_agent_0.png" alt="Burp截取到的HTTP请求"></p>
+<p>将<code>User-Agent</code>的值修改为要求的<code>admin</code>。并点击Forward将请求转发到目标服务器。</p>
+<p><img data-src="/zh-CN/f0181575/user_agent_1.png" alt="修改User-Agent"></p>
+<p>Bingo! 成功获取了Flag～</p>
+<p><img data-src="/zh-CN/f0181575/user_agent_2.png"></p>
+<p>解题密码： <code>rr$Li9%L34qd1AAe27</code></p>
+<blockquote>
+<p>要点：<br>HTTP请求头中的数据也属于“用户输入”数据。不要轻易信赖HTTP请求头中的数据,</p>
+</blockquote>
+<h2 id="Weak-Password"><a href="#Weak-Password" class="headerlink" title="Weak Password"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/Weak-password">Weak Password</a></h2><p>点开<a target="_blank" rel="noopener" href="http://challenge01.root-me.org/web-serveur/ch3/">页面</a>，首先弹出的是一个身份验证的对话框。</p>
+<p><img data-src="/zh-CN/f0181575/weak_password_0.png"></p>
+<p>结合挑战的主题，首先尝试一下最常见的几组弱密码：user/user; admin/admin; user/password;…</p>
+<p>结果admin/admin的用户名密码对就直接成功登录了！</p>
+<p><img data-src="/zh-CN/f0181575/weak_password_1.png"></p>
+<p>喂喂喂！这也太简单了吧…完全没想到居然这么容易就通过了。。。这题居然只有34%的通过率我也是没有料到。</p>
+<blockquote>
+<p>要点：<br>在安全运营的过程中，要设计合理完善的密码策略，避免弱密码，尤其是默认密码的出现。因为弱密码而产生的安全事件连起来已经可以绕地球好几圈了，一次又一次地因为这种相当容易避免的问题而造成非常大的损失是一件很让人沮丧的事情。</p>
+</blockquote>
+<h2 id="PHP-Command-Injection"><a href="#PHP-Command-Injection" class="headerlink" title="PHP - Command Injection"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/PHP-Command-injection">PHP - Command Injection</a></h2><p>题目很明确的说明了，这是一道命令注入的挑战题。进入页面尝试一下，发现这个页面实现的是ping用户提供的IP地址的功能。</p>
+<p><img data-src="/zh-CN/f0181575/command_injection_0.png"></p>
+<p>可以大概思考一下实现的方式：PHP接受用户的输入，然后将其与”ping”进行拼接，然后发送给系统进行执行。所以注入的方式也很明显，就是在IP地址之后加入分割符，然后再加上自己想要执行的命令。所以尝试一下<code>127.0.0.1; ls</code>看看这个页面有没有输入校验。</p>
+<p><img data-src="/zh-CN/f0181575/command_injection_1.png"></p>
+<p>啊哈！果然是一道比较初级的题目，ls命令被成功执行了。我们看到多了一行index.php的输出。根据提示，在<code>index.php</code>文件中，有我们想要找到的解题密码。所以调整输入：</p>
+<p><code>127.0.0.1; cat index.php</code></p>
+<p>结果，只是在末尾多了一个输入框。看起来，应该是输出的php脚本被页面同时做了解析。看看页面源码确认一下吧？ </p>
+<p><img data-src="/zh-CN/f0181575/command_injection_2.png"></p>
+<p>哈哈，有意外发现。flag被加在了php的注释区域内。ok，这道题就完成了！</p>
+<p>Flag为<code>S3rv1ceP1n9Sup3rS3cure</code></p>
+<blockquote>
+<p>要点：<br>这道题再次反应了用户输入校验的重要性。在应用开发的过程中，务必要确保对接受到的用户输入进行校验，确保用户的输入与设计的功能是相匹配的，否则的话，狡猾的用户们一定会制造出你意想不到的效果。</p>
+</blockquote>
+<h2 id="Backup-File"><a href="#Backup-File" class="headerlink" title="Backup File"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/Backup-file">Backup File</a></h2><p>打开页面，看到的是如下的登录界面。简单尝试了几个简单用户名密码，发现并不能成功登录。</p>
+<p><img data-src="/zh-CN/f0181575/backup_file_0.png"></p>
+<p>先快速查看一下页面源码，可惜没有发现任何线索。根据题目的名字 <em>backup file</em> , 尝试在URL后面添加backup等路径名，尝试是否存在跨目录攻击。但也没有任何发现。</p>
+<p>Emmmm…第一次陷入僵局！好的呗，偷偷瞄一眼论坛讨论。有一条回复给出了这个链接<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/List_of_filename_extensions">https://en.wikipedia.org/wiki/List_of_filename_extensions </a>作为提示。</p>
+<p>原来是跟备份文件的文件后缀有关。常见的备份文件后缀名有：  </p>
+<ul>
+<li>??$</li>
+<li><del>1</del></li>
+<li>~??</li>
+</ul>
+<p>现在的问题就是我们需要在哪个文件后面加上后缀呢？最原始的页面路径为<code>http://challenge01.root-me.org/web-serveur/ch11/</code>,没有包含任何文件名称。所以，我们需要猜测一下默认的文件名称。对于PHP比较熟悉的童鞋肯定会知道PHP的默认主页文件是index.php. 那就尝试一下呗！访问<code>http://challenge01.root-me.org/web-serveur/ch11/index.php</code>,嘿嘿！果然，我们看到了完全相同的页面。好叻，既然已经知道了文件名，那么下一步只需要添加上文件后缀，再逐个尝试就可以了。</p>
+<p>当访问<code>http://challenge01.root-me.org/web-serveur/ch11/index.php~??</code>时，页面自动下载了一个名为<code>index.php_</code>的文件。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line"><span class="variable">$username</span>=<span class="string">&quot;ch11&quot;</span>;</span><br><span class="line"><span class="variable">$password</span>=<span class="string">&quot;OCCY9AcNm1tj&quot;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo &#x27;</span><br><span class="line">      &lt;html&gt;</span><br><span class="line">      &lt;body&gt;</span><br><span class="line">	&lt;h1&gt;Authentication v 0.00&lt;/h1&gt;</span><br><span class="line">&#x27;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_POST</span>[<span class="string">&quot;username&quot;</span>]!=<span class="string">&quot;&quot;</span> &amp;&amp; <span class="variable">$_POST</span>[<span class="string">&quot;password&quot;</span>]!=<span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$_POST</span>[<span class="string">&quot;username&quot;</span>]==<span class="variable">$user</span> &amp;&amp; <span class="variable">$_POST</span>[<span class="string">&quot;password&quot;</span>]==<span class="variable">$password</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">print</span>(<span class="string">&quot;&lt;h2&gt;Welcome back &#123;$row[&#x27;username&#x27;]&#125; !&lt;/h2&gt;&quot;</span>);</span><br><span class="line">      <span class="keyword">print</span>(<span class="string">&quot;&lt;h3&gt;Your informations :&lt;/h3&gt;&lt;p&gt;- username : $row[username]&lt;/p&gt;&lt;br /&gt;&quot;</span>);</span><br><span class="line">      <span class="keyword">print</span>(<span class="string">&quot;To validate the challenge use this password&lt;/b&gt;&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">print</span>(<span class="string">&quot;&lt;h3&gt;Error : no such user/password&lt;/h2&gt;&lt;br /&gt;&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo &#x27;</span><br><span class="line">	&lt;<span class="keyword">form</span> action=<span class="string">&quot;&quot;</span> method=<span class="string">&quot;post&quot;</span>&gt;</span><br><span class="line">	  Login&amp;nbsp;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;username&quot;</span> /&gt;&lt;<span class="keyword">br</span>/&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  Password&amp;nbsp;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">&quot;password&quot;</span> name=<span class="string">&quot;password&quot;</span> /&gt;&lt;<span class="keyword">br</span>/&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  &lt;<span class="keyword">br</span>/&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;connect&quot;</span> /&gt;&lt;<span class="keyword">br</span>/&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	&lt;/<span class="keyword">form</span>&gt;</span><br><span class="line">      &lt;/body&gt;</span><br><span class="line">      &lt;/html&gt;</span><br><span class="line">&#x27;;</span><br><span class="line"></span><br><span class="line">?&gt; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>用得到的帐号密码登录，即可！</p>
+<p><img data-src="/zh-CN/f0181575/backup_file_1.png"></p>
+<p>根据提示，原来用密码直接验证就可以。15分到手！</p>
+<p>Flag为<code>OCCY9AcNm1tj</code>。</p>
+<blockquote>
+<p>要点：<br>在实际生产环境中，类似的问题其实也经常会发生。我们需要额外注意系统产生的备份文件与临时文件（比如vim编辑时也会在相同路径下生成临时文件）。这类文件如果被外部访问，就会直接产生源代码泄漏的事件。虽然在实际情况下，源码不会包含网页的登录信息，但是在很多时候的的确确会有数据库连接的登录信息。 一旦发生源代码泄露，同时数据库的access control又存在缺陷的话，那就直接是一起非常严重的数据库泄漏事件了。[坏笑]</p>
+</blockquote>
+<h2 id="HTTP-Directory-Indexing"><a href="#HTTP-Directory-Indexing" class="headerlink" title="HTTP - Directory Indexing"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-Directory-indexing">HTTP - Directory Indexing</a></h2><p>点进页面一片空白，那就查看一下源码呗。然后源码里有一段注释：<code>&lt;!-- include(&quot;admin/pass.html&quot;) --&gt;</code> 啊…就这？就这？</p>
+<p>访问一下这个页面看看呗…？？？？被骗了？</p>
+<p><img data-src="/zh-CN/f0181575/directory_indexing_0.png"></p>
+<p>大致意思就是“被骗了吧！你肯定不是最后一个被骗的！好好再找找去吧！”。Hmmm…法式幽默！行吧，那就再找找咯！</p>
+<p>仔细再看看这题的名字： <strong>Directory Indexing</strong>。既然已经提到了是目录索引，应该是跟访问目录的访问控制问题有关。那哪个路径可能存在类似的问题呢？你们肯定也都想到了吧：admin。</p>
+<p>尝试访问一下admin路径：<code>http://challenge01.root-me.org/web-serveur/ch4/admin/</code> 果然！我们直接看到了admin路径下的索引列表：</p>
+<p><img data-src="/zh-CN/f0181575/directory_indexing_1.png"></p>
+<p>接下去的步骤不难猜测，顺着目录一步步找下去，在<code>backup/</code>下有一个名为<code>admin.txt</code>的文件。 </p>
+<p>直接找到Flag: <code>Linux</code>。这15分应该还算是比较简单的。</p>
+<blockquote>
+<p>要点：<br>这属于错误安全配置所造成的一个常见的结果。可以参考<a target="_blank" rel="noopener" href="https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A6-Security_Misconfiguration">OWASP Security Misconfiguration</a>中的Scenario #2. 攻击者可以随意浏览服务器上，与网页相关的文件。通过这种方式，攻击者可以获得到源代码，配置信息，身份认证信息等等关键文件。可能产生的影响不言而喻。 </p>
+</blockquote>
+<h2 id="HTTP-Headers"><a href="#HTTP-Headers" class="headerlink" title="HTTP - Headers"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-Headers">HTTP - Headers</a></h2><p>先看题目与提示：HTTP Header, HTTP response give informations (HTTP响应会提供信息) </p>
+<p>OK，这个提示算是相当明显了。我们需要查看页面返回的HTTP头中的内容。</p>
+<p><img data-src="/zh-CN/f0181575/headers_0.png"></p>
+<p>我们看到了一项名为<code>Header-RootMe-Admin: none</code>的Header参数值。那我们在发出的请求中加入这个HTTP头部字段，并修改他的值，看看会产生什么样的结果。</p>
+<p><img data-src="/zh-CN/f0181575/headers_0.png"></p>
+<p>哦霍！直接成功。一下子就获取到了Flag: <code>HeadersMayBeUseful</code></p>
+<blockquote>
+<p>要点：<br>就像原题中提示的那样，HTTP响应的信息并不仅仅包含你所看到的页面的内容。HTTP的头部字段里也会有很多重要的信息。而且，这部分信息是用户可控的！！如果要使用HTTP头部字段的值，那就千万要记得把这个数据作为用户输入数据来对待，进行输入校验后再拿来使用。</p>
+</blockquote>
+<h2 id="HTTP-POST"><a href="#HTTP-POST" class="headerlink" title="HTTP - POST"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-POST">HTTP - POST</a></h2><p>这道题目的说明是: Find a way to beat the top score! (想个办法来击败最高分)  </p>
+<p>挑战页面如下：</p>
+<p><img data-src="/zh-CN/f0181575/post_0.png"> </p>
+<p>点击”Give a try!”按钮，页面会随机生成一个数字。当然，结果永远是一样的，都比不过999999。咋办？只能开挂了！！既然标题是POST，那么就使用Burp拦截一下看看，POST有什么内容。</p>
+<p><img data-src="/zh-CN/f0181575/post_1.png"> </p>
+<p>这就简单了。分数原来是在客户端生成，并通过POST中的一个参数进行传递的。那我们只需要对POST中的数字进行篡改，就可以了。就像这样：</p>
+<p><img data-src="/zh-CN/f0181575/post_2.png"> </p>
+<p>发送！顺利得到flag: <code>H7tp_h4s_N0_s3Cr37S_F0r_y0U</code>  </p>
+<p><img data-src="/zh-CN/f0181575/post_3.png"> </p>
+<blockquote>
+<p>要点：<br>这道题的主要目的就是了解HTTP协议中，通过POST来传递数据的方法。虽然我们通过浏览器没法直接修改POST中的数据，但这并不意味着POST传递的数据就可以保证数据是可靠的。修改POST的数据同样也是非常容易办到的。</p>
+</blockquote>
+<h2 id="HTTP-Improper-redirect"><a href="#HTTP-Improper-redirect" class="headerlink" title="HTTP - Improper redirect"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-Improper-redirect">HTTP - Improper redirect</a></h2><p>同样的，还是先看一眼描述与提示：Don’t trust your browser(不要相信你的浏览器); Get access to index (想办法进入index)。ok，先看看页面具体是怎么样的。</p>
+<p><img data-src="/zh-CN/f0181575/improper_redirect_0.png"></p>
+<p>有一个用户登录界面，看描述应该是需要通过php重定向的方法来绕过验证，进入到index页面。在浏览器中直接访问index.php，我们会被重定向到login.php进行身份验证。看似好像没有什么毛病。但是，如果我们尝试用Burp来仔细观察一下重定向的过程，问题就显现出来了。</p>
+<p><img data-src="/zh-CN/f0181575/improper_redirect_0.png"></p>
+<p>虽然状态码是302重定向，但是我们可以惊讶地发现，index.php页面源码居然也完完整整地显示了出来。。。通过这种方式，我们就相当于绕开了用户认证，就访问到了受限制的页面。我们可以轻易地看到Flag: <code>ExecutionAfterRedirectIsBad</code>  </p>
+<p>这个问题产生的原因是这样的：在PHP编写的时候，判断用户未授权的条件下，直接使用了<code>header(&#39;Location:xxx/login.php&#39;)</code>。脚本执行的时候，确实会返回302的HTTP响应，但除此之外，PHP在添加了重定向路径后，并没有停止执行，而是继续将页面的内容输出到了HTTP响应的body中。虽然在浏览器上，用户并不会直接看到未授权的页面，但是实际上，这个页面的内容已经完完整整地发送到了用户手里。</p>
+<blockquote>
+<p>要点：<br>就跟描述里说的那样，你通过浏览器所看到的内容并不一定就是实际从服务器返回的全部内容。这点在安全测试的过程中尤为重要。</p>
+</blockquote>
+<h2 id="HTTP-Verb-tampering"><a href="#HTTP-Verb-tampering" class="headerlink" title="HTTP - Verb tampering"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-verb-tampering">HTTP - Verb tampering</a></h2><p>动词篡改？看到这个挑战的标题，我第一反映是有点懵… 但是后来仔细思考了一下，这里的verb应该指的是HTTP请求的方法。  </p>
+<p>众所周知（应该是吧），HTTP请求的方法有 GET, POST (最常用), HEAD, PUT, DELETE, TRACE, OPTIONS, CONNECT 这八种。这里面HEAD和OPTIONS也不是动词呀…? Anyway,先看一下挑战页面呗。</p>
+<p><img data-src="/zh-CN/f0181575/verb_tampering_0.png"></p>
+<p>好的呗，这个页面被保护了，需要用户身份验证才能访问。所以，我们要做的就是尝试修改HTTP请求的方法，看看是不是有机会绕过身份验证。默认的HTTP请求方法是GET。我们使用Burp将请求的方法改成上述列出的其他方法逐个尝试一下：</p>
+<p><img data-src="/zh-CN/f0181575/verb_tampering_1.png"></p>
+<p>使用DELETE方法发送请求，服务器直接给我们返回了解题的flag: <code>a23e$dme96d3saez$$prap</code> </p>
+<blockquote>
+<p>要点：<br>这个挑战说明的是通过篡改HTTP请求方法来绕过Web授权和认证的例子。这种情况大多数是在配置的时候产生的。由于GET/POST请求相对而言更加常用，所有很多开发者/运维人员会只考虑到对这两种HTTP请求方法进行配置，而忽视了剩余的HTTP请求方法。因此，在进行配置时，一定要确保安全约束策略覆盖到所有的HTTP请求方法。</p>
+</blockquote>
+<h2 id="Install-files"><a href="#Install-files" class="headerlink" title="Install files"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/Install-files">Install files</a></h2><p>这道题打开页面一片空白。我一开始还以为网络连接有问题，后来发现并不是。那就先观察一下页面的源码。果然，在注释中发现了这么一行：</p>
+<p><img data-src="/zh-CN/f0181575/install_files_0.png"></p>
+<p>根据这个提示再点开<code>http://challenge01.root-me.org/web-serveur/ch6/phpbb</code>。点开以后我们发现！！除了Root-me的header之外，依旧是一片空白。。。- -</p>
+<p>好吧，结合这题的提示”You know phpBB ?”，先去往上查一下PHPBB的相关信息：PHPBB是一个使用PHP开发的开源网络论坛系统。再简单搜索一下PHPBB与文件安装相关的漏洞，我们发现，phpBB的安装路径为install目录。我们访问该路径就可以看到目录下的文件列表，我们可以看到有<code>install.php</code>这么一个文件。访问这个文件，我们直接可以获取到解题flag:<code>karambar</code>  </p>
+<blockquote>
+<p>要点：<br>其实这道题的总结，在install.php里面已经全部写出来了。只不过是法语的，我们需要翻译一下：<br>这个缺陷实际上是对网站站长的监督，这些文件应该在使用后都被正确地删除，包含 phpbb 论坛的安装页。<br>虽然此类漏洞已经越来越少地发生，因为开发人员使用了验证系统。<br>然而，我们需要了解的是，我们还是可以发现许多篡改 URL的方法…<br>通过这些方法，攻击者可以重置论坛，并更改所有管理员密码，初始化论坛。</p>
+</blockquote>
+<h2 id="CRLF"><a href="#CRLF" class="headerlink" title="CRLF"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/CRLF">CRLF</a></h2><p>同样的，登录到挑战页面，可以看到一个用户登录界面。随便尝试登录会发现，每次登录尝试都会在日志中生成一条记录。</p>
+<p>我第一个想到的是这可能是一道XSS的题目，所以尝试用户名<code>test&lt;script&gt;</code>。啊偶，看上去<code>&lt;script&gt;</code>被正确地打印了出来，不太对。</p>
+<p><img data-src="/zh-CN/f0181575/crlf_0.png"></p>
+<p>这个时候才想起来返回重新看一下题目的说明，原来是需要在日志里面注入内容。结合挑战的名称，那应该就是利用换行符进行分割，注入一行成功登录的信息。在日志中我们可以看到有admin用户成功登录的记录。所以就使用同样的内容进行注入： </p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">GET</span> /web-serveur/ch<span class="number">14</span>/?username=admin authenticated.%<span class="number">0</span>d%<span class="number">0</span>atest<span class="number">123</span>&amp;password= HTTP/<span class="number">1</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>顺利获得flag: <code>rFSP&amp;G0p&amp;5uAg1%</code></p>
+<p><img data-src="/zh-CN/f0181575/crlf_1.png"></p>
+<h2 id="File-upload-Double-extensions"><a href="#File-upload-Double-extensions" class="headerlink" title="File upload - Double extensions"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/File-upload-Double-extensions">File upload - Double extensions</a></h2><p>题目就非常明显了，通过双后缀来绕过服务器端的文件上传类型检查。登录页面，找到上传功能。然后在本地编辑一段读取/etc/passwd的PHP代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> file_get_contents(<span class="string">&#x27;../../../../etc/passwd&#x27;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>并命名为<code>test.php.jpg</code>保存到本地。再将其上传。果然！！失败了…</p>
+<p><img data-src="/zh-CN/f0181575/double_extensions_0.png"></p>
+<p>但好消息是，我们的脚本顺利地绕过了文件上传的类型检测，并被服务器解析了。但是，php代码本身存在一些问题，所以没有顺利读取到<code>/etc/passwd</code>的内容。所以，我们需要对我们的php代码进行一下微调。<br>既然无法直接用PHP函数读取文件的内容，我们就尝试通过调用系统命令执行函数来完成。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> shell_exec(<span class="string">&quot;cat ../../../../../../etc/passwd&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>OK!这下我们可以成功看到/etc/passwd的内容了！</p>
+<p><img data-src="/zh-CN/f0181575/double_extensions_1.png"></p>
+<p>但是flag呢？flag在哪里呀…找了一圈没找到…然后再仔细看了一遍题目才发现！!<code>Retrieve the validation password in the file .passwd at the root of the application.</code>:原来要读取的文件是应用根目录下的.passwd 文件! 晕！！！</p>
+<p>唯一的问题就是不知道应用的根目录在哪一层，需要向上返回几次。这个情况下，我们就需要使用到————枚举法！！几次尝试后，最终上传的PHP脚本内容为：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> shell_exec(<span class="string">&quot;cat ../../../.passwd&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样我们就可以成功获得到Flag: <code>Gg9LRz-hWSxqqUKd77-_q-6G8 </code></p>
+<h2 id="File-upload-MIME-type"><a href="#File-upload-MIME-type" class="headerlink" title="File upload - MIME type"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/File-upload-MIME-type">File upload - MIME type</a></h2><p>这道题跟前面的题非常类似，需要达到的目的是完全一样的。所以脚本的内容应该可以不用修改。不同的应该是绕过的方式，这次需要使用到的方法不再是通过给PHP文件添加合法的后缀名。</p>
+<p>尝试上传PHP脚本，使用Burp截取发送的请求，可以看到<code>Content-Type</code>的值为<code>application/x-php</code>。这个值也可以体现出上传的文件的类型。</p>
+<p><img data-src="/zh-CN/f0181575/mime_type_0.png"></p>
+<p>直接发送到服务器，毫无意外，被服务器拒绝了！</p>
+<p><img data-src="/zh-CN/f0181575/mime_type_1.png"></p>
+<p>这里我们需要做的是，让服务器端认为我们上传的文件是个人畜无害的图片文件。所以，我们需要把这个<code>Content-Type</code>的值修改为<code>image/jpeg</code>。再上传试试～</p>
+<p><img data-src="/zh-CN/f0181575/mime_type_2.png"></p>
+<p>Bingo～成功获取到了flag:<code>a7n4nizpgQgnPERy89uanf6T4</code>.</p>
+<blockquote>
+<p>要点：<br>这紧接着的两道题都是文件上传漏洞相关的题目。文件上传漏洞是一个经常被利用到的漏洞。通过这种方法，黑客可以上传一段小脚本到服务器上，一旦有办法执行这段脚本，那攻击者就可以进一步来实现对服务器的完全控制。<a target="_blank" rel="noopener" href="https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload">OWASP Unrestricted File Upload</a> 有完整的对于这一个漏洞的介绍。并且说明了应该如何有效地防止此类漏洞的产生。</p>
+</blockquote>
+<h2 id="HTTP-Cookies"><a href="#HTTP-Cookies" class="headerlink" title="HTTP -Cookies"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/HTTP-Cookies">HTTP -Cookies</a></h2><p>题目的描述是<code>Bob created a PHP script to gather user emails</code>。看上去，这是一道利用脚本获取用户Cookie的题目。 </p>
+<p>先点击进入页面了解一下这个页面的功能。用户可以输入Email地址，提交后会进行保存。页面下方还有一个<code>Saved email addresses</code>的链接，点击后会显示需要是admin才能查看。</p>
+<p><img data-src="/zh-CN/f0181575/cookie_0.png"></p>
+<p>那么，显而易见。我们需要做的是利用网页的漏洞，让自己变成admin身份。</p>
+<p><img data-src="/zh-CN/f0181575/cookie_1.png"></p>
+<p>在之前尝试的过程中，我发现在点击<code>Saved email adresses</code>链接后，url多了一个参数<code>c=visiteur</code>。所以首先对参数的值进行修改，尝试访问<code>http://challenge01.root-me.org/web-serveur/ch7/?c=visiteur</code>。</p>
+<p><img data-src="/zh-CN/f0181575/cookie_2.png"></p>
+<p>可以看到网页报出了一个新的错误提示：<code>Problem with cookie</code>。所以我们需要看一下该页面使用的cookie都有些什么值。查看cookie可以在浏览器中安装插件，Firefox和chrome的应用商店中都很容易找到cookie编辑的插件。查看cookie我们可以发现页面cookie中有一个名为ch7的参数。</p>
+<p><img data-src="/zh-CN/f0181575/cookie_3.png"></p>
+<p>OK！尝试把这个值从 <strong>visiteur</strong> 修改为 <strong>admin</strong>，并保存后重新点击链接。我们就轻易地获得到了通关密码：<code>ml-SYMPA</code>。</p>
+<blockquote>
+<p>要点：这个其实与HTTP头的概念类似，Cookie中的值其实也属于用户输入数据的一部分。这一点经常会被忽视。服务器要使用Cookie中的参数时，必须先要考虑到这一点，先进行输入校验再使用。将Cookie用于维持登录身份时，也要充分考虑cookie的参数可能被篡改的问题。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>觉得好的话不妨赏一杯奶茶吧～</div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="UPWNothing 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="UPWNothing 支付宝">
+        <span>支付宝</span>
+      </div>
+      <div>
+        <img src="/images/bitcoin.png" alt="UPWNothing 比特币">
+        <span>比特币</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>UPWNothing
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://upwnothing.github.io/zh-CN/f0181575/" title="Root-Me WebServer分类 解题思路 （一）">https://upwnothing.github.io/zh-CN/f0181575/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Root-Me/" rel="tag"># Root Me</a>
+              <a href="/tags/Web-Application-Security/" rel="tag"># Web Application Security</a>
+          </div>
+
         
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/zh-CN/b13d8a67/" rel="prev" title="在Kali Linux中安装Ghidra">
+                  <i class="fa fa-chevron-left"></i> 在Kali Linux中安装Ghidra
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/en/da9fccd6/" rel="next" title="TODO List for New Kali">
+                  TODO List for New Kali <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
   <div class="languages">
     <label class="lang-select-label">
       <i class="fa fa-language"></i>
@@ -747,7 +766,7 @@
     </select>
   </div>
 
-        
+      
 
 <div class="copyright">
   
@@ -757,21 +776,22 @@
     <i class="paw"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">UPWNothing</span>
-    <span class="post-meta-divider">|</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
     <span title="站点总字数">38k</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">34 分钟</span>
+    <span title="站点阅读时长">35 分钟</span>
+  </span>
 </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -780,7 +800,6 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -789,40 +808,18 @@
         <span id="busuanzi_value_site_pv"></span>
       </span>
     </span>
-</div>
+</div><script color="72,97,152" opacity="0.8" zIndex="-1" count="199" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script color='72,97,152' opacity='0.8' zIndex='' count='150' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js"></script>
-  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -849,13 +846,24 @@
   }
   </script>
 
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-<script src="/js/local-search.js"></script>
-
-
-
-
-
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
@@ -867,35 +875,6 @@
   
 
   
-
-
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : 'DUtYTL3VYq8Mgbo2uSd9pEE8-9Nh9j0Va',
-      appKey     : 'RFEfNupULNUbbjBv7Cw7J4Ls',
-      placeholder: "请留下您的评论～（填写邮箱的话，有回复时会通过邮箱提醒哦～邮箱并不会显示在评论中）",
-      avatar     : 'monsterid',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : true,
-      lang       : 'en' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : true,
-      serverURLs : ''
-    });
-  }, window.Valine);
-});
-</script>
 
 </body>
 </html>
