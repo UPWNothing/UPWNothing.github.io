@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.3.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -16,16 +16,15 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@5/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-
-  <meta name="description" content="2020.11 更新升级版本至 Hexo v5.2.0, Next v8.0.2。部分操作产生变化，已更新。  2020.1 更新所有操作均在Hexo v4.2.0, NexT v7.7.0 版本上验证。如有版本变化，请根据实际情况对部分步骤进行相应修改  前言最近重新拾起博客，更新，域名迁移，重新配置，优化。这一套下来我真的，脑阔都大了！！于是非常自觉的弹出了这么一个想法，我在这个过程中所有的操">
+<meta name="description" content="2020.11 更新升级版本至 Hexo v5.2.0, Next v8.0.2。部分操作产生变化，已更新。  2020.1 更新所有操作均在Hexo v4.2.0, NexT v7.7.0 版本上验证。如有版本变化，请根据实际情况对部分步骤进行相应修改  前言最近重新拾起博客，更新，域名迁移，重新配置，优化。这一套下来我真的，脑阔都大了！！于是非常自觉的弹出了这么一个想法，我在这个过程中所有的操">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo + NexT 深度个性化配置 (2020.1 更新)">
 <meta property="og:url" content="https://upwnothing.github.io/zh-CN/44bf8def/index.html">
@@ -64,7 +63,7 @@
     // Wait for the page to load first
     var _prevOnload = window.onload;
     window.onload = function() {
-        var switchLang = document.getElementById("menu").getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
+        var switchLang = document.getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
             var href = window.location.href;     
             var indexOfEn = href.toLowerCase().indexOf('/en/');
             if(indexOfEn !== -1) {
@@ -80,8 +79,7 @@
 </script>
 <script data-ad-client="ca-pub-2179953596008833" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-
-  <title>Hexo + NexT 深度个性化配置 (2020.1 更新) | UPWNothing's Playground</title>
+<title>Hexo + NexT 深度个性化配置 (2020.1 更新) | UPWNothing's Playground</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
     <script>
@@ -92,8 +90,6 @@
         gtag('config', 'UA-125116918-1');
       }
     </script>
-
-
 
 
 
@@ -142,7 +138,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -170,31 +166,11 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
-
-  </li>
-        <li class="menu-item menu-item-switch_lang">
-
-    <a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>switch_lang</a>
-
-  </li>
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a></li>
+        <li class="menu-item menu-item-switch_lang"><a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>switch_lang</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -205,8 +181,7 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
@@ -215,7 +190,7 @@
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
@@ -231,7 +206,7 @@
 </div>
         
   
-  <div class="toggle sidebar-toggle">
+  <div class="toggle sidebar-toggle" role="button">
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
@@ -251,12 +226,12 @@
 
       <div class="sidebar-panel-container">
         <!--noindex-->
-        <section class="post-toc-wrap sidebar-panel">
+        <div class="post-toc-wrap sidebar-panel">
             <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-11-%E6%9B%B4%E6%96%B0"><span class="nav-number">1.</span> <span class="nav-text">2020.11 更新</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-1-%E6%9B%B4%E6%96%B0"><span class="nav-number">2.</span> <span class="nav-text">2020.1 更新</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-%E5%92%8C-NexT%E6%9C%AC%E5%9C%B0%E5%AE%89%E8%A3%85"><span class="nav-number">4.</span> <span class="nav-text">Hexo 和 NexT本地安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">站点配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-Pages%E9%83%A8%E7%BD%B2%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D"><span class="nav-number">5.1.</span> <span class="nav-text">Github Pages部署自定义域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E7%AB%A0%E6%B0%B8%E4%B9%85%E9%93%BE%E6%8E%A5"><span class="nav-number">5.2.</span> <span class="nav-text">修改文章永久链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E8%AF%AD%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE"><span class="nav-number">5.3.</span> <span class="nav-text">双语博客配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0About%E9%A1%B5%E9%9D%A2"><span class="nav-number">5.4.</span> <span class="nav-text">添加About页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E4%B8%AA%E6%80%A7%E5%8C%96404%E9%A1%B5%E9%9D%A2"><span class="nav-number">5.5.</span> <span class="nav-text">添加个性化404页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0Sitemap"><span class="nav-number">5.6.</span> <span class="nav-text">添加Sitemap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE"><span class="nav-number">5.7.</span> <span class="nav-text">图片懒加载配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE"><span class="nav-number">6.</span> <span class="nav-text">主题配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">6.1.</span> <span class="nav-text">基础配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87"><span class="nav-number">6.1.0.1.</span> <span class="nav-text">网站图标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%AB%99%E9%A1%B5%E8%84%9A%E9%85%8D%E7%BD%AE"><span class="nav-number">6.1.0.2.</span> <span class="nav-text">网站页脚配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%A7%E8%BE%B9%E6%A0%8F%E5%A4%B4%E5%83%8F%E9%85%8D%E7%BD%AE"><span class="nav-number">6.1.0.3.</span> <span class="nav-text">侧边栏头像配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%83%8C%E6%99%AF%E5%8A%A8%E6%80%81%E6%95%88%E6%9E%9C"><span class="nav-number">6.2.</span> <span class="nav-text">添加背景动态效果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Canvas-nest%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="nav-number">6.2.1.</span> <span class="nav-text">Canvas-nest安装配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90%E5%8A%9F%E8%83%BD"><span class="nav-number">6.3.</span> <span class="nav-text">添加相关文章推荐功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E7%94%A8Hexo-NexT%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2"><span class="nav-number">6.4.</span> <span class="nav-text">启用Hexo NexT本地搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97%E6%A0%B7%E5%BC%8F%E4%BF%AE%E6%94%B9"><span class="nav-number">6.5.</span> <span class="nav-text">代码块样式修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E9%A1%B5%E9%9D%A2%E9%98%85%E8%AF%BB%E8%BF%9B%E5%BA%A6%E6%98%BE%E7%A4%BA"><span class="nav-number">6.6.</span> <span class="nav-text">文章页面阅读进度显示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E9%A1%B5%E9%9D%A2%E9%A1%B6%E9%83%A8%E6%8C%89%E9%92%AE"><span class="nav-number">6.6.0.1.</span> <span class="nav-text">返回页面顶部按钮</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E9%A1%B6%E9%83%A8%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="nav-number">6.6.0.2.</span> <span class="nav-text">页面顶部进度条</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E6%96%87%E7%AB%A0%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="nav-number">6.7.</span> <span class="nav-text">开启文章页面加载进度条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%99%E7%82%B9%E9%A6%96%E9%A1%B5%E4%B8%8D%E6%98%BE%E7%A4%BA%E6%96%87%E7%AB%A0%E5%85%A8%E6%96%87"><span class="nav-number">6.8.</span> <span class="nav-text">站点首页不显示文章全文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E7%94%A8%E8%AF%84%E8%AE%BA%E6%A8%A1%E5%9D%97"><span class="nav-number">6.9.</span> <span class="nav-text">启用评论模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E8%B5%9E%E8%B5%8F%E5%8A%9F%E8%83%BD"><span class="nav-number">6.10.</span> <span class="nav-text">开启赞赏功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E7%94%A8Lazyload%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD"><span class="nav-number">6.11.</span> <span class="nav-text">启用Lazyload图片懒加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E7%94%A8Fancybox%E5%9B%BE%E7%89%87%E6%95%88%E6%9E%9C"><span class="nav-number">6.12.</span> <span class="nav-text">启用Fancybox图片效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%AC%AC%E4%B8%89%E6%96%B9CDN"><span class="nav-number">6.13.</span> <span class="nav-text">配置第三方CDN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E8%AF%84%E5%88%86%E5%8A%9F%E8%83%BD"><span class="nav-number">6.14.</span> <span class="nav-text">添加文章评分功能</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NexT%E5%86%85%E7%BD%AE%E4%B8%BB%E9%A2%98%E6%A0%B7%E5%BC%8F%E7%BE%8E%E5%8C%96"><span class="nav-number">7.</span> <span class="nav-text">NexT内置主题样式美化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%A7%E8%BE%B9%E6%A0%8F%E5%9C%86%E8%A7%92"><span class="nav-number">7.1.</span> <span class="nav-text">侧边栏圆角</span></a></li></ol></li></ol></div>
-        </section>
+        </div>
         <!--/noindex-->
 
-        <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="UPWNothing"
       src="/images/icon.jpeg">
@@ -287,9 +262,9 @@
 
 
 
-        </section>
+        </div>
       </div>
-        <div class="back-to-top animated">
+        <div class="back-to-top animated" role="button">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
@@ -309,9 +284,7 @@
 
 
     <div class="main-inner post posts-expand">
-      
 
-      
 
   
 
@@ -365,13 +338,6 @@
     </span>
 
   
-    <span id="/zh-CN/44bf8def/" class="post-meta-item leancloud_visitors" data-flag-title="Hexo + NexT 深度个性化配置 (2020.1 更新)" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
     <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
@@ -420,30 +386,24 @@
 </blockquote>
 <h2 id="修改文章永久链接"><a href="#修改文章永久链接" class="headerlink" title="修改文章永久链接"></a>修改文章永久链接</h2><p>默认的永久链接格式是<code>/year/month/day/title/</code>这样的形式。感觉有些冗余，也不美观。所以我对其进行修改：<br>在主题配置文件中搜索**permalink:**，并对其进行配置。以下是我使用的配置，仅供参考：<br>(这里使用到了<code>hexo-abbrlink</code>这个插件，需要通过<code>npm install hexo-abbrlink --save</code>安装。)  </p>
 <figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## <span class="keyword">If</span> your site <span class="keyword">is</span> put <span class="keyword">in</span> a subdirectory, <span class="keyword">set</span> url <span class="keyword">as</span> <span class="string">&#x27;http://yoursite.com/child&#x27;</span> <span class="keyword">and</span> root <span class="keyword">as</span> <span class="string">&#x27;/child/&#x27;</span></span><br><span class="line">url: https:<span class="comment">//upwnothing.github.io</span></span><br><span class="line">root: /</span><br><span class="line">permalink: :lang/:abbrlink/</span><br><span class="line">abbrlink: </span><br><span class="line">  alg: crc32 #算法：crc16(<span class="keyword">default</span>), crc32</span><br><span class="line">  rep: hex   #进制：dec(<span class="keyword">default</span>), hex</span><br><span class="line">permalink_defaults:</span><br><span class="line">pretty_urls:</span><br><span class="line">  trailing_index: <span class="keyword">true</span> # <span class="keyword">Set</span> <span class="keyword">to</span> <span class="keyword">false</span> <span class="keyword">to</span> <span class="keyword">remove</span> trailing <span class="string">&#x27;index.html&#x27;</span> <span class="keyword">from</span> permalinks</span><br><span class="line">  trailing_html: <span class="keyword">true</span> # <span class="keyword">Set</span> <span class="keyword">to</span> <span class="keyword">false</span> <span class="keyword">to</span> <span class="keyword">remove</span> trailing <span class="string">&#x27;.html&#x27;</span> <span class="keyword">from</span> permalinks</span><br></pre></td></tr></table></figure>
-
 <h2 id="双语博客配置"><a href="#双语博客配置" class="headerlink" title="双语博客配置"></a>双语博客配置</h2><p>详见<a href="https://upwnothing.github.io/zh-CN/78ced6ec/">利用Hexo框架搭建中英文双语网站</a></p>
 <h2 id="添加About页面"><a href="#添加About页面" class="headerlink" title="添加About页面"></a>添加About页面</h2><p>待完善</p>
 <h2 id="添加个性化404页面"><a href="#添加个性化404页面" class="headerlink" title="添加个性化404页面"></a>添加个性化404页面</h2><p>其实如果像我一样在Github Page上部署网页，Github有提供统一的404页面。当然，如果希望可以对404页面进行个性化改造，那么就需要稍许折腾一番。<br>一种是直接在<code>source</code>目录下创建一个<code>404.html</code>文件，并将你想要的样式以及HTML源码都添加到这个文件中。同时在站点配置文件<code>_config.yml</code>中，配置<code>skip_render</code>:</p>
 <figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># Directory</span></span><br><span class="line"><span class="symbol">source_dir:</span> source</span><br><span class="line"><span class="symbol">public_dir:</span> public</span><br><span class="line"><span class="symbol">tag_dir:</span> tags</span><br><span class="line"><span class="symbol">archive_dir:</span> archives</span><br><span class="line"><span class="symbol">category_dir:</span> categories</span><br><span class="line"><span class="symbol">code_dir:</span> downloads/code</span><br><span class="line"><span class="symbol">i18n_dir:</span> :lang</span><br><span class="line"><span class="symbol">skip_render:</span></span><br><span class="line">  - <span class="string">&quot;404.html&quot;</span></span><br></pre></td></tr></table></figure>
-
 <p>也可以通过<code>hexo new page 404</code>来创建一个与博客整体风格一致的404页面，然后编辑<code>source/404/index.md</code>。网上很容易搜到有许多使用腾讯公益的404页面源码。</p>
 <h2 id="添加Sitemap"><a href="#添加Sitemap" class="headerlink" title="添加Sitemap"></a>添加Sitemap</h2><p>为自己的网站配置sitemap，可以有效地提升SEO。具体方法如下：</p>
 <p>安装<code>hexo-generator-sitemap</code>和<code>hexo-generator-baidu-sitemap</code>。  </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-generator-sitemap <span class="comment">--save</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-generator-baidu-sitemap <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install </span>hexo-generator-sitemap --save</span><br><span class="line">npm <span class="keyword">install </span>hexo-generator-<span class="keyword">baidu-sitemap </span>--save</span><br></pre></td></tr></table></figure>
 <p>并在站点配置文件<code>_config.yml</code>的末尾添加：  </p>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">sitemap:</span></span><br><span class="line"><span class="symbol">  path:</span> sitemap.xml</span><br><span class="line"><span class="symbol">baidusitemap:</span></span><br><span class="line"><span class="symbol">  path:</span> baidusitemap.xml</span><br></pre></td></tr></table></figure>
-
 
 <h2 id="图片懒加载配置"><a href="#图片懒加载配置" class="headerlink" title="图片懒加载配置"></a>图片懒加载配置</h2><p><strong>注意！！不推荐在站点配置中设置图片懒加载。该功能其实已经集成在NexT主题中，如何启用详见:</strong><a href="##%E5%90%AF%E7%94%A8Lazyload%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD">在NexT中启用Lazyload</a></p>
 <p>前面提到过，由于网站是搭建在Github Pages上，服务器不在国内，所以对于一些图片很多的文章，文章加载会非常慢。为了解决这个问题，我们可以启用图片懒加载功能。  </p>
 <p>图片懒加载可以有效地提升网站性能和用户体验。其原理是仅先加载用户可见部分的图片，其余的都暂时先不加载。  </p>
 <p>首先安装<code>hexo-lazyload-image</code>插件：</p>
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-lazyload-<span class="built_in">image</span> --<span class="built_in">save</span></span><br></pre></td></tr></table></figure>
-
 <p>再在站点配置文件<code>_config.yml</code>中添加上下列内容：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Lazyload Image</span></span><br><span class="line"><span class="comment">## npm install hexo-lazyload-image --save</span></span><br><span class="line"><span class="attr">lazyload:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">onlypost:</span> <span class="literal">false</span>  <span class="comment"># 设置为true，那么只有page和post页面中的图片会使用LazyLoad</span></span><br><span class="line">  <span class="attr">loadingImg:</span> <span class="comment"># /images/loading.gif    # 默认为空，加上图片地址可以自定义加载时显示的图片</span></span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>使用<code>Hexo-lazyload-image</code>方法启用图片懒加载时，如果同时也启用了Fancybox拓展，那么可能会造成冲突。<br>而使用NexT集成的Lazyload库则不会与Fancybox产生冲突。缺点则是，NexT主题中的Lazyload无法配置onlypost与loadingImg。</p>
 </blockquote>
@@ -465,7 +425,6 @@
 <h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><p>一些一看就懂的配置项，在这里一笔带过。</p>
 <h4 id="网站图标"><a href="#网站图标" class="headerlink" title="网站图标"></a>网站图标</h4><p>在主题配置文件中将对应项的值修改为图片路径即可。</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">favicon:</span><br><span class="line">  small: <span class="regexp">/images/</span>favicon-<span class="number">16</span>x16-<span class="keyword">next</span>.png</span><br><span class="line">  medium: <span class="regexp">/images/</span>favicon-<span class="number">32</span>x32-<span class="keyword">next</span>.png</span><br><span class="line">  apple_touch_icon: <span class="regexp">/images/</span>apple-touch-icon-<span class="keyword">next</span>.png</span><br><span class="line">  safari_pinned_tab: <span class="regexp">/images/</span>logo.svg</span><br><span class="line">  #android_manifest: <span class="regexp">/images/m</span>anifest.json</span><br><span class="line">  #ms_browserconfig: <span class="regexp">/images/</span>browserconfig.xml</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>favicon效果<br><img data-src="/zh-CN/44bf8def/favicon.png" alt="favicon效果"></li>
 </ul>
@@ -477,27 +436,22 @@
 <li>页脚效果<br><img data-src="/zh-CN/44bf8def/footer.png" alt="页脚效果"></li>
 </ul>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">footer:</span></span><br><span class="line">  <span class="comment"># Specify the date when the site was setup. If not defined, current year will be used.</span></span><br><span class="line">  <span class="attr">since:</span> <span class="number">2017</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Icon between year and copyright info.</span></span><br><span class="line">  <span class="attr">icon:</span></span><br><span class="line">    <span class="comment"># Icon name in Font Awesome. See: https://fontawesome.com/v4.7.0/icons/</span></span><br><span class="line">    <span class="comment"># `heart` is recommended with animation in red (#ff0000).</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">paw</span></span><br><span class="line">    <span class="comment"># If you want to animate the icon, set it to true.</span></span><br><span class="line">    <span class="attr">animated:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Change the color of icon, using Hex Code.</span></span><br><span class="line">    <span class="attr">color:</span> <span class="string">&quot;#808080&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># If not defined, `author` from Hexo `_config.yml` will be used.</span></span><br><span class="line">  <span class="attr">copyright:</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">powered:</span></span><br><span class="line">    <span class="comment"># Hexo link (Powered by Hexo).</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Version info of Hexo after Hexo link (vX.X.X).</span></span><br><span class="line">    <span class="attr">version:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="comment"># Theme &amp; scheme info link (Theme - NexT.scheme).</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Version info of NexT after scheme info (vX.X.X).</span></span><br><span class="line">    <span class="attr">version:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Beian ICP and gongan information for Chinese users. See: http://www.beian.miit.gov.cn, http://www.beian.gov.cn</span></span><br><span class="line">  <span class="attr">beian:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">icp:</span></span><br><span class="line">    <span class="comment"># The digit in the num of gongan beian.</span></span><br><span class="line">    <span class="attr">gongan_id:</span></span><br><span class="line">    <span class="comment"># The full num of gongan beian.</span></span><br><span class="line">    <span class="attr">gongan_num:</span></span><br><span class="line">    <span class="comment"># The icon for gongan beian. See: http://www.beian.gov.cn/portal/download</span></span><br><span class="line">    <span class="attr">gongan_icon_url:</span></span><br></pre></td></tr></table></figure>
-
 <h4 id="侧边栏头像配置"><a href="#侧边栏头像配置" class="headerlink" title="侧边栏头像配置"></a>侧边栏头像配置</h4><p>在主题配置文件中修改如下：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Sidebar Avatar</span></span><br><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="comment"># Replace the default image and set the url here.</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">/images/icon.jpeg</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be dispalyed in circle.</span></span><br><span class="line">  <span class="attr">rounded:</span> <span class="literal">true</span>      <span class="comment"># 头像显示为圆形</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be rotated with the cursor.</span></span><br><span class="line">  <span class="attr">rotated:</span> <span class="literal">true</span>       <span class="comment"># 设置为true时，鼠标移动到头像上时头像会旋转一圈</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>侧边栏头像效果<br><img data-src="/zh-CN/44bf8def/avatar.png" alt="侧边栏头像效果"></li>
 </ul>
 <h2 id="添加背景动态效果"><a href="#添加背景动态效果" class="headerlink" title="添加背景动态效果"></a>添加背景动态效果</h2><h3 id="Canvas-nest安装配置"><a href="#Canvas-nest安装配置" class="headerlink" title="Canvas-nest安装配置"></a>Canvas-nest安装配置</h3><p>进入<code>themes/next</code>目录,执行命令：  </p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/theme</span>-<span class="keyword">next</span>/theme-<span class="keyword">next</span>-canvas-nest source/<span class="class"><span class="keyword">lib</span>/<span class="title">canvas</span>-<span class="title">nest</span> </span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/theme-next/</span>theme-<span class="keyword">next</span>-canvas-nest source<span class="regexp">/lib/</span>canvas-nest </span><br></pre></td></tr></table></figure>
 <p>其实就是下载canvas-next动态效果的js文件，并添加到<code>source/lib</code>目录下。</p>
 <p>在_config.yml中，在<code>theme_config:</code>下添加: </p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">canvas_nest:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> </span><br><span class="line">  <span class="attr">onmobile:</span> <span class="literal">true</span> <span class="comment"># Display on mobile or not</span></span><br><span class="line">  <span class="attr">color:</span> <span class="string">&quot;0,0,255&quot;</span> <span class="comment"># RGB values, use `,` to separate</span></span><br><span class="line">  <span class="attr">opacity:</span> <span class="number">0.5</span> <span class="comment"># The opacity of line: 0~1</span></span><br><span class="line">  <span class="attr">zIndex:</span> <span class="number">-1</span> <span class="comment"># z-index property of the background</span></span><br><span class="line">  <span class="attr">count:</span> <span class="number">99</span> <span class="comment"># The number of lines</span></span><br></pre></td></tr></table></figure>
-
 <p><code>enable</code>后面5行可以根据自己的需要进行修改。如果认为默认的参数都不错的话，那么就可以直接省略这几行。</p>
 <blockquote>
 <p>Next 8.0.2 之后，Canvas_nest不再被原生支持。所以需要在<code>hexo/source/_data/</code>下创建<code>footer.njk</code>文件<br>在文件中添加<code>&lt;script color=&quot;0,0,255&quot; opacity=&quot;0.5&quot; zIndex=&quot;-1&quot; count=&quot;99&quot; src=&quot;https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js&quot;&gt;&lt;/script&gt;</code>，并将其中的参数修改为自己想要的值。<br>最后再在主题配置文件中，修改<code>custom_file_path</code>，将<code>footer: source/_data/footer.njk</code>的注释删除即可。</p>
 </blockquote>
 <h2 id="添加相关文章推荐功能"><a href="#添加相关文章推荐功能" class="headerlink" title="添加相关文章推荐功能"></a>添加相关文章推荐功能</h2><p>该功能需要安装依赖的插件<a target="_blank" rel="noopener" href="https://github.com/tea3/hexo-related-popular-posts">Hexo-Related-Popular-Posts</a>：  </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-related-popular-posts <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-related-popular-posts <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
 <p>再在<code>_config.yml</code>中对主题进行配置：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">related_posts:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Custom header, leave empty to use the default one 设置推荐区块的标题</span></span><br><span class="line">  <span class="attr">title:</span>     </span><br><span class="line">  <span class="attr">display_in_home:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">params:</span></span><br><span class="line">    <span class="attr">maxCount:</span> <span class="number">5</span></span><br><span class="line">    <span class="comment">#PPMixingRate: 0.0</span></span><br><span class="line">    <span class="comment">#isDate: false</span></span><br><span class="line">    <span class="comment">#isImage: false</span></span><br><span class="line">    <span class="comment">#isExcerpt: false</span></span><br></pre></td></tr></table></figure>
 
@@ -509,13 +463,11 @@
 <li>本地搜索通过<code>hexo-generator-searchdb</code>插件，在本地生成search.xml。该文件作为一个小型的数据库，配合js脚本实现了本地搜索的功能。</li>
 </ul>
 <p>首先，安装插件：  </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-generator-searchdb <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
 <p>再修改配置文件<code>_config.yml</code>，启用本地搜索功能：  </p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If auto, trigger search by changing input.</span></span><br><span class="line">  <span class="comment"># If manual, trigger search by pressing enter key or search button.</span></span><br><span class="line">  <span class="attr">trigger:</span> <span class="string">auto</span></span><br><span class="line">  <span class="comment"># Show top n results per article, show all results by setting to -1</span></span><br><span class="line">  <span class="attr">top_n_per_article:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># Unescape html strings to the readable one.</span></span><br><span class="line">  <span class="attr">unescape:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Preload the search data when the page loads.</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="代码块样式修改"><a href="#代码块样式修改" class="headerlink" title="代码块样式修改"></a>代码块样式修改</h2><p>在主题配置<code>theme_config</code>下添加：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="comment"># Code Highlight theme</span></span><br><span class="line">  <span class="comment"># Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</span></span><br><span class="line">  <span class="comment"># See: https://github.com/chriskempson/tomorrow-theme</span></span><br><span class="line">  <span class="attr">highlight_theme:</span> <span class="string">solarized</span> <span class="string">dark</span></span><br><span class="line">  <span class="comment"># Add copy button on codeblock</span></span><br><span class="line">  <span class="attr">copy_button:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Show text copy result.</span></span><br><span class="line">    <span class="attr">show_result:</span> <span class="literal">false</span></span><br><span class="line">    <span class="comment"># Available values: default | flat | mac</span></span><br><span class="line">    <span class="attr">style:</span> <span class="string">mac</span></span><br></pre></td></tr></table></figure>
-
 <p>本来的注释中就已经有了比较详细的说明，所以就不多做介绍了。根据自己的需要设置即可。</p>
 <p><img data-src="/zh-CN/44bf8def/codeblock.png" alt="代码块效果图"></p>
 <h2 id="文章页面阅读进度显示"><a href="#文章页面阅读进度显示" class="headerlink" title="文章页面阅读进度显示"></a>文章页面阅读进度显示</h2><h4 id="返回页面顶部按钮"><a href="#返回页面顶部按钮" class="headerlink" title="返回页面顶部按钮"></a>返回页面顶部按钮</h4><p>在主题配置<code>theme_config</code>下添加：</p>
@@ -527,10 +479,10 @@
 <h4 id="页面顶部进度条"><a href="#页面顶部进度条" class="headerlink" title="页面顶部进度条"></a>页面顶部进度条</h4><p>在主题配置中直接找到<code>reading_progress</code>。将其添加到站点配置文件<code>_config.yml</code>中的<code>theme_confg</code>下。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Reading progress bar</span></span><br><span class="line"><span class="attr">reading_progress:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Available values: top | bottom</span></span><br><span class="line">  <span class="attr">position:</span> <span class="string">top</span></span><br><span class="line">  <span class="attr">color:</span> <span class="string">&quot;#37c6c0&quot;</span></span><br><span class="line">  <span class="attr">height:</span> <span class="string">3px</span></span><br></pre></td></tr></table></figure>
 <p>但是，尝试一次以后发现并没有产生效果。后来，经过搜索发现，该功能同样依赖<code>theme-next-reading-progress</code>拓展来实现。由于默认配置文件中的注释里没有提到，所以我一开始完全没意识到需要安装。  </p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd themes/<span class="keyword">next</span></span><br><span class="line">git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/theme</span>-<span class="keyword">next</span>/theme-<span class="keyword">next</span>-reading-progress source/<span class="class"><span class="keyword">lib</span>/<span class="title">reading_progress</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd themes/<span class="keyword">next</span></span><br><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/theme-next/</span>theme-<span class="keyword">next</span>-reading-progress source<span class="regexp">/lib/</span>reading_progress</span><br></pre></td></tr></table></figure>
 <p>通过上述命令完成安装即可。</p>
 <h2 id="开启文章页面加载进度条"><a href="#开启文章页面加载进度条" class="headerlink" title="开启文章页面加载进度条"></a>开启文章页面加载进度条</h2><p>与阅读进度条类似，首先安装拓展<code>theme-next-pace</code>：  </p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd themes/<span class="keyword">next</span></span><br><span class="line">git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/theme</span>-<span class="keyword">next</span>/theme-<span class="keyword">next</span>-pace source/<span class="class"><span class="keyword">lib</span>/<span class="title">pace</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd themes/<span class="keyword">next</span></span><br><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/theme-next/</span>theme-<span class="keyword">next</span>-pace source<span class="regexp">/lib/</span>pace</span><br></pre></td></tr></table></figure>
 <p>安装完成后，在主题配置<code>theme_config</code>下添加配置：  </p>
 <figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Progress bar <span class="built_in">in</span> the <span class="built_in">top</span> during page loading.</span><br><span class="line"># <span class="keyword">Dependencies</span>: https://github.com/theme-next/theme-next-pace</span><br><span class="line"># For more information: https://github.com/HubSpot/pace</span><br><span class="line">pace:</span><br><span class="line">  enable: true</span><br><span class="line">  # Themes list:</span><br><span class="line">  # big-counter | <span class="type">bounce</span> | <span class="type">barber</span>-shop | <span class="type">center</span>-atom | <span class="type">center</span>-circle | <span class="type">center</span>-radar | <span class="type">center</span>-<span class="built_in">simple</span></span><br><span class="line">  # corner-indicator | <span class="type">fill</span>-<span class="built_in">left</span> | <span class="type">flat</span>-<span class="built_in">top</span> | <span class="type">flash</span> | <span class="type">loading</span>-bar | <span class="type">mac</span>-osx | <span class="type">material</span> | <span class="type">minimal</span></span><br><span class="line">  theme: center-radar</span><br></pre></td></tr></table></figure>
 <p>主题<code>theme:</code>可以设置为自己喜欢的样式，这里我设置为了 <em>center-radar</em> 的样式。在这个<a target="_blank" rel="noopener" href="https://github.hubspot.com/pace/docs/welcome/">页面</a>可以看到所有样式的demo。 </p>
@@ -541,47 +493,38 @@
 <h2 id="启用评论模块"><a href="#启用评论模块" class="headerlink" title="启用评论模块"></a>启用评论模块</h2><p>详见<a href="https://upwnothing.github.io/zh-CN/c0899d18/">为Hexo NexT 添加评论系统</a></p>
 <h2 id="开启赞赏功能"><a href="#开启赞赏功能" class="headerlink" title="开启赞赏功能"></a>开启赞赏功能</h2><p> NexT 主题还内置了打赏的功能。首先在<code>theme_config</code>下，添加  </p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Reward (Donate)</span></span><br><span class="line"><span class="comment"># Front-matter variable (unsupport animation).</span></span><br><span class="line"><span class="attr">reward_settings:</span></span><br><span class="line">  <span class="comment"># If true, reward will be displayed in every article by default.</span></span><br><span class="line">  <span class="comment"># 设置为True, 那么打赏按钮会默认显示在每篇文章的底部</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">animation:</span> <span class="literal">true</span>  <span class="comment"># 开启动画效果</span></span><br><span class="line">  <span class="comment"># comment: #加入显示的打赏用语 </span></span><br><span class="line"><span class="attr">reward:</span></span><br><span class="line">  <span class="attr">wechatpay:</span> <span class="string">/images/wechatpay.png</span> <span class="comment">#微信支付 </span></span><br><span class="line">  <span class="attr">alipay:</span> <span class="string">/images/alipay.png</span>  <span class="comment">#支付宝</span></span><br><span class="line">  <span class="comment"># bitcoin: /images/bitcoin.png  #比特比</span></span><br></pre></td></tr></table></figure>
-
 <p>然后将微信支付，支付宝的收款二维码图片保存为上述的路径。重新生成后就可以在文章底部看到打赏的按钮了。</p>
 <h2 id="启用Lazyload图片懒加载"><a href="#启用Lazyload图片懒加载" class="headerlink" title="启用Lazyload图片懒加载"></a>启用Lazyload图片懒加载</h2><p>首先在主题配置文件中，配置  </p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">lazyload:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <p>并添加本地js第三方库：</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd themes/<span class="keyword">next</span></span><br><span class="line">git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/theme</span>-<span class="keyword">next</span>/theme-<span class="keyword">next</span>-jquery-lazyload source/<span class="class"><span class="keyword">lib</span>/<span class="title">jquery_lazyload</span></span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd themes/<span class="keyword">next</span></span><br><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/theme-next/</span>theme-<span class="keyword">next</span>-jquery-lazyload source<span class="regexp">/lib/</span>jquery_lazyload</span><br></pre></td></tr></table></figure>
 <p>或者，也可以直接在主题配置中启用第三方CDN</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vendors:</span><br><span class="line">  lazyload: <span class="regexp">//</span>cdn.jsdelivr.net<span class="regexp">/npm/</span>lozad@<span class="number">1</span><span class="regexp">/dist/</span>lozad.min.js</span><br></pre></td></tr></table></figure>
-
 <p>在<code>hexo cl &amp;&amp; hexo g</code>之后，进入自己的网页，随意对任一图片进行”审查元素”. </p>
 <p>如果你的<code>img</code>元素中包含<code>data-loaded=&quot;true&quot;</code>,那就说明Lazyload已经生效。</p>
 <p><img data-src="/zh-CN/44bf8def/lazyload.png" alt="Lazyload效果"></p>
 <h2 id="启用Fancybox图片效果"><a href="#启用Fancybox图片效果" class="headerlink" title="启用Fancybox图片效果"></a>启用Fancybox图片效果</h2><p>首先在主题配置文件中，配置  </p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">fancybox:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <p>并添加本地js第三方库(Fancybox2 或 Fancybox3 任选一个)：</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd themes/<span class="keyword">next</span></span><br><span class="line">git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/theme</span>-<span class="keyword">next</span>/theme-<span class="keyword">next</span>-fancybox3 source/<span class="class"><span class="keyword">lib</span>/<span class="title">fancybox</span>   <span class="comment"># install Fancybox 3.x</span></span></span><br><span class="line">git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/theme</span>-<span class="keyword">next</span>/theme-<span class="keyword">next</span>-fancybox source/<span class="class"><span class="keyword">lib</span>/<span class="title">fancybox</span>    <span class="comment"># install Fancybox 2.x</span></span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd themes/<span class="keyword">next</span></span><br><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/theme-next/</span>theme-<span class="keyword">next</span>-fancybox3 source<span class="regexp">/lib/</span>fancybox   <span class="comment"># install Fancybox 3.x</span></span><br><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/theme-next/</span>theme-<span class="keyword">next</span>-fancybox source<span class="regexp">/lib/</span>fancybox    <span class="comment"># install Fancybox 2.x</span></span><br></pre></td></tr></table></figure>
 <p>或者，也可以直接在主题配置中启用第三方CDN (同样根据自己的需要选择版本)</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vendors:</span><br><span class="line">  <span class="comment"># FancyBox</span></span><br><span class="line">  jquery: <span class="regexp">//</span>cdn.jsdelivr.net<span class="regexp">/npm/</span>jquery@<span class="number">3</span><span class="regexp">/dist/</span>jquery.min.js</span><br><span class="line">  fancybox: <span class="regexp">//</span>cdn.jsdelivr.net<span class="regexp">/gh/</span>fancyapps<span class="regexp">/fancybox@3/</span>dist/jquery.fancybox.min.js</span><br><span class="line">  fancybox_css: <span class="regexp">//</span>cdn.jsdelivr.net<span class="regexp">/gh/</span>fancyapps<span class="regexp">/fancybox@3/</span>dist/jquery.fancybox.min.css</span><br><span class="line">  <span class="comment"># jquery: //cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js</span></span><br><span class="line">  <span class="comment"># fancybox: //cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.js</span></span><br><span class="line">  <span class="comment"># fancybox_css: //cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css</span></span><br></pre></td></tr></table></figure>
-
 <p>在<code>hexo cl &amp;&amp; hexo g</code>之后，进入自己的网页，就可以看到网页上的图片都可以点开放大浏览了。 </p>
 <p><img data-src="/zh-CN/44bf8def/fancybox.png" alt="Fancybox3效果"></p>
 <h2 id="配置第三方CDN"><a href="#配置第三方CDN" class="headerlink" title="配置第三方CDN"></a>配置第三方CDN</h2><p>对于这一部分的内容，其实前面在插件介绍中也已经有所涉及了。NexT提供了CDN配置的功能，如果你对某个插件进行了CDN的配置，那么页面在加载时，将会从CDN来下载相关的js脚本。如果配置为空，则会在本地目录读取对应的文件。<br>在加载页面时，可以在Chrome中按F12进入开发者菜单，点击<code>Network</code>标签，可以看到页面在加载时，哪些文件耗费了比较长的时间。如果启用了一些比较大的插件，如<code>Busuanzi</code>，<code>Valine</code>,那么使用CDN来加载静态文件，可以有效地加速页面的加载速度。</p>
 <p>在主题配置文件<code>themes/next/_config.yml</code>中，搜索<code>vendors:</code>即可找到第三方CDN的配置项。</p>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">vendors:</span></span><br><span class="line">  <span class="comment"># Internal path prefix.</span></span><br><span class="line">  \<span class="symbol">_internal:</span> <span class="class"><span class="keyword">lib</span></span></span><br></pre></td></tr></table></figure>
-
 <p>这里定义了如果某插件的CDN没有进行配置，那么就会在<code>themes/next/source/lib/</code>目录下，加载插件所需的静态文件。</p>
 <p>然后根据自己启用插件的情况，将需要的行添加到主题配置<code>themes_config</code>下。这里贴出我启用的配置，仅供参考：</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vendors:</span><br><span class="line">  fontawesome: <span class="regexp">//</span>cdn.jsdelivr.net<span class="regexp">/npm/</span>font-awesome@<span class="number">4</span><span class="regexp">/css/</span>font-awesome.min.css</span><br><span class="line">  jquery: <span class="regexp">//</span>cdn.jsdelivr.net<span class="regexp">/npm/</span>jquery@<span class="number">3</span><span class="regexp">/dist/</span>jquery.min.js</span><br><span class="line">  fancybox: <span class="regexp">//</span>cdn.jsdelivr.net<span class="regexp">/gh/</span>fancyapps<span class="regexp">/fancybox@3/</span>dist/jquery.fancybox.min.js</span><br><span class="line">  fancybox_css: <span class="regexp">//</span>cdn.jsdelivr.net<span class="regexp">/gh/</span>fancyapps<span class="regexp">/fancybox@3/</span>dist/jquery.fancybox.min.css</span><br><span class="line">  lazyload: <span class="regexp">//</span>cdn.jsdelivr.net<span class="regexp">/npm/</span>lozad@<span class="number">1</span><span class="regexp">/dist/</span>lozad.min.js</span><br><span class="line">  valine: <span class="regexp">//</span>cdn.jsdelivr.net<span class="regexp">/npm/</span>valine@<span class="number">1</span><span class="regexp">/dist/</span>Valine.min.js</span><br><span class="line">  pace: <span class="regexp">//</span>cdn.jsdelivr.net<span class="regexp">/npm/</span>pace-js@<span class="number">1</span>/pace.min.js</span><br><span class="line">  pace_css: <span class="regexp">//</span>cdn.jsdelivr.net<span class="regexp">/npm/</span>pace-js@<span class="number">1</span><span class="regexp">/themes/</span>blue/pace-theme-minimal.css</span><br><span class="line">  canvas_nest: <span class="regexp">//</span>cdn.jsdelivr.net<span class="regexp">/gh/</span>theme-<span class="keyword">next</span><span class="regexp">/theme-next-canvas-nest@1/</span>canvas-nest.min.js</span><br><span class="line">  canvas_nest_nomobile: <span class="regexp">//</span>cdn.jsdelivr.net<span class="regexp">/gh/</span>theme-<span class="keyword">next</span><span class="regexp">/theme-next-canvas-nest@1/</span>canvas-nest-nomobile.min.js</span><br></pre></td></tr></table></figure>
-
 <h2 id="添加文章评分功能"><a href="#添加文章评分功能" class="headerlink" title="添加文章评分功能"></a>添加文章评分功能</h2><p>在主题配置文件<code>themes/next/_config.yml</code>中搜索<code>rating</code>，找到相关的配置。将其添加到主题配置<code>theme_config</code>下：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Star rating support to each article.</span></span><br><span class="line"><span class="comment"># To get your ID visit https://widgetpack.com</span></span><br><span class="line"><span class="attr">rating:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">id:</span>     <span class="comment"># &lt;app_id&gt;</span></span><br><span class="line">  <span class="attr">color:</span>  <span class="string">fc6423</span></span><br></pre></td></tr></table></figure>
-
 <p>根据注释说明打开<a target="_blank" rel="noopener" href="https://widgetpack.com/">https://widgetpack.com</a> ,首页点击”Rating”，然后点击页面中间红色的”Get it Free”。页面会跳转到注册页面，注册帐号。  </p>
 <p>点开左上角菜单，选择 Rating -&gt; Setting ，可以把 <code>Vote via</code> 修改成 Device或是IP address。这样用户无需登录就可以打分。</p>
 <p>菜单中 Site -&gt; Setting ，可以将Private勾上。</p>
 <h1 id="NexT内置主题样式美化"><a href="#NexT内置主题样式美化" class="headerlink" title="NexT内置主题样式美化"></a>NexT内置主题样式美化</h1><p>这一部分其实主要是对样式进行自定义修改，基本思路就是在自定义的样式文件中加入对应元素的css属性设置。</p>
 <h2 id="侧边栏圆角"><a href="#侧边栏圆角" class="headerlink" title="侧边栏圆角"></a>侧边栏圆角</h2><p>打开<code>themes/next/source/css/_variables/Gemini.styl</code>，根据启用的不同主题，选择相应的文件。这里修改的是<code>Gemini.styl</code>。<br>在文件中修改代码：</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$border-radius-inner   = <span class="number">0</span> <span class="number">0</span> <span class="number">10</span>px <span class="number">10</span>px;</span><br><span class="line">$border-radius         = <span class="number">10</span>px;</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">$border</span>-radius-inner   = 0 0 10px 10px;</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">$border</span>-radius         = 10px;</span></span><br></pre></td></tr></table></figure>
 <hr>
 <p>参考文档：</p>
 <ul>
@@ -688,7 +631,7 @@
 
 
 
-      
+    <div class="comments utterances-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -711,13 +654,11 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
   <div class="languages">
     <label class="lang-select-label">
       <i class="fa fa-language"></i>
@@ -737,12 +678,10 @@
     </select>
   </div>
 
-      
 
 <div class="copyright">
-  
   &copy; 2017 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="paw"></i>
   </span>
@@ -753,7 +692,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">38k</span>
+    <span title="站点总字数">39k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -793,9 +732,6 @@
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
-
-
-
   <script>
   if (CONFIG.page.isPost) {
     wpac_init = window.wpac_init || [];
@@ -816,17 +752,7 @@
     })();
   }
   </script>
-
-  <script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
+<script src="/js/local-search.js"></script>
 
 
 
@@ -840,12 +766,18 @@
 
 
 
-
-
-
-  
-
-  
+<script>
+NexT.utils.loadComments('.utterances-container', () => {
+  const script = document.createElement('script');
+  script.src = 'https://utteranc.es/client.js';
+  script.setAttribute('repo', "UPWNothing/UPWNothing.github.io");
+  script.setAttribute('issue-term', "pathname");
+  script.setAttribute('theme', "github-dark");
+  script.crossOrigin = 'anonymous';
+  script.async = true;
+  document.querySelector('.utterances-container').appendChild(script);
+});
+</script>
 
 </body>
 </html>

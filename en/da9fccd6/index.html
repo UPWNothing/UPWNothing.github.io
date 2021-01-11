@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.3.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -16,16 +16,15 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@5/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-
-  <meta name="description" content="After you installed a new Kali (Virtual) Machine, what’s the next step? Here are some “Must Do” list to make your Kali more handy: Update to latest versionFirst, edit the &#x2F;etc&#x2F;apt&#x2F;sources.list.">
+<meta name="description" content="After you installed a new Kali (Virtual) Machine, what’s the next step? Here are some “Must Do” list to make your Kali more handy: Update to latest versionFirst, edit the &#x2F;etc&#x2F;apt&#x2F;sources.list.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TODO List for New Kali">
 <meta property="og:url" content="https://upwnothing.github.io/en/da9fccd6/index.html">
@@ -58,7 +57,7 @@
     // Wait for the page to load first
     var _prevOnload = window.onload;
     window.onload = function() {
-        var switchLang = document.getElementById("menu").getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
+        var switchLang = document.getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
             var href = window.location.href;     
             var indexOfEn = href.toLowerCase().indexOf('/en/');
             if(indexOfEn !== -1) {
@@ -74,8 +73,7 @@
 </script>
 <script data-ad-client="ca-pub-2179953596008833" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-
-  <title>TODO List for New Kali | UPWNothing's Playground</title>
+<title>TODO List for New Kali | UPWNothing's Playground</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
     <script>
@@ -86,8 +84,6 @@
         gtag('config', 'UA-125116918-1');
       }
     </script>
-
-
 
 
 
@@ -136,7 +132,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -164,31 +160,11 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">10</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">22</span></a>
-
-  </li>
-        <li class="menu-item menu-item-switch_lang">
-
-    <a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>switch_lang</a>
-
-  </li>
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">10</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">22</span></a></li>
+        <li class="menu-item menu-item-switch_lang"><a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>switch_lang</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -199,8 +175,7 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
@@ -209,7 +184,7 @@
            placeholder="Searching..." spellcheck="false"
            type="search" class="search-input">
   </div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
@@ -225,7 +200,7 @@
 </div>
         
   
-  <div class="toggle sidebar-toggle">
+  <div class="toggle sidebar-toggle" role="button">
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
@@ -245,12 +220,12 @@
 
       <div class="sidebar-panel-container">
         <!--noindex-->
-        <section class="post-toc-wrap sidebar-panel">
+        <div class="post-toc-wrap sidebar-panel">
             <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Update-to-latest-version"><span class="nav-number">1.</span> <span class="nav-text">Update to latest version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Desktop-Environment"><span class="nav-number">2.</span> <span class="nav-text">Install Desktop Environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-a-new-%E2%80%9Csudo%E2%80%9D-user"><span class="nav-number">3.</span> <span class="nav-text">Add a new “sudo” user</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-your-Vim"><span class="nav-number">4.</span> <span class="nav-text">Configure your Vim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-Input-Method-For-Non-English-Speaking-Users"><span class="nav-number">5.</span> <span class="nav-text">Configure Input Method (For Non-English Speaking Users)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-Bash-Aliases"><span class="nav-number">6.</span> <span class="nav-text">Configure Bash Aliases</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number"></span> <span class="nav-text">References</span></a></div>
-        </section>
+        </div>
         <!--/noindex-->
 
-        <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="UPWNothing"
       src="/images/icon.jpeg">
@@ -281,9 +256,9 @@
 
 
 
-        </section>
+        </div>
       </div>
-        <div class="back-to-top animated">
+        <div class="back-to-top animated" role="button">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
@@ -303,9 +278,7 @@
 
 
     <div class="main-inner post posts-expand">
-      
 
-      
 
   
 
@@ -371,13 +344,6 @@
     </span>
 
   
-    <span id="/en/da9fccd6/" class="post-meta-item leancloud_visitors" data-flag-title="TODO List for New Kali" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
     <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
@@ -417,22 +383,18 @@
 
 <p><code>deb http://http.kali.org/kali kali-rolling main non-free contrib</code> is the official repository for Kali. </p>
 <p>And you can configure the <em>sources.list</em> based on your location.<br>For example, if you’re in China, you can use the following list:</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#中科大</span></span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment">#阿里云</span></span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com/kali kali-rolling main non-free contrib</span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com/kali kali-rolling main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment">#清华大学</span></span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free</span><br><span class="line">deb-src https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free</span><br><span class="line"></span><br><span class="line"><span class="comment">#浙大</span></span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.zju.edu.cn/kali kali-rolling main contrib non-free</span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.zju.edu.cn/kali kali-rolling main contrib non-free</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#中科大</span><br><span class="line"><span class="selector-tag">deb</span> <span class="selector-tag">http</span>://<span class="selector-tag">mirrors</span><span class="selector-class">.ustc</span><span class="selector-class">.edu</span><span class="selector-class">.cn</span>/<span class="selector-tag">kali</span> <span class="selector-tag">kali-rolling</span> <span class="selector-tag">main</span> <span class="selector-tag">non-free</span> <span class="selector-tag">contrib</span></span><br><span class="line"><span class="selector-tag">deb-src</span> <span class="selector-tag">http</span>://<span class="selector-tag">mirrors</span><span class="selector-class">.ustc</span><span class="selector-class">.edu</span><span class="selector-class">.cn</span>/<span class="selector-tag">kali</span> <span class="selector-tag">kali-rolling</span> <span class="selector-tag">main</span> <span class="selector-tag">non-free</span> <span class="selector-tag">contrib</span></span><br><span class="line"></span><br><span class="line">#阿里云</span><br><span class="line"><span class="selector-tag">deb</span> <span class="selector-tag">http</span>://<span class="selector-tag">mirrors</span><span class="selector-class">.aliyun</span><span class="selector-class">.com</span>/<span class="selector-tag">kali</span> <span class="selector-tag">kali-rolling</span> <span class="selector-tag">main</span> <span class="selector-tag">non-free</span> <span class="selector-tag">contrib</span></span><br><span class="line"><span class="selector-tag">deb-src</span> <span class="selector-tag">http</span>://<span class="selector-tag">mirrors</span><span class="selector-class">.aliyun</span><span class="selector-class">.com</span>/<span class="selector-tag">kali</span> <span class="selector-tag">kali-rolling</span> <span class="selector-tag">main</span> <span class="selector-tag">non-free</span> <span class="selector-tag">contrib</span></span><br><span class="line"></span><br><span class="line">#清华大学</span><br><span class="line"><span class="selector-tag">deb</span> <span class="selector-tag">http</span>://<span class="selector-tag">mirrors</span><span class="selector-class">.tuna</span><span class="selector-class">.tsinghua</span><span class="selector-class">.edu</span><span class="selector-class">.cn</span>/<span class="selector-tag">kali</span> <span class="selector-tag">kali-rolling</span> <span class="selector-tag">main</span> <span class="selector-tag">contrib</span> <span class="selector-tag">non-free</span></span><br><span class="line"><span class="selector-tag">deb-src</span> <span class="selector-tag">https</span>://<span class="selector-tag">mirrors</span><span class="selector-class">.tuna</span><span class="selector-class">.tsinghua</span><span class="selector-class">.edu</span><span class="selector-class">.cn</span>/<span class="selector-tag">kali</span> <span class="selector-tag">kali-rolling</span> <span class="selector-tag">main</span> <span class="selector-tag">contrib</span> <span class="selector-tag">non-free</span></span><br><span class="line"></span><br><span class="line">#浙大</span><br><span class="line"><span class="selector-tag">deb</span> <span class="selector-tag">http</span>://<span class="selector-tag">mirrors</span><span class="selector-class">.zju</span><span class="selector-class">.edu</span><span class="selector-class">.cn</span>/<span class="selector-tag">kali</span> <span class="selector-tag">kali-rolling</span> <span class="selector-tag">main</span> <span class="selector-tag">contrib</span> <span class="selector-tag">non-free</span></span><br><span class="line"><span class="selector-tag">deb-src</span> <span class="selector-tag">http</span>://<span class="selector-tag">mirrors</span><span class="selector-class">.zju</span><span class="selector-class">.edu</span><span class="selector-class">.cn</span>/<span class="selector-tag">kali</span> <span class="selector-tag">kali-rolling</span> <span class="selector-tag">main</span> <span class="selector-tag">contrib</span> <span class="selector-tag">non-free</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>It can effectively boost the package download from the internet. </p>
 <p>After that, just do the upgrade! </p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># apt update</span></span><br><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment">#</span></span><br><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># apt -y full-upgrade</span></span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>Note: If you find some “failed connection” after <code>apt update</code>, then just simply remove those lines from your sources.list and do <code>apt update</code> again. It’s not worthy to spend time on figuring out why the connection is failed. </p>
 </blockquote>
 <p>Reboot after the full-upgrade. Then it’s the latest version of Kali on your machine.<br>You can easily check the version with commands: </p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># grep VERSION /etc/os-release</span></span><br><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># uname -a</span></span><br><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># lsb_release -ad</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="Install-Desktop-Environment"><a href="#Install-Desktop-Environment" class="headerlink" title="Install Desktop Environment"></a>Install Desktop Environment</h2><p>Starting from Kali 2019.4, the default desktop environment of Kali has been changed to Xfce (Used to be Gnome). </p>
 <p>If you upgrade from a earlier version, then you might also want to migrate to Xfce. Relax, it’s easy to do. Just one line command: </p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># apt -y install kali-desktop-xfce. </span></span><br></pre></td></tr></table></figure>
-
 <p>When you are asked to select “<em>Default display manager</em>“, select <code>lightdm</code>. </p>
 <p>Up till now, the <strong>Xfce</strong> Desktop Environment has been installed on your machine. Next time when you try to login, you can select it before you submit your login password. </p>
 <p>If you would like to set <strong>Xfce</strong> as the default Desktop environment on your machine, You could run </p>
@@ -446,7 +408,6 @@
 </ul>
 <p>Now, a new user has been created. Then we need to add this user to <code>sudo</code> group. </p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root<span class="variable">@kali</span><span class="symbol">:~</span><span class="comment"># usermod -aG sudo [yourUserName]</span></span><br></pre></td></tr></table></figure>
-
 <p>Good! Now it’s up to you to switch to this new created user!</p>
 <h2 id="Configure-your-Vim"><a href="#Configure-your-Vim" class="headerlink" title="Configure your Vim"></a>Configure your Vim</h2><p>Refers to <a href="https://upwnothing.github.io/en/aa4adef2/">this blog</a>.</p>
 <h2 id="Configure-Input-Method-For-Non-English-Speaking-Users"><a href="#Configure-Input-Method-For-Non-English-Speaking-Users" class="headerlink" title="Configure Input Method (For Non-English Speaking Users)"></a>Configure Input Method (For Non-English Speaking Users)</h2><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">richard<span class="symbol">@richard</span>-Kali:~<span class="meta"># sudo apt install fcitx fcitx-googlepinyin</span></span><br></pre></td></tr></table></figure>
@@ -458,10 +419,8 @@
 <h2 id="Configure-Bash-Aliases"><a href="#Configure-Bash-Aliases" class="headerlink" title="Configure Bash Aliases"></a>Configure Bash Aliases</h2><p>Bash aliases can be used for creating customized command line shortcuts. For example, we can reassign the <strong>ls</strong> command. Here is how to do that:</p>
 <p>Open <code>~/.bash_aliases</code> and add the following line to this file. </p>
 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alias</span> <span class="keyword">ls</span>=&#x27;<span class="keyword">ls</span> -rthal <span class="params">--color=always</span></span><br></pre></td></tr></table></figure>
-
 <p>Now, restart the terminal and do <code>ls</code>. </p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">richard@</span>richard-Kali:~/Desktop$ ls                                                                                                                                         </span><br><span class="line">total <span class="number">172</span>K</span><br><span class="line">-rwxr-xr-x  <span class="number">1</span> richard richard <span class="number">8.3</span>K Dec <span class="number">14</span> <span class="number">11</span>:<span class="number">18</span> google-chrome.desktop</span><br><span class="line">-rwxr-----  <span class="number">1</span> richard richard  <span class="number">66</span>K Jan  <span class="number">3</span> <span class="number">13</span>:<span class="number">54</span> IMG_20200103_135404.png</span><br><span class="line">-rwxr-----  <span class="number">1</span> richard richard  <span class="number">84</span>K Jan  <span class="number">3</span> <span class="number">13</span>:<span class="number">54</span> IMG_20200103_135431.jpg</span><br><span class="line">drwxr-xr-x  <span class="number">2</span> richard richard <span class="number">4.0</span>K Jan  <span class="number">3</span> <span class="number">13</span>:<span class="number">56</span> .</span><br><span class="line">drwxr-xr-x <span class="number">21</span> richard richard <span class="number">4.0</span>K Jan <span class="number">14</span> <span class="number">14</span>:<span class="number">51</span> ..</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">richard@richard-Kali:~/Desktop$ ls                                                                                                                                         </span><br><span class="line">total 172K</span><br><span class="line">-rwxr-xr-x <span class="number"> 1 </span>richard richard 8.3K Dec<span class="number"> 14 </span>11:18 google-chrome.desktop</span><br><span class="line">-rwxr----- <span class="number"> 1 </span>richard richard  66K Jan <span class="number"> 3 </span>13:54 IMG_20200103_135404.png</span><br><span class="line">-rwxr----- <span class="number"> 1 </span>richard richard  84K Jan <span class="number"> 3 </span>13:54 IMG_20200103_135431.jpg</span><br><span class="line">drwxr-xr-x <span class="number"> 2 </span>richard richard 4.0K Jan <span class="number"> 3 </span>13:56 .</span><br><span class="line">drwxr-xr-x<span class="number"> 21 </span>richard richard 4.0K Jan<span class="number"> 14 </span>14:51 ..</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>The detailed information are listed by default. </p>
 <h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://null-byte.wonderhowto.com/how-to/top-10-things-do-after-installing-kali-linux-0186450/">https://null-byte.wonderhowto.com/how-to/top-10-things-do-after-installing-kali-linux-0186450/</a></li>
@@ -567,7 +526,7 @@
 
 
 
-      
+    <div class="comments utterances-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -590,13 +549,11 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
   <div class="languages">
     <label class="lang-select-label">
       <i class="fa fa-language"></i>
@@ -616,12 +573,10 @@
     </select>
   </div>
 
-      
 
 <div class="copyright">
-  
   &copy; 2017 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="paw"></i>
   </span>
@@ -632,7 +587,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Symbols count total">38k</span>
+    <span title="Symbols count total">39k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -672,9 +627,6 @@
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
-
-
-
   <script>
   if (CONFIG.page.isPost) {
     wpac_init = window.wpac_init || [];
@@ -695,17 +647,7 @@
     })();
   }
   </script>
-
-  <script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
+<script src="/js/local-search.js"></script>
 
 
 
@@ -719,12 +661,18 @@
 
 
 
-
-
-
-  
-
-  
+<script>
+NexT.utils.loadComments('.utterances-container', () => {
+  const script = document.createElement('script');
+  script.src = 'https://utteranc.es/client.js';
+  script.setAttribute('repo', "UPWNothing/UPWNothing.github.io");
+  script.setAttribute('issue-term', "pathname");
+  script.setAttribute('theme', "github-dark");
+  script.crossOrigin = 'anonymous';
+  script.async = true;
+  document.querySelector('.utterances-container').appendChild(script);
+});
+</script>
 
 </body>
 </html>

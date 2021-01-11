@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.3.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -16,16 +16,15 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@5/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-
-  <meta name="description" content="WebGoat (A1) Injection 解题思路 下半部分">
+<meta name="description" content="WebGoat (A1) Injection 解题思路 下半部分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WebGoat Injection 解题思路 （下）">
 <meta property="og:url" content="https://upwnothing.github.io/zh-CN/aa0b11b6/index.html">
@@ -78,7 +77,7 @@
     // Wait for the page to load first
     var _prevOnload = window.onload;
     window.onload = function() {
-        var switchLang = document.getElementById("menu").getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
+        var switchLang = document.getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
             var href = window.location.href;     
             var indexOfEn = href.toLowerCase().indexOf('/en/');
             if(indexOfEn !== -1) {
@@ -94,8 +93,7 @@
 </script>
 <script data-ad-client="ca-pub-2179953596008833" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-
-  <title>WebGoat Injection 解题思路 （下） | UPWNothing's Playground</title>
+<title>WebGoat Injection 解题思路 （下） | UPWNothing's Playground</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
     <script>
@@ -106,8 +104,6 @@
         gtag('config', 'UA-125116918-1');
       }
     </script>
-
-
 
 
 
@@ -156,7 +152,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -184,31 +180,11 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
-
-  </li>
-        <li class="menu-item menu-item-switch_lang">
-
-    <a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>switch_lang</a>
-
-  </li>
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a></li>
+        <li class="menu-item menu-item-switch_lang"><a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>switch_lang</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -219,8 +195,7 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
@@ -229,7 +204,7 @@
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
@@ -245,7 +220,7 @@
 </div>
         
   
-  <div class="toggle sidebar-toggle">
+  <div class="toggle sidebar-toggle" role="button">
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
@@ -265,12 +240,12 @@
 
       <div class="sidebar-panel-container">
         <!--noindex-->
-        <section class="post-toc-wrap sidebar-panel">
+        <div class="post-toc-wrap sidebar-panel">
             <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WebGoat-%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">WebGoat 版本信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-Injection-mitigation"><span class="nav-number">2.</span> <span class="nav-text">SQL Injection (mitigation)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%EF%BD%9E4-Immutable-Queries"><span class="nav-number">2.1.</span> <span class="nav-text">1～4. Immutable Queries</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Try-it-Writing-safe-code"><span class="nav-number">2.2.</span> <span class="nav-text">5. Try it! Writing safe code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Try-it-Writing-safe-code"><span class="nav-number">2.3.</span> <span class="nav-text">6. Try it! Writing safe code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Parameterized-Queries-NET"><span class="nav-number">2.4.</span> <span class="nav-text">7. Parameterized Queries - .NET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Input-Validation-Required"><span class="nav-number">2.5.</span> <span class="nav-text">8. Input Validation Required?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Input-validation-alone-is-not-enough"><span class="nav-number">2.6.</span> <span class="nav-text">9. Input validation alone is not enough!!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Input-validation-alone-is-not-enough-2"><span class="nav-number">2.7.</span> <span class="nav-text">10. Input validation alone is not enough!! (2)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Order-by-clause"><span class="nav-number">2.8.</span> <span class="nav-text">11. Order by clause</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-SQL-Injection-Through-Order-By-Field"><span class="nav-number">2.9.</span> <span class="nav-text">12. SQL Injection Through Order By Field</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-Least-Privilege"><span class="nav-number">2.10.</span> <span class="nav-text">13. Least Privilege</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Path-Traversal"><span class="nav-number">3.</span> <span class="nav-text">Path Traversal</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84-%E7%9B%AE%E5%BD%95-%E9%81%8D%E5%8E%86%E6%94%BB%E5%87%BB"><span class="nav-number">3.1.</span> <span class="nav-text">路径(目录)遍历攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Path-traversal-while-uploading-files"><span class="nav-number">3.2.</span> <span class="nav-text">Path traversal while uploading files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Path-traversal-while-uploading-files-2"><span class="nav-number">3.3.</span> <span class="nav-text">Path traversal while uploading files (2)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Path-traversal-while-uploading-files-3"><span class="nav-number">3.4.</span> <span class="nav-text">Path traversal while uploading files (3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Retrieving-other-files-with-a-path-traversal"><span class="nav-number">3.5.</span> <span class="nav-text">Retrieving other files with a path traversal</span></a></li></ol></li></ol></div>
-        </section>
+        </div>
         <!--/noindex-->
 
-        <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="UPWNothing"
       src="/images/icon.jpeg">
@@ -301,9 +276,9 @@
 
 
 
-        </section>
+        </div>
       </div>
-        <div class="back-to-top animated">
+        <div class="back-to-top animated" role="button">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
@@ -323,9 +298,7 @@
 
 
     <div class="main-inner post posts-expand">
-      
 
-      
 
   
 
@@ -377,13 +350,6 @@
     </span>
 
   
-    <span id="/zh-CN/aa0b11b6/" class="post-meta-item leancloud_visitors" data-flag-title="WebGoat Injection 解题思路 （下）" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
     <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
@@ -431,7 +397,6 @@
 <p><img data-src="/zh-CN/aa0b11b6/3_0.png"></p>
 <h2 id="6-Try-it-Writing-safe-code"><a href="#6-Try-it-Writing-safe-code" class="headerlink" title="6. Try it! Writing safe code"></a>6. Try it! Writing safe code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">tring data;</span><br><span class="line">String accountID = <span class="string">&quot;1&quot;</span>;</span><br><span class="line">String query = <span class="string">&quot;SELECT first_name, last_name, acct_id, balance FROM user_data WHERE acct_id = ?&quot;</span>;</span><br><span class="line"><span class="keyword">try</span> (Connection connection = DriverManager.getConnection(DBURL, DBUSER, DBPW))&#123;</span><br><span class="line">    PreparedStatement statement = connection.prepareStatement(query);</span><br><span class="line">    statement.setString(<span class="number">1</span>, accountID);</span><br><span class="line">    ResultSet results = statement.executeQuery();</span><br><span class="line">    <span class="keyword">if</span> (results != <span class="keyword">null</span> &amp;&amp; results.first()) &#123;</span><br><span class="line">       results.last(); <span class="comment">// Only one record should be returned for this query</span></span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       <span class="comment">// Handle the error - no records found &#125;</span></span><br><span class="line">     &#125;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (SQLException sqle) &#123;</span><br><span class="line">    <span class="comment">// Log and handle the SQL Exception &#125;</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
-
 <h2 id="7-Parameterized-Queries-NET"><a href="#7-Parameterized-Queries-NET" class="headerlink" title="7. Parameterized Queries - .NET"></a>7. Parameterized Queries - .NET</h2><p>这里又另外展示了一段.NET中的参数话查询代码</p>
 <h2 id="8-Input-Validation-Required"><a href="#8-Input-Validation-Required" class="headerlink" title="8. Input Validation Required?"></a>8. Input Validation Required?</h2><p>简单解释了在使用了正确的方法进行SQL语句的查询之后，用户输入校验为什么依然是必要的。</p>
 <h2 id="9-Input-validation-alone-is-not-enough"><a href="#9-Input-validation-alone-is-not-enough" class="headerlink" title="9. Input validation alone is not enough!!"></a>9. Input validation alone is not enough!!</h2><p>如同标题所说的： <strong>单单使用输入校验是不够的</strong>。攻击者总能找到办法针对输入校验进行绕过。这里我们就需要尝试绕过，以此来实现注入。</p>
@@ -440,8 +405,7 @@
 <p>尝试用空注释符<code>/**/</code>来代替空格：<code>d&#39;/**/or/**/1=1/**/--</code></p>
 <p><img data-src="/zh-CN/aa0b11b6/3_9_1.png"></p>
 <p>Emmm…答案还是不正确。但是，可以看到，输入的语句已经按照我们所设想的被成功执行了。回忆一下之前相同的一题，好像是要拉去另一张表的内容…</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d&#x27;;<span class="keyword">SELECT</span><span class="comment">/**/</span>*<span class="comment">/**/</span><span class="keyword">from</span><span class="comment">/**/</span>user_system_data<span class="comment">--</span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d&#x27;;<span class="keyword">SELECT</span><span class="comment">/**/</span>*<span class="comment">/**/</span><span class="keyword">from</span><span class="comment">/**/</span>user_system_data--</span><br></pre></td></tr></table></figure>
 <p><img data-src="/zh-CN/aa0b11b6/3_9_2.png"></p>
 <p>嘿嘿！果然，这下就对了！</p>
 <h2 id="10-Input-validation-alone-is-not-enough-2"><a href="#10-Input-validation-alone-is-not-enough-2" class="headerlink" title="10. Input validation alone is not enough!! (2)"></a>10. Input validation alone is not enough!! (2)</h2><p>继续上一题的内容。开发团队在仅使用输入校验这条路上…不撞破南墙不回头了…</p>
@@ -455,8 +419,7 @@
 <p>即使要使用这种方法来抵御SQL注入，也要使用递归删除的方法。直到用户输入完全匹配不到关键词列表中的任何一个为止。</p>
 </blockquote>
 <h2 id="11-Order-by-clause"><a href="#11-Order-by-clause" class="headerlink" title="11. Order by clause"></a>11. Order by clause</h2><p>Prepared Statement可以有效地阻止SQL注入的发生，但这也并不意味着只要使用了这种方式就可以防止所有的SQL注入。这里举例了一种基于<code>Order</code>语句的注入方式。</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * <span class="keyword">FROM</span><span class="built_in"> users </span>ORDER BY (CASE WHEN (<span class="literal">TRUE</span>) THEN lastname <span class="keyword">ELSE</span> firstname)</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> users <span class="keyword">ORDER</span> <span class="keyword">BY</span> (<span class="keyword">CASE</span> <span class="keyword">WHEN</span> (<span class="literal">TRUE</span>) <span class="keyword">THEN</span> lastname <span class="keyword">ELSE</span> firstname)</span><br></pre></td></tr></table></figure>
 <p>将True改为任意判断语句即可通过返回值的排列顺序获取到数据库的信息。</p>
 <h2 id="12-SQL-Injection-Through-Order-By-Field"><a href="#12-SQL-Injection-Through-Order-By-Field" class="headerlink" title="12. SQL Injection Through Order By Field"></a>12. SQL Injection Through Order By Field</h2><p>目标是通过对<code>ORDER BY</code>进行注入，进而获取到webgoat-prd服务器的IP地址。</p>
 <p>通过Burp截取排序相关的请求，可以通过服务器的报错信息得到相关的表明。</p>
@@ -505,7 +468,6 @@
 <p><img data-src="/zh-CN/aa0b11b6/4_5_6.png"></p>
 <p>最后计算一下哈希值，提交一下就好了。</p>
 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">┌──<span class="params">(richard㉿richard-Kali)</span>-[~<span class="string">/Tools/Forensics</span>]</span><br><span class="line">└─$ <span class="keyword">echo</span> -ne &#x27;pentester&#x27; | sha512sum</span><br><span class="line">f167e76e501a479aa05b927d6dc9e05de8d66a8ebffd411e24dd30ef1e435deec8478a819<span class="keyword">cd</span>26d1a1eda2fb3a1c18fafeff64b536bc351265b09<span class="keyword">cd</span>99e967d787  -</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 
 
     </div>
@@ -598,7 +560,7 @@
 
 
 
-      
+    <div class="comments utterances-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -621,13 +583,11 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
   <div class="languages">
     <label class="lang-select-label">
       <i class="fa fa-language"></i>
@@ -647,12 +607,10 @@
     </select>
   </div>
 
-      
 
 <div class="copyright">
-  
   &copy; 2017 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="paw"></i>
   </span>
@@ -663,7 +621,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">38k</span>
+    <span title="站点总字数">39k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -703,9 +661,6 @@
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
-
-
-
   <script>
   if (CONFIG.page.isPost) {
     wpac_init = window.wpac_init || [];
@@ -726,17 +681,7 @@
     })();
   }
   </script>
-
-  <script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
+<script src="/js/local-search.js"></script>
 
 
 
@@ -750,12 +695,18 @@
 
 
 
-
-
-
-  
-
-  
+<script>
+NexT.utils.loadComments('.utterances-container', () => {
+  const script = document.createElement('script');
+  script.src = 'https://utteranc.es/client.js';
+  script.setAttribute('repo', "UPWNothing/UPWNothing.github.io");
+  script.setAttribute('issue-term', "pathname");
+  script.setAttribute('theme', "github-dark");
+  script.crossOrigin = 'anonymous';
+  script.async = true;
+  document.querySelector('.utterances-container').appendChild(script);
+});
+</script>
 
 </body>
 </html>

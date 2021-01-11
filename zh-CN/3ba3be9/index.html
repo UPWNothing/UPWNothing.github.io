@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.3.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -16,16 +16,15 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@5/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-
-  <meta name="description" content="2020.11 更新最近发现hexo升级到了5.2版本。实测以下方法依旧有效。  概述进来想起来自己还有这么一个博客。那么第一件事当然是对版本进行升级咯！可升级的过程远远没有想象中的那般顺利，因此在此记录一下，其他人如果遇到类似的问题，也可以有一个借鉴。升级前，先检查当前hexo的版本号：hexo --version。版本信息如下图所示：  升级步骤 在Hexo的文档中搜索一番，结果！！完全没有提">
+<meta name="description" content="2020.11 更新最近发现hexo升级到了5.2版本。实测以下方法依旧有效。  概述进来想起来自己还有这么一个博客。那么第一件事当然是对版本进行升级咯！可升级的过程远远没有想象中的那般顺利，因此在此记录一下，其他人如果遇到类似的问题，也可以有一个借鉴。升级前，先检查当前hexo的版本号：hexo --version。版本信息如下图所示：  升级步骤 在Hexo的文档中搜索一番，结果！！完全没有提">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo版本升级指南">
 <meta property="og:url" content="https://upwnothing.github.io/zh-CN/3ba3be9/index.html">
@@ -62,7 +61,7 @@
     // Wait for the page to load first
     var _prevOnload = window.onload;
     window.onload = function() {
-        var switchLang = document.getElementById("menu").getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
+        var switchLang = document.getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
             var href = window.location.href;     
             var indexOfEn = href.toLowerCase().indexOf('/en/');
             if(indexOfEn !== -1) {
@@ -78,8 +77,7 @@
 </script>
 <script data-ad-client="ca-pub-2179953596008833" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-
-  <title>Hexo版本升级指南 | UPWNothing's Playground</title>
+<title>Hexo版本升级指南 | UPWNothing's Playground</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
     <script>
@@ -90,8 +88,6 @@
         gtag('config', 'UA-125116918-1');
       }
     </script>
-
-
 
 
 
@@ -140,7 +136,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -168,31 +164,11 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
-
-  </li>
-        <li class="menu-item menu-item-switch_lang">
-
-    <a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>switch_lang</a>
-
-  </li>
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a></li>
+        <li class="menu-item menu-item-switch_lang"><a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>switch_lang</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -203,8 +179,7 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
@@ -213,7 +188,7 @@
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
@@ -229,7 +204,7 @@
 </div>
         
   
-  <div class="toggle sidebar-toggle">
+  <div class="toggle sidebar-toggle" role="button">
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
@@ -249,12 +224,12 @@
 
       <div class="sidebar-panel-container">
         <!--noindex-->
-        <section class="post-toc-wrap sidebar-panel">
+        <div class="post-toc-wrap sidebar-panel">
             <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-11-%E6%9B%B4%E6%96%B0"><span class="nav-number">1.</span> <span class="nav-text">2020.11 更新</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.</span> <span class="nav-text">升级步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2NPM%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%EF%BC%8C%E8%A7%A3%E5%86%B3%E5%9B%BD%E5%86%85NPM%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E9%80%9F%E5%BA%A6%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.1.</span> <span class="nav-text">更换NPM镜像服务器地址，解决国内NPM安装依赖速度慢的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8NPM%E8%BF%9B%E8%A1%8CHexo%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7"><span class="nav-number">3.2.</span> <span class="nav-text">使用NPM进行Hexo版本升级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Package-json-%E4%BF%AE%E6%94%B9%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">3.3.</span> <span class="nav-text">Package.json 修改版本信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%88%90Hexo%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7"><span class="nav-number">3.4.</span> <span class="nav-text">完成Hexo版本升级</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="nav-number">4.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
-        </section>
+        </div>
         <!--/noindex-->
 
-        <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="UPWNothing"
       src="/images/icon.jpeg">
@@ -285,9 +260,9 @@
 
 
 
-        </section>
+        </div>
       </div>
-        <div class="back-to-top animated">
+        <div class="back-to-top animated" role="button">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
@@ -307,9 +282,7 @@
 
 
     <div class="main-inner post posts-expand">
-      
 
-      
 
   
 
@@ -363,13 +336,6 @@
     </span>
 
   
-    <span id="/zh-CN/3ba3be9/" class="post-meta-item leancloud_visitors" data-flag-title="Hexo版本升级指南" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
     <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
@@ -407,16 +373,13 @@
 <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>进来想起来自己还有这么一个博客。那么第一件事当然是对版本进行升级咯！可升级的过程远远没有想象中的那般顺利，因此在此记录一下，其他人如果遇到类似的问题，也可以有一个借鉴。<br>升级前，先检查当前hexo的版本号：<code>hexo --version</code>。版本信息如下图所示：<br><img data-src="/zh-CN/3ba3be9/hexo_check_version.png" alt="Hexo版本信息"> </p>
 <h1 id="升级步骤"><a href="#升级步骤" class="headerlink" title="升级步骤"></a>升级步骤</h1><p> 在Hexo的文档中搜索一番，结果！！完全没有提及版本升级的方法。。。行吧，只能借助万能的Google，经过比较，终于找到了一个简单粗暴的方法：<br>首先进入Hexo的主目录，然后直接执行</p>
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> update</span><br></pre></td></tr></table></figure>
-
 <p>等等等…没动静呐！看来有必要重新配置一下NPM…</p>
 <a id="more"></a>
 
 <h2 id="更换NPM镜像服务器地址，解决国内NPM安装依赖速度慢的问题"><a href="#更换NPM镜像服务器地址，解决国内NPM安装依赖速度慢的问题" class="headerlink" title="更换NPM镜像服务器地址，解决国内NPM安装依赖速度慢的问题"></a>更换NPM镜像服务器地址，解决国内NPM安装依赖速度慢的问题</h2><p>在npm的命令最后使用<code>--registry</code>参数指定国内镜像服务器地址，就可以让NPM的安装速度获得显著的提升。<br>这里我们使用阿里巴巴的镜像：</p>
 <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">update</span> --<span class="keyword">registry</span>=<span class="keyword">http</span>://<span class="keyword">registry</span>.npm.taobao.org</span><br></pre></td></tr></table></figure>
-
 <p>当然，也可以通过如下的命令对NPM进行永久配置：</p>
 <figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="keyword">set</span> <span class="keyword">registry</span> <span class="keyword">http</span>://<span class="keyword">registry</span>.npm.taobao.org</span><br></pre></td></tr></table></figure>
-
 <p>这样子，我们的NPM命令就可以快速地执行了！</p>
 <h2 id="使用NPM进行Hexo版本升级"><a href="#使用NPM进行Hexo版本升级" class="headerlink" title="使用NPM进行Hexo版本升级"></a>使用NPM进行Hexo版本升级</h2><p>这就完了？？？是的！再执行一遍<code>hexo --version</code>,看一下是不是已经到了最新的版本：<br><img data-src="/zh-CN/3ba3be9/hexo_check_version_2.png" alt="Hexo版本信息2"></p>
 <p>Hmmmmm…版本信息确实产生了变化，从3.7.1升级到了3.9.0。但是，这貌似也不是<a target="_blank" rel="noopener" href="http://www.npmjs.com/package/hexo?activeTab=versions">最新的版本</a>呀！！  </p>
@@ -425,7 +388,6 @@
 <p>我重新看了一下之前<code>hexo --version</code>的输出结果：<code>node: 13.5.0</code>..<br>这个显然是满足的呀！所以完全不会是Node.js的版本问题造成无法更新到最新版本。</p>
 <h2 id="Package-json-修改版本信息"><a href="#Package-json-修改版本信息" class="headerlink" title="Package.json 修改版本信息"></a>Package.json 修改版本信息</h2><p>那么，究竟是哪里出了问题呢？<br>仔细思考：NPM是如何管理本地安装的呢？ <strong>package.json</strong>!! 赶紧查看Hexo目录下的<code>package.json</code>文件。果然！我清清楚楚地看到了<code>&quot;hexo&quot; : &quot;^3.9.0&quot;</code>的字样。问题是找到了，但是这一整列的插件，我们如果一个个去查最新的版本，肯定是要费不少功夫，那么有没有更快速的方法呢？<br>我们可以用下列命令来自动化完成这项工作：</p>
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install -g <span class="built_in">npm</span>-check</span><br><span class="line"><span class="built_in">npm</span> install -g <span class="built_in">npm</span>-upgrade</span><br><span class="line"><span class="built_in">npm</span>-check</span><br><span class="line"><span class="built_in">npm</span>-upgrade</span><br></pre></td></tr></table></figure>
-
 <p>执行结果如下图：<br><img data-src="/zh-CN/3ba3be9/npm_upgrade.png" alt="npm-upgrade执行结果"></p>
 <p>至此，我们完成了<code>package.json</code>中，版本信息的更新。</p>
 <h2 id="完成Hexo版本升级"><a href="#完成Hexo版本升级" class="headerlink" title="完成Hexo版本升级"></a>完成Hexo版本升级</h2><p>我们再次执行<code>npm update</code>。<br>完成以后，我们再次通过<code>hexo version</code>确认版本号。成功，我们终于顺利将Hexo升级到了最新的版本。<br><img data-src="/zh-CN/3ba3be9/hexo_check_version_3.png" alt="Hexo版本信息3"></p>
@@ -535,7 +497,7 @@
 
 
 
-      
+    <div class="comments utterances-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -558,13 +520,11 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
   <div class="languages">
     <label class="lang-select-label">
       <i class="fa fa-language"></i>
@@ -584,12 +544,10 @@
     </select>
   </div>
 
-      
 
 <div class="copyright">
-  
   &copy; 2017 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="paw"></i>
   </span>
@@ -600,7 +558,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">38k</span>
+    <span title="站点总字数">39k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -640,9 +598,6 @@
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
-
-
-
   <script>
   if (CONFIG.page.isPost) {
     wpac_init = window.wpac_init || [];
@@ -663,17 +618,7 @@
     })();
   }
   </script>
-
-  <script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
+<script src="/js/local-search.js"></script>
 
 
 
@@ -687,12 +632,18 @@
 
 
 
-
-
-
-  
-
-  
+<script>
+NexT.utils.loadComments('.utterances-container', () => {
+  const script = document.createElement('script');
+  script.src = 'https://utteranc.es/client.js';
+  script.setAttribute('repo', "UPWNothing/UPWNothing.github.io");
+  script.setAttribute('issue-term', "pathname");
+  script.setAttribute('theme', "github-dark");
+  script.crossOrigin = 'anonymous';
+  script.async = true;
+  document.querySelector('.utterances-container').appendChild(script);
+});
+</script>
 
 </body>
 </html>

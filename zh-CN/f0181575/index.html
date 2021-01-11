@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.3.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -16,16 +16,15 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@5/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-
-  <meta name="description" content="概述Root Me是一个非常不错的在线网络安全技能专项练习网站。比起其他的一些模拟练习平台，这个网站相对而言更”Noob friendly”…对于渗透测试有兴趣又不知道如何入门的同学，不妨可以从这个网站开始入手。   本文包含WebServer分类中前十六题全部的解题思路。第二部分正在施工中…">
+<meta name="description" content="概述Root Me是一个非常不错的在线网络安全技能专项练习网站。比起其他的一些模拟练习平台，这个网站相对而言更”Noob friendly”…对于渗透测试有兴趣又不知道如何入门的同学，不妨可以从这个网站开始入手。   本文包含WebServer分类中前十六题全部的解题思路。第二部分正在施工中…">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Root-Me WebServer分类 解题思路 （一）">
 <meta property="og:url" content="https://upwnothing.github.io/zh-CN/f0181575/index.html">
@@ -95,7 +94,7 @@
     // Wait for the page to load first
     var _prevOnload = window.onload;
     window.onload = function() {
-        var switchLang = document.getElementById("menu").getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
+        var switchLang = document.getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
             var href = window.location.href;     
             var indexOfEn = href.toLowerCase().indexOf('/en/');
             if(indexOfEn !== -1) {
@@ -111,8 +110,7 @@
 </script>
 <script data-ad-client="ca-pub-2179953596008833" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-
-  <title>Root-Me WebServer分类 解题思路 （一） | UPWNothing's Playground</title>
+<title>Root-Me WebServer分类 解题思路 （一） | UPWNothing's Playground</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
     <script>
@@ -123,8 +121,6 @@
         gtag('config', 'UA-125116918-1');
       }
     </script>
-
-
 
 
 
@@ -173,7 +169,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -201,31 +197,11 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
-
-  </li>
-        <li class="menu-item menu-item-switch_lang">
-
-    <a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>switch_lang</a>
-
-  </li>
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a></li>
+        <li class="menu-item menu-item-switch_lang"><a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>switch_lang</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -236,8 +212,7 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
@@ -246,7 +221,7 @@
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
@@ -262,7 +237,7 @@
 </div>
         
   
-  <div class="toggle sidebar-toggle">
+  <div class="toggle sidebar-toggle" role="button">
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
@@ -282,12 +257,12 @@
 
       <div class="sidebar-panel-container">
         <!--noindex-->
-        <section class="post-toc-wrap sidebar-panel">
+        <div class="post-toc-wrap sidebar-panel">
             <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E6%96%87"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-Source-code"><span class="nav-number">3.1.</span> <span class="nav-text">HTML - Source code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Open-redirect"><span class="nav-number">3.2.</span> <span class="nav-text">HTTP - Open redirect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-User-agent"><span class="nav-number">3.3.</span> <span class="nav-text">HTTP - User-agent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weak-Password"><span class="nav-number">3.4.</span> <span class="nav-text">Weak Password</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-Command-Injection"><span class="nav-number">3.5.</span> <span class="nav-text">PHP - Command Injection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backup-File"><span class="nav-number">3.6.</span> <span class="nav-text">Backup File</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Directory-Indexing"><span class="nav-number">3.7.</span> <span class="nav-text">HTTP - Directory Indexing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Headers"><span class="nav-number">3.8.</span> <span class="nav-text">HTTP - Headers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-POST"><span class="nav-number">3.9.</span> <span class="nav-text">HTTP - POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Improper-redirect"><span class="nav-number">3.10.</span> <span class="nav-text">HTTP - Improper redirect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Verb-tampering"><span class="nav-number">3.11.</span> <span class="nav-text">HTTP - Verb tampering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-files"><span class="nav-number">3.12.</span> <span class="nav-text">Install files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRLF"><span class="nav-number">3.13.</span> <span class="nav-text">CRLF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-upload-Double-extensions"><span class="nav-number">3.14.</span> <span class="nav-text">File upload - Double extensions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-upload-MIME-type"><span class="nav-number">3.15.</span> <span class="nav-text">File upload - MIME type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Cookies"><span class="nav-number">3.16.</span> <span class="nav-text">HTTP -Cookies</span></a></li></ol></li></ol></div>
-        </section>
+        </div>
         <!--/noindex-->
 
-        <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="UPWNothing"
       src="/images/icon.jpeg">
@@ -318,9 +293,9 @@
 
 
 
-        </section>
+        </div>
       </div>
-        <div class="back-to-top animated">
+        <div class="back-to-top animated" role="button">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
@@ -340,9 +315,7 @@
 
 
     <div class="main-inner post posts-expand">
-      
 
-      
 
   
 
@@ -400,13 +373,6 @@
     </span>
 
   
-    <span id="/zh-CN/f0181575/" class="post-meta-item leancloud_visitors" data-flag-title="Root-Me WebServer分类 解题思路 （一）" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
     <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
@@ -459,10 +425,8 @@
 <p>看上去，我们没有能够成功进行跳转。错误的信息为:”incorrect hash!”(错误的哈希）。这证实了我之前关于h参数是哈希值的猜测。现在的任务就是找出这个是谁的哈希值。</p>
 <p>简单尝试两次：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">richard<span class="meta">@richard</span>-<span class="attr">Kali:</span>~$ echo -n <span class="attr">https:</span><span class="comment">//facebook.com | md5sum</span></span><br><span class="line">a023cfbf5f1c39bdf8407f28b60cd134  -</span><br><span class="line">richard<span class="meta">@richard</span>-<span class="attr">Kali:</span>~$ echo -n url=<span class="attr">https:</span><span class="comment">//facebook.com | md5sum</span></span><br><span class="line"><span class="number">44</span>c27492004e8d0d46ac5b19377f8a16  -</span><br></pre></td></tr></table></figure>
-
 <p>Bingo！很轻松就找到了。就是对<code>url</code>参数的值进行了md5哈希。所以我们只需要对我们提供的值计算一次md5即可。</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">richard<span class="meta">@richard</span>-<span class="attr">Kali:</span>~$ echo -n <span class="attr">https:</span><span class="comment">//baidu.com | md5sum</span></span><br><span class="line"><span class="number">40674</span>b7fe4c1ee59dbaffe877c6ac2e3  -</span><br></pre></td></tr></table></figure>
-
 <p>将得到的结果重新组合构成新的URL请求： <code>http://challenge01.root-me.org/web-serveur/ch52/?url=https://baidu.com&amp;h=bb6e082d5c360ce6a0c64f926feea905</code>  </p>
 <p>再次尝试，顺利拿到了flag： <code>e6f8a530811d5a479812d7b82fc1a5c5</code>  10分顺利到手～</p>
 <p><img data-src="/zh-CN/f0181575/open_redirect_3.png"></p>
@@ -522,7 +486,6 @@
 <p>现在的问题就是我们需要在哪个文件后面加上后缀呢？最原始的页面路径为<code>http://challenge01.root-me.org/web-serveur/ch11/</code>,没有包含任何文件名称。所以，我们需要猜测一下默认的文件名称。对于PHP比较熟悉的童鞋肯定会知道PHP的默认主页文件是index.php. 那就尝试一下呗！访问<code>http://challenge01.root-me.org/web-serveur/ch11/index.php</code>,嘿嘿！果然，我们看到了完全相同的页面。好叻，既然已经知道了文件名，那么下一步只需要添加上文件后缀，再逐个尝试就可以了。</p>
 <p>当访问<code>http://challenge01.root-me.org/web-serveur/ch11/index.php~??</code>时，页面自动下载了一个名为<code>index.php_</code>的文件。</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line"><span class="variable">$username</span>=<span class="string">&quot;ch11&quot;</span>;</span><br><span class="line"><span class="variable">$password</span>=<span class="string">&quot;OCCY9AcNm1tj&quot;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo &#x27;</span><br><span class="line">      &lt;html&gt;</span><br><span class="line">      &lt;body&gt;</span><br><span class="line">	&lt;h1&gt;Authentication v 0.00&lt;/h1&gt;</span><br><span class="line">&#x27;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_POST</span>[<span class="string">&quot;username&quot;</span>]!=<span class="string">&quot;&quot;</span> &amp;&amp; <span class="variable">$_POST</span>[<span class="string">&quot;password&quot;</span>]!=<span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$_POST</span>[<span class="string">&quot;username&quot;</span>]==<span class="variable">$user</span> &amp;&amp; <span class="variable">$_POST</span>[<span class="string">&quot;password&quot;</span>]==<span class="variable">$password</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">print</span>(<span class="string">&quot;&lt;h2&gt;Welcome back &#123;$row[&#x27;username&#x27;]&#125; !&lt;/h2&gt;&quot;</span>);</span><br><span class="line">      <span class="keyword">print</span>(<span class="string">&quot;&lt;h3&gt;Your informations :&lt;/h3&gt;&lt;p&gt;- username : $row[username]&lt;/p&gt;&lt;br /&gt;&quot;</span>);</span><br><span class="line">      <span class="keyword">print</span>(<span class="string">&quot;To validate the challenge use this password&lt;/b&gt;&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">print</span>(<span class="string">&quot;&lt;h3&gt;Error : no such user/password&lt;/h2&gt;&lt;br /&gt;&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo &#x27;</span><br><span class="line">	&lt;<span class="keyword">form</span> action=<span class="string">&quot;&quot;</span> method=<span class="string">&quot;post&quot;</span>&gt;</span><br><span class="line">	  Login&amp;nbsp;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;username&quot;</span> /&gt;&lt;<span class="keyword">br</span>/&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  Password&amp;nbsp;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">&quot;password&quot;</span> name=<span class="string">&quot;password&quot;</span> /&gt;&lt;<span class="keyword">br</span>/&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  &lt;<span class="keyword">br</span>/&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	  &lt;<span class="keyword">input</span> <span class="keyword">type</span>=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;connect&quot;</span> /&gt;&lt;<span class="keyword">br</span>/&gt;&lt;<span class="keyword">br</span>/&gt;</span><br><span class="line">	&lt;/<span class="keyword">form</span>&gt;</span><br><span class="line">      &lt;/body&gt;</span><br><span class="line">      &lt;/html&gt;</span><br><span class="line">&#x27;;</span><br><span class="line"></span><br><span class="line">?&gt; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>用得到的帐号密码登录，即可！</p>
 <p><img data-src="/zh-CN/f0181575/backup_file_1.png"></p>
 <p>根据提示，原来用密码直接验证就可以。15分到手！</p>
@@ -593,23 +556,19 @@
 <p><img data-src="/zh-CN/f0181575/crlf_0.png"></p>
 <p>这个时候才想起来返回重新看一下题目的说明，原来是需要在日志里面注入内容。结合挑战的名称，那应该就是利用换行符进行分割，注入一行成功登录的信息。在日志中我们可以看到有admin用户成功登录的记录。所以就使用同样的内容进行注入： </p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">GET</span> /web-serveur/ch<span class="number">14</span>/?username=admin authenticated.%<span class="number">0</span>d%<span class="number">0</span>atest<span class="number">123</span>&amp;password= HTTP/<span class="number">1</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
 <p>顺利获得flag: <code>rFSP&amp;G0p&amp;5uAg1%</code></p>
 <p><img data-src="/zh-CN/f0181575/crlf_1.png"></p>
 <h2 id="File-upload-Double-extensions"><a href="#File-upload-Double-extensions" class="headerlink" title="File upload - Double extensions"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/File-upload-Double-extensions">File upload - Double extensions</a></h2><p>题目就非常明显了，通过双后缀来绕过服务器端的文件上传类型检查。登录页面，找到上传功能。然后在本地编辑一段读取/etc/passwd的PHP代码：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> file_get_contents(<span class="string">&#x27;../../../../etc/passwd&#x27;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>并命名为<code>test.php.jpg</code>保存到本地。再将其上传。果然！！失败了…</p>
 <p><img data-src="/zh-CN/f0181575/double_extensions_0.png"></p>
 <p>但好消息是，我们的脚本顺利地绕过了文件上传的类型检测，并被服务器解析了。但是，php代码本身存在一些问题，所以没有顺利读取到<code>/etc/passwd</code>的内容。所以，我们需要对我们的php代码进行一下微调。<br>既然无法直接用PHP函数读取文件的内容，我们就尝试通过调用系统命令执行函数来完成。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> shell_exec(<span class="string">&quot;cat ../../../../../../etc/passwd&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>OK!这下我们可以成功看到/etc/passwd的内容了！</p>
 <p><img data-src="/zh-CN/f0181575/double_extensions_1.png"></p>
 <p>但是flag呢？flag在哪里呀…找了一圈没找到…然后再仔细看了一遍题目才发现！!<code>Retrieve the validation password in the file .passwd at the root of the application.</code>:原来要读取的文件是应用根目录下的.passwd 文件! 晕！！！</p>
 <p>唯一的问题就是不知道应用的根目录在哪一层，需要向上返回几次。这个情况下，我们就需要使用到————枚举法！！几次尝试后，最终上传的PHP脚本内容为：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> shell_exec(<span class="string">&quot;cat ../../../.passwd&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>这样我们就可以成功获得到Flag: <code>Gg9LRz-hWSxqqUKd77-_q-6G8 </code></p>
 <h2 id="File-upload-MIME-type"><a href="#File-upload-MIME-type" class="headerlink" title="File upload - MIME type"></a><a target="_blank" rel="noopener" href="https://www.root-me.org/en/Challenges/Web-Server/File-upload-MIME-type">File upload - MIME type</a></h2><p>这道题跟前面的题非常类似，需要达到的目的是完全一样的。所以脚本的内容应该可以不用修改。不同的应该是绕过的方式，这次需要使用到的方法不再是通过给PHP文件添加合法的后缀名。</p>
 <p>尝试上传PHP脚本，使用Burp截取发送的请求，可以看到<code>Content-Type</code>的值为<code>application/x-php</code>。这个值也可以体现出上传的文件的类型。</p>
@@ -717,7 +676,7 @@
 
 
 
-      
+    <div class="comments utterances-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -740,13 +699,11 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
   <div class="languages">
     <label class="lang-select-label">
       <i class="fa fa-language"></i>
@@ -766,12 +723,10 @@
     </select>
   </div>
 
-      
 
 <div class="copyright">
-  
   &copy; 2017 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="paw"></i>
   </span>
@@ -782,7 +737,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">38k</span>
+    <span title="站点总字数">39k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -822,9 +777,6 @@
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
-
-
-
   <script>
   if (CONFIG.page.isPost) {
     wpac_init = window.wpac_init || [];
@@ -845,17 +797,7 @@
     })();
   }
   </script>
-
-  <script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
+<script src="/js/local-search.js"></script>
 
 
 
@@ -869,12 +811,18 @@
 
 
 
-
-
-
-  
-
-  
+<script>
+NexT.utils.loadComments('.utterances-container', () => {
+  const script = document.createElement('script');
+  script.src = 'https://utteranc.es/client.js';
+  script.setAttribute('repo', "UPWNothing/UPWNothing.github.io");
+  script.setAttribute('issue-term', "pathname");
+  script.setAttribute('theme', "github-dark");
+  script.crossOrigin = 'anonymous';
+  script.async = true;
+  document.querySelector('.utterances-container').appendChild(script);
+});
+</script>
 
 </body>
 </html>

