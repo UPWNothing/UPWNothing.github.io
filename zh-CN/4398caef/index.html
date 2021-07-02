@@ -32,13 +32,13 @@
 <meta property="og:image" content="https://upwnothing.github.io/zh-CN/4398caef/installation_1.png">
 <meta property="og:image" content="https://upwnothing.github.io/zh-CN/4398caef/installation_2.png">
 <meta property="og:image" content="https://upwnothing.github.io/zh-CN/4398caef/installation_3.png">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/4398caef/data_language.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/4398caef/Data_Language.png">
 <meta property="og:image" content="https://upwnothing.github.io/zh-CN/4398caef/vulnerabilities_0.png">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/4398caef/templateis_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/zh-CN/4398caef/templates_0.png">
 <meta property="og:image" content="https://upwnothing.github.io/zh-CN/4398caef/AuditTypes_0.png">
 <meta property="og:image" content="https://upwnothing.github.io/zh-CN/4398caef/Audit_0.png">
 <meta property="article:published_time" content="2021-07-02T07:03:40.000Z">
-<meta property="article:modified_time" content="2021-07-02T07:08:57.803Z">
+<meta property="article:modified_time" content="2021-07-02T08:20:41.479Z">
 <meta property="article:author" content="UPWNothing">
 <meta property="article:tag" content="Pentest">
 <meta property="article:tag" content="Web Application">
@@ -277,7 +277,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-07-02 15:03:40 / 修改时间：15:08:57" itemprop="dateCreated datePublished" datetime="2021-07-02T15:03:40+08:00">2021-07-02</time>
+      <time title="创建时间：2021-07-02 15:03:40 / 修改时间：16:20:41" itemprop="dateCreated datePublished" datetime="2021-07-02T15:03:40+08:00">2021-07-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -366,7 +366,7 @@
 <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>在开始使用这个工具前，有几个配置是一定要先定义好的。</p>
 <h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><h3 id="协作者-Collaborators"><a href="#协作者-Collaborators" class="headerlink" title="协作者 Collaborators"></a>协作者 Collaborators</h3><p>这个工具是个多人协作工具，所以这边其实相当于是这个工具的用户管理界面。同样的有三种用户权限可以选择：user, report, admin.</p>
 <h3 id="公司-Companies"><a href="#公司-Companies" class="headerlink" title="公司 Companies"></a>公司 Companies</h3><p>可以定义渗透测试目标系统所属的公司的名称以及logo。</p>
-<h3 id="语言设置"><a href="#语言设置" class="headerlink" title="语言设置"></a>语言设置</h3><p>PwnDoc可以对多种语言进行设定，适用于<em>自定义数据</em>和<em>漏洞说明</em>部分。<br>这里我设置了英语与中文两种。实际用到的比较多的是英语。<br><img data-src="/zh-CN/4398caef/data_language.png"></p>
+<h3 id="语言设置"><a href="#语言设置" class="headerlink" title="语言设置"></a>语言设置</h3><p>PwnDoc可以对多种语言进行设定，适用于<em>自定义数据</em>和<em>漏洞说明</em>部分。<br>这里我设置了英语与中文两种。实际用到的比较多的是英语。<br><img data-src="/zh-CN/4398caef/Data_Language.png"></p>
 <h2 id="导入漏洞列表"><a href="#导入漏洞列表" class="headerlink" title="导入漏洞列表"></a>导入漏洞列表</h2><p>PwnDoc支持从外部直接导入漏洞。导入入口如下：</p>
 <p><img data-src="/zh-CN/4398caef/vulnerabilities_0.png"></p>
 <p>导入的文件需要符合Serpico使用的格式。我在网上找到一个还算比较完整的模板：<a target="_blank" rel="noopener" href="https://github.com/ministryofjustice/serpico-templates/tree/master/template_findings">https://github.com/ministryofjustice/serpico-templates/tree/master/template_findings</a></p>
@@ -377,7 +377,7 @@
 <p>看了这个模板以后，可以比较详细地理解各个变量应该在报告中如何使用了。</p>
 <p>之后有时间的话，会再写一篇详细说一下如何更好地编排渗透测试模板。</p>
 <p>模板准备好之后，可以在<strong>Data-&gt;Templates</strong>点击右上角<code>Create Template</code>进行上传。</p>
-<p><img data-src="/zh-CN/4398caef/templateis_0.png"></p>
+<p><img data-src="/zh-CN/4398caef/templates_0.png"></p>
 <h2 id="配置Audit-Type"><a href="#配置Audit-Type" class="headerlink" title="配置Audit Type"></a>配置Audit Type</h2><p>在正式开始使用前，还剩下最后一个步骤需要完成：我们必须要定义至少一个Audit Type.<br>这里可以预定义不同的测试类型：Web Application, Network, OS Level等等。<br>对于不同类型的测试，我们可以预先定义使用哪种渗透测试报告模板，需要在对应的渗透测试报告中包含哪些板块。</p>
 <p>这里，我先创建了一个针对Web Application的测试类型，这里偷懒没有准备中文的报告模板，所以在两种语言里面都选择了英文模板。同时由于是针对Web Application的测试，所以我勾选了隐藏<em>Network Scan</em>的选项。</p>
 <p><img data-src="/zh-CN/4398caef/AuditTypes_0.png"></p>
