@@ -2,28 +2,25 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.4.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon_16.png">
+  <link rel="mask-icon" href="../../images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="../../css/main.css">
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.3.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
-  </script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"upwnothing.github.io","root":"/","images":"../../images","scheme":"Gemini","version":"8.6.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"../../search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="../../js/config.js"></script>
 <meta name="description" content="WebGoat 是一个由OWASP开发和维护的，专为网络应用安全教学所设计的网络应用靶机。 WebGoat中包含了常见的OWASP Top10漏洞的训练页面。对于有意掌握网络应用安全及渗透测试相关技术的用户来说，这是个非常有效的工具。 这篇文章就简单介绍了如何下载，并在本地运行WebGoat。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WebGoat安装运行步骤">
@@ -47,15 +44,19 @@
 <link rel="canonical" href="https://upwnothing.github.io/zh-CN/a0ebb04/">
 
 
-<script class="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script><script type="text/javascript">
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://upwnothing.github.io/zh-CN/a0ebb04/","path":"zh-CN/a0ebb04/","title":"WebGoat安装运行步骤"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>WebGoat安装运行步骤 | UPWNothing's Playground</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-125116918-1","only_pageview":false}</script>
+  <script src="../../js/third-party/analytics/google-analytics.js"></script>
+
+
+
+<script type="text/javascript">
     // Wait for the page to load first
     var _prevOnload = window.onload;
     window.onload = function() {
@@ -75,56 +76,9 @@
 </script>
 <script data-ad-client="ca-pub-2179953596008833" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-<title>WebGoat安装运行步骤 | UPWNothing's Playground</title>
-  
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-125116918-1');
-      }
-    </script>
-
-
-
-
   <noscript>
-  <style>
-  body { margin-top: 2rem; }
-
-  .use-motion .menu-item,
-  .use-motion .sidebar,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header {
-    visibility: visible;
-  }
-
-  .use-motion .header,
-  .use-motion .site-brand-container .toggle,
-  .use-motion .footer { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle,
-  .use-motion .custom-logo-image {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line {
-    transform: scaleX(1);
-  }
-
-  .search-pop-overlay, .sidebar-nav { display: none; }
-  .sidebar-panel { display: block; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="../../css/noscript.css">
+  </noscript>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -162,11 +116,11 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">23</span></a></li>
-        <li class="menu-item menu-item-switch_lang"><a href="/en/" rel="section"><i class="fa falanguage fa-fw"></i>switch_lang</a></li>
+        <li class="menu-item menu-item-home"><a href="../../index.html" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="../../about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-categories"><a href="../../categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="../../archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">23</span></a></li>
+        <li class="menu-item menu-item-switch_lang"><a href="../../en/" rel="section"><i class="fa falanguage fa-fw"></i>switch_lang</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -228,23 +182,24 @@
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="UPWNothing"
-      src="/images/icon.jpeg">
+      src="../../images/icon.jpeg">
   <p class="site-author-name" itemprop="name">UPWNothing</p>
   <div class="site-description" itemprop="description">记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻</div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+          <a href="../../archives/">
         
           <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
+            <a href="../../categories/">
           
         <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
@@ -258,8 +213,8 @@
 
 
 
+          </div>
         </div>
-      </div>
         <div class="back-to-top animated" role="button" aria-label="返回顶部">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
@@ -293,7 +248,7 @@
     <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/a0ebb04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon.jpeg">
+      <meta itemprop="image" content="../../images/icon.jpeg">
       <meta itemprop="name" content="UPWNothing">
       <meta itemprop="description" content="记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻">
     </span>
@@ -323,16 +278,16 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
+          <a href="../../categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Security/Web-Application/" itemprop="url" rel="index"><span itemprop="name">Web Application</span></a>
+          <a href="../../categories/Security/Web-Application/" itemprop="url" rel="index"><span itemprop="name">Web Application</span></a>
         </span>
     </span>
 
   
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -366,13 +321,14 @@
     <div class="post-body" itemprop="articleBody">
         <p>WebGoat 是一个由OWASP开发和维护的，专为网络应用安全教学所设计的网络应用靶机。 WebGoat中包含了常见的OWASP Top10漏洞的训练页面。对于有意掌握网络应用安全及渗透测试相关技术的用户来说，这是个非常有效的工具。</p>
 <p>这篇文章就简单介绍了如何下载，并在本地运行WebGoat。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 
 <h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>从<a target="_blank" rel="noopener" href="https://github.com/WebGoat/WebGoat/releases">WebGoat的Github页面</a>下载最新版。 </p>
 <p><img data-src="/zh-CN/a0ebb04/download.png" alt="下载webgoat-server"></p>
 <h1 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h1><p>进入到下载文件的保存目录，执行下述命令：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">java</span> -jar webgoat-server-<span class="number">8</span>.<span class="number">1</span>.<span class="number">0</span>.jar --server.port=<span class="number">9090</span></span><br></pre></td></tr></table></figure>
+
 <p><img data-src="/zh-CN/a0ebb04/run.png" alt="运行"></p>
 <p>服务器成功开始运行后，在浏览器进入<a target="_blank" rel="noopener" href="http://localhost:9090/WebGoat">http://localhost:9090/WebGoat</a>页面。就可以看到如下登录界面：</p>
 <p><img data-src="/zh-CN/a0ebb04/main_page.png" alt="WebGoat主页"></p>
@@ -404,20 +360,20 @@
     <footer class="post-footer">
           <div class="reward-container">
   <div>觉得好的话不妨赏一杯奶茶吧～</div>
-  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+  <button>
     赞赏
   </button>
   <div class="post-reward">
       <div>
-        <img src="/images/wechatpay.png" alt="UPWNothing 微信">
+        <img src="../../images/wechatpay.png" alt="UPWNothing 微信">
         <span>微信</span>
       </div>
       <div>
-        <img src="/images/alipay.png" alt="UPWNothing 支付宝">
+        <img src="../../images/alipay.png" alt="UPWNothing 支付宝">
         <span>支付宝</span>
       </div>
       <div>
-        <img src="/images/bitcoin.png" alt="UPWNothing 比特币">
+        <img src="../../images/bitcoin.png" alt="UPWNothing 比特币">
         <span>比特币</span>
       </div>
 
@@ -425,8 +381,8 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/Pentest/" rel="tag"># Pentest</a>
-              <a href="/tags/WebGoat/" rel="tag"># WebGoat</a>
+              <a href="../../tags/Pentest/" rel="tag"># Pentest</a>
+              <a href="../../tags/WebGoat/" rel="tag"># WebGoat</a>
           </div>
 
         
@@ -438,12 +394,12 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/zh-CN/55dd0f0b/" rel="prev" title="Git配置文件泄漏的处理方法">
+                <a href="../55dd0f0b/" rel="prev" title="Git配置文件泄漏的处理方法">
                   <i class="fa fa-chevron-left"></i> Git配置文件泄漏的处理方法
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/zh-CN/3dea2b22/" rel="next" title="WebGoat Injection 解题思路 （上）">
+                <a href="../3dea2b22/" rel="next" title="WebGoat Injection 解题思路 （上）">
                   WebGoat Injection 解题思路 （上） <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
@@ -458,28 +414,6 @@
 
 
     <div class="comments utterances-container"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      const commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
 </div>
   </main>
 
@@ -493,11 +427,11 @@
     </label>
     <select class="lang-select" data-canonical="" aria-label="选择语言">
       
-        <option value="zh-CN" data-href="/a0ebb04/" selected="">
+        <option value="zh-CN" data-href="../../a0ebb04/" selected="">
           简体中文
         </option>
       
-        <option value="en" data-href="/en/a0ebb04/" selected="">
+        <option value="en" data-href="../../en/a0ebb04/" selected="">
           English
         </option>
       
@@ -528,7 +462,7 @@
   </span>
 </div>
 <div class="busuanzi-count">
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
@@ -536,7 +470,7 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
@@ -551,36 +485,17 @@
   </footer>
 
   
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="../../js/comments.js"></script><script src="../../js/utils.js"></script><script src="../../js/motion.js"></script><script src="../../js/next-boot.js"></script>
 
   
-  <script>
-  if (CONFIG.page.isPost) {
-    wpac_init = window.wpac_init || [];
-    wpac_init.push({
-      widget: 'Rating',
-      id    : 28908,
-      el    : 'wpac-rating',
-      color : '#fc6423'
-    });
-    (function() {
-      if ('WIDGETPACK_LOADED' in window) return;
-      WIDGETPACK_LOADED = true;
-      var mc = document.createElement('script');
-      mc.type = 'text/javascript';
-      mc.async = true;
-      mc.src = '//embed.widgetpack.com/widget.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-    })();
-  }
-  </script>
-<script src="/js/local-search.js"></script>
-
-
+  <script src="https://embed.widgetpack.com/widget.js" async></script>
+  <script class="next-config" data-name="rating" type="application/json">{"enable":true,"id":28908,"color":"#fc6423"}</script>
+  <script src="../../js/third-party/rating.js"></script>
+<script src="../../js/third-party/search/local-search.js"></script>
 
 
 
@@ -591,19 +506,8 @@
 
 
 
-
-<script>
-NexT.utils.loadComments('.utterances-container', () => {
-  const script = document.createElement('script');
-  script.src = 'https://utteranc.es/client.js';
-  script.setAttribute('repo', "UPWNothing/UPWNothing.github.io");
-  script.setAttribute('issue-term', "pathname");
-  script.setAttribute('theme', "github-dark");
-  script.crossOrigin = 'anonymous';
-  script.async = true;
-  document.querySelector('.utterances-container').appendChild(script);
-});
-</script>
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"UPWNothing/UPWNothing.github.io","issue_term":"pathname","theme":"github-dark"}</script>
+<script src="../../js/third-party/comments/utterances.js"></script>
 
 </body>
 </html>
