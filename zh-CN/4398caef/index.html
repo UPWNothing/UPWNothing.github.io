@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"upwnothing.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.3.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="PwnDoc是一个渗透测试报告的自动化工具，旨在帮助渗透测试工程师可以更简单快速地根据所有的发现项，生成一个可定制化的Docx格式的报告。PwnDoc的主要目标很简单：花更多的时间来Pwn,花更少的时间来Doc.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渗透测试报告自动化工具PwnDoc">
+<meta property="og:url" content="https://upwnothing.github.io/zh-CN/4398caef/index.html">
+<meta property="og:site_name" content="UPWNothing&#39;s Playground">
+<meta property="og:description" content="PwnDoc是一个渗透测试报告的自动化工具，旨在帮助渗透测试工程师可以更简单快速地根据所有的发现项，生成一个可定制化的Docx格式的报告。PwnDoc的主要目标很简单：花更多的时间来Pwn,花更少的时间来Doc.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://upwnothing.github.io/.io//installation_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/.io//installation_1.png">
+<meta property="og:image" content="https://upwnothing.github.io/.io//installation_2.png">
+<meta property="og:image" content="https://upwnothing.github.io/.io//installation_3.png">
+<meta property="og:image" content="https://upwnothing.github.io/.io//data_language.png">
+<meta property="og:image" content="https://upwnothing.github.io/.io//vulnerabilities_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/.io//templateis_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/.io//AuditTypes_0.png">
+<meta property="og:image" content="https://upwnothing.github.io/.io//Audit_0.png">
+<meta property="article:published_time" content="2021-07-02T07:03:40.000Z">
+<meta property="article:modified_time" content="2021-07-02T07:07:43.611Z">
+<meta property="article:author" content="UPWNothing">
+<meta property="article:tag" content="Pentest">
+<meta property="article:tag" content="Web Application">
+<meta property="article:tag" content="Reporting">
+<meta property="article:tag" content="PwnDoc">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upwnothing.github.io/.io//installation_0.png">
+
+
+<link rel="canonical" href="https://upwnothing.github.io/zh-CN/4398caef/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script><script type="text/javascript">
+    // Wait for the page to load first
+    var _prevOnload = window.onload;
+    window.onload = function() {
+        var switchLang = document.getElementsByClassName("menu-item-switch_lang")[0].childNodes[1];
+            var href = window.location.href;     
+            var indexOfEn = href.toLowerCase().indexOf('/en/');
+            if(indexOfEn !== -1) {
+                //switchLang.href = href.replace('/en/', '/');
+		//switchLang.href = "https://upwnothing.github.io";
+                switchLang.href = href.substr(0,indexOfEn);
+            }
+            else {
+                //switchLang.href = href.replace(/(^http[s]?:\/\/[a-z0-9.]*[:?0-9]*\/)(.*)/i, '$1en/$2');
+		//switchLang.href = "https://upwnothing.github.io/en";
+            }
+    }
+</script>
+<script data-ad-client="ca-pub-2179953596008833" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<title>渗透测试报告自动化工具PwnDoc | UPWNothing's Playground</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-125116918-1');
+      }
+    </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">UPWNothing's Playground</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个关于安全的小宝箱</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">23</span></a></li>
+        <li class="menu-item menu-item-switch_lang"><a href="/en/" rel="section"><i class="fa falanguage fa-fw"></i>switch_lang</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.</span> <span class="nav-text">安装步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">备份方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">基本配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E4%BD%9C%E8%80%85-Collaborators"><span class="nav-number">3.1.1.</span> <span class="nav-text">协作者 Collaborators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AC%E5%8F%B8-Companies"><span class="nav-number">3.1.2.</span> <span class="nav-text">公司 Companies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E8%A8%80%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.1.3.</span> <span class="nav-text">语言设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E6%BC%8F%E6%B4%9E%E5%88%97%E8%A1%A8"><span class="nav-number">3.2.</span> <span class="nav-text">导入漏洞列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E6%8A%A5%E5%91%8A%E6%A8%A1%E6%9D%BF"><span class="nav-number">3.3.</span> <span class="nav-text">导入报告模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEAudit-Type"><span class="nav-number">3.4.</span> <span class="nav-text">配置Audit Type</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="UPWNothing"
+      src="/images/icon.jpeg">
+  <p class="site-author-name" itemprop="name">UPWNothing</p>
+  <div class="site-description" itemprop="description">记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/4398caef/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.jpeg">
+      <meta itemprop="name" content="UPWNothing">
+      <meta itemprop="description" content="记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="UPWNothing's Playground">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          渗透测试报告自动化工具PwnDoc
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-07-02 15:03:40 / 修改时间：15:07:43" itemprop="dateCreated datePublished" datetime="2021-07-02T15:03:40+08:00">2021-07-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Security/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Security/Pentest/" itemprop="url" rel="index"><span itemprop="name">Pentest</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>PwnDoc是一个渗透测试报告的自动化工具，旨在帮助渗透测试工程师可以更简单快速地根据所有的发现项，生成一个可定制化的Docx格式的报告。<br>PwnDoc的主要目标很简单：花更多的时间来<em>Pwn</em>,花更少的时间来<em>Doc</em>.</p>
+<span id="more"></span>
+
+
+<h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><p>PwnDoc需要使用到3个容器：前端，后端与数据库。<br>3个容器可以通过docker-compose同时运行。</p>
+<p>首先下载项目源码</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/pwndoc/</span>pwndoc</span><br></pre></td></tr></table></figure>
+
+<p>进入项目根目录，运行Docker容器</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d <span class="comment">--build</span></span><br></pre></td></tr></table></figure>
+<p><img data-src="/.io//installation_0.png"></p>
+<p>如果在程序在<code>npm install</code>那一步出现报错，可能是由于与官方镜像源连接过程中的网络问题。<br>可以尝试修改<code>backend/Dockerfile</code>和<code>frontend/Dockerfile</code>中的</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">RUN</span> npm install</span><br></pre></td></tr></table></figure>
+<p>替换为</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RUN npm --registry https:<span class="regexp">//</span>registry.npm.taobao.org install</span><br></pre></td></tr></table></figure>
+
+<p>但是在npm安装Electron的时候，又再次遇到了下载问题<br><img data-src="/.io//installation_1.png"><br>一翻搜索以后发现了这篇文章详细解释了具体的原因：<br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1722304">https://cloud.tencent.com/developer/article/1722304</a></p>
+<p>于是相应地再做些修改</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RUN ELECTRON_MIRROR=<span class="string">&quot;https://npm.taobao.org/mirrors/electron/&quot;</span> npm --registry https:<span class="regexp">//</span>registry.npm.taobao.org install</span><br></pre></td></tr></table></figure>
+
+<p>这下可以顺利安装了！<br><img data-src="/.io//installation_2.png"></p>
+<p>安装完成后，可以直接通过<a href="https://localhost:8443访问应用。">https://localhost:8443访问应用。</a></p>
+<p><img data-src="/.io//installation_3.png"></p>
+<p>需要进行升级的话：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker-compose <span class="meta">down</span></span><br><span class="line">git pull</span><br><span class="line">docker-compose <span class="meta">up</span> -d --build</span><br></pre></td></tr></table></figure>
+
+<h1 id="备份方法"><a href="#备份方法" class="headerlink" title="备份方法"></a>备份方法</h1><p>使用PwnDoc的过程中，最好可以经常备份<code>backend/mongo-data</code>目录。所有的数据库都包含在这个文件家中。</p>
+<p>备份恢复方法：</p>
+<ul>
+<li>终止容器<code>docker-compose stop</code></li>
+<li>将备份的文件进行替换</li>
+<li>重新启动容器<code>docker-compose start</code></li>
+</ul>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>在开始使用这个工具前，有几个配置是一定要先定义好的。</p>
+<h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><h3 id="协作者-Collaborators"><a href="#协作者-Collaborators" class="headerlink" title="协作者 Collaborators"></a>协作者 Collaborators</h3><p>这个工具是个多人协作工具，所以这边其实相当于是这个工具的用户管理界面。同样的有三种用户权限可以选择：user, report, admin.</p>
+<h3 id="公司-Companies"><a href="#公司-Companies" class="headerlink" title="公司 Companies"></a>公司 Companies</h3><p>可以定义渗透测试目标系统所属的公司的名称以及logo。</p>
+<h3 id="语言设置"><a href="#语言设置" class="headerlink" title="语言设置"></a>语言设置</h3><p>PwnDoc可以对多种语言进行设定，适用于<em>自定义数据</em>和<em>漏洞说明</em>部分。<br>这里我设置了英语与中文两种。实际用到的比较多的是英语。<br><img data-src="/.io//data_language.png"></p>
+<h2 id="导入漏洞列表"><a href="#导入漏洞列表" class="headerlink" title="导入漏洞列表"></a>导入漏洞列表</h2><p>PwnDoc支持从外部直接导入漏洞。导入入口如下：</p>
+<p><img data-src="/.io//vulnerabilities_0.png"></p>
+<p>导入的文件需要符合Serpico使用的格式。我在网上找到一个还算比较完整的模板：<a target="_blank" rel="noopener" href="https://github.com/ministryofjustice/serpico-templates/tree/master/template_findings">https://github.com/ministryofjustice/serpico-templates/tree/master/template_findings</a></p>
+<p>当然一项一项逐个导入，可能比较费事费力。所以我做了一下文件处理，将他们全部合并到了同一个文件中：<br><a target="_blank" rel="noopener" href="https://github.com/UPWNothing/SecurityDataset/blob/master/Vulnerabilities/merged.json">https://github.com/UPWNothing/SecurityDataset/blob/master/Vulnerabilities/merged.json</a></p>
+<p>成功导入后可以在Vulnerabilities标签页中看到导入的所有漏洞。当然，如果要实际使用的话，还需要手动进行一定程度的配置。</p>
+<h2 id="导入报告模板"><a href="#导入报告模板" class="headerlink" title="导入报告模板"></a>导入报告模板</h2><p>在可以正式开始使用之前，需要先导入报告模板。</p>
+<p>报告模板中的格式定义可以参照这个官方的参考模板：<a target="_blank" rel="noopener" href="http://github.com/pwndoc/pwndoc/tree/master/backend/report-templates">http://github.com/pwndoc/pwndoc/tree/master/backend/report-templates</a></p>
+<p>看了这个模板以后，可以比较详细地理解各个变量应该在报告中如何使用了。</p>
+<p>之后有时间的话，会再写一篇详细说一下如何更好地编排渗透测试模板。</p>
+<p>模板准备好之后，可以在<strong>Data-&gt;Templates</strong>点击右上角<code>Create Template</code>进行上传。</p>
+<p><img data-src="/.io//templateis_0.png"></p>
+<h2 id="配置Audit-Type"><a href="#配置Audit-Type" class="headerlink" title="配置Audit Type"></a>配置Audit Type</h2><p>在正式开始使用前，还剩下最后一个步骤需要完成：我们必须要定义至少一个Audit Type.<br>这里可以预定义不同的测试类型：Web Application, Network, OS Level等等。<br>对于不同类型的测试，我们可以预先定义使用哪种渗透测试报告模板，需要在对应的渗透测试报告中包含哪些板块。</p>
+<p>这里，我先创建了一个针对Web Application的测试类型，这里偷懒没有准备中文的报告模板，所以在两种语言里面都选择了英文模板。同时由于是针对Web Application的测试，所以我勾选了隐藏<em>Network Scan</em>的选项。</p>
+<p><img data-src="/.io//AuditTypes_0.png"></p>
+<p>至此为止，点击Audit我们就可以看到成功进入了这个应用的核心功能模块了。</p>
+<p><img data-src="/.io//Audit_0.png"></p>
+<hr>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1722304">https://cloud.tencent.com/developer/article/1722304</a></li>
+<li><a target="_blank" rel="noopener" href="https://pwndoc.github.io/pwndoc/">https://pwndoc.github.io/pwndoc/</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">你可能感兴趣的文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/zh-CN/a0ebb04/" rel="bookmark">WebGoat安装运行步骤</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/zh-CN/aa0b11b6/" rel="bookmark">WebGoat Injection 解题思路 （下）</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/zh-CN/3dea2b22/" rel="bookmark">WebGoat Injection 解题思路 （上）</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>觉得好的话不妨赏一杯奶茶吧～</div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="UPWNothing 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="UPWNothing 支付宝">
+        <span>支付宝</span>
+      </div>
+      <div>
+        <img src="/images/bitcoin.png" alt="UPWNothing 比特币">
+        <span>比特币</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Pentest/" rel="tag"># Pentest</a>
+              <a href="/tags/Web-Application/" rel="tag"># Web Application</a>
+              <a href="/tags/Reporting/" rel="tag"># Reporting</a>
+              <a href="/tags/PwnDoc/" rel="tag"># PwnDoc</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/zh-CN/aa0b11b6/" rel="prev" title="WebGoat Injection 解题思路 （下）">
+                  <i class="fa fa-chevron-left"></i> WebGoat Injection 解题思路 （下）
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>简体中文</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="选择语言">
+      
+        <option value="zh-CN" data-href="/4398caef/" selected="">
+          简体中文
+        </option>
+      
+        <option value="en" data-href="/en/4398caef/" selected="">
+          English
+        </option>
+      
+    </select>
+  </div>
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="paw"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">UPWNothing</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">40k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">37 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><script color="72,97,152" opacity="0.8" zIndex="-1" count="199" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : 28908,
+      el    : 'wpac-rating',
+      color : '#fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+<script>
+NexT.utils.loadComments('.utterances-container', () => {
+  const script = document.createElement('script');
+  script.src = 'https://utteranc.es/client.js';
+  script.setAttribute('repo', "UPWNothing/UPWNothing.github.io");
+  script.setAttribute('issue-term', "pathname");
+  script.setAttribute('theme', "github-dark");
+  script.crossOrigin = 'anonymous';
+  script.async = true;
+  document.querySelector('.utterances-container').appendChild(script);
+});
+</script>
+
+</body>
+</html>
