@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.0.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon-next.png">
@@ -16,12 +16,15 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-bounce.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"upwnothing.github.io","root":"/","images":"../images","scheme":"Gemini","version":"8.6.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"../search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="../js/config.js"></script>
-<meta name="description" content="记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"upwnothing.github.io","root":"/","images":"../images","scheme":"Gemini","darkmode":true,"version":"8.10.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"../search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="../js/config.js"></script>
+
+  <meta name="description" content="记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻">
 <meta property="og:type" content="website">
 <meta property="og:title" content="UPWNothing&#39;s Playground">
 <meta property="og:url" content="https://upwnothing.github.io/en/index.html">
@@ -45,6 +48,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-125116918-1","only_pageview":false}</script>
   <script src="../js/third-party/analytics/google-analytics.js"></script>
+
 
 
 
@@ -111,7 +115,7 @@
         <li class="menu-item menu-item-home"><a href="../index.html" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
         <li class="menu-item menu-item-about"><a href="../about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
         <li class="menu-item menu-item-categories"><a href="../categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">11</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="../archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">23</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="../archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">25</span></a></li>
         <li class="menu-item menu-item-switch_lang"><a href="../en/" rel="section"><i class="fa falanguage fa-fw"></i>switch_lang</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
@@ -173,8 +177,7 @@
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
-          <div class="site-overview">
-            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="UPWNothing"
       src="../images/icon.jpeg">
   <p class="site-author-name" itemprop="name">UPWNothing</p>
@@ -183,20 +186,18 @@
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="../archives/">
-        
-          <span class="site-state-item-count">23</span>
+        <a href="../archives/">
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="../categories/">
-          
+          <a href="../categories/">
         <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -204,8 +205,8 @@
 
 
 
-          </div>
         </div>
+      </div>
         <div class="back-to-top animated" role="button" aria-label="Back to top">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
@@ -235,7 +236,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/4398caef/">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/bef99fab/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="../images/icon.jpeg">
@@ -248,7 +249,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="../zh-CN/4398caef/" class="post-title-link" itemprop="url">渗透测试报告自动化工具PwnDoc</a>
+          <a href="../zh-CN/bef99fab/" class="post-title-link" itemprop="url">GWAPT认证考试总结</a>
         </h2>
 
         <div class="post-meta-container">
@@ -260,7 +261,106 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-07-02 15:03:40 / Modified: 16:20:41" itemprop="dateCreated datePublished" datetime="2021-07-02T15:03:40+08:00">2021-07-02</time>
+      <time title="Created: 2021-10-15 10:38:30 / Modified: 18:30:45" itemprop="dateCreated datePublished" datetime="2021-10-15T10:38:30+08:00">2021-10-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="../categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="../categories/Security/Pentest/" itemprop="url" rel="index"><span itemprop="name">Pentest</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>18k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>16 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>最终以91%的分数通过GWAPT考试</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="../zh-CN/bef99fab/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/e8e3dab8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="../images/icon.jpeg">
+      <meta itemprop="name" content="UPWNothing">
+      <meta itemprop="description" content="记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="UPWNothing's Playground">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="../zh-CN/e8e3dab8/" class="post-title-link" itemprop="url">渗透测试报告自动化工具PwnDoc(二)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-07-13 14:54:35" itemprop="dateCreated datePublished" datetime="2021-07-13T14:54:35+08:00">2021-07-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -281,8 +381,111 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>363</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>1 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>这篇主要介绍PwnDoc实际使用的方法。<br>PwnDoc的安装及准备步骤请参考<a href="https://upwnothing.github.io/zh-CN/4398caef/">上篇</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="../zh-CN/e8e3dab8/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/4398caef/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="../images/icon.jpeg">
+      <meta itemprop="name" content="UPWNothing">
+      <meta itemprop="description" content="记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="UPWNothing's Playground">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="../zh-CN/4398caef/" class="post-title-link" itemprop="url">渗透测试报告自动化工具PwnDoc(一)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-07-02 15:03:40 / Modified: 16:23:28" itemprop="dateCreated datePublished" datetime="2021-07-02T15:03:40+08:00">2021-07-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="../categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="../categories/Security/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="../categories/Security/Pentest/" itemprop="url" rel="index"><span itemprop="name">Pentest</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="Symbols count in article">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -382,8 +585,7 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="Symbols count in article">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -483,8 +685,7 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="Symbols count in article">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -584,8 +785,7 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="Symbols count in article">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -670,13 +870,13 @@
 
       <time title="Created: 2020-05-21 17:17:59" itemprop="dateCreated datePublished" datetime="2020-05-21T17:17:59+08:00">2020-05-21</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-06-15 14:41:12" itemprop="dateModified" datetime="2020-06-15T14:41:12+08:00">2020-06-15</time>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
       </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2020-06-15 14:41:12" itemprop="dateModified" datetime="2020-06-15T14:41:12+08:00">2020-06-15</time>
+    </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -696,8 +896,7 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="Symbols count in article">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -813,8 +1012,7 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="Symbols count in article">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -840,9 +1038,9 @@
     <div class="post-body" itemprop="articleBody">
           <p>Autopsy是Kali Linux中预安装的磁盘镜像分析/取证软件。Autopsy基于The Sleuth Kit的开源电子取证工具。Autopsy在The Sleuth Kit的基础上增加了图形界面，大大增加了易用性。  </p>
 <p>那么问题来了：Kali明明都自带了那么还要装一遍做甚？！原因是这样的：截止到现在的最新版（Kali 2019.4），Kali自带的Autopsy均是Autopsy 2. Autopsy 2通过Web服务器-客户端的形式来呈现用户界面，但是使用起来其实存在不少的限制，无论是功能还是界面都存在着不足。看下图感受一下：</p>
-<p><img src="/zh-CN/8768734d/autopsy.jpeg" alt="Autopsy 2 用户界面"></p>
+<p><img src="/.io//autopsy.jpeg" alt="Autopsy 2 用户界面"></p>
 <p>而从Autopsy 3起, 程序移植成为了基于Java的应用程序。而Autopsy 4则在Autopsy 3的基础上，提升了多人协作的能力。</p>
-<p><img src="/zh-CN/8768734d/Autopsy4.png" alt="Autopsy 4 用户界面"></p>
+<p><img src="/.io//Autopsy4.png" alt="Autopsy 4 用户界面"></p>
 <p>不难发现，Autopsy 4无论从用户界面，还是软件的功能性来说，都相较于Autopsy 2有了明显的提升。然而，关于Autopsy 4的中文文档却相当的不足。所以，通过这篇博文来记录安装的各个步骤以及遇到的问题。</p>
           <!--noindex-->
             <div class="post-button">
@@ -903,13 +1101,13 @@
 
       <time title="Created: 2020-02-26 02:43:40" itemprop="dateCreated datePublished" datetime="2020-02-26T02:43:40+08:00">2020-02-26</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-06-28 14:07:53" itemprop="dateModified" datetime="2020-06-28T14:07:53+08:00">2020-06-28</time>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
       </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2020-06-28 14:07:53" itemprop="dateModified" datetime="2020-06-28T14:07:53+08:00">2020-06-28</time>
+    </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -933,8 +1131,7 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="Symbols count in article">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -1019,13 +1216,13 @@
 
       <time title="Created: 2020-01-22 15:32:47" itemprop="dateCreated datePublished" datetime="2020-01-22T15:32:47+08:00">2020-01-22</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-07-02 17:19:32" itemprop="dateModified" datetime="2020-07-02T17:19:32+08:00">2020-07-02</time>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
       </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2020-07-02 17:19:32" itemprop="dateModified" datetime="2020-07-02T17:19:32+08:00">2020-07-02</time>
+    </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -1041,8 +1238,7 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="Symbols count in article">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -1093,230 +1289,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/b13d8a67/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="../images/icon.jpeg">
-      <meta itemprop="name" content="UPWNothing">
-      <meta itemprop="description" content="记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="UPWNothing's Playground">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="../zh-CN/b13d8a67/" class="post-title-link" itemprop="url">在Kali Linux中安装Ghidra</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2020-01-17 11:21:18 / Modified: 14:42:55" itemprop="dateCreated datePublished" datetime="2020-01-17T11:21:18+08:00">2020-01-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="../categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="../categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="../categories/Linux/Kali/" itemprop="url" rel="index"><span itemprop="name">Kali</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="../categories/Security/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
-        </span>
-    </span>
-
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="Symbols count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>463</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>1 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>描述了在Kali中Ghidra的详细步骤，并且解决在这个过程中遇到的问题。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="../zh-CN/b13d8a67/">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://upwnothing.github.io/zh-CN/ae2cc9de/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="../images/icon.jpeg">
-      <meta itemprop="name" content="UPWNothing">
-      <meta itemprop="description" content="记录一个N00b在网络安全的知识树里，不断向前探索过程中的所见所闻">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="UPWNothing's Playground">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="../zh-CN/ae2cc9de/" class="post-title-link" itemprop="url">在Kali Linux中安装Google Chrome浏览器，并解决root用户无法运行的问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-01-13 17:34:31" itemprop="dateCreated datePublished" datetime="2020-01-13T17:34:31+08:00">2020-01-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="../categories/Security/" itemprop="url" rel="index"><span itemprop="name">Security</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="../categories/Security/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="../categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="../categories/Linux/Kali/" itemprop="url" rel="index"><span itemprop="name">Kali</span></a>
-        </span>
-    </span>
-
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="Symbols count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>643</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>1 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>其实，Kali Linux本身自带有Chromium浏览器。但是，如果你更倾向于使用Chrome，那么你可以通过以下步骤在Kali中安装Chrome：</p>
-<h1 id="下载Chrome"><a href="#下载Chrome" class="headerlink" title="下载Chrome"></a>下载Chrome</h1><p>通过以下链接下载<code>google-chrome-stable</code>:</p>
-<p><a target="_blank" rel="noopener" href="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb">https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</a></p>
-<h1 id="安装Chrome"><a href="#安装Chrome" class="headerlink" title="安装Chrome"></a>安装Chrome</h1><p>使用下列命令安装Chrome：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo</span> apt install ./google-chrome-stable_current_amd<span class="number">64</span>.deb</span><br></pre></td></tr></table></figure>
-
-<p>一切顺利的话，到目前为止，Google Chrome已经成功地安装到了我们的Kali Linux中了。 </p>
-<h1 id="解决无法以root身份运行Chrome的问题"><a href="#解决无法以root身份运行Chrome的问题" class="headerlink" title="解决无法以root身份运行Chrome的问题"></a>解决无法以root身份运行Chrome的问题</h1><p>如果当前正在以root身份登录的话，我们双击Chrome图标想要打开浏览器并不能成功。所以，尝试一下通过命令行来打开Chrome：</p>
-<p><img data-src="/zh-CN/ae2cc9de/non_root_error.png" alt="Error Message"></p>
-<p>通过命令行，我们看到了具体的报错原因。知道具体的原因，那么就可以下手解决了。 </p>
-<p>其实，我会更推荐在日常使用时，以非root的身份登录进行操作，这样既确保了安全，同时也变相解决了Chrome启动的问题。当然，如果你执意想要以root用户的身份运行Chrome,那也是有办法的：  </p>
-<p>使用任意文档编辑工具打开 <code>/usr/bin/google-chrome</code>,在最后一行<code>exec -a &quot;$0&quot; &quot;$HERE/chrome&quot; &quot;$@&quot;</code> 之后加上<code>--user-data-dir</code>和<code>--no-sandbox</code>。如下图所示：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exec</span> -a <span class="string">&quot;<span class="variable">$0</span>&quot;</span> <span class="string">&quot;<span class="variable">$HERE</span>/chrome&quot;</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span> --user-data-dir --no-sandbox</span><br></pre></td></tr></table></figure>
-
-<p>再次尝试，OK! Google Chrome 可以顺利运行了！</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="page/2/">2</a><a class="page-number" href="page/3/">3</a><a class="extend next" rel="next" href="page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
@@ -1348,7 +1320,7 @@
 
 <div class="copyright">
   &copy; 2017 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="paw"></i>
   </span>
@@ -1359,13 +1331,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Symbols count total">40k</span>
+    <span title="Symbols count total">58k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">37 mins.</span>
+    <span title="Reading time total">53 mins.</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -1402,10 +1374,14 @@
   <script src="https://embed.widgetpack.com/widget.js" async></script>
   <script class="next-config" data-name="rating" type="application/json">{"enable":true,"id":28908,"color":"#fc6423"}</script>
   <script src="../js/third-party/rating.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
 <script src="../js/third-party/search/local-search.js"></script>
 
 
 
+  <script src="../js/third-party/fancybox.js"></script>
+
+  <script src="../js/third-party/pace.js"></script>
 
   
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

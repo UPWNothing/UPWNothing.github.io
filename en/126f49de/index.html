@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.0.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon-next.png">
@@ -16,19 +16,22 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-bounce.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"upwnothing.github.io","root":"/","images":"../../images","scheme":"Gemini","version":"8.6.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"../../search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="../../js/config.js"></script>
-<meta name="description" content="Acutally, there’re pretty detailed instructions for installation on YCM(YouCompleteMe)’s github page. However, the installation steps on CentOS and Debian cannot be found.  Complete YCM Installation o">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"upwnothing.github.io","root":"/","images":"../../images","scheme":"Gemini","darkmode":true,"version":"8.10.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"../../search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="../../js/config.js"></script>
+
+  <meta name="description" content="Acutally, there’re pretty detailed instructions for installation on YCM(YouCompleteMe)’s github page. However, the installation steps on CentOS and Debian cannot be found.  Complete YCM Installation o">
 <meta property="og:type" content="article">
 <meta property="og:title" content="YouCompleteMe Installation">
 <meta property="og:url" content="https://upwnothing.github.io/en/126f49de/index.html">
 <meta property="og:site_name" content="UPWNothing&#39;s Playground">
 <meta property="og:description" content="Acutally, there’re pretty detailed instructions for installation on YCM(YouCompleteMe)’s github page. However, the installation steps on CentOS and Debian cannot be found.  Complete YCM Installation o">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://upwnothing.github.io/en/126f49de/YCM1.PNG">
+<meta property="og:image" content="https://upwnothing.github.io/.io//YCM1.PNG">
 <meta property="article:published_time" content="2018-09-02T18:08:08.000Z">
 <meta property="article:modified_time" content="2020-01-06T08:12:56.990Z">
 <meta property="article:author" content="UPWNothing">
@@ -37,7 +40,7 @@
 <meta property="article:tag" content="CentOS">
 <meta property="article:tag" content="YCM">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://upwnothing.github.io/en/126f49de/YCM1.PNG">
+<meta name="twitter:image" content="https://upwnothing.github.io/.io//YCM1.PNG">
 
 
 <link rel="canonical" href="https://upwnothing.github.io/en/126f49de/">
@@ -52,6 +55,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-125116918-1","only_pageview":false}</script>
   <script src="../../js/third-party/analytics/google-analytics.js"></script>
+
 
 
 
@@ -98,7 +102,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">UPWNothing's Playground</h1>
+      <p class="site-title">UPWNothing's Playground</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">一个关于安全的小宝箱</p>
@@ -118,7 +122,7 @@
         <li class="menu-item menu-item-home"><a href="../../index.html" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
         <li class="menu-item menu-item-about"><a href="../../about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
         <li class="menu-item menu-item-categories"><a href="../../categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">11</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="../../archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">23</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="../../archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">25</span></a></li>
         <li class="menu-item menu-item-switch_lang"><a href="../../en/" rel="section"><i class="fa falanguage fa-fw"></i>switch_lang</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
@@ -181,8 +185,7 @@
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
-          <div class="site-overview">
-            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="UPWNothing"
       src="../../images/icon.jpeg">
   <p class="site-author-name" itemprop="name">UPWNothing</p>
@@ -191,20 +194,18 @@
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="../../archives/">
-        
-          <span class="site-state-item-count">23</span>
+        <a href="../../archives/">
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="../../categories/">
-          
+          <a href="../../categories/">
         <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -212,8 +213,8 @@
 
 
 
-          </div>
         </div>
+      </div>
         <div class="back-to-top animated" role="button" aria-label="Back to top">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
@@ -270,13 +271,13 @@
 
       <time title="Created: 2018-09-03 02:08:08" itemprop="dateCreated datePublished" datetime="2018-09-03T02:08:08+08:00">2018-09-03</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-01-06 16:12:56" itemprop="dateModified" datetime="2020-01-06T16:12:56+08:00">2020-01-06</time>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
       </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2020-01-06 16:12:56" itemprop="dateModified" datetime="2020-01-06T16:12:56+08:00">2020-01-06</time>
+    </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -299,8 +300,7 @@
       <span class="post-meta-item-text">Views: </span>
       <span id="busuanzi_value_page_pv"></span>
     </span>
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="Symbols count in article">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -334,15 +334,15 @@
 </ol>
 <h2 id="Install-Dependencies-for-Compiling"><a href="#Install-Dependencies-for-Compiling" class="headerlink" title="Install Dependencies for Compiling"></a>Install Dependencies for Compiling</h2><ol>
 <li>Install development tools and CMake: <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install </span><span class="keyword">build-essential </span>cmake</span><br></pre></td></tr></table></figure></li>
-<li>Make sure you have Python headers installed:<pre><code> <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">yum</span> install python-devel rh-python<span class="number">36</span>-python-devel.x<span class="number">86</span>_<span class="number">64</span></span><br></pre></td></tr></table></figure>
+<li>Make sure you have Python headers installed:<pre><code> <figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install <span class="keyword">python</span>-devel rh-python36-<span class="keyword">python</span>-devel.x86_64</span><br></pre></td></tr></table></figure>
 </code></pre>
-<img data-src="/en/126f49de/YCM1.PNG" alt="image1"><br> In case python3 is not installed on your CentOS:<br> Enable Software Collections: <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install centos-release-scl</span><br></pre></td></tr></table></figure>
- Install Python3: <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo</span> yum install rh-python<span class="number">36</span></span><br></pre></td></tr></table></figure>
- If you want to use python 3.6 as default <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scl <span class="builtin-name">enable</span> rh-python36 bash</span><br></pre></td></tr></table></figure></li>
+<img data-src="/.io//YCM1.PNG" alt="image1"><br> In case python3 is not installed on your CentOS:<br> Enable Software Collections: <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install centos-release-scl</span><br></pre></td></tr></table></figure>
+ Install Python3: <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum <span class="keyword">install</span> rh-python36</span><br></pre></td></tr></table></figure>
+ If you want to use python 3.6 as default <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scl <span class="built_in">enable</span> rh-python36 bash</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="Compile-YCM"><a href="#Compile-YCM" class="headerlink" title="Compile YCM"></a>Compile YCM</h2><ul>
 <li>Compiling YCM with semantic support for C-family languages:<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span> <span class="params">--clang-completer</span></span><br></pre></td></tr></table></figure></li>
-<li>Compiling YCM without semantic support for C-family languages:<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span></span><br></pre></td></tr></table></figure></li>
+<li>Compiling YCM without semantic support for C-family languages:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.vim/bundle/YouCompleteMe</span><br><span class="line">./install.py</span><br></pre></td></tr></table></figure></li>
 <li>To simply compile with everything enabled, there’s a –all flag.    <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> ~<span class="string">/.vim/bundle/YouCompleteMe</span></span><br><span class="line"><span class="string">./install.py</span> <span class="params">--all</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h1 id="Referrence"><a href="#Referrence" class="headerlink" title="Referrence"></a>Referrence</h1><ul>
@@ -355,18 +355,6 @@
     
     
       
-  <div class="popular-posts-header">你可能感兴趣的文章</div>
-  <ul class="popular-posts">
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/zh-CN/d2b4abf1/" rel="bookmark">YouCompleteMe 安装教程</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/zh-CN/b8c5a601/" rel="bookmark">Vim 配置</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/en/aa4adef2/" rel="bookmark">Vim Configuration</a></div>
-    </li>
-  </ul>
 
 
     <footer class="post-footer">
@@ -401,7 +389,7 @@
 
         
   <div class="post-widgets">
-    <div class="wp_rating">
+    <div class="wpac-rating-container">
       <div id="wpac-rating"></div>
     </div>
   </div>
@@ -451,7 +439,7 @@
 
 <div class="copyright">
   &copy; 2017 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="paw"></i>
   </span>
@@ -462,13 +450,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Symbols count total">40k</span>
+    <span title="Symbols count total">58k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">37 mins.</span>
+    <span title="Reading time total">53 mins.</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -505,10 +493,14 @@
   <script src="https://embed.widgetpack.com/widget.js" async></script>
   <script class="next-config" data-name="rating" type="application/json">{"enable":true,"id":28908,"color":"#fc6423"}</script>
   <script src="../../js/third-party/rating.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
 <script src="../../js/third-party/search/local-search.js"></script>
 
 
 
+  <script src="../../js/third-party/fancybox.js"></script>
+
+  <script src="../../js/third-party/pace.js"></script>
 
   
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.0.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon-next.png">
@@ -16,21 +16,24 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-bounce.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"upwnothing.github.io","root":"/","images":"../../images","scheme":"Gemini","version":"8.6.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"../../search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="../../js/config.js"></script>
-<meta name="description" content="描述了在Kali中Ghidra的详细步骤，并且解决在这个过程中遇到的问题。">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"upwnothing.github.io","root":"/","images":"../../images","scheme":"Gemini","darkmode":true,"version":"8.10.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"../../search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="../../js/config.js"></script>
+
+  <meta name="description" content="描述了在Kali中Ghidra的详细步骤，并且解决在这个过程中遇到的问题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在Kali Linux中安装Ghidra">
 <meta property="og:url" content="https://upwnothing.github.io/zh-CN/b13d8a67/index.html">
 <meta property="og:site_name" content="UPWNothing&#39;s Playground">
 <meta property="og:description" content="描述了在Kali中Ghidra的详细步骤，并且解决在这个过程中遇到的问题。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/b13d8a67/403_error.png">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/b13d8a67/Ghidra_release_note.PNG">
-<meta property="og:image" content="https://upwnothing.github.io/zh-CN/b13d8a67/run.png">
+<meta property="og:image" content="https://upwnothing.github.io/.io//403_error.png">
+<meta property="og:image" content="https://upwnothing.github.io/.io//Ghidra_release_note.PNG">
+<meta property="og:image" content="https://upwnothing.github.io/.io//run.png">
 <meta property="article:published_time" content="2020-01-17T03:21:18.000Z">
 <meta property="article:modified_time" content="2020-01-17T06:42:55.188Z">
 <meta property="article:author" content="UPWNothing">
@@ -38,7 +41,7 @@
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Ghidra">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://upwnothing.github.io/zh-CN/b13d8a67/403_error.png">
+<meta name="twitter:image" content="https://upwnothing.github.io/.io//403_error.png">
 
 
 <link rel="canonical" href="https://upwnothing.github.io/zh-CN/b13d8a67/">
@@ -53,6 +56,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125116918-1"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-125116918-1","only_pageview":false}</script>
   <script src="../../js/third-party/analytics/google-analytics.js"></script>
+
 
 
 
@@ -99,7 +103,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">UPWNothing's Playground</h1>
+      <p class="site-title">UPWNothing's Playground</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">一个关于安全的小宝箱</p>
@@ -119,7 +123,7 @@
         <li class="menu-item menu-item-home"><a href="../../index.html" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="../../about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-categories"><a href="../../categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="../../archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">23</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="../../archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">25</span></a></li>
         <li class="menu-item menu-item-switch_lang"><a href="../../en/" rel="section"><i class="fa falanguage fa-fw"></i>switch_lang</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -182,8 +186,7 @@
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
-          <div class="site-overview">
-            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="UPWNothing"
       src="../../images/icon.jpeg">
   <p class="site-author-name" itemprop="name">UPWNothing</p>
@@ -192,20 +195,18 @@
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="../../archives/">
-        
-          <span class="site-state-item-count">23</span>
+        <a href="../../archives/">
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="../../categories/">
-          
+          <a href="../../categories/">
         <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -213,8 +214,8 @@
 
 
 
-          </div>
         </div>
+      </div>
         <div class="back-to-top animated" role="button" aria-label="返回顶部">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
@@ -302,8 +303,7 @@
       <span class="post-meta-item-text">阅读次数：</span>
       <span id="busuanzi_value_page_pv"></span>
     </span>
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -334,27 +334,27 @@
 <h1 id="Ghidra介绍"><a href="#Ghidra介绍" class="headerlink" title="Ghidra介绍"></a>Ghidra介绍</h1><p>Ghidra是一个由美国国家安全局(NSA)开发的软件逆向(SRE)工具集。NSA在2019年正式开源了这款工具。由于免费开源的特性，这款工具很快获得了安全从业人员的大量关注。</p>
 <h1 id="下载Ghidra"><a href="#下载Ghidra" class="headerlink" title="下载Ghidra"></a>下载Ghidra</h1><p>我们可以直接从<a target="_blank" rel="noopener" href="https://ghidra-sre.org/">Ghidra官网</a>下载最新版的Ghidra。</p>
 <p>或者直接执行命令(根据实际情况修改链接中的版本号与版本日期):</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">wget</span> https://ghidra-sre.org/ghidra_<span class="number">9</span>.<span class="number">1</span>.<span class="number">1</span>_PUBLIC_<span class="number">20191218</span>.zip </span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">wget</span> https://ghidra-sre.org/ghidra_9.<span class="number">1</span>.<span class="number">1</span>_PUBLIC_20191218.zip </span><br></pre></td></tr></table></figure>
 
 <h2 id="解决访问Ghidra官网403的问题"><a href="#解决访问Ghidra官网403的问题" class="headerlink" title="解决访问Ghidra官网403的问题"></a>解决访问Ghidra官网403的问题</h2><p>但是我在尝试下载时遇到了下述错误：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">richard@richard-Kali:~/Downloads$ wget http<span class="variable">s:</span>//ghidra-<span class="keyword">sre</span>.org/ghidra_9.<span class="number">1.1</span>_PUBLIC_20191218.zip</span><br><span class="line">--<span class="number">2020</span>-<span class="number">01</span>-<span class="number">15</span> <span class="number">11</span>:<span class="number">37</span>:<span class="number">34</span>--  http<span class="variable">s:</span>//ghidra-<span class="keyword">sre</span>.org/ghidra_9.<span class="number">1.1</span>_PUBLIC_20191218.zip</span><br><span class="line">Resolving ghidra-<span class="keyword">sre</span>.org (ghidra-<span class="keyword">sre</span>.org)... <span class="number">13.35</span>.<span class="number">99.82</span>, <span class="number">13.35</span>.<span class="number">99.69</span>, <span class="number">13.35</span>.<span class="number">99.72</span>, ...</span><br><span class="line">Connecting <span class="keyword">to</span> ghidra-<span class="keyword">sre</span>.org (ghidra-<span class="keyword">sre</span>.org)|<span class="number">13.35</span>.<span class="number">99.82</span>|:<span class="number">443</span>... connected.</span><br><span class="line">HTTP request sent, awaiting response... <span class="number">403</span> Forbidden</span><br><span class="line"><span class="number">2020</span>-<span class="number">01</span>-<span class="number">15</span> <span class="number">11</span>:<span class="number">37</span>:<span class="number">37</span> ERROR <span class="number">403</span>: Forbidden.</span><br></pre></td></tr></table></figure>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">richard@richard-Kali:~/Downloads$ wget https://ghidra-sre.org/ghidra_9.<span class="number">1</span>.<span class="number">1</span>_PUBLIC_<span class="number">20191218</span>.zip</span><br><span class="line">--<span class="number">2020-01-15</span> <span class="number">11</span>:<span class="number">37</span>:<span class="number">34</span>--  https://ghidra-sre.org/ghidra_9.<span class="number">1</span>.<span class="number">1</span>_PUBLIC_<span class="number">20191218</span>.zip</span><br><span class="line">Resolving ghidra-sre.org (ghidra-sre.org)... <span class="number">13.35.99.82</span>, <span class="number">13.35.99.69</span>, <span class="number">13.35.99.72</span>, ...</span><br><span class="line">Connecting to ghidra-sre.org (ghidra-sre.org)|<span class="number">13.35.99.82</span>|:<span class="number">443</span>... connected.</span><br><span class="line">HTTP request sent, awaiting response... <span class="number">403</span> Forbidden</span><br><span class="line"><span class="number">2020-01-15</span> <span class="number">11</span>:<span class="number">37</span>:<span class="number">37</span> ERROR <span class="number">403</span>: Forbidden.</span><br></pre></td></tr></table></figure>
 
-<p>在浏览器中直接访问，也同样报403.<br><img data-src="/zh-CN/b13d8a67/403_error.png" alt="浏览器报错信息"></p>
+<p>在浏览器中直接访问，也同样报403.<br><img data-src="/.io//403_error.png" alt="浏览器报错信息"></p>
 <p>造成这个的原因是部分国家的IP地址被Cloudfront屏蔽了。。已知的国家有俄罗斯，以色列，中国等…这个既不是GFW造成的，也不是NSA故意要屏蔽。所以，相对而言还是比较容易绕过这个IP的限制。</p>
 <p>当然，也可以从国内的文件分享平台上下载。不过，下载后请务必验证文件的完整性。<br>截止到版本9.1.1,所有版本的Hash信息如下表所示。</p>
-<p><img data-src="/zh-CN/b13d8a67/Ghidra_release_note.PNG" alt="Ghidra版本信息"></p>
+<p><img data-src="/.io//Ghidra_release_note.PNG" alt="Ghidra版本信息"></p>
 <p>对下载的文件进行完整性校验。</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">richard</span>@richard-Kali:~/Downloads$ sha<span class="number">256</span>sum ghidra_<span class="number">9</span>.<span class="number">1</span>.<span class="number">1</span>_PUBLIC_<span class="number">20191218</span>.zip </span><br><span class="line"><span class="attribute">b0d40a4497c66011084e4a639d61ac76da4b4c5cabd62ab63adadb7293b0e506</span>  ghidra_<span class="number">9</span>.<span class="number">1</span>.<span class="number">1</span>_PUBLIC_<span class="number">20191218</span>.zip</span><br><span class="line"><span class="attribute">richard</span>@richard-Kali:~/Downloads$ </span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">richard</span>@richard-Kali:~/Downloads$ sha256sum ghidra_9.<span class="number">1</span>.<span class="number">1</span>_PUBLIC_20191218.zip </span><br><span class="line"><span class="attribute">b0d40a4497c66011084e4a639d61ac76da4b4c5cabd62ab63adadb7293b0e506</span>  ghidra_9.<span class="number">1</span>.<span class="number">1</span>_PUBLIC_20191218.zip</span><br><span class="line"><span class="attribute">richard</span>@richard-Kali:~/Downloads$ </span><br></pre></td></tr></table></figure>
 
 <h1 id="安装Ghidra"><a href="#安装Ghidra" class="headerlink" title="安装Ghidra"></a>安装Ghidra</h1><p>首先将下载的压缩包解压。</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">richard</span>@richard-Kali:~/Downloads$ unzip ghidra_<span class="number">9</span>.<span class="number">1</span>.<span class="number">1</span>_PUBLIC_<span class="number">20191218</span>.zip</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">richard</span>@richard-Kali:~/Downloads$ unzip ghidra_9.<span class="number">1</span>.<span class="number">1</span>_PUBLIC_20191218.zip</span><br></pre></td></tr></table></figure>
 
 <p>再安装Java jdk 和 jre。</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt <span class="keyword">install </span>openjdk<span class="number">-11</span>-<span class="keyword">jdk</span></span><br><span class="line"><span class="keyword"></span>sudo apt <span class="keyword">install </span>openjdk<span class="number">-11</span>-<span class="keyword">jre-headless</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="运行Ghidra"><a href="#运行Ghidra" class="headerlink" title="运行Ghidra"></a>运行Ghidra</h1><p>上述步骤全部完成后，应该就能顺利运行Ghidra了。</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">./ghidraRun</span></span><br></pre></td></tr></table></figure>
-<p><img data-src="/zh-CN/b13d8a67/run.png" alt="成功运行"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ghidraRun</span><br></pre></td></tr></table></figure>
+<p><img data-src="/.io//run.png" alt="成功运行"></p>
 
     </div>
 
@@ -362,21 +362,6 @@
     
     
       
-  <div class="popular-posts-header">你可能感兴趣的文章</div>
-  <ul class="popular-posts">
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/zh-CN/1e3c141b/" rel="bookmark">在Kali Linux中安装Docker (Kali 2019.4)</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/zh-CN/ae2cc9de/" rel="bookmark">在Kali Linux中安装Google Chrome浏览器，并解决root用户无法运行的问题</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/en/ae2cc9de/" rel="bookmark">How to Install and Enable Google Chrome in Kali Linux</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/en/da9fccd6/" rel="bookmark">TODO List for New Kali</a></div>
-    </li>
-  </ul>
 
 
     <footer class="post-footer">
@@ -410,7 +395,7 @@
 
         
   <div class="post-widgets">
-    <div class="wp_rating">
+    <div class="wpac-rating-container">
       <div id="wpac-rating"></div>
     </div>
   </div>
@@ -464,7 +449,7 @@
 
 <div class="copyright">
   &copy; 2017 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="paw"></i>
   </span>
@@ -475,13 +460,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">40k</span>
+    <span title="站点总字数">58k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">37 分钟</span>
+    <span title="站点阅读时长">53 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -518,10 +503,14 @@
   <script src="https://embed.widgetpack.com/widget.js" async></script>
   <script class="next-config" data-name="rating" type="application/json">{"enable":true,"id":28908,"color":"#fc6423"}</script>
   <script src="../../js/third-party/rating.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
 <script src="../../js/third-party/search/local-search.js"></script>
 
 
 
+  <script src="../../js/third-party/fancybox.js"></script>
+
+  <script src="../../js/third-party/pace.js"></script>
 
   
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
