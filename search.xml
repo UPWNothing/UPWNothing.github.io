@@ -2045,4 +2045,44 @@
         <tag>YCM</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Goby - &quot;You Don&#39;t Have Permission to Capture on This Device&quot; Issue</title>
+    <url>/en-US/7f89c159/</url>
+    <content><![CDATA[<span id="more"></span>
+
+
+
+
+<p>Try to run Goby as root, got the following error message: </p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">[<span class="number">0708</span>/<span class="number">184710.807452</span>:FATAL:electron_main_delegate.<span class="keyword">cc</span>(<span class="number">290</span>)] Running <span class="keyword">as</span> root without --<span class="keyword">no</span>-<span class="keyword">sandbox</span> <span class="keyword">is</span> not supported. See https://crbug.<span class="keyword">com</span>/<span class="number">638180</span>.</span><br></pre></td></tr></table></figure>
+<p><img data-src="./error_message.png"></p>
+<p>If running Goby without root, then there will be an error message asking for NIC permission.</p>
+<p>~<a href="./no_permission.png"></a></p>
+<p>And when launching a new scan, it failed with an error message:</p>
+<p><img data-src="./error_message1.png"></p>
+<p>And it’s still not working even following the instruction to add current user to root group. What’s wrong? </p>
+<p>Here’s how to solve this issue: </p>
+<p>First add a capture group <code>pcap</code> and then add current user to this group:</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">sudo groupadd pcap</span><br><span class="line">sudo usermod -<span class="selector-tag">a</span> -G pcap richard</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="add_group.png"></p>
+<p>Next, change the group of tcpdump and set permissions:</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo chgrp pcap <span class="regexp">/usr/</span>bin/tcpdump</span><br><span class="line">sudo chmod <span class="number">750</span> <span class="regexp">/usr/</span>bin/tcpdump</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="change_permission.png"></p>
+<p>Add permission</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo setcap cap_net_raw,cap_net_admin=eip <span class="regexp">/usr/</span>bin/tcpdump</span><br><span class="line">sudo setcap cap_net_raw,cap_net_bind_service=+eip .<span class="regexp">/golib/g</span>oby-cmd-linux</span><br></pre></td></tr></table></figure>
+
+<p>Then check again in Goby. Now everything works well.<br><img data-src="./succeed.png"></p>
+]]></content>
+      <categories>
+        <category>Security</category>
+        <category>Web Application</category>
+        <category>Pentest</category>
+      </categories>
+      <tags>
+        <tag>Goby</tag>
+        <tag>Attack Surface Mapping</tag>
+      </tags>
+  </entry>
 </search>
